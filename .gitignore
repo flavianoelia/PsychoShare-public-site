@@ -1,0 +1,70 @@
+# Ignore Node.js dependencies
+node_modules
+package-lock.json
+yarn.lock
+
+# Ignore build outputs
+dist
+build
+out
+
+# Ignore log files
+logs
+*.log
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+
+# Ignore temporary files
+*.tmp
+*.temp
+
+# Ignore IDE and editor configuration files
+.vscode
+.idea
+*.suo
+*.ntvs
+*.njsproj
+*.sln
+
+# Ignore operating system files
+.DS_Store
+Thumbs.db
+
+# Ignore environment variable files
+.env
+.env.local
+.env.*
+
+# Ignore cache files
+.cache
+*.cache
+*.bak
+
+# Ignore testing-related files
+coverage
+*.test.js
+*.spec.js
+jest
+.vscode-test
+
+# Ignore generated static assets
+assets/generated
+
+# Ignore generated fonts
+fonts/generated
+
+# Ignore temporary or mock data files
+data/mock-data.json
+
+# Ignore other unnecessary files
+*.swp
+*.lock
+*.log
+*.pid
+*.seed
+*.pid.lock
+
+# Ignore user-specific configuration files
+*.local
+*.env.local
