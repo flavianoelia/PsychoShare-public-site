@@ -15,7 +15,7 @@
     <section>
       <h1>PsychoShare</h1>
 
-      <form id="registerForm" method="POST" action="http://localhost:3000/usuarios/register">
+      <form id="register-form">
         <label for="nombre">Nombre completo:</label>
         <input type="text" id="nombre" name="nombre" required><br><br>
 
@@ -41,34 +41,9 @@
     </section>
   </main>
 
-  <script>
-    document.getElementById("registerForm").addEventListener("submit", async function(event) {
-      event.preventDefault();
-
-      const form = event.target;
-      const formData = new URLSearchParams(new FormData(form));
-
-      try {
-        const response = await fetch(form.action, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/x-www-form-urlencoded"
-          },
-          body: formData
-        });
-
-        if (response.ok) {
-          alert("Registro exitoso.");
-          window.location.href = "login.html";
-        } else {
-          const errorData = await response.json();
-          alert("Error al registrarse: " + (errorData.message || "Verificá los datos."));
-        }
-      } catch (error) {
-        alert("Error de red: " + error.message);
-      }
-    });
-  </script>
+ 
+  <script type="module" src="./js/sign-up-register.js"></script>
 
 </body>
 </html>
+
