@@ -69,18 +69,18 @@
 
     <section aria-label="Seccion for posts"><!-- This tag represent the post section-->
         <img src="" alt="profile picture">
-        <input type="text" placeholder="¿Sobre qué quieres hablar?">
-        <button type="">
+        <input type="text" placeholder="¿Sobre qué quieres hablar?" onclick="openModal()">
+        <button type="" onclick="openModal()">
             <img src="" alt="Image"> <!-- Can be image or icon, if its icon use tag: <i> -->
         </button>
-        <button>
+        <button onclick="openModal()">
             <img src="" alt="pdf"> <!-- Can be image or icon, if its icon use tag: <i> -->
         </button>
     </section>
 
     <!-- Modal window for all information for the post -->
-     <dialog> <!-- This tag represent emergents windows-->
-        <button>
+     <dialog id="post-detail-modal"> <!-- This tag represent emergents windows-->
+        <button onclick="closeModal()">
             <img src="" alt="close"> <!-- Can be image or icon, if its icon use tag: <i> -->
         </button>
         <header aria-label="Post header"> <!-- Header for details of user -->
@@ -88,11 +88,11 @@
             <h2>nombre apellido</h2>
             <p>profesión</p>
         </header>
-        <form action="post" method="post" aria-label="Post form">
+        <form action="post" method="post" aria-label="Post form" id="modal-form">
             <textarea placeholder="¿Sobre que quieres hablar?" id="description"></textarea>
             <input type="text" placeholder="Título" id="title">
-            <input type="text" placeholder="Autoría" id="authorship            ">
-            <input type="text" placeholder="Abstract" id="abstract">
+            <input type="text" placeholder="Autoría" id="authorship">
+            <textarea type="text" placeholder="Abstract" id="abstract"></textarea>
             <div>
                 <p>Adjuntar</p>
                 <input type="file" accept="image/*">
@@ -108,6 +108,8 @@
         <p>© 2025 PsychoShare</p>
     </footer>
 
+
+    <script src="./js/wall.js"></script>
   </body>
 
 </html>
