@@ -7,38 +7,38 @@
   </head>
 
   <body>
-    <header aria-label="Encabezado principal">
+    <header aria-label="Main header">
         <a href="#"> 
-            <img src="" alt="Logo de PsychoShare">
+            <img src="" alt="PsychoShare logo">
             <h1>PsychoShare</h1>
         </a>
     </header>
 
-    <section aria-label="Buscador y accesos directos">
-        <form action="search" method="get"aria-label="Buscador de personas y publicaciones">
+    <section aria-label="Search engine and shortcuts">
+        <form action="search" method="get"aria-label="People and publications search engine">
             <input type="search" id="search" name="q" placeholder="¿Sobre qué quieres investigar?">
-            <button type="submit" aria-label="Buscar">
-                <img src="" alt="Lupa"> <!-- Puede ser imagen o icono, en caso de ícono se utiliza etiqueta <i> -->
+            <button type="submit" aria-label="Search">
+                <img src="" alt="Lens"> <!-- Can be image or icon, if its icon use tag: <i> -->
             </button>
         </form>
 
-        <nav aria-label="Accesos directos">
+        <nav aria-label="Shortcuts">
             <ul>
                 <li>
                     <a href="/library.html">
-                        <img src="" alt="biblioteca"> <!-- Puede ser imagen o icono, en caso de ícono se utiliza etiqueta <i> -->
+                        <img src="" alt="library"> <!-- Can be image or icon, if its icon use tag: <i> -->
                     </a>
                 </li>
                 <li>
                     <a href="/profile.html">
-                        <img src="" alt="perfil">
+                        <img src="" alt="profile">
                     </a>
                 </li>
             </ul>
         </nav>
     </section>
 
-    <nav aria-label="Menú de principal de navegación">
+    <nav aria-label="Main navigation menu">
         <ul>
             <li>
                 <a href="#">Inicio</a>
@@ -66,6 +66,42 @@
     </nav>
 
     <main>
+
+    <section aria-label="Seccion for posts"><!-- This tag represent the post section-->
+        <img src="" alt="profile picture">
+        <input type="text" placeholder="¿Sobre qué quieres hablar?">
+        <button type="">
+            <img src="" alt="Image"> <!-- Can be image or icon, if its icon use tag: <i> -->
+        </button>
+        <button>
+            <img src="" alt="pdf"> <!-- Can be image or icon, if its icon use tag: <i> -->
+        </button>
+    </section>
+
+    <!-- Modal window for all information for the post -->
+     <dialog> <!-- This tag represent emergents windows-->
+        <button>
+            <img src="" alt="close"> <!-- Can be image or icon, if its icon use tag: <i> -->
+        </button>
+        <header aria-label="Post header"> <!-- Header for details of user -->
+            <img src="" alt="profile picture">
+            <h2>nombre apellido</h2>
+            <p>profesión</p>
+        </header>
+        <form action="post" method="post" aria-label="Post form">
+            <textarea placeholder="¿Sobre que quieres hablar?" id="description"></textarea>
+            <input type="text" placeholder="Título" id="title">
+            <input type="text" placeholder="Autoría" id="authorship            ">
+            <input type="text" placeholder="Abstract" id="abstract">
+            <div>
+                <p>Adjuntar</p>
+                <input type="file" accept="image/*">
+                <input type="file" accept=" .pdf">
+            </div>
+            <button type="submit">Publicar</button>
+        </form>
+     </dialog>
+
     </main>
     
     <footer>
