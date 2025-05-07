@@ -1,6 +1,8 @@
 const modal = document.getElementById("post-detail-modal");
 const modalForm = document.getElementById('modal-form');
 
+const logout = document.getElementById("logout-modal");
+
 function openModal() {
     modal.showModal();
 }
@@ -16,3 +18,11 @@ modal.addEventListener('keydown', (event) => {
         closeModal();
     }
 });
+
+function openLogout() {
+    logout.showModal();
+}
+
+function closeLogout() {
+    logout.close();
+}

@@ -59,7 +59,9 @@
                 <a href="/">Acerca de...</a>
             </li>
             <li>
-                <a href="/login.html">Cerrar sesión</a>
+                <button onclick="openLogout()">
+                    Cerrar sesión
+                </button>
             </li>
 
         </ul>
@@ -78,8 +80,19 @@
         </button>
     </section>
 
+    <article>
+        <header aria-label="Post user">
+            <img src="" alt="profile picture">
+            <p>Nombre Apellido</p>
+            <p>Profesión</p>
+        </header>
+        
+    </article>
+
+    </main>
+
     <!-- Modal window for all information for the post -->
-     <dialog id="post-detail-modal"> <!-- This tag represent emergents windows-->
+    <dialog id="post-detail-modal" aria-label = "Details of the post"> <!-- This tag represent emergents windows-->
         <button onclick="closeModal()">
             <img src="" alt="close"> <!-- Can be image or icon, if its icon use tag: <i> -->
         </button>
@@ -102,8 +115,16 @@
         </form>
      </dialog>
 
-    </main>
-    
+    <!-- Modal window for confirmation to close the sesion-->
+    <dialog id="logout-modal">
+        <button onclick="closeLogout()">
+            <img src="" alt="x"> <!-- Can be image or icon, if its icon use tag: <i> -->
+        </button>
+        <h2>¿Estás seguro que deseas cerrar la sesión?</h2>
+        <button type="submit">Cerrar sesión</button>
+        <button onclick="closeLogout()">Cancelar</button>
+    </dialog> 
+
     <footer>
         <p>© 2025 PsychoShare</p>
     </footer>
