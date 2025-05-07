@@ -5,46 +5,49 @@
   <title>PsychoShare - Registrarse</title>
 </head>
 <body>
+  <main>
 
-  <div>
+  <header>
     <img src="logo.png" alt="Logo de PsychoShare">
-    <h2>Crear una nueva cuenta</h2>
-  </div>
+    <h1>Crear una nueva cuenta</h1>
+  </header>
 
  
-  <div>
+    <section>
 
-    <form action="login.html">
-      <input type="text" name="nombre" placeholder="Nombre">
-      <input type="text" name="apellido" placeholder="Apellido">
-      <input type="email" name="correo" placeholder="Correo electrónico">
-      <input type="text" name="usuario" placeholder="Nombre de usuario">
+      <form action="login.html">
+        <input type="text" name="nombre" placeholder="Nombre">
+        <input type="text" name="apellido" placeholder="Apellido">
+        <input type="email" name="correo" placeholder="Correo electrónico">
+        <input type="text" name="usuario" placeholder="Nombre de usuario">
+
+        <p>¿Ya tenés una cuenta? <a href="#">Iniciá sesión</a></p>
+
+        <input type="password" name="contraseña" placeholder="Contraseña">
+        <input type="password" name="repetir" placeholder="Repetir contraseña">
+
+        <div>
+          <input type="checkbox" id="terminos">
+          <label for="terminos">
+            Acepto <a href="#modal">términos y condiciones</a> y <a href="#modal">Política de Privacidad</a>
+          </label>
+        </div>
+
+        <button type="submit">Registrarse</button>
+      </form>
+
+
+      <div>
+        <p>Acepto los Términos y condiciones y Política de Privacidad</p>
+      </div>
 
       <p>¿Ya tenés una cuenta? <a href="#">Iniciá sesión</a></p>
 
-      <input type="password" name="contraseña" placeholder="Contraseña">
-      <input type="password" name="repetir" placeholder="Repetir contraseña">
 
-      <div>
-        <input type="checkbox" id="terminos">
-        <label for="terminos">
-          Acepto <a href="#modal">términos y condiciones</a> y <a href="#modal">Política de Privacidad</a>
-        </label>
-      </div>
-
-      <button type="submit">Registrarse</button>
-    </form>
-
-    <p>¿Ya tenés una cuenta? <a href="#">Iniciá sesión</a></p>
-
-  </div>
+    </section>
 
 
-  <div id="modal">
-    <h4>Términos y condiciones y Política de Privacidad</h3>
-    <p>Contenido de la maqueta del modal aquí.</p>
-    <a href="#">Cerrar</a>
-  </div>
+</main>
 
 </body>
 </html>
