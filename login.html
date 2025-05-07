@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>PsychoShare - Inicio de sesión</title>
+</head>
+<body>
+
+
+  <div>
+    <img src="logo.png" alt="Logo de PsychoShare">
+    <p>Psicología abierta : Explora, comparte, impulsa y transforma.</p>
+  </div>
+ 
+  <div>
+    <h1>PsychoShare</h1>
+
+    <form id="login-form">
+      <input type="text" name="usuario" placeholder="Nombre de usuario o correo electrónico">
+
+      <input type="password" name="contraseña" placeholder="Contraseña">
+
+      <button type="submit">Iniciar sesión</button>
+    </form>
+
+    <hr width="50%">
+    
+    <a href="sing-up-register.html">
+        <button type="button">Crear cuenta nueva</button>
+      </a>
+
+    <p>
+      Al registrarte, aceptás nuestros 
+      <a href="#">Términos y Condiciones</a> y nuestra 
+      <a href="#">Política de Privacidad</a>.
+    </p>
+
+    <p>
+      Todo el contenido debe respetar las licencias Creative Commons y los derechos de autor.
+    </p>
+  </div>
+
+  <script>
+    document.getElementById('login-form').addEventListener('submit', function(event) {
+      event.preventDefault(); 
+      window.location.href = 'profile.html'; 
+    });
+  </script>
+
+</body>
+</html>
