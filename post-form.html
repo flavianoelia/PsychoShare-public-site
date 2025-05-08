@@ -1,0 +1,34 @@
+
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+    <main>
+    <button>
+        <img src="" alt="close"> <!-- Can be image or icon, if its icon use tag: <i> -->
+    </button>
+    <header aria-label="Post header"> <!-- Header for details of user -->
+        <img src="" alt="profile picture">
+        <h2>nombre apellido</h2>
+    </header>
+    <form action="post" method="post" aria-label="Post form" id="modal-form">
+        <textarea placeholder="¿Sobre que quieres hablar?" id="description"></textarea>
+        <input type="text" placeholder="Título" id="title">
+        <input type="text" placeholder="Autoría" id="authorship">
+        <textarea type="text" placeholder="Abstract" id="abstract"></textarea>
+        <div>
+            <p>Adjuntar</p>
+            <input type="file" accept="image/*">
+            <input type="file" accept=" .pdf">
+        </div>
+        <button type="submit">Publicar</button>
+    </form>
+    </main>
+
+  </body>
+</html>

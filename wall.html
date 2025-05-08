@@ -7,6 +7,7 @@
   </head>
 
   <body>
+     <!-- Logo and title of PsychoShare -->
     <header aria-label="Main header">
         <a href="#"> 
             <img src="" alt="PsychoShare logo">
@@ -15,6 +16,8 @@
     </header>
 
     <section aria-label="Search engine and shortcuts">
+
+        <!-- Section for searching -->
         <form action="search" method="get"aria-label="People and publications search engine">
             <input type="search" id="search" name="q" placeholder="¿Sobre qué quieres investigar?">
             <button type="submit" aria-label="Search">
@@ -22,13 +25,9 @@
             </button>
         </form>
 
-        <nav aria-label="Shortcuts">
+        <!-- Shortut to profile -->
+        <nav aria-label="Shortcut">
             <ul>
-                <li>
-                    <a href="/library.html">
-                        <img src="" alt="library"> <!-- Can be image or icon, if its icon use tag: <i> -->
-                    </a>
-                </li>
                 <li>
                     <a href="/profile.html">
                         <img src="" alt="profile">
@@ -36,8 +35,10 @@
                 </li>
             </ul>
         </nav>
+
     </section>
 
+    <!-- Main navigation menu -->
     <nav aria-label="Main navigation menu">
         <ul>
             <li>
@@ -47,86 +48,64 @@
                 <a href="/profile.html">Perfil</a>
             </li>
             <li>
-                <a href="/followers.html">Seguidores</a>
-            </li>
-            <li>
-                <a href="/following.html">Seguidos</a>
-            </li>
-            <li>
-                <a href="/">Biblioteca</a>
+                <a href="/">Mis contactos</a>
             </li>
             <li>
                 <a href="/">Acerca de...</a>
             </li>
             <li>
-                <button onclick="openLogout()">
+                <button>
                     Cerrar sesión
                 </button>
             </li>
-
         </ul>
     </nav>
 
     <main>
 
-    <section aria-label="Seccion for posts"><!-- This tag represent the post section-->
+    <!-- The input for the post-->
+    <section aria-label="Seccion for posts">
         <img src="" alt="profile picture">
-        <input type="text" placeholder="¿Sobre qué quieres hablar?" onclick="openModal()">
-        <button type="" onclick="openModal()">
+        <input type="text" placeholder="¿Sobre qué quieres hablar?">
+        <button type="">
             <img src="" alt="Image"> <!-- Can be image or icon, if its icon use tag: <i> -->
         </button>
-        <button onclick="openModal()">
+        <button>
             <img src="" alt="pdf"> <!-- Can be image or icon, if its icon use tag: <i> -->
         </button>
     </section>
 
-    <article>
+    <!-- This tag represent a post on the wall -->
+    <article aria aria-labelledby="post-title">
         <header aria-label="Post user">
             <img src="" alt="profile picture">
             <p>Nombre Apellido</p>
-            <p>Profesión</p>
         </header>
-        
+        <section>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit libero eligendi minima magni mollitia? Culpa illo architecto consequat.</p>
+            <h2 id="post-title">La depresión: un desafío en la práctica médica general</h2>
+            <p>Autoría: Ana Lopez, Roberto Kabat</p>
+            <p>Abstract:
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quia, similique! Qui, animi quasi, blanditiis ratione repudiandae exercitationem nesciunt corporis, quae cum quo vel culpa neque voluptas quas quis. Nisi, officia?
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Obcaecati architecto temporibus fugiat? Ipsum dicta numquam perferendis doloribus explicabo magni in dolorum, eius placeat facere culpa, nesciunt debitis quas laudantium quae.
+            </p>
+            <figure>
+                <img src="" alt="portada de artículo">
+                <div>
+                    <button>Like icon</button>
+                    <button>Coment icon</button>
+                </div>
+                <button>
+                    Ver PDF
+                </button>
+            </figure>
+        </section>
     </article>
 
     </main>
 
-    <!-- Modal window for all information for the post -->
-    <dialog id="post-detail-modal" aria-label = "Details of the post"> <!-- This tag represent emergents windows-->
-        <button onclick="closeModal()">
-            <img src="" alt="close"> <!-- Can be image or icon, if its icon use tag: <i> -->
-        </button>
-        <header aria-label="Post header"> <!-- Header for details of user -->
-            <img src="" alt="profile picture">
-            <h2>nombre apellido</h2>
-            <p>profesión</p>
-        </header>
-        <form action="post" method="post" aria-label="Post form" id="modal-form">
-            <textarea placeholder="¿Sobre que quieres hablar?" id="description"></textarea>
-            <input type="text" placeholder="Título" id="title">
-            <input type="text" placeholder="Autoría" id="authorship">
-            <textarea type="text" placeholder="Abstract" id="abstract"></textarea>
-            <div>
-                <p>Adjuntar</p>
-                <input type="file" accept="image/*">
-                <input type="file" accept=" .pdf">
-            </div>
-            <button type="submit">Publicar</button>
-        </form>
-     </dialog>
-
-    <!-- Modal window for confirmation to close the sesion-->
-    <dialog id="logout-modal">
-        <button onclick="closeLogout()">
-            <img src="" alt="x"> <!-- Can be image or icon, if its icon use tag: <i> -->
-        </button>
-        <h2>¿Estás seguro que deseas cerrar la sesión?</h2>
-        <button type="submit">Cerrar sesión</button>
-        <button onclick="closeLogout()">Cancelar</button>
-    </dialog> 
-
     <footer>
-        <p>© 2025 PsychoShare</p>
+        <p> 2025 PsychoShare</p>
     </footer>
 
 
