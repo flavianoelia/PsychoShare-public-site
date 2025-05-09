@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 
   <head>
     <meta charset="utf-8">
@@ -7,7 +7,7 @@
   </head>
 
   <body>
-     <!-- Logo and title of PsychoShare -->
+    
     <header aria-label="Main header">
         <a href="#"> 
             <img src="" alt="PsychoShare logo">
@@ -16,33 +16,24 @@
     </header>
 
     <section aria-label="Search engine and shortcuts">
-
-        <!-- Section for searching -->
+        
         <form action="search" method="get"aria-label="People and publications search engine">
             <input type="search" id="search" name="q" placeholder="¿Sobre qué quieres investigar?">
             <button type="submit" aria-label="Search">
-                <img src="" alt="Lens"> <!-- Can be image or icon, if its icon use tag: <i> -->
+                <img src="" alt="Lens">
             </button>
         </form>
-
-        <!-- Shortut to profile -->
-        <nav aria-label="Shortcut">
-            <ul>
-                <li>
-                    <a href="/profile.html">
-                        <img src="" alt="profile">
-                    </a>
-                </li>
-            </ul>
-        </nav>
+        
+        <button aria-label="Shortcut to profile">
+            <img src="" alt="profile picture">
+        </button>
 
     </section>
 
-    <!-- Main navigation menu -->
     <nav aria-label="Main navigation menu">
         <ul>
             <li>
-                <a href="#">Inicio</a>
+                <button>Inicio</button>
             </li>
             <li>
                 <a href="/profile.html">Perfil</a>
@@ -63,24 +54,22 @@
 
     <main>
 
-    <!-- The input for the post-->
     <section aria-label="Seccion for posts">
         <img src="" alt="profile picture">
         <input type="text" placeholder="¿Sobre qué quieres hablar?">
         <button type="">
-            <img src="" alt="Image"> <!-- Can be image or icon, if its icon use tag: <i> -->
+            <img src="" alt="Image"> 
         </button>
         <button>
-            <img src="" alt="pdf"> <!-- Can be image or icon, if its icon use tag: <i> -->
+            <img src="" alt="pdf">
         </button>
     </section>
 
-    <!-- This tag represent a post on the wall -->
-    <article aria aria-labelledby="post-title">
-        <header aria-label="Post user">
+    <article aria-labelledby="post-title">
+        <section aria-label="Post user">
             <img src="" alt="profile picture">
             <p>Nombre Apellido</p>
-        </header>
+        </section>
         <section>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit libero eligendi minima magni mollitia? Culpa illo architecto consequat.</p>
             <h2 id="post-title">La depresión: un desafío en la práctica médica general</h2>
@@ -91,13 +80,15 @@
             </p>
             <figure>
                 <img src="" alt="portada de artículo">
-                <div>
-                    <button>Like icon</button>
-                    <button>Coment icon</button>
-                </div>
-                <button>
-                    Ver PDF
-                </button>
+                <figcaption>
+                    <div>
+                        <button>Like icon</button>
+                        <button>Coment icon</button>
+                    </div>
+                    <button>
+                        Ver PDF
+                    </button>
+                </figcaption>
             </figure>
         </section>
     </article>
