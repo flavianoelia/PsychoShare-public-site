@@ -1,44 +1,28 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <title>PsychoShare - Registrarse</title>
-</head>
-<body>
-
-  <main>
-
-  <header>
-    <img src="logo.png" alt="Logo de PsychoShare">
-    <h1>Crear una nueva cuenta</h1>
-  </header>
-
- 
-    <section>
-
-      <form action="login.html">
-        <input type="text" name="nombre" placeholder="Nombre y Apellido">
-        <input type="email" name="correo" placeholder="Correo electrónico">
-        <input type="password" name="contraseña" placeholder="Contraseña">
-        <input type="password" name="repetir" placeholder="Repetir contraseña">
-
-        <section>
-          <input type="checkbox" id="terminos">
-          <label for="terminos">
-            Acepto <a href="#modal">términos y condiciones</a> y <a href="#modal">Política de Privacidad</a>
-          </label>
-        </section>
-
-        <button type="submit">Registrarse</button>
-     
-
-      <p>¿Ya tenés una cuenta? <a href="#">Iniciá sesión</a></p>
-      </form>
-
-    </section>
-
-
-</main>
-
-</body>
+  <head>
+    <meta charset="UTF-8">
+    <title>Registro - PsychoShare</title>
+  </head>
+  <body>
+    <main>
+      <section>
+        <img src="logo.png" alt="Logo de PsychoShare" width="150" height="150">
+        <h1>Crear una nueva cuenta</h1>
+      </section>
+      <section>
+        <h1>PsychoShare</h1>
+        <form id="register-form">
+          <input type="text" id="nombre" name="nombre" placeholder= "Nombre y apellido" required>
+          <input type="email" id="mail" name="mail" placeholder="Correo electrónico" required>
+          <input type="password" id="password" name="password" placeholder="Contraseña" required>
+          <input type="password" id="Repetir contraseña" name="Repetir contraseña" placeholder="Repetir contraseña" required>
+          <input type="checkbox" name="terms" required>
+          Acepto los terminos y condiciones y Politica de Privacidad
+          <button type="submit">Crear cuenta nueva</button>
+        </form>
+        <p>¿Ya tenés una cuenta? <a href="login.html">Iniciá sesión</a></p>
+      </section>
+    </main>
+  </body>
 </html>
