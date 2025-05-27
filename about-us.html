@@ -8,25 +8,48 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&family=Sora:wght@100..800&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="../css/stilo.css">
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body class="grid">
 
     <header aria-label="Encabezado" class="logo-header">
-        <img src="" alt="logo de PsychoShare">
+        <img src="assets/logop.svg" alt="logo de PsychoShare">
         <h1>PsychoShare</h1>
     </header>
 
     <nav aria-label="Menú de navegación" class="menu-nav">
       <ul>
-          <li><a href="./wall.html">Inicio</a></li>
-          <li><a href="./profile.html">Perfil</a></li>
-          <li><a href="./contacts.html">Mis contactos</a></li>
-          <li><a href="#">Acerca de...</a></li>
+          <li> 
+            <a href="./wall.html"> 
+                <img  class="menu-icon" src="assets/icons/wall.svg" alt=""> 
+                <span>Inicio</span>
+            </a>
+          </li>
+          <li> 
+            <a href="./profile.html">
+                <img  class="menu-icon" src="assets/icons/profilep.svg" alt=""> 
+                <span>Perfil</span>
+            </a>
+        </li>
+        <li> 
+          <a href="./contacts.html">
+              <img  class="menu-icon" src="assets/icons/contactsp.svg" alt=""> 
+              <span>Mis contactos</span>
+          </a>
+        </li>
+        <li> 
+            <a href="#"> 
+                <img  class="menu-icon" src="assets/icons/aboutp.svg" alt="">
+                <span>Acerca de...</span>
+            </a>
+        </li>
+        <li class="logout-item">
+            <button class="close-sesion-button">
+                <img src="assets/icons/logoutp.svg" alt="Cerrar sesion">
+                <span>Cerrar sesión</span>
+            </button>
+        </li>
 
-          <div>
-          <li><button class="close-sesion-button">Cerrar sesión</button></li>
-          </div>
       </ul>
     </nav>
 
@@ -34,9 +57,11 @@
 
       <section class="slogan-section">
             <figure class="slogan">
-                  <img src="logo.png" alt="Logo de PsychoShare" />
+                  <div class="slogan-logo">
+                      <img src="assets/logop.svg" alt="Logo">
+                  </div>
                   <figcaption>
-                    <h2>Psicología abierta: Explora, comparte, impulsa y transforma.</h2>
+                    Psicología abierta: Explora, comparte, impulsa y transforma.
                   </figcaption>
             </figure>
       </section>
@@ -47,7 +72,7 @@
             </header>
 
             <article class="about-section-text">
-                  <h3>¿Quiénes somos?</h3>
+                  <h2>¿Quiénes somos?</h2>
                   <p>
                     Somos una comunidad de divulgación científica en psicología. Conectamos a profesionales,
                     estudiantes y curiosos para compartir conocimiento riguroso, accesible y libre.
@@ -56,7 +81,7 @@
             </article>
 
             <article class="about-section-text">
-                  <h3>¿Por qué lo hacemos?</h3>
+                  <h2>¿Por qué lo hacemos?</h2>
                   <p>
                     En un mundo saturado de desinformación, creemos que el conocimiento científico debe ser abierto,
                     compartido y discutido por todos. Buscamos combatir mitos, promover el pensamiento crítico
@@ -65,7 +90,7 @@
             </article>
 
             <adress class="contact-us">
-                  <h4>¡Contactanos!</h4>
+                  <h2>¡Contactanos!</h2>
                   <p>
                     Si tenés sugerencias o consultas escribinos a
                     <a href="mailto:dsoftware2023@gmail.com">dsoftware2023@gmail.com</a>
