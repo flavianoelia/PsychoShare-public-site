@@ -197,6 +197,10 @@ section ul {
     .logo-header h1 {
       padding-top: 15px;
     }
+
+    
+
+    
     .menu-nav{
       grid-area: menu-nav;
       background-color: inherit;
@@ -248,6 +252,7 @@ section ul {
       display: inline;
       color: black;
     }
+    
     .main-content{
       grid-area: main-content;
       display: flex;

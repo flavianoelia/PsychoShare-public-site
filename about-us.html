@@ -7,8 +7,14 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&family=Sora:wght@100..800&display=swap" rel="stylesheet">
+  
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" 
+         rel="stylesheet" 
+         integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" 
+         crossorigin="anonymous">
 
   <link rel="stylesheet" href="css/style.css">
+  
 </head>
 <body class="grid">
 
@@ -17,40 +23,49 @@
         <h1>PsychoShare</h1>
     </header>
 
-    <nav aria-label="Menú de navegación" class="menu-nav">
-      <ul>
-          <li> 
-            <a href="./wall.html"> 
-                <img  class="menu-icon" src="assets/icons/wall.svg" alt=""> 
+    <!--class="menu-nav"-->
+
+    <nav aria-label="Menú de navegación" class="navbar navbar-expand-md flex-md-column menu-nav p-0">
+
+    <button class="navbar-toggler ms-auto me-2 mt-2 d-md-none" type="button" data-bs-toggle="collapse" data-bs-target="#mainMenu" aria-controls="mainMenu" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse w-100" id="mainMenu">
+      <ul class="nav flex-md-column w-100">
+         <li class="nav-item">
+            <a class="nav-link d-flex align-items-center" href="./wall.html"> 
+                <img class="menu-icon" src="assets/icons/wall.svg" alt=""> 
                 <span>Inicio</span>
             </a>
           </li>
-          <li> 
-            <a href="./profile.html">
-                <img  class="menu-icon" src="assets/icons/profilep.svg" alt=""> 
+          <li class="nav-item">
+            <a class="nav-link d-flex align-items-center" href="./profile.html">
+                <img class="menu-icon" src="assets/icons/profilep.svg" alt=""> 
                 <span>Perfil</span>
             </a>
         </li>
-        <li> 
-          <a href="./contacts.html">
+        <li class="nav-item"> 
+          <a class="nav-link d-flex align-items-center" href="./contacts.html">
               <img  class="menu-icon" src="assets/icons/contactsp.svg" alt=""> 
               <span>Mis contactos</span>
           </a>
         </li>
-        <li> 
-            <a href="#"> 
+        <li class="nav-item">
+            <a class="nav-link d-flex align-items-center" href="#"> 
                 <img  class="menu-icon" src="assets/icons/aboutp.svg" alt="">
                 <span>Acerca de...</span>
             </a>
         </li>
-        <li class="logout-item">
-            <button class="close-sesion-button">
+        <li class="nav-item mt-md-auto">
+            <button class="btn nav-link text-start close-sesion-button">
                 <img src="assets/icons/logoutp.svg" alt="Cerrar sesion">
                 <span>Cerrar sesión</span>
             </button>
         </li>
 
       </ul>
+      </div>
     </nav>
 
   <main class="main-content">
@@ -104,6 +119,10 @@
   <footer class="footer-about">
       <p>2025 PsychoShare - Hecho por PsyNet - Licencia MIT</p>
   </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" 
+    integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" 
+    crossorigin="anonymous">
+   </script>
 
 </body>
 </html>
