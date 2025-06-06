@@ -28,7 +28,9 @@ nav ul {
 section ul {
   list-style-type: none;
 }
-/* about-us styles starts*/
+
+
+/* grid from mobile*/
 .grid{
   display: grid;
   width: 100vw;
@@ -40,8 +42,12 @@ section ul {
       "menu-nav";
   background-color: rgb(255, 249, 247)
 }
+
+
+/*header styles*/
 .logo-header{
   grid-area: logo-header;
+  height: 40px;
   display: flex;
   flex-direction: row;
   background-color:rgb(181, 141, 147);
@@ -53,9 +59,13 @@ section ul {
 }
 .logo-header h1 {
   color: white;
-  padding-top: 20px;
-  padding-left: 10px;
+  font-size: 1.7em;
+  padding-top: 5px;
 }
+
+
+
+/*logo section styles*/
 .main-content{
   grid-area: main-content;
 }
@@ -90,6 +100,10 @@ section ul {
   line-height: 1.5;
   
 }
+
+
+
+/*about section styles*/
 .about-section{
     display: flex;
     flex-direction: column;
@@ -104,7 +118,6 @@ section ul {
 .about-section-title h1 {
   font-style: italic;
 }
-
 .about-section-text{
   display: flex;
   flex-direction: column;
@@ -121,6 +134,9 @@ section ul {
   font-weight: 500;
 }
 
+
+
+/*contact us styles*/
 .contact-us{
     display: flex;
     flex-direction: column;
@@ -135,13 +151,32 @@ section ul {
   text-decoration: none;
   color: inherit;
 }
+
+
+
+/*footer styles*/
+.footer-about{
+  grid-area: footer-about;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  text-align: center;
+}
+
+
+
+/*navigation menu styles*/
 .menu-nav{
   grid-area: menu-nav;
   background-color:  rgb(181, 141, 147);
 }
-.menu-icon {
-  width: 40px;
-  height: 40px;
+.navbar{
+  position: fixed !important;
+  bottom: 0;
+  left: 0;   
+  width: 100%;
+  z-index: 1020;   
 }
 .menu-nav ul {
   display: flex;
@@ -151,6 +186,10 @@ section ul {
 }
 .menu-nav ul li a span {
   display: none;
+}
+.menu-nav ul li a i {
+  color: white;
+
 }
 .close-sesion-button {
   background: none;
@@ -163,14 +202,7 @@ section ul {
 .close-sesion-button span {
   display: none;
 }
-.footer-about{
-  grid-area: footer-about;
-  margin-top: 20px;
-  margin-bottom: 20px;
-  padding-top: 20px;
-  padding-bottom: 20px;
-  text-align: center;
-}
+
 
 /*desktop styles starts*/
 @media screen and (min-width: 768px){
@@ -198,23 +230,22 @@ section ul {
       padding-top: 15px;
     }
 
-    
 
-    
     .menu-nav{
       grid-area: menu-nav;
       background-color: inherit;
       border-right: solid 1px lightgrey;
     }
-    .menu-nav ul {
+    
+    .list-items {
       display: flex;
       flex-direction: column;
       flex-wrap: nowrap;
-      min-height: 100%;
       text-align: start;
       justify-content: start;
     }
     
+    /*
     .menu-nav ul li {
       padding: 20px;
       padding-left: 20px;
@@ -252,7 +283,7 @@ section ul {
       display: inline;
       color: black;
     }
-    
+    */
     .main-content{
       grid-area: main-content;
       display: flex;
@@ -289,6 +320,36 @@ section ul {
       grid-area: footer-about;
     }
 }
+
+@media (max-width: 767.98px) {
+  .extra-collapse {
+    position: absolute;
+    bottom: 100%;
+    left: 0;
+    background-color:  rgb(181, 141, 147);
+    z-index: 1000;
+    border: 1px solid #ddd;
+    box-shadow: 0 -100px 90px rgba(0, 0, 0, 0.1);
+  }
+
+  .extra-collapse .nav-link {
+    flex-direction: row;
+    padding: 0.5rem 1rem;
+    align-items: center;
+  }
+
+  /*
+  .extra-collapse .nav-link span {
+    display: inline;
+    
+  }
+  .extra-collapse .close-sesion-button span {
+    display: inline;
+  }
+  */
+}
+
+
 /*about-us ends*/
 
 

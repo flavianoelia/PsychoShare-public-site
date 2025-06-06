@@ -13,61 +13,69 @@
          integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" 
          crossorigin="anonymous">
 
+  <script src="https://kit.fontawesome.com/636f762910.js" crossorigin="anonymous"></script>
+  
   <link rel="stylesheet" href="css/style.css">
   
 </head>
-<body class="grid">
+<body class="grid" id="body">
 
     <header aria-label="Encabezado" class="logo-header">
         <img src="assets/logop.svg" alt="logo de PsychoShare">
         <h1>PsychoShare</h1>
     </header>
 
-    <!--class="menu-nav"-->
+    <nav class="navbar navbar-expand-md flex-md-column p-0 position-relative menu-nav" id="menuNav">
 
-    <nav aria-label="Menú de navegación" class="navbar navbar-expand-md flex-md-column menu-nav p-0">
-
-    <button class="navbar-toggler ms-auto me-2 mt-2 d-md-none" type="button" data-bs-toggle="collapse" data-bs-target="#mainMenu" aria-controls="mainMenu" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse w-100" id="mainMenu">
-      <ul class="nav flex-md-column w-100">
-         <li class="nav-item">
-            <a class="nav-link d-flex align-items-center" href="./wall.html"> 
-                <img class="menu-icon" src="assets/icons/wall.svg" alt=""> 
-                <span>Inicio</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link d-flex align-items-center" href="./profile.html">
-                <img class="menu-icon" src="assets/icons/profilep.svg" alt=""> 
-                <span>Perfil</span>
-            </a>
-        </li>
-        <li class="nav-item"> 
-          <a class="nav-link d-flex align-items-center" href="./contacts.html">
-              <img  class="menu-icon" src="assets/icons/contactsp.svg" alt=""> 
-              <span>Mis contactos</span>
+      <ul class="nav flex-md-column w-100 list-items">
+        <li class="nav-item">
+          <a class="nav-link d-flex align-items-center" href="./wall.html">
+            
+            <i class="fa-solid fa-house"></i>
+            <span>Feed</span>
           </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link d-flex align-items-center" href="#"> 
-                <img  class="menu-icon" src="assets/icons/aboutp.svg" alt="">
-                <span>Acerca de...</span>
-            </a>
+          <a class="nav-link d-flex align-items-center" href="./profile.html">
+            
+            <i class="fa-solid fa-user"></i>
+            <span>Perfil</span>
+          </a>
         </li>
-        <li class="nav-item mt-md-auto">
-            <button class="btn nav-link text-start close-sesion-button">
-                <img src="assets/icons/logoutp.svg" alt="Cerrar sesion">
-                <span>Cerrar sesión</span>
-            </button>
-        </li>
-
       </ul>
+    
+      <!-- Burguer button (only in mobile)-->
+      <button class="navbar-toggler d-md-none ms-auto me-2 mt-2" type="button" data-bs-toggle="collapse" data-bs-target="#extraMenu" aria-controls="extraMenu" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    
+      <!-- Ítems ocultos que se despliegan hacia arriba en mobile -->
+      <div class="collapse navbar-collapse extra-collapse w-100 other-elements" id="extraMenu">
+        <ul class="nav flex-column w-100 hiden-items">
+          <li class="nav-item">
+            <a class="nav-link d-flex align-items-center" href="./contacts.html">
+              
+              <i class="fa-solid fa-user-group"></i>
+              <span>Mis contactos</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link d-flex align-items-center" href="#">
+              <i class="fa-solid fa-circle-info"></i>
+              <span>Acerca de...</span>
+            </a>
+          </li>
+          <li class="nav-item mt-md-auto">
+            <button class="btn nav-link text-start close-sesion-button">
+              <!--<img src="assets/icons/logoutp.svg" alt="Cerrar sesión">-->
+              <i class="fa-solid fa-right-from-bracket"></i>
+              <span>Cerrar sesión</span>
+            </button>
+          </li>
+        </ul>
       </div>
     </nav>
-
+    
   <main class="main-content">
 
       <section class="slogan-section">
