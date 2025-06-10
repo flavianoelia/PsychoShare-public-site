@@ -31,7 +31,7 @@ section ul {
 
 
 /* grid from mobile*/
-.grid{
+.grid-about{
   display: grid;
   width: 100vw;
   min-height: 100vh;
@@ -44,7 +44,7 @@ section ul {
 }
 
 
-/*header styles*/
+/*header*/
 .logo-header{
   grid-area: logo-header;
   height: 40px;
@@ -65,7 +65,7 @@ section ul {
 
 
 
-/*logo section styles*/
+/*slogan*/
 .main-content{
   grid-area: main-content;
 }
@@ -103,7 +103,7 @@ section ul {
 
 
 
-/*about section styles*/
+/*about*/
 .about-section{
     display: flex;
     flex-direction: column;
@@ -136,7 +136,7 @@ section ul {
 
 
 
-/*contact us styles*/
+/*contact us*/
 .contact-us{
     display: flex;
     flex-direction: column;
@@ -166,47 +166,51 @@ section ul {
 
 
 
-/*navigation menu styles*/
-.menu-nav{
-  grid-area: menu-nav;
-  background-color:  rgb(181, 141, 147);
-}
-.navbar{
-  position: fixed !important;
-  bottom: 0;
-  left: 0;   
-  width: 100%;
-  z-index: 1020;   
-}
-.menu-nav ul {
-  display: flex;
-  justify-content: space-around;
-  text-align: center;
-  padding: 5px;
-}
-.menu-nav ul li a span {
-  display: none;
-}
-.menu-nav ul li a i {
-  color: white;
+/*tablet*/
+@media screen and (min-width: 560px){
+  .grid-about{
+    display: grid;
+    width: 100vw;
+    min-height: 100vh;
+    grid-template-areas: 
+        "logo-header logo-header"
+        "menu-nav main-content"
+        "footer-about footer-about";
+    grid-template-columns: 170px auto;
+    grid-template-rows: 60px auto 70px;
+  }
+
+  /*header*/
+  .logo-header{
+    grid-area: logo-header;
+    height: 55px;
+  } 
+
+  /*menu-nav*/
+  .menu-nav{
+    grid-area: menu-nav;
+    background-color: inherit;
+    border-right: solid 1px lightgrey;
+  }
+  
+  /*slogan*/
+  .main-content{
+    grid-area: main-content;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /*footer*/
+  .footer-about{
+    grid-area: footer-about;
+  }
 
 }
-.close-sesion-button {
-  background: none;
-  border: 0;
-}
-.close-sesion-button img{
-    width: 40px;
-    height: 40px;
-}
-.close-sesion-button span {
-  display: none;
-}
 
 
-/*desktop styles starts*/
-@media screen and (min-width: 768px){
-    .grid{
+/*desktop*/
+@media screen and (min-width: 1024px){
+    .grid-about{
       display: grid;
       width: 100vw;
       min-height: 100vh;
@@ -218,6 +222,7 @@ section ul {
       grid-template-rows: 70px auto 80px;
     }
 
+    /*header*/
     .logo-header{
       grid-area: logo-header;
       height: 70px;
@@ -231,12 +236,13 @@ section ul {
     }
 
 
+    /*menu-nav*/
     .menu-nav{
       grid-area: menu-nav;
       background-color: inherit;
       border-right: solid 1px lightgrey;
     }
-    
+
     .list-items {
       display: flex;
       flex-direction: column;
@@ -244,46 +250,9 @@ section ul {
       text-align: start;
       justify-content: start;
     }
-    
-    /*
-    .menu-nav ul li {
-      padding: 20px;
-      padding-left: 20px;
-      border-bottom: solid 1px lightgrey;
-      height: auto;
-      transition: background-color 0.4s;
-      cursor: pointer;
-    }
-    .menu-nav ul li:hover {
-      background-color: rgb(142, 160, 191)
-    }
-    .menu-icon{
-      display: none;
-    }
-    .close-sesion-button{
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-    .close-sesion-button img {
-      display: none;
-    }
-    .close-sesion-button span {
-      display: inline;
-      font-size: 1.2em;
-    }
-    .logout-item{
-      margin-top: auto;
-    }
-    .menu-nav ul li a {
-      text-decoration: none;
-      color: inherit;
-    }
-    .menu-nav ul li a span {
-      display: inline;
-      color: black;
-    }
-    */
+
+
+    /*slogan*/
     .main-content{
       grid-area: main-content;
       display: flex;
@@ -302,7 +271,11 @@ section ul {
     }
     .slogan figcaption{
         font-size: 1.2em;
+        padding-right: 40px;
     }
+
+
+    /*about*/
     .about-section-title{
         font-size: 1.5em;
         margin-top: 1.5em;
@@ -316,41 +289,12 @@ section ul {
     .contact-us{
       padding-top: 100px;
     }
+
+
+    /*footer*/
     .footer-about{
       grid-area: footer-about;
     }
 }
-
-@media (max-width: 767.98px) {
-  .extra-collapse {
-    position: absolute;
-    bottom: 100%;
-    left: 0;
-    background-color:  rgb(181, 141, 147);
-    z-index: 1000;
-    border: 1px solid #ddd;
-    box-shadow: 0 -100px 90px rgba(0, 0, 0, 0.1);
-  }
-
-  .extra-collapse .nav-link {
-    flex-direction: row;
-    padding: 0.5rem 1rem;
-    align-items: center;
-  }
-
-  /*
-  .extra-collapse .nav-link span {
-    display: inline;
-    
-  }
-  .extra-collapse .close-sesion-button span {
-    display: inline;
-  }
-  */
-}
-
-
-/*about-us ends*/
-
 
 
