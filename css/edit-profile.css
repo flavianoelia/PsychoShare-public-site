@@ -1,0 +1,195 @@
+/* ===== GENERAL ===== */
+body {
+    font-family: 'Roboto', system-ui;
+    background-color: #f9f9fb;
+    margin: 0;
+    padding: 2rem;
+    display: flex;
+    justify-content: center;
+}
+
+main {
+    width: 100%;
+    max-width: 600px;
+}
+
+/* ===== FORMULARIO ===== */
+form {
+    position: relative;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+
+.close-button {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    color: #000;
+    cursor: pointer;
+}
+
+
+/* ===== SECCIONES ===== */
+section {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    border-bottom: 1px solid #e0e0e0;
+    padding-bottom: 1rem;
+}
+.update-photo-profile,
+.update-cover {
+    position: relative;
+}
+
+.edit-button {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    background-color: #b58d93;
+    color: white;
+    padding: 0.3rem 0.7rem;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+/* Secciones sin borde inferior */
+section.delete-account,
+section.save-changes {
+    border-bottom: none;
+}
+
+/* ===== TEXTOS ===== */
+p {
+    font-size: 1.5em;
+    color: #000;
+    text-align: center;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.4rem;
+    font-size: 0.9rem;
+    color: #374151;
+    text-align: left;
+}
+
+/* Textos específicos dentro del modal de eliminar cuenta */
+.modal-eliminar p:first-of-type {
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-bottom: 0.3rem;
+}
+
+.modal-eliminar p:nth-of-type(2) {
+    font-size: 0.95rem;
+    color: #6b7280;
+    margin-bottom: 1.5rem;
+}
+
+/* ===== ICONOS ===== */
+.update-photo-profile i,
+.update-cover i {
+    color: #aaa;
+    align-self: center;
+}
+
+/* ===== INPUTS ===== */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="file"] {
+    font-family: inherit;
+    font-size: 0.95rem;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    width: 100%;
+}
+
+input[type="password"] {
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    margin-bottom: 1.5rem;
+}
+
+/* ===== BOTONES GENERALES ===== */
+.button,
+button {
+    font-family: inherit;
+    padding: 0.7rem 1rem;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+/* Botón: guardar cambios */
+.button.save-changes {
+    background-color: #b58d93;
+    color: #fff;
+    width: 100%;
+    text-decoration: none;
+}
+
+.button.save-changes:hover {
+    background-color: #a67a84;
+}
+
+/* Botón: eliminar cuenta principal */
+.delete-button {
+    background-color: #e74c3c;
+    color: #fff;
+    width: 100%;
+    text-decoration: none;
+}
+
+/* ===== MODAL: ELIMINAR CUENTA ===== */
+.modal-eliminar {
+    background-color: #fff;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    padding: 2rem;
+    max-width: 400px;
+    text-align: center;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    margin: auto;
+}
+
+/* Botones dentro del modal */
+#eliminar {
+    background-color: #dc3545;
+    color: #fff;
+    margin-right: 0.5rem;
+}
+
+#eliminar:hover {
+    background-color: #b91c1c;
+}
+a#cancelar {
+    display: inline-block;
+    padding: 0.6rem 1rem;
+    font-weight: 600;
+    text-align: center;
+    border-radius: 6px;
+    background-color: #f8fafc;
+    color: #1f2937;
+    border: 1px solid #cbd5e1;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+a#cancelar:hover {
+    background-color: #e2e8f0;
+}
+
+
+
