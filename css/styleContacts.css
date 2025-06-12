@@ -376,6 +376,10 @@ nav ul, section ul, header ul {
     display:none;
   }
 
+  .header-contacts ul li p{
+    font-size: 2em;
+  }
+
   #button-i{
     background: transparent;
     border: none;
