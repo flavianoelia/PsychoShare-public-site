@@ -333,12 +333,13 @@ nav ul, section ul, header ul {
   background-color:#c28976;
   color: #2c2b2b; 
   box-shadow:  0 2px 12px rgba(79, 34, 34, 0.313);
+  transition:
+    
+    background-color 1s;
 }
 
 .main-contacts .list-contacts ul li article button:hover{
-  background-color:#cf775a;
-  font-size: 1.2em;
-  height: 2.8rem;
+  background-color:#ed825f;
 }
 
 @media screen and (min-width: 1024px){
