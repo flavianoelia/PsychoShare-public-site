@@ -83,6 +83,10 @@ nav ul, section ul, header ul {
     display:none;
   }
 
+  .header-contacts ul li p{
+    display: none;
+  }
+
   .header-contacts ul li h1{
     font-size: 3em;
     color:rgb(233, 233, 195)
