@@ -8,63 +8,55 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&family=Sora:wght@100..800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/edit-profile.css">
-    <script src="https://kit.fontawesome.com/636f762910.js" crossorigin="anonymous"></script>
 </head>
-    <body>   
+    <body>
+        <h1>Editar Perfil</h1>
+        
         <main>
-<form action="#" method="post"> 
-    <a href="profile.html" class="close-button" aria-label="Cerrar">
-        <i class="fa-solid fa-xmark fa-1x"></i>
-    </a>
-<section class="update-photo-profile">
-    <label for="photo-profile" class="edit-button">Editar</label>
-    <p>Foto de Perfil</p>
-    <input id="photo-profile" name="photo-profile" type="file" style="opacity: 0; position: absolute; left: -9999px;" />
-    <i class="fa-solid fa-circle-user fa-7x"></i>
-</section>
+            <form action="#" method="post">
+                    <section class="update-photo-profile">
+                        <h2>Foto de Perfil</h2>
+                        <input name="photo-profile" type="file" value="" aria-label="Editar foto de perfil">
+                        <img src="" alt="new-photo-profile">
+                    </section>
 
-<section class="update-cover">
-    <label for="cover" class="edit-button">Editar</label>
-    <p>Foto de Portada</p>
-    <input id="cover" name="cover" type="file" style="opacity: 0; position: absolute; left: -9999px;" />
-    <i class="fa-solid fa-image fa-7x"></i>
-</section>
+                    <section class="update-cover">
+                        <h2>Foto de Portada</h2>
+                        <input name="cover" type="file" value="" aria-label="Editar foto de portada">
+                        <img src="" alt="new-cover">
+                    </section>
 
-    <section class="update-data">
-        <p>Datos Personales</p>
-        <label for="name">Nombre y Apellido</label>
-        <input id="name" name="name" type="text" value="" aria-label="Editar nombre y apellido">
+                    <section class="update-data">
+                        <h2>Datos Personales</h2>
+                        <label for="name">Nombre y Apellido</label>
+                        <input id="name" name="name" type="text" value="" aria-label="Editar nombre y apellido">
 
-        <label for="email">Correo electrónico</label>
-        <input id="email" name="email" type="email" value="" aria-label="Editar correo electrónico">
-    </section>
+                        <label for="email">Correo electrónico</label>
+                        <input id="email" name="email" type="email" value="" aria-label="Editar correo electrónico">
+                    </section>
 
-    <section class="update-password">
-        <p>Cambiar Contraseña</p>
-        <label for="old-password">Contraseña actual</label>
-        <input id="old-password" name="old-password" type="password" value="" aria-label="Ingresar contraseña actual">
+                    <section class="update-password">
+                        <h2>Cambiar Contraseña</h2>
+                        <label for="old-password">Contraseña actual</label>
+                        <input id="old-password" name="old-password" type="password" value="" aria-label="Ingresar contraseña actual">
 
-        <label for="new-password">Nueva contraseña</label>
-        <input id="new-password" name="new-password" type="password" value="" aria-label="Ingresar nueva contraseña">
+                        <label for="new-password">Nueva contraseña</label>
+                        <input id="new-password" name="new-password" type="password" value="" aria-label="Ingresar nueva contraseña">
 
-        <label for="repeat-password">Repetir nueva contraseña</label>
-        <input id="repeat-password" name="repeat-password" type="password" value="" aria-label="Repetir nueva contraseña">
-    </section>
+                        <label for="repeat-password">Repetir nueva contraseña</label>
+                        <input id="repeat-password" name="repeat-password" type="password" value="" aria-label="Repetir nueva contraseña">
+                    </section>
 
-    <section class="delete-account">
-        <a href="delete-account.html" class="button delete-button" aria-label="Eliminar cuenta">
-            Eliminar cuenta
-        </a>
-    </section>
-
-    <section class="save-changes">
-        <a href="profile.html" class="button save-changes" aria-label="Guardar cambios">
-            Guardar Cambios
-        </a>
-    </section>
-</form>
-
+                    <section class="delete-account">
+                        <button>
+                            Eliminar cuenta
+                            <a href="./delete-account.html" aria-label="Eliminar cuenta"></a>
+                        </button>
+                    </section>
+                <button aria-label="Guardar cambios"> 
+                    Guardar Cambios 
+                </button>
+            </form>
         </main>
     </body>
 </html>
