@@ -62,7 +62,7 @@ nav ul, section ul, header ul {
   flex-wrap: nowrap;
   align-items: center;
   justify-content: space-around;
-  outline: 2px solid yellow;
+ 
 }
 
 .header-contacts ul li img{
@@ -70,76 +70,7 @@ nav ul, section ul, header ul {
   max-height:8.000rem;
 }
 
-@media screen and (min-width: 1024px){
-  .body-contacts{
-    grid-template-areas: 
-      "header header"
-      "nav main"
-      "footer footer";
-    grid-template-columns: 1fr 6fr;
-  }
 
-  .header-contacts ul li button .back{
-    display:none;
-  }
-
-  .header-contacts ul li p{
-    display: none;
-  }
-
-  .header-contacts ul li h1{
-    font-size: 3em;
-    color:rgb(233, 233, 195)
-  }
-
-  .nav-contacts{
-    grid-area:nav;
-    background-color: #c28976;
-  }
-  
-  .nav-contacts ul{
-    display: flex;
-    flex-direction: column;
-    justify-content: start;
-    height: 100%;
-    
-  }
-
-  .nav-contacts ul li{
-    display: flex;
-    flex-direction: column;
-    min-height: 5rem;
-    max-height: 100%;
-    margin:0.5rem;
-    font-size: 1.5em;
-    background-color:rgb(233, 233, 195);
-    border: 3px solid rgb(245, 245, 215);
-    align-items: start;
-    justify-content: center;
-  }
-
-  .nav-contacts ul li:hover{
-    min-height: 5.5rem;
-    max-height: 7.050rem;
-    background-color: #fffdfd;
-  }
-
-  .nav-contacts ul li a{
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-    color:#2c2b2b;
-    font-size: 1.2em;
-    margin:0.5rem;
-  }
-
-  .nav-contacts ul li button{
-    color:#2c2b2b;
-    font-size: 1.2em;
-    background: transparent;
-    border: none;
-  }
-}
 
 .main-contacts{
   grid-area:main;
@@ -148,7 +79,6 @@ nav ul, section ul, header ul {
   grid-template-columns: 1fr;
   background-color: #fff9f7;
   margin: 1rem 1rem 0rem 1rem;
-  outline:3px solid #72dc2b;
 }
 
 .main-contacts .search-contacts{
@@ -207,7 +137,6 @@ nav ul, section ul, header ul {
   justify-content: start;
   align-items: center;
   color:#333333;
-  outline: 2px solid red;
   border-radius: 0.5rem;
   margin:0.5rem;
 }
@@ -220,12 +149,12 @@ nav ul, section ul, header ul {
   flex:1;
   min-height: 0;
   overflow-y: auto;
-  margin: 0.5rem 0.7rem 0.5rem 0.7rem;
-  max-height: 66.0000rem;
+  border: 0.5rem solid #c28976;
+  max-height: 66rem;
   border-radius: 0.5rem;
-  outline: 2px solid red;
+  padding: 0.5rem;
   --sb-thumb-color: rgb(170, 81, 95);
-  --sb-size: 17px;
+  --sb-size: 10px;
 }
 
 .main-contacts .list-contacts::-webkit-scrollbar {
@@ -247,19 +176,16 @@ nav ul, section ul, header ul {
   grid-template-rows: repeat(6, 1fr);
   row-gap:0.5rem;
   padding-top: 0.2rem;
-  margin:20px;
-  outline: 3px solid green;
+  margin:20px solid #c28976;
 }
 
 .main-contacts .list-contacts ul li{
   height: 10rem;
-  outline: 2px solid slateblue;
 }
 
 .main-contacts .list-contacts ul li article{
   border-radius: 0.4rem;
   margin-top: 0.3rem;
-  outline: 2px solid red;
 }
 
 .main-contacts .list-contacts ul li article:hover{
@@ -273,6 +199,18 @@ nav ul, section ul, header ul {
   grid-template-columns:1fr 2fr 1fr;
   height: 100%;
   align-items: center;
+  border: 1px solid #c28976;
+}
+
+@media screen and (max-width: 479px) {
+  .main-contacts .list-contacts ul li .follow-contact {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    column-gap: 2rem;
+  }
 }
 
 .main-contacts .list-contacts ul li article .user{
@@ -359,6 +297,9 @@ nav ul, section ul, header ul {
 
 }
 
+.nav-contacts {
+  display: none;
+}
 
 @media screen and (max-width: 1025px){
   .body-contacts{
@@ -366,10 +307,6 @@ nav ul, section ul, header ul {
       "header header"
       "main main"
       "footer footer";
-    }
-
-  .nav-contacts{
-    display:none;
   }
 
   .header-hide{
@@ -383,7 +320,7 @@ nav ul, section ul, header ul {
   #button-i{
     background: transparent;
     border: none;
-    outline: 2px solid red;
+   
   }
 
   .header-contacts ul li #button-i .back{
@@ -396,6 +333,91 @@ nav ul, section ul, header ul {
   }
 }
 
+@media screen and (min-width: 560px) {
+  .body-contacts{
+    grid-template-areas: 
+      "header header"
+      "nav nav"
+      "main main"
+      "footer footer";
+  }
+
+  .nav-contacts {
+    grid-area: nav;
+    display: flex;
+  }
+}
+
+@media screen and (min-width: 1024px){
+  .body-contacts{
+    grid-template-areas: 
+      "header header"
+      "nav main"
+      "footer footer";
+    grid-template-columns: 1fr 6fr;
+  }
+
+  .header-contacts ul li button .back{
+    display:none;
+  }
+
+  .header-contacts ul li p{
+    display: none;
+  }
+
+  .header-contacts ul li h1{
+    font-size: 3em;
+    color:rgb(233, 233, 195)
+  }
+
+  .nav-contacts{
+    grid-area:nav;
+    background-color: #c28976;
+  }
+  
+  .nav-contacts ul{
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    height: 100%;
+    
+  }
+
+  .nav-contacts ul li{
+    display: flex;
+    flex-direction: column;
+    min-height: 5rem;
+    max-height: 100%;
+    margin:0.5rem;
+    font-size: 1.5em;
+    background-color:rgb(233, 233, 195);
+    border: 3px solid rgb(245, 245, 215);
+    align-items: start;
+    justify-content: center;
+  }
+
+  .nav-contacts ul li:hover{
+    min-height: 5.5rem;
+    max-height: 7.050rem;
+    background-color: #fffdfd;
+  }
+
+  .nav-contacts ul li a{
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color:#2c2b2b;
+    font-size: 1.2em;
+    margin:0.5rem;
+  }
+
+  .nav-contacts ul li button{
+    color:#2c2b2b;
+    font-size: 1.2em;
+    background: transparent;
+    border: none;
+  }
+}
 
 .footer-contacts{
   grid-area: footer;
@@ -404,13 +426,12 @@ nav ul, section ul, header ul {
   justify-content: center;
   align-items:center;
   margin:0.5rem;
-  outline: 2px solid red;
+
 }
 
 .footer-contacts p{
-  font-size: 1.5em;
+  font-size: 1em;
 }
-
 
 
 
