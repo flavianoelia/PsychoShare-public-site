@@ -2,7 +2,7 @@ document.querySelector('.menu-toggle').addEventListener('click', function() {
     document.querySelector('nav').classList.toggle('active');
 });
 
-document.querySelector('.home-button').addEventListener('click', function() {
+document.querySelector('.home-button').addEventListener('click', function(event) {
     event.preventDefault(); 
     console.log('Home button clicked'); 
 });
