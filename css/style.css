@@ -1,4 +1,6 @@
-/* Improved reset */
+
+/* Improved reset *
+
 * {
     margin: 0;
     padding: 0;
@@ -192,6 +194,7 @@ header {
     border-radius: 50%;
    
 }
+
 .profile-button img {
     width: 32px;
     height: 32px;
