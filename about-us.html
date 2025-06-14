@@ -1,77 +1,105 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Acerca de</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&family=Sora:wght@100..800&display=swap" rel="stylesheet">
+   <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Acerca de</title>
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&family=Sora:wght@100..800&display=swap" rel="stylesheet">
+      <script src="https://kit.fontawesome.com/636f762910.js" crossorigin="anonymous"></script>
+      <link rel="stylesheet" href="css/style.css">
+   </head>
+   <body class="grid-about">
 
-  <link rel="stylesheet" href="css/style.css">
-
-</head>
-<body>
-
-  <main>
-    <nav aria-label="Menú de navegación">
-      <ul>
-          <li><a href="./wall.html">Inicio</a></li>
-          <li><a href="./profile.html">Perfil</a></li>
-          <li><a href="./contacts.html">Mis contactos</a></li>
-          <li><a href="#">Acerca de...</a></li>
-          <li><button>Cerrar sesión</button></li>
-      </ul>
-  </nav>
-  
-    <section>
-      <figure>
-        <img src="logo.png" alt="Logo de PsychoShare" />
-        <figcaption>
-          <h2>Psicología abierta :</h2> Explora, comparte, impulsa y transforma.
-        </figcaption>
-      </figure>
-    </section>
-
-    <section>
-      <header>
-        <h1>PsychoShare</h1>
+      <header aria-label="Encabezado" class="logo-header">
+         <img src="assets/logop.svg" alt="logo de PsychoShare">
+         <h1>PsychoShare</h1>
       </header>
 
-      <article>
-        <h3>¿Quiénes somos?</h3>
-        <p>
-          Somos una comunidad de divulgación científica en psicología. Conectamos a profesionales,
-          estudiantes y curiosos para compartir conocimiento riguroso, accesible y libre.
-          ¡Acercamos la psicología basada en evidencia a todos!
-        </p>
-      </article>
 
-      <article>
-        <h3>¿Por qué lo hacemos?</h3>
-        <p>
-          En un mundo saturado de desinformación, creemos que el conocimiento científico debe ser abierto,
-          compartido y discutido por todos. Buscamos combatir mitos, promover el pensamiento crítico
-          y crear comunidad alrededor del conocimiento psicológico riguroso.
-        </p>
-      </article>
+      <nav class="menu-nav">
+         <ul>
+         <li>
+            <a class="nav-link d-flex align-items-center" href="./wall.html">
+            <i class="fa-solid fa-house"></i>
+            <span>Feed</span>
+            </a>
+         </li>
+         <li>
+            <a href="./profile.html">
+            <i class="fa-solid fa-user"></i>
+            <span>Perfil</span>
+            </a>
+         </li>
+         <li>
+            <a href="./contacts.html">
+            <i class="fa-solid fa-user-group"></i>
+            <span>Mis contactos</span>
+            </a>
+         </li>
+         <li>
+            <a href="#">
+            <i class="fa-solid fa-circle-info"></i>
+            <span>Acerca de...</span>
+            </a>
+         </li>
+         <li>
+            <button class="close-sesion-button">
+            <i class="fa-solid fa-right-from-bracket"></i>
+            <span>Cerrar sesión</span>
+            </button>
+         </li>
+      </nav>
 
 
-      <adress>
-        <h4>¡Contactanos!</h4>
-        <p>
-          Si tenés sugerencias o consultas escribinos a
-          <a href="mailto:dsoftware2023@gmail.com">dsoftware2023@gmail.com</a>
-        </p>
-      </adress>
-    </section>
+      <main class="main-content">
 
-    
-  </main>
-    
-  <footer>
-      <p>2025 PsychoShare - Hecho por PsyNet - Licencia MIT</p>
-  </footer>
+         <section class="slogan-section">
+            <figure class="slogan">
+               <div class="slogan-logo">
+                  <img src="assets/logop.svg" alt="Logo">
+               </div>
+               <figcaption>
+                  Psicología abierta: Explora, comparte, impulsa y transforma.
+               </figcaption>
+            </figure>
+         </section>
 
-</body>
+         <section class="about-section">
+            <header class="about-section-title">
+               <h1>PsychoShare</h1>
+            </header>
+            <article class="about-section-text">
+               <h2>¿Quiénes somos?</h2>
+               <p>
+                  Somos una comunidad de divulgación científica en psicología. Conectamos a profesionales,
+                  estudiantes y curiosos para compartir conocimiento riguroso, accesible y libre.
+                  ¡Acercamos la psicología basada en evidencia a todos!
+               </p>
+            </article>
+            <article class="about-section-text">
+               <h2>¿Por qué lo hacemos?</h2>
+               <p>
+                  En un mundo saturado de desinformación, creemos que el conocimiento científico debe ser abierto,
+                  compartido y discutido por todos. Buscamos combatir mitos, promover el pensamiento crítico
+                  y crear comunidad alrededor del conocimiento psicológico riguroso.
+               </p>
+            </article>
+            <adress class="contact-us">
+               <h2>¡Contactanos!</h2>
+               <p>
+                  Si tenés sugerencias o consultas escribinos a
+                  <a href="mailto:dsoftware2023@gmail.com">dsoftware2023@gmail.com</a>
+               </p>
+            </adress>
+         </section>
+      </main>
+
+
+      <footer class="footer-about">
+         <p>2025 PsychoShare - Hecho por PsyNet - Licencia MIT</p>
+      </footer>
+
+   </body>
 </html>
