@@ -1,173 +1,129 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Perfil</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&family=Sora:wght@100..800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/profile-style.css">
+  <meta charset="UTF-8">
+ <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Perfil</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&family=Sora:wght@100..800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/profile-style.css">
+  <link rel="icon" href="favicon/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/svg+xml" href="favicon/favicon.svg">
+  <link rel="manifest" href="favicon/site.webmanifest">
+  <script src="https://kit.fontawesome.com/636f762910.js" crossorigin="anonymous"></script>
+  <script src="js/menu.js" defer></script>
 </head>
-    <body>
-        <header aria-label="Perfil de usuario PsycoShare">
-            <img src="./assets/logo.svg" alt="PsycoShare Logo">
-            <h1>PsycoShare</h1>
-        </header>
+<body>
+  <header class="profile-header" aria-label="Perfil de usuario PsycoShare">
+    <img src="" alt="PsycoShare Logo">
+    <h1>PsycoShare</h1>
+  </header>
 
-        <section>
-            <form id="search" method="get">
-                <input type="search" id="search" name="search" aria-label="¿Que deseas buscar?" placeholder="¿Que deseas buscar?">
-                <button type="submit" aria-label="Lupa para realizar búsqueda">
-                    <img src="./assets/icons/glass.svg" alt="glass">
-                </button>
-                
-                <button>
-                    <img src="" alt="Foto de perfil">
-                </button>
-            </form>
+   <section aria-label="Buscador y acceso directo al perfil" class="search-bar">
+        <form action="search" method="get" aria-label="Buscador de personas y publicaciones">
+            <input type="search" id="search" name="q" placeholder="¿Qué deseas buscar?" class="search-input">
+            <button type="submit" aria-label="Lupa para realizar busqueda" class="search-button">
+                <i class="fas fa-search"></i>
+            </button>
+        </form>
+        <button aria-label="Acceso directo a Inicio" class="home-button">
+            <i class="fas fa-house"></i>
+        </button>
+        <button aria-label="Acceso directo al perfil" class="profile-button">
+            <i class="fas fa-circle-user"></i>
+        </button>
+        <button class="menu-toggle"><i class="fas fa-bars"></i></button>       
+    </section>
+
+  <nav class="profile-nav" aria-label="Menú principal de navegación">
+    <ul>
+      <li><a href="./testprofile.html" class="nav-link">Perfil</a></li>
+      <li><a href="./testwallfla.html" class="nav-link">Inicio</a></li>
+      <li><a href="./contacts.html" class="nav-link">Mis contactos</a></li>
+      <li><a href="./about-us.html" class="nav-link">Acerca de...</a></li>
+      <li><button class="logout-button">Cerrar sesión</button></li>
+    </ul>
+  </nav>
+
+  <main class="profile-main">
+    <section class="profile-front-page">
+      <img src="assets/untitled.png" alt="photo-cover" aria-label="Foto de portada">
+      <i class="fa-solid fa-circle-user fa-7x" alt="photo-profile" aria-label="Foto de perfil"></i>
+      <p aria-label="Nombre del usuario">Eduardo Basualdo</p>
+      <a href="edit-profile.html" aria-label="Editar perfil">
+        <button>Editar perfil</button>
+      </a>
+    </section>
+
+    <section class="profile-posts-contacts">
+      <ul>
+        <li>2 Publicaciones</li>
+        <li>20 Contactos</li>
+      </ul>
+    </section>
+
+    <section class="profile-new-post " aria-label="Sección para crear muevas publicaciones">
+      <i class="fa-solid fa-circle-user fa-2x" alt="photo-profile"></i>
+      <input type="text" aria-label="¿Sobre que quieres hablar?" placeholder="¿Sobre qué quieres hablar?">
+      <a href="post-form.html" aria-label="Agregar imagen">
+        <i class="fa-solid fa-image fa-2x" alt="Image"></i>
+      </a>
+      <a href="post-form.html" aria-label="Adjuntar archivo">
+        <i class="fa-solid fa-paperclip fa-2x" alt="Attach"></i>
+      </a>
+    </section>
+
+    <section class="profile-list-posts" aria-label="Sección de publicaciones">
+      <p class="titulo-publicaciones">Publicaciones</p>
+      <article class="profile-post">
+        <section class="profile-post-header">
+          <i class="fa-solid fa-circle-user fa-2x" alt="picture-profile"></i>
+          <p>Eduardo Basualdo</p>
         </section>
+        <p aria-label="Comentario">"Hola a todos, he encontrado este artículo que habla sobre la depresión y me ha parecido muy interesante... ¿Ustedes qué opinan?"</p>
+        <h2 aria-label="Título">La depresión: un desafío en la práctica médica general</h2>
+        <p aria-label="Autor">Autoría: Ana Lopez, Roberto Kabat</p>
+        <p aria-label="Abstract">"Ansiedad y depresión, dos síntomas muy comunes en la adolescencia, generan múltiples retrasos académicos, afectivos y conductuales. La migración, disfunción familiar, embarazos prematuros, trastornos alimenticios, conflictos familiares, falta de habilidades sociales, enamoramientos, entre otros, son factores que marcan la personalidad del adolescente..."</p>
+        <figure>
+          <img src="assets/img1.jpg" alt="publish image">
+          <figcaption>
+            <div>
+              <button class="btn like-button"><i class="fas fa-thumbs-up"></i>Me gusta</button>
+              <button class="btn comment-button"><i class="fas fa-comment"></i>Comentar</button>
+            </div>
+            <button class="btn pdf-button"><i class="fas fa-file-pdf"></i>Ver PDF</button>
+          </figcaption>
+        </figure>
+      </article>
 
+      <article class="profile-post">
+        <section class="profile-post-header">
+          <i class="fa-solid fa-circle-user fa-2x" alt="picture-profile"></i>
+          <p>Eduardo Basualdo</p>
+        </section>
+        <p aria-label="Comentario">"Hola a todos, he encontrado este artículo que habla sobre la depresión y me ha parecido muy interesante... ¿Ustedes qué opinan?"</p>
+        <h2 aria-label="Título">"La depresión y su impacto en la salud pública"</h2>
+        <p aria-label="Autor">"Basantes Moscoso D. R."</p>
+        <p aria-label="Abstract">"Ansiedad y depresión, dos síntomas muy comunes en la adolescencia, generan múltiples retrasos académicos, afectivos y conductuales. La migración, disfunción familiar, embarazos prematuros, trastornos alimenticios, conflictos familiares, falta de habilidades sociales, enamoramientos, entre otros, son factores que marcan la personalidad del adolescente..."</p>
+        <figure>
+          <img src="assets/img2.jpg" alt="publish image">
+          <figcaption>
+            <div>
+              <button class="btn like-button"><i class="fas fa-thumbs-up"></i>Me gusta</button>
+              <button class="btn comment-button"><i class="fas fa-comment"></i>Comentar</button>
+            </div>
+            <button class="btn pdf-button"><i class="fas fa-file-pdf"></i>Ver PDF</button>
+          </figcaption>
+        </figure>
+      </article>
+    </section>   
+  </main>
 
-        <nav aria-label="Sección de navegación">
-            <ul>
-                <li>
-                    <a href="./wall.html" aria-label="Inicio">Inicio</a>
-                </li>
-
-                <li>
-                    <a href="#">Perfil</a>
-                </li>
-
-                <li>
-                    <a href="./contacts.html" aria-label="Mis contactos">Mis contactos</a>
-                </li>
-
-                <li>
-                    <a href="./about-us.html" aria-label="Acerca de">Acerca de...</a>
-                </li>
-
-                <li>
-                    <button aria-label="Cerrar sesión">
-                        Cerrar sesión
-                    </button>
-                </li>
-            </ul>
-        </nav>
-
-
-
-        <main>
-            <section class="front-page">
-                <img src="" alt="photo-cover" aria-label="Foto de portada">
-                <img src="" alt="photo-profile" aria-label="Foto de perfil">
-                <p aria-label="Nombre del usuario">Nombre Apellido</p>
-                <button aria-label="Editar perfil">
-                    Editar perfil
-                </button>
-            </section>
-
-
-            <section class="posts-contacts">
-                <ul>
-                    <li>10 publicaciones</li>
-                    <li>123 contactos</li>
-                </ul>
-            </section>
-
-                
-            <section class="new-post" aria-label="Sección para crear muevas publicaciones">
-                <img src="" alt="photo-profile">
-                <input type="text" aria-label="¿Sobre que quieres hablar?" placeholder="¿Sobre qué quieres hablar?">            
-                            
-                <button type="" aria-label="Agregar imagen">
-                    <img src="./assets/icons/gallery.svg" alt="Image"> 
-                </button>
-                <button aria-label="Adjuntar">
-                    <img src="./assets/icons/attach.svg" alt="attach">
-                </button>
-            </section>
-
-
-            <section class="list-posts" aria-label="Sección de publicaciones">
-                <p>Publicaciones</p>
-
-                <article>
-                    <section>
-                        <img src="" alt="picture-profile">
-                        <p>Nombre Apellido</p>
-                    </section>
-                    
-                    <p aria-label="Comentario">Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit libero eligendi minima magni mollitia? Culpa illo architecto consequat.</p>
-                    <h2 aria-label="Título">La depresión: un desafío en la práctica médica general</h2>
-                    <p aria-label="Autor">Autoría: Ana Lopez, Roberto Kabat</p>
-                    <p aria-label="Abstract"> Abstract:
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quia, similique! Qui, animi quasi, blanditiis ratione repudiandae exercitationem nesciunt corporis, quae cum quo vel culpa neque voluptas quas quis. Nisi, officia?
-                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Obcaecati architecto temporibus fugiat? Ipsum dicta numquam perferendis doloribus explicabo magni in dolorum, eius placeat facere culpa, nesciunt debitis quas laudantium quae.
-                    </p>
-
-                    <figure>
-                        <img src="" alt="publish image">
-                        <figcaption>
-                            <div>
-                                <button>
-                                    <img src="./assets/icons/like.svg" alt="like" aria-label="Me gusta">
-                                </button>
-                                <button>
-                                    <img src="./assets/icons/comment.svg" alt="comment" aria-label="Comentario">
-                                </button>
-                            </div>
-                            <button aria-label="Ver PDF">
-                                Ver PDF
-                            </button>
-                        </figcaption>
-                    </figure>
-                </article>
-            
-
-
-
-                <article>
-                    <section>
-                        <img src="" alt="picture-profile">
-                        <p>Eduardo Basualdo</p>
-                    </section>
-                    
-                    <p aria-label="Comentario">"Hola a todos, he encontrado este artículo que habla sobre la depresión y me ha parecido muy interesante... ¿Ustedes qué opinan?"</p>
-                    <h2 aria-label="Título">"La depresión y su impacto en la salud pública"</h2>
-                    <p aria-label="Autor">"Basantes Moscoso D. R."</p>
-                    <p aria-label="Abstract"> "Ansiedad y depresión, dos síntomas muy comunes en la adolescencia, generan múltiples retrasos académicos, afectivos y conductuales. La migración, disfunción familiar, embarazos prematuros, trastornos alimenticios, conflictos familiares, falta de habilidades sociales, enamoramientos, entre otros, son factores que marcan la personalidad del adolescente...""
-                    </p>
-
-                    <figure>
-                        <img src="" alt="publish image">
-                        <figcaption>
-                            <div>
-                                <button>
-                                    <img src="./assets/icons/like.svg" alt="like" aria-label="Me gusta">
-                                </button>
-                                <button>
-                                    <img src="./assets/icons/comment.svg" alt="comment" aria-label="Comentario">
-                                </button>
-                            </div>
-                            <button aria-label="Ver PDF">
-                                Ver PDF
-                            </button>
-                        </figcaption>
-                    </figure>
-                </article>
-
-
-                
-
-
-
-            </section>   
-        </main>
-
-        <footer>
-            <p>2025 PsychoShare - Hecho por PsyNet - Licencia MIT</p>
-        </footer>
-    </body>
+  <footer class="profile-footer">
+    <p>2025 PsychoShare - Hecho por PsyNet - Licencia MIT</p>
+  </footer>
+</body>
 </html>

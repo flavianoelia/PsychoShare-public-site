@@ -1,0 +1,127 @@
+/* === GENERAL === */
+body {
+  font-family: 'Roboto', system-ui;
+  background-color: #f9f9fb;
+  margin: 0;
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+main {
+  width: 100%;
+  max-width: 600px;
+}
+
+/* === FORMULARIO GENERAL === */
+form {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.close-button {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  color: #000;
+  cursor: pointer;
+}
+
+/* === SECCIONES === */
+section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+section.delete-account,
+section.save-changes {
+  border-bottom: none;
+}
+
+.update-photo-profile,
+.update-cover {
+  position: relative;
+}
+
+.edit-button {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  background-color: #b58d93;
+  color: white;
+  padding: 0.3rem 0.7rem;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* === TEXTOS === */
+p {
+  font-size: 1.5em;
+  color: #000;
+  text-align: center;
+}
+
+label {
+  display: block;
+  margin-bottom: 0.4rem;
+  font-size: 0.9rem;
+  color: #374151;
+  text-align: left;
+}
+
+/* Textos del modal de eliminación */
+.modal-eliminar p:first-of-type {
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin-bottom: 0.3rem;
+}
+
+.modal-eliminar p:nth-of-type(2) {
+  font-size: 0.95rem;
+  color: #6b7280;
+  margin-bottom: 1.5rem;
+}
+
+/* === INPUTS === */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="file"] {
+  font-family: inherit;
+  font-size: 0.95rem;
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+input[type="password"] {
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  margin-bottom: 1.5rem;
+}
+
+/* === ICONOS === */
+.update-photo-profile i,
+.update-cover i {
+  color: #aaa;
+  align-self: center;
+}
+
+/* === BOTONES GENERALES === */
+.button,
+button {
+  font-family: inherit;
+  font-weight: 600;
+  text-align: center;
+  cursor: pointer;
+}
