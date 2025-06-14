@@ -1,0 +1,409 @@
+/* Reset y Estilos Base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html {
+    font-size: 100%;
+}
+body {
+    font-family: Roboto, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+h1 {
+    font-size: 2em;
+}
+h2 {
+    font-size: 1.5em;
+}
+h3 {
+    font-size: 1.17em;
+}
+h4 {
+    font-size: 1em;
+}
+nav ul {
+    list-style-type: none;
+}
+section ul {
+    list-style-type: none;
+}
+
+
+/* Grid General */
+body {
+    display: grid;
+    width: 100vw;
+    min-height: 100vh;
+    grid-template-areas:
+        "logo-header"
+        "search-profile"
+        "menu-nav"
+        "main-content"
+        "footer-about";
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto 1fr auto;
+    background-color: rgb(255, 249, 247); /* Blanco cálido */
+}
+
+
+/* Header */
+header {
+    grid-area: logo-header;
+    display: flex;
+    flex-direction: row;
+    background-color: rgb(181, 141, 147); /* Rosa terroso */
+    padding: 10px;
+}
+header img {
+    padding-top: 5px;
+    width: 70px;
+    height: auto;
+}
+header h1 {
+    color: white;
+    padding-top: 20px;
+    padding-left: 10px;
+}
+
+
+/* Buscador y Acceso al Perfil */
+section[aria-label="Buscador y acceso directo al perfil"] {
+    grid-area: search-profile;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: rgb(164, 151, 160); /* Lavanda grisácea */
+}
+section[aria-label="Buscador y acceso directo al perfil"] form {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+section[aria-label="Buscador y acceso directo al perfil"] input[type="search"] {
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
+    width: 200px;
+}
+section[aria-label="Buscador y acceso directo al perfil"] button[type="submit"] {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+section[aria-label="Buscador y acceso directo al perfil"] button[type="submit"] img {
+    width: 20px;
+    height: 20px;
+}
+section[aria-label="Buscador y acceso directo al perfil"] button[aria-label="Acceso directo al perfil"] {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+section[aria-label="Buscador y acceso directo al perfil"] button[aria-label="Acceso directo al perfil"] img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+
+/* Menú de Navegación */
+nav {
+    grid-area: menu-nav;
+    background-color: rgb(181, 141, 147); /* Rosa terroso */
+}
+nav ul {
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+    padding: 5px;
+}
+nav ul li a {
+    text-decoration: none;
+    color: white;
+    display: block;
+    padding: 10px;
+}
+nav ul li a:hover {
+    background-color: rgb(142, 160, 191); /* Azul ceniza */
+}
+nav ul li button {
+    background: none;
+    border: none;
+    color: white;
+    padding: 10px;
+    cursor: pointer;
+}
+nav ul li button:hover {
+    background-color: rgb(142, 160, 191); /* Azul ceniza */
+}
+
+
+/* Contenido Principal */
+main {
+    grid-area: main-content;
+    padding: 20px;
+}
+
+
+/* Sección de Publicación */
+section[aria-label="Sección de la publicación"] {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 15px;
+    background-color: white;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+section[aria-label="Sección de la publicación"] img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+section[aria-label="Sección de la publicación"] input[type="text"] {
+    flex: 1;
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
+    background-color: rgb(240, 240, 240);
+}
+section[aria-label="Sección de la publicación"] button {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+section[aria-label="Sección de la publicación"] button img {
+    width: 20px;
+    height: 20px;
+}
+
+
+/* Posts */
+article {
+    margin-bottom: 20px;
+}
+section.post-container {
+    background-color: white;
+    border-radius: 5px;
+    padding: 15px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+section.post {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+section.post img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+section.post p {
+    font-weight: 500;
+}
+div.post-content {
+    margin-top: 10px;
+}
+div.post-content h2 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+div.post-content p {
+    margin-bottom: 10px;
+    line-height: 1.8;
+}
+div.post-content figure img {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    border-radius: 5px;
+    margin: 10px 0;
+}
+div.post-content figcaption {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+div.post-content figcaption div {
+    display: flex;
+    gap: 10px;
+}
+div.post-content figcaption button {
+    padding: 8px 15px;
+    background-color: rgb(181, 141, 147); /* Rosa terroso */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+div.post-content figcaption button:hover {
+    background-color: rgb(142, 160, 191); /* Azul ceniza */
+}
+
+
+/* Comentarios */
+section.comment-form {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid lightgray;
+}
+section.comment-form article {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-bottom: 15px;
+    background-color: rgb(240, 240, 240);
+    padding: 10px;
+    border-radius: 5px;
+}
+section.comment-form article img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+section.comment-form article p:first-of-type {
+    font-weight: 500;
+}
+section.comment-form button.view-more {
+    display: block;
+    margin: 10px 0;
+    padding: 8px 15px;
+    background-color: rgb(181, 141, 147); /* Rosa terroso */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+section.comment-form button.view-more:hover {
+    background-color: rgb(142, 160, 191); /* Azul ceniza */
+}
+section.comment-form form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 15px;
+    padding: 10px;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+section.comment-form form img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+section.comment-form form label {
+    font-weight: 500;
+}
+section.comment-form form textarea {
+    width: 100%;
+    min-height: 80px;
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
+    background-color: rgb(240, 240, 240);
+    resize: vertical;
+}
+section.comment-form form button {
+    align-self: flex-end;
+    padding: 8px 15px;
+    background-color: rgb(181, 141, 147); /* Rosa terroso */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+section.comment-form form button:hover {
+    background-color: rgb(142, 160, 191); /* Azul ceniza */
+}
+
+
+/* Footer */
+footer {
+    grid-area: footer-about;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    text-align: center;
+}
+
+
+/* Desktop (≥ 768px) */
+@media screen and (min-width: 768px) {
+    body {
+        grid-template-areas:
+            "logo-header logo-header"
+            "search-profile search-profile"
+            "menu-nav main-content"
+            "footer-about footer-about";
+        grid-template-columns: 200px auto;
+        grid-template-rows: 70px auto 1fr 80px;
+    }
+
+
+    header {
+        height: 70px;
+    }
+    header img {
+        width: 100px;
+        height: 80px;
+    }
+    header h1 {
+        padding-top: 15px;
+    }
+
+
+    section[aria-label="Buscador y acceso directo al perfil"] {
+        padding: 15px;
+    }
+    section[aria-label="Buscador y acceso directo al perfil"] input[type="search"] {
+        width: 300px;
+    }
+
+
+    nav {
+        background-color: inherit;
+        border-right: solid 1px lightgrey;
+    }
+    nav ul {
+        display: flex;
+        flex-direction: column;
+        min-height: 100%;
+        text-align: start;
+        justify-content: start;
+    }
+    nav ul li {
+        padding: 20px;
+        padding-left: 20px;
+        border-bottom: solid 1px lightgrey;
+        height: auto;
+        transition: background-color 0.4s;
+        cursor: pointer;
+    }
+    nav ul li a, nav ul li button {
+        color: black;
+    }
+    nav ul li:hover {
+        background-color: rgb(142, 160, 191); /* Azul ceniza */
+    }
+
+
+    main {
+        padding: 30px;
+    }
+
+
+    section[aria-label="Sección de la publicación"] {
+        padding: 20px;
+    }
+
+
+    section.post-container {
+        padding: 20px;
+    }
+}
