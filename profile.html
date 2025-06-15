@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&family=Sora:wght@100..800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/profile-style.css">
+  <link rel="stylesheet" href="css/style.css">
   <link rel="icon" href="favicon/favicon.ico">
   <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
   <link rel="icon" type="image/svg+xml" href="favicon/favicon.svg">
@@ -15,11 +15,12 @@
   <script src="https://kit.fontawesome.com/636f762910.js" crossorigin="anonymous"></script>
   <script src="js/menu.js" defer></script>
 </head>
-<body>
-  <header class="profile-header" aria-label="Perfil de usuario PsycoShare">
-    <img src="" alt="PsycoShare Logo">
-    <h1>PsycoShare</h1>
-  </header>
+<body class="profile">
+        <header aria-label="Encabezado" class="logo-header">
+         <img src="assets/logop.svg" alt="logo de PsychoShare">
+         <h1>PsychoShare</h1>
+      </header>
+
 
    <section aria-label="Buscador y acceso directo al perfil" class="search-bar">
         <form action="search" method="get" aria-label="Buscador de personas y publicaciones">
@@ -39,7 +40,7 @@
 
     <nav aria-label="Menú principal de navegación">
         <ul>
-            <li><a href="#" class="nav-link">Inicio</a></li>
+            <li><a href="./wall.html" class="nav-link">Inicio</a></li>
             <li><a href="./profile.html" class="nav-link">Perfil</a></li>
             <li><a href="./contacts.html" class="nav-link">Mis contactos</a></li>
             <li><a href="./about-us.html" class="nav-link">Acerca de...</a></li>
@@ -121,7 +122,7 @@
     </section>   
   </main>
 
-  <footer class="profile-footer">
+  <footer>
     <p>2025 PsychoShare - Hecho por PsyNet - Licencia MIT</p>
   </footer>
 </body>

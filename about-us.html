@@ -17,41 +17,31 @@
          <h1>PsychoShare</h1>
       </header>
 
+      <section aria-label="Buscador y acceso directo al perfil" class="search-bar">
+        <form action="search" method="get" aria-label="Buscador de personas y publicaciones">
+            <input type="search" id="search" name="q" placeholder="¿Qué deseas buscar?" class="search-input">
+            <button type="submit" aria-label="Lupa para realizar busqueda" class="search-button">
+                <i class="fas fa-search"></i>
+            </button>
+        </form>
+        <button aria-label="Acceso directo a Inicio" class="home-button">
+            <i class="fas fa-house"></i>
+        </button>
+        <button aria-label="Acceso directo al perfil" class="profile-button">
+            <i class="fas fa-circle-user"></i>
+        </button>
+        <button class="menu-toggle"><i class="fas fa-bars"></i></button>       
+    </section>
 
       <nav class="menu-nav">
          <ul>
-         <li>
-            <a class="nav-link d-flex align-items-center" href="./wall.html">
-            <i class="fa-solid fa-house"></i>
-            <span>Feed</span>
-            </a>
-         </li>
-         <li>
-            <a href="./profile.html">
-            <i class="fa-solid fa-user"></i>
-            <span>Perfil</span>
-            </a>
-         </li>
-         <li>
-            <a href="./contacts.html">
-            <i class="fa-solid fa-user-group"></i>
-            <span>Mis contactos</span>
-            </a>
-         </li>
-         <li>
-            <a href="#">
-            <i class="fa-solid fa-circle-info"></i>
-            <span>Acerca de...</span>
-            </a>
-         </li>
-         <li>
-            <button class="close-sesion-button">
-            <i class="fa-solid fa-right-from-bracket"></i>
-            <span>Cerrar sesión</span>
-            </button>
-         </li>
+            <li><a href="./wall.html" class="nav-link">Inicio</a></li>
+            <li><a href="./profile.html" class="nav-link">Perfil</a></li>
+            <li><a href="./contacts.html" class="nav-link">Mis contactos</a></li>
+            <li><a href="./about-us.html" class="nav-link">Acerca de...</a></li>
+            <li><button class="logout-button">Cerrar sesión</button></li>
+         </ul>
       </nav>
-
 
       <main class="main-content">
 
@@ -97,7 +87,7 @@
       </main>
 
 
-      <footer class="footer-about">
+      <footer>
          <p>2025 PsychoShare - Hecho por PsyNet - Licencia MIT</p>
       </footer>
 
