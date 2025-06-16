@@ -1,0 +1,9 @@
+footer {
+    background-color: var(--color-background-ui-light);
+    text-align: center;
+    padding: 15px 10px;
+    position: relative;
+    width: 100%;
+    font-size: 0.8rem;
+    color: var(--color-text-main);
+  }

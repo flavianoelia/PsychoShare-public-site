@@ -3,45 +3,57 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Inicio</title>
+    <title>Inicio - PsychoShare</title>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&family=Sora:wght@100..800&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/x-icon" href="favicon/favicon.ico">
-    <link rel="shortcut icon" href="favicon/favicon.ico">
+    <link rel="icon" href="favicon/favicon.ico">
     <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
     <link rel="icon" type="image/svg+xml" href="favicon/favicon.svg">
-    <link rel="manifest" href="favicon/site.webmanifest">   
-    <link rel="stylesheet" href="css/style.css">
-    <script src="https://kit.fontawesome.com/636f762910.js" crossorigin="anonymous"></script>
-    <script src="js/menu.js" defer></script>
-    <script src="js/modal.js" defer></script>
-    <script src="js/logout-modal.js" defer></script>
-</head>
+    <link rel="manifest" href="favicon/site.webmanifest">
 
-<body class="wall">
-      <header aria-label="Encabezado" class="logo-header">
-         <img src="assets/logop.svg" alt="logo de PsychoShare">
-         <h1>PsychoShare</h1>
-      </header>
+    <link rel="stylesheet" href="css/base/_global.css">
+    <link rel="stylesheet" href="css/layout/_grid.css">
+    <link rel="stylesheet" href="css/layout/_header.css">
+    <link rel="stylesheet" href="css/layout/_navigation.css">
+    <link rel="stylesheet" href="css/layout/_footer.css">
+    <link rel="stylesheet" href="css/components/_search-bar.css">
+    <link rel="stylesheet" href="css/components/_button.css">
+    <link rel="stylesheet" href="css/components/_card.css">
+    <link rel="stylesheet" href="css/components/_form.css">
+    <link rel="stylesheet" href="css/components/_modal.css">
+
+
+<body class="app-layout">
+    <header aria-label="Encabezado" class="logo-header">
+        <img src="assets/logop.svg" alt="logo de PsychoShare">
+        <h1>PsychoShare</h1>
+    </header>
 
     <section aria-label="Buscador y acceso directo al perfil" class="search-bar">
-        <form action="search" method="get" aria-label="Buscador de personas y publicaciones">
-            <input type="search" id="search" name="q" placeholder="¿Qué deseas buscar?" class="search-input">
-            <button type="submit" aria-label="Lupa para realizar busqueda" class="search-button">
+    
+        <form action="search" method="get" class="search-form">
+            <input type="search" name="q" placeholder="¿Qué deseas buscar?" class="search-input">
+            <button type="submit" class="search-button" aria-label="Buscar">
                 <i class="fas fa-search"></i>
             </button>
         </form>
-        <button aria-label="Acceso directo a Inicio" class="home-button">
-            <i class="fas fa-house"></i>
-        </button>
-        <button aria-label="Acceso directo al perfil" class="profile-button">
-            <i class="fas fa-circle-user"></i>
-        </button>
-        <button class="menu-toggle"><i class="fas fa-bars"></i></button>       
+    
+        <span class="action-buttons">
+            <a href="./wall.html" class="action-button" aria-label="Inicio">
+                <i class="fas fa-house"></i>
+            </a>
+            <a href="./profile.html" class="action-button" aria-label="Perfil">
+                <i class="fas fa-circle-user"></i>
+            </a>
+            <button class="menu-toggle action-button" aria-label="Abrir menú">
+                <i class="fas fa-bars"></i>
+            </button>       
+        </span>
+    
     </section>
-
-    <nav aria-label="Menú principal de navegación">
+    <nav class="menu-nav" aria-label="Menú principal de navegación">
         <ul>
             <li><a href="./wall.html" class="nav-link">Inicio</a></li>
             <li><a href="./profile.html" class="nav-link">Perfil</a></li>
@@ -52,75 +64,65 @@
     </nav>
       
     <main>
-        <section aria-label="Sección de la publicación" class="new-post-section">
+        <!-- Formulario para crear una nueva publicación -->
+        <form aria-label="Crear nueva publicación" class="new-post-form">
             <i class="fas fa-user-circle profile-photo"></i>
-            <input type="text" aria-label="¿Sobre qué quieres hablar?" placeholder="¿Sobre qué quieres hablar?" class="post-input">
-            <button type="button" class="image-button">
-                <i class="fas fa-image"></i> 
-            </button>
-            <button type="button" class="attach-button">
-                <i class="fas fa-paperclip"></i>
-            </button>
-            <button id="create-post-btn">Crear publicación</button> 
-        </section>
+            <input type="text" placeholder="¿Sobre qué quieres hablar?" class="post-input">
+            <button type="button" class="image-button" aria-label="Añadir imagen"><i class="fas fa-image"></i></button>
+            <button type="button" class="attach-button" aria-label="Adjuntar archivo"><i class="fas fa-paperclip"></i></button>
+            <button id="create-post-btn" class="btn btn--primary">Publicar</button> 
+        </form>
 
-        <article>
-            <section aria-label="Post de usuario" class="post">
+        <!--Ejemplo-->
+        <article class="post-card">
+            <header class="post-card-header">
                 <i class="fas fa-user-circle profile-photo"></i>
                 <p>Eduardo Basualdo</p>
-            </section>
-            <section class="post-content">
+            </header>
+            <section class="post-card-content">
                 <p>Hola a todos, he encontrado este artículo que habla sobre la depresión y me ha parecido muy interesante... ¿Ustedes qué opinan?</p>
                 <h2>La depresión y su impacto en la salud pública</h2>
                 <p><strong>Autoría:</strong> Basantes Moscoso D. R.</p>
-                <p><strong>Resumen:</strong> Ansiedad y depresión, dos síntomas muy comunes en la adolescencia, generan múltiples retrasos académicos, afectivos y conductuales. La migración, disfunción familiar, embarazos prematuros, trastornos alimenticios, conflictos familiares, falta de habilidades sociales, enamoramientos, entre otros, son factores que marcan la personalidad del adolescente...</p>
+                <p><strong>Resumen:</strong> Ansiedad y depresión, dos síntomas muy comunes en la adolescencia...</p>
                 <figure>
-                    <i class="fas fa-image post-image"></i>
+                    <img src="assets/img1.jpg" alt="Imagen del post" class="post-image">
                     <figcaption>
-                        <div class="button-container">
-                            <div class="action-buttons">
-                                <button class="btn like-button"><i class="fas fa-thumbs-up"></i>Me gusta</button>
-                                <button class="btn comment-button"><i class="fas fa-comment"></i>Comentar</button>
-                            </div>
-                            <button class="btn pdf-button"><i class="fas fa-file-pdf"></i>Ver PDF</button>
-                        </div>
+                        <span class="action-buttons">
+                            <button class="btn btn--primary like-button"><i class="fas fa-thumbs-up"></i>Me gusta</button>
+                            <button class="btn btn--primary comment-button"><i class="fas fa-comment"></i>Comentar</button>
+                        </span>
+                        <button class="btn btn--primary pdf-button"><i class="fas fa-file-pdf"></i>Ver PDF</button>
                     </figcaption>
                 </figure>
             </section>
-            <section class="comment-section">
-                <article class="comment">
-                    <div class="comment-header">
-                        <i class="fas fa-user-circle profile-photo"></i>
-                        <p>María Gómez</p>
-                    </div>
-                    <div class="comment-content">
-                        <p>Gran artículo, me ayudó a entender mejor el tema.</p>
-                    </div>
-                </article>
-                <article class="comment">
-                    <div class="comment-header">
-                        <i class="fas fa-user-circle profile-photo"></i>
-                        <p>Lucía Fernández</p>
-                    </div>
-                    <div class="comment-content">
-                        <p>Excelente análisis, muy útil para mi trabajo.</p>
-                    </div>
-                </article>
-                <button class="btn view-more">Ver más</button>
-                <div class="add-comment">
-                    <i class="fas fa-user-circle profile-photo"></i>
-                    <input type="text" class="comment-input" placeholder="Escribe un comentario...">
-                    <button class="btn submit-comment"><i class="fas fa-paper-plane"></i>Enviar</button>
-                </div>
-            </section>
         </article>
 
+        <!--Ejemplo-->
+        <article class="post-card">
+            <header class="post-card-header">
+                <i class="fas fa-user-circle profile-photo"></i>
+                <p>María Gómez</p>
+            </header>
+            <section class="post-card-content">
+                <p>¡Excelente recurso! Les comparto este otro paper sobre el mismo tema.</p>
+                <h2>El abordaje cognitivo-conductual en trastornos de ansiedad</h2>
+                <figure>
+                    <img src="assets/img2.jpg" alt="Imagen del post" class="post-image">
+                    <figcaption>
+                         <span class="action-buttons">
+                            <button class="btn btn--primary like-button"><i class="fas fa-thumbs-up"></i>Me gusta</button>
+                            <button class="btn btn--primary comment-button"><i class="fas fa-comment"></i>Comentar</button>
+                        </span>
+                        <button class="btn btn--primary pdf-button"><i class="fas fa-file-pdf"></i>Ver PDF</button>
+                    </figcaption>
+                </figure>
+            </section>
+        </article>
         
     </main>
 
-    <footer>
+    <footer aria-label="Pie de página del sitio">
         <p>2025 PsychoShare - Hecho por PsyNet - Licencia MIT</p>
     </footer>
-
 </body>
-</html>             
+</html>

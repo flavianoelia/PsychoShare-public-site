@@ -1,208 +1,196 @@
 <!DOCTYPE html>
 <html lang="es">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Mis contactos</title>
-            <link rel="preconnect" href="https://fonts.googleapis.com">
-            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-            <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&family=Sora:wght@100..800&display=swap" rel="stylesheet">
-            <link rel="icon" type="image/x-icon" href="favicon/favicon.ico">
-            <link rel="shortcut icon" href="favicon/favicon.ico">
-            <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
-            <link rel="icon" type="image/svg+xml" href="favicon/favicon.svg">
-            <link rel="manifest" href="favicon/site.webmanifest">   
-            <link rel="stylesheet" href="css/style.css">
-            <script src="https://kit.fontawesome.com/636f762910.js" crossorigin="anonymous"></script>
-            <script src="js/menu.js" defer></script>
-    </head>
-    <body class="body-contacts">
-              <header aria-label="Encabezado" class="logo-header">
-         <img src="assets/logop.svg" alt="logo de PsychoShare">
-         <h1>PsychoShare</h1>
-      </header>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mis contactos - PsychoShare</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="css/base/_global.css">
+    <link rel="stylesheet" href="css/layout/_grid.css">
+    <link rel="stylesheet" href="css/layout/_header.css"> 
+    <link rel="stylesheet" href="css/components/_search-bar.css"> 
+    <link rel="stylesheet" href="css/layout/_navigation.css">
+    <link rel="stylesheet" href="css/components/_button.css">
+    <link rel="stylesheet" href="css/pages/_contacts.css">
 
-<!-- 
-    <body class="body-contacts">
-        <header class= "header-contacts" aria-label="Encabezado">
+</head>
+
+<body class="app-layout">
+    <aside class="sidebar">
+        <nav class="menu-nav">
             <ul>
-                <li class="header-hide"> <img src="./assets/PsychoShare_logo_no_bg.png" class="img" alt="Logo de PsychoShare" > </li>
-                <li class="header-hide">  <h1>PsychoShare</h1> </li>
-                <li> 
-                    <button id="button-i"> 
-                        <i class="fa-solid fa-chevron-left back"></i>
-                    </button>
-                </li>
-                <li><p>Veronica</p></li>
+                <li><a href="./wall.html" class="nav-link">Inicio</a></li>
+                <li><a href="./profile.html" class="nav-link">Perfil</a></li>
+                <li><a href="./contacts.html" class="nav-link active">Mis contactos</a></li>
+                <li><a href="./about-us.html" class="nav-link">Acerca de...</a></li>
+                <li><button class="logout-button">Cerrar sesión</button></li>
             </ul>
-        </header>
--->
-            <nav aria-label="Menú principal de navegación">
-        <ul>
-            <li><a href="./wall.html" class="nav-link">Inicio</a></li>
-            <li><a href="./profile.html" class="nav-link">Perfil</a></li>
-            <li><a href="./contacts.html" class="nav-link">Mis contactos</a></li>
-            <li><a href="./about-us.html" class="nav-link">Acerca de...</a></li>
-            <li><button class="logout-button">Cerrar sesión</button></li>
-        </ul>
-    </nav>
-
-        <main class="main-contacts">
-            <section class = search-contacts aria-label="Buscador de contactos">
-                <form>
-                    <input type="text" placeholder="Buscar contactos" />
-                    <button type="submit">
-                        <i class="fa-solid fa-magnifying-glass glass" aria-label="Buscar"></i>
-                    </button>
-                </form>
-            </section>
-
-            <section class ="count-contacts" aria-label="Conteo de contactos">
-                <p>123 contactos</p>
-            </section>
-
-            <section class="list-contacts" aria-label="Listado de contactos">
-                <ul>
-                    <li>
-                        <article class="follow-contact">
-                            <i class="fa-solid fa-circle-user user" ></i>
-                            <a href="#">Nombre y Apellido</a>
-                            <button aria-label="Deja de seguir">Dejar de seguir</button>
-                        </article>
-                    </li>
-                    <li>
-                        <article class="follow-contact">
-                            <i class="fa-solid fa-circle-user user" aria-label="usuario"></i>
-                            <a href="#">Federico Piedrasanta</a>
-                            <button aria-label="Deja de seguir">Dejar de seguir</button>
-                        </article>
-                    </li>
-                    <li>
-                        <article class="follow-contact">
-                            <i class="fa-solid fa-circle-user user"></i>
-                            <a href="#">Veronica Ramirez</a>
-                            <button aria-label="Deja de seguir">Dejar de seguir</button>
-                        </article>
-                    </li>
-                    <li>
-                        <article class="follow-contact">
-                            <i class="fa-solid fa-circle-user user"></i>
-                            <a href="#">Flavia Perin</a>
-                            <button aria-label="Deja de seguir">Dejar de seguir</button>
-                        </article>
-                    </li>
-                    <li>
-                        <article class="follow-contact">
-                            <i class="fa-solid fa-circle-user user"></i>
-                            <a href="#">Aloe Bordone</a>
-                            <button aria-label="Deja de seguir">Dejar de seguir</button>
-                        </article>
-                    </li>
-                    <li>
-                        <article class="follow-contact">
-                            <i class="fa-solid fa-circle-user user"></i>
-                            <a href="#">Juan Perez</a>
-                            <button aria-label="Deja de seguir">Dejar de seguir</button>
-                        </article>
-                    </li>
-                    <li>
-                        <article class="follow-contact">
-                            <i class="fa-solid fa-circle-user user"></i>
-                            <a href="#">Pedro Lopez</a>
-                            <button aria-label="Deja de seguir">Dejar de seguir</button>
-                        </article>
-                    </li>
-                    <li>
-                        <article class="follow-contact">
-                            <i class="fa-solid fa-circle-user user"></i>
-                            <a href="#">Ana Gomez</a>
-                            <button aria-label="Deja de seguir">Dejar de seguir</button>
-                        </article>
-                    </li>
-                     <li>
-                        <article class="follow-contact">
-                            <i class="fa-solid fa-circle-user user"></i>
-                            <a href="#">Constanza Rodriguez</a>
-                            <button aria-label="Deja de seguir">Dejar de seguir</button>
-                        </article>
-                    </li>
-                    <li>
-                        <article class="follow-contact">
-                            <i class="fa-solid fa-circle-user user"></i>
-                            <a href="#">Constanza Rodriguez</a>
-                            <button aria-label="Deja de seguir">Dejar de seguir</button>
-                        </article>
-                    </li>
-                    <li>
-                        <article class="follow-contact">
-                            <i class="fa-solid fa-circle-user user"></i>
-                            <a href="#">Daniel Llanes</a>
-                            <button aria-label="Deja de seguir">Dejar de seguir</button>
-                        </article>
-                    </li>
-                    <li>
-                        <article class="follow-contact">
-                            <i class="fa-solid fa-circle-user user"></i>
-                            <a href="#">Federico Piedrasanta</a>
-                            <button aria-label="Deja de seguir">Dejar de seguir</button>
-                        </article>
-                    </li>
-                    <li>
-                        <article class="follow-contact">
-                            <i class="fa-solid fa-circle-user user"></i>
-                            <a href="#">Veronica Ramirez</a>
-                            <button aria-label="Deja de seguir">Dejar de seguir</button>
-                        </article>
-                    </li>
-                    <li>
-                        <article class="follow-contact">
-                            <i class="fa-solid fa-circle-user user"></i>
-                            <a href="#">Flavia Perin</a>
-                            <button aria-label="Deja de seguir">Dejar de seguir</button>
-                        </article>
-                    </li>
-                    <li>
-                        <article class="follow-contact">
-                            <i class="fa-solid fa-circle-user user"></i>
-                            <a href="#">Aloe Bordone</a>
-                            <button aria-label="Deja de seguir">Dejar de seguir</button>
-                        </article>
-                    </li>
-                    <li>
-                        <article class="follow-contact">
-                            <i class="fa-solid fa-circle-user user"></i>
-                            <a href="#">Juan Perez</a>
-                            <button aria-label="Deja de seguir">Dejar de seguir</button>
-                        </article>
-                    </li>
-                    <li>
-                        <article class="follow-contact">
-                            <i class="fa-solid fa-circle-user user"></i>
-                            <a href="#">Pedro Lopez</a>
-                            <button aria-label="Deja de seguir">Dejar de seguir</button>
-                        </article>
-                    </li>
-                    <li>
-                        <article class="follow-contact">
-                            <i class="fa-solid fa-circle-user user"></i>
-                            <a href="#">Ana Gomez</a>
-                            <button aria-label="Deja de seguir">Dejar de seguir</button>
-                        </article>
-                    </li>
-                     <li>
-                        <article class="follow-contact">
-                            <i class="fa-solid fa-circle-user user"></i>
-                            <a href="#">Constanza Rodriguez</a>
-                            <button aria-label="Deja de seguir">Dejar de seguir</button>
-                        </article>
-                    </li>
-                </ul>
-            </section>
-        </main>
-        <footer aria-label="Pie de página del sitio">
+        </nav>
+        <footer aria-label="Pie de página del sitio" class=".footer">
             <p>2025 PsychoShare - Hecho por PsyNet - Licencia MIT</p>
         </footer>
-    </body>
+    </aside>
+
+    <header class="logo-header">
+        <img src="assets/logop.svg" alt="logo de PsychoShare">
+        <h1>PsychoShare</h1>
+    </header>
+
+    <section class="search-bar">
+        <form class="search-form">
+            <!-- OJO CON ESTO!! cuando hagamos el back, reutilizamos el search-bar pero para buscar contactos -->
+            <input type="search" placeholder="Buscar contactos..." class="search-input">
+            <button type="submit" class="search-button"><i class="fas fa-search"></i></button>
+        </form>
+        <span class="action-buttons">
+            <a href="./wall.html" class="action-button"><i class="fas fa-house"></i></a>
+            <a href="./profile.html" class="action-button"><i class="fas fa-circle-user"></i></a>
+            <button class="menu-toggle action-button"><i class="fas fa-bars"></i></button>
+        </span>
+    </section>
+
+    <main>
+        <section class="contacts-list-container">
+            <h2 class="contacts-count">123 Contactos</h2>
+            <ul class="contacts-list">
+                <li>
+                    <section class="contact-card">
+                        <i class="fas fa-image contact-avatar-placeholder"></i>
+                        <span class="contact-name">Nombre y Apellido</span>
+                        <button class="btn btn--danger">Dejar de seguir</button>
+                    </section>
+                </li>
+                <li>
+                    <section class="contact-card">
+                        <i class="fas fa-image contact-avatar-placeholder"></i>
+                        <span class="contact-name">Federico Piedrasanta</span>
+                        <button class="btn btn--danger">Dejar de seguir</button>
+                    </section>
+                </li>
+                <li>
+                    <section class="contact-card">
+                        <i class="fas fa-image contact-avatar-placeholder"></i>
+                        <span class="contact-name">Veronica Ramirez</span>
+                        <button class="btn btn--danger">Dejar de seguir</button>
+                    </section>
+                </li>
+                <li>
+                    <section class="contact-card">
+                        <i class="fas fa-image contact-avatar-placeholder"></i>
+                        <span class="contact-name">Flavia Perin</span>
+                        <button class="btn btn--danger">Dejar de seguir</button>
+                    </section>
+                </li>
+                <li>
+                    <section class="contact-card">
+                        <i class="fas fa-image contact-avatar-placeholder"></i>
+                        <span class="contact-name">Aloe Bordone</span>
+                        <button class="btn btn--danger">Dejar de seguir</button>
+                    </section>
+                </li>
+                <li>
+                    <section class="contact-card">
+                        <i class="fas fa-image contact-avatar-placeholder"></i>
+                        <span class="contact-name">Juan Perez</span>
+                        <button class="btn btn--danger">Dejar de seguir</button>
+                    </section>
+                </li>
+                <li>
+                    <section class="contact-card">
+                        <i class="fas fa-image contact-avatar-placeholder"></i>
+                        <span class="contact-name">Pedro Lopez</span>
+                        <button class="btn btn--danger">Dejar de seguir</button>
+                    </section>
+                </li>
+                <li>
+                    <section class="contact-card">
+                        <i class="fas fa-image contact-avatar-placeholder"></i>
+                        <span class="contact-name">Ana Gomez</span>
+                        <button class="btn btn--danger">Dejar de seguir</button>
+                    </section>
+                </li>
+                 <li>
+                    <section class="contact-card">
+                        <i class="fas fa-image contact-avatar-placeholder"></i>
+                        <span class="contact-name">Constanza Rodriguez</span>
+                        <button class="btn btn--danger">Dejar de seguir</button>
+                    </section>
+                </li>
+                <li>
+                    <section class="contact-card">
+                        <i class="fas fa-image contact-avatar-placeholder"></i>
+                        <span class="contact-name">Constanza Rodriguez</span>
+                        <button class="btn btn--danger">Dejar de seguir</button>
+                    </section>
+                </li>
+                <li>
+                    <section class="contact-card">
+                        <i class="fas fa-image contact-avatar-placeholder"></i>
+                        <span class="contact-name">Daniel Llanes</span>
+                        <button class="btn btn--danger">Dejar de seguir</button>
+                    </section>
+                </li>
+                <li>
+                    <section class="contact-card">
+                        <i class="fas fa-image contact-avatar-placeholder"></i>
+                        <span class="contact-name">Federico Piedrasanta</span>
+                        <button class="btn btn--danger">Dejar de seguir</button>
+                    </section>
+                </li>
+                <li>
+                    <section class="contact-card">
+                        <i class="fas fa-image contact-avatar-placeholder"></i>
+                        <span class="contact-name">Veronica Ramirez</span>
+                        <button class="btn btn--danger">Dejar de seguir</button>
+                    </section>
+                </li>
+                <li>
+                    <section class="contact-card">
+                        <i class="fas fa-image contact-avatar-placeholder"></i>
+                        <span class="contact-name">Flavia Perin</span>
+                        <button class="btn btn--danger">Dejar de seguir</button>
+                    </section>
+                </li>
+                <li>
+                    <section class="contact-card">
+                        <i class="fas fa-image contact-avatar-placeholder"></i>
+                        <span class="contact-name">Aloe Bordone</span>
+                        <button class="btn btn--danger">Dejar de seguir</button>
+                    </section>
+                </li>
+                <li>
+                    <section class="contact-card">
+                        <i class="fas fa-image contact-avatar-placeholder"></i>
+                        <span class="contact-name">Juan Perez</span>
+                        <button class="btn btn--danger">Dejar de seguir</button>
+                    </section>
+                </li>
+                <li>
+                    <section class="contact-card">
+                        <i class="fas fa-image contact-avatar-placeholder"></i>
+                        <span class="contact-name">Pedro Lopez</span>
+                        <button class="btn btn--danger">Dejar de seguir</button>
+                    </section>
+                </li>
+                <li>
+                    <section class="contact-card">
+                        <i class="fas fa-image contact-avatar-placeholder"></i>
+                        <span class="contact-name">Ana Gomez</span>
+                        <button class="btn btn--danger">Dejar de seguir</button>
+                    </section>
+                </li>
+                 <li>
+                    <section class="contact-card">
+                        <i class="fas fa-image contact-avatar-placeholder"></i>
+                        <span class="contact-name">Constanza Rodriguez</span>
+                        <button class="btn btn--danger">Dejar de seguir</button>
+                    </section>
+                </li>
+            </ul>
+        </section>
+    </main>
+    <footer aria-label="Pie de página del sitio">
+        <p>2025 PsychoShare - Hecho por PsyNet - Licencia MIT</p>
+    </footer>
+</body>
 </html>
-
-

@@ -1,66 +1,60 @@
 <!DOCTYPE html>
 <html lang="es">
-   <head>
-      <meta charset="UTF-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <title>Acerca de</title>
-      <link rel="preconnect" href="https://fonts.googleapis.com">
-      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-      <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&family=Sora:wght@100..800&display=swap" rel="stylesheet">
-      <script src="https://kit.fontawesome.com/636f762910.js" crossorigin="anonymous"></script>
-      <link rel="stylesheet" href="css/style.css">
-   </head>
-   <body class="grid-about">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Acerca de - PsychoShare</title>
 
-      <header aria-label="Encabezado" class="logo-header">
-         <img src="assets/logop.svg" alt="logo de PsychoShare">
-         <h1>PsychoShare</h1>
-      </header>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&family=Sora:wght@100..800&display=swap" rel="stylesheet">
 
-      <section aria-label="Buscador y acceso directo al perfil" class="search-bar">
-        <form action="search" method="get" aria-label="Buscador de personas y publicaciones">
-            <input type="search" id="search" name="q" placeholder="¿Qué deseas buscar?" class="search-input">
-            <button type="submit" aria-label="Lupa para realizar busqueda" class="search-button">
-                <i class="fas fa-search"></i>
-            </button>
+    <link rel="stylesheet" href="css/base/_global.css">
+    <link rel="stylesheet" href="css/layout/_grid.css">
+    <link rel="stylesheet" href="css/layout/_header.css">
+    <link rel="stylesheet" href="css/layout/_navigation.css">
+    <link rel="stylesheet" href="css/layout/_footer.css">
+    <link rel="stylesheet" href="css/components/_search-bar.css">
+    <link rel="stylesheet" href="css/pages/_about-us.css"> 
+</head>
+
+<body class="app-layout">
+
+    <header aria-label="Encabezado" class="logo-header">
+        <img src="assets/logop.svg" alt="logo de PsychoShare">
+        <h1>PsychoShare</h1>
+    </header>
+
+    <section aria-label="Buscador y acceso directo al perfil" class="search-bar">
+        <form action="search" method="get" class="search-form">
+            <input type="search" name="q" placeholder="Buscar..." class="search-input">
+            <button type="submit" class="search-button" aria-label="Buscar"><i class="fas fa-search"></i></button>
         </form>
-        <button aria-label="Acceso directo a Inicio" class="home-button">
-            <i class="fas fa-house"></i>
-        </button>
-        <button aria-label="Acceso directo al perfil" class="profile-button">
-            <i class="fas fa-circle-user"></i>
-        </button>
-        <button class="menu-toggle"><i class="fas fa-bars"></i></button>       
+        <span class="action-buttons">
+            <a href="./wall.html" class="action-button" aria-label="Inicio"><i class="fas fa-house"></i></a>
+            <a href="./profile.html" class="action-button" aria-label="Perfil"><i class="fas fa-circle-user"></i></a>
+            <button class="menu-toggle action-button" aria-label="Abrir menú"><i class="fas fa-bars"></i></button>       
+        </span>
     </section>
 
-      <nav class="menu-nav">
-         <ul>
+    <nav class="menu-nav" aria-label="Menú principal de navegación">
+        <ul>
             <li><a href="./wall.html" class="nav-link">Inicio</a></li>
             <li><a href="./profile.html" class="nav-link">Perfil</a></li>
             <li><a href="./contacts.html" class="nav-link">Mis contactos</a></li>
             <li><a href="./about-us.html" class="nav-link">Acerca de...</a></li>
             <li><button class="logout-button">Cerrar sesión</button></li>
-         </ul>
-      </nav>
-
-      <main class="main-content">
-
-         <section class="slogan-section">
-            <figure class="slogan">
-               <div class="slogan-logo">
-                  <img src="assets/logop.svg" alt="Logo">
-               </div>
-               <figcaption>
-                  Psicología abierta: Explora, comparte, impulsa y transforma.
-               </figcaption>
-            </figure>
-         </section>
-
-         <section class="about-section">
-            <header class="about-section-title">
-               <h1>PsychoShare</h1>
+        </ul>
+    </nav>
+ 
+    <main>
+        <section class="about-us-content">
+            <header class="about-us-header">
+                <img src="assets/logo/logo-black.png" alt="Logo de PsychoShare" class="about-us-logo">
+                <p class="slogan">Psicología abierta: Explora, comparte, impulsa y transforma.</p>
             </header>
-            <article class="about-section-text">
+            
+            <article class="about-us-text">
                <h2>¿Quiénes somos?</h2>
                <p>
                   Somos una comunidad de divulgación científica en psicología. Conectamos a profesionales,
@@ -68,7 +62,8 @@
                   ¡Acercamos la psicología basada en evidencia a todos!
                </p>
             </article>
-            <article class="about-section-text">
+            
+            <article class="about-us-text">
                <h2>¿Por qué lo hacemos?</h2>
                <p>
                   En un mundo saturado de desinformación, creemos que el conocimiento científico debe ser abierto,
@@ -76,20 +71,20 @@
                   y crear comunidad alrededor del conocimiento psicológico riguroso.
                </p>
             </article>
-            <adress class="contact-us">
+
+            <address class="contact-us">
                <h2>¡Contactanos!</h2>
                <p>
                   Si tenés sugerencias o consultas escribinos a
                   <a href="mailto:dsoftware2023@gmail.com">dsoftware2023@gmail.com</a>
                </p>
-            </adress>
-         </section>
-      </main>
+            </address>
+        </section>
+    </main>
 
+    <footer aria-label="Pie de página del sitio">
+        <p>2025 PsychoShare - Hecho por PsyNet - Licencia MIT</p>
+    </footer>
 
-      <footer>
-         <p>2025 PsychoShare - Hecho por PsyNet - Licencia MIT</p>
-      </footer>
-
-   </body>
+</body>
 </html>

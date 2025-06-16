@@ -1,0 +1,74 @@
+/* Formularios login y sign in*/
+.card-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 500px;
+  margin: auto;
+  padding: 1rem; 
+  background-color: var(--color-background-card);
+  border-radius: 12px;
+  border: 1px solid var(--color-border);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+
+.card-form label {
+  font-size: 0.9em;
+  font-weight: 500;
+  margin-bottom: -0.5rem; 
+}
+
+.checkbox-label {
+  display: flex; 
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.9em;
+  cursor: pointer;
+}
+
+/* --- Estilos para el Formulario de "Crear Nuevo Post" --- */
+.new-post-form {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  background-color: var(--color-background-card);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  margin: 0 auto 1.5rem;
+  max-width: 600px;
+}
+
+.new-post-form .post-input {
+  flex-grow: 1;
+  border: none;
+  background-color: transparent;
+  font-size: 1em;
+}
+.new-post-form .post-input:focus {
+  outline: none;
+}
+
+/* --- Estilos para el Formulario de "Añadir Comentario" --- */
+.add-comment-form {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  border-top: 1px solid var(--color-border);
+  padding-top: 1.5rem;
+}
+
+.add-comment-form .comment-input {
+  flex-grow: 1;
+  border: 1px solid var(--color-border);
+  background-color: var(--color-input-background);
+  padding: 0.75rem;
+  border-radius: 20px; 
+  font-size: 0.9em;
+}
+.add-comment-form .comment-input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+}
