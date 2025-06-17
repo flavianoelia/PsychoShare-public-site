@@ -1,0 +1,76 @@
+/* === SECCIONES === */
+section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+section.delete-account,
+section.save-changes {
+  border-bottom: none;
+}
+
+.update-photo-profile,
+.update-cover {
+  position: relative;
+}
+
+
+
+/* === TEXTOS === */
+p {
+  font-size: 1.5em;
+  color: #000;
+  text-align: center;
+}
+
+label {
+  display: block;
+  margin-bottom: 0.4rem;
+  font-size: 0.9rem;
+  color: #374151;
+  text-align: left;
+}
+
+/* Textos del modal de eliminación */
+.modal-eliminar p:first-of-type {
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin-bottom: 0.3rem;
+}
+
+.modal-eliminar p:nth-of-type(2) {
+  font-size: 0.95rem;
+  color: #6b7280;
+  margin-bottom: 1.5rem;
+}
+
+/* === INPUTS === */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="file"] {
+  font-family: inherit;
+  font-size: 0.95rem;
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+input[type="password"] {
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  margin-bottom: 1.5rem;
+}
+
+/* === ICONOS === */
+.update-photo-profile i,
+.update-cover i {
+  color: #aaa;
+  align-self: center;
+}
+
+

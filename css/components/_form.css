@@ -72,3 +72,22 @@
   outline: none;
   border-color: var(--color-primary);
 }
+/* === FORMULARIO editar perfil === */
+.form-edit-profile {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  background-color: var(--color-background-card);
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.close-button {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  color: #000;
+  cursor: pointer;
+}
