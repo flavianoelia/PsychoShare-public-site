@@ -140,3 +140,20 @@ body.post-form button[type="submit"] {
 body.post-form button[type="submit"]:hover {
   background: var(--color-primary-dark, #8ea0bf);
 }
+
+.attachment-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.file-group {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.file-group i {
+  font-size: 1rem;
+  color: #606770;
+}

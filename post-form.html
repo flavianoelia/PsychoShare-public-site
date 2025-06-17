@@ -39,14 +39,17 @@
         <input type="text" id="authorship" placeholder="Autoría">
         <textarea id="abstract" placeholder="Abstract"></textarea>
 
-        <div class="attachment-section">
-          <p>Adjuntar 
-            <i class="fas fa-image"></i> 
-            <i class="fas fa-paperclip"></i>
-          </p>
-          <input type="file" accept="image/*" class="file-input">
-          <input type="file" accept=".pdf" class="file-input">
+    <div class="attachment-section">
+        <div class="file-group">
+            <i class="fas fa-image"></i>
+            <input type="file" accept="image/*">
         </div>
+        <div class="file-group">
+            <i class="fas fa-paperclip"></i>
+            <input type="file" accept=".pdf">
+        </div>
+    </div>
+        
 
         <button type="submit">Enviar</button>
       </form>

@@ -8,10 +8,13 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&family=Sora:wght@100..800&display=swap" rel="stylesheet">
-    <link rel="icon" href="favicon/favicon.ico">
-    <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
-    <link rel="icon" type="image/svg+xml" href="favicon/favicon.svg">
-    <link rel="manifest" href="favicon/site.webmanifest">
+    <link rel="icon" href="/favicon/favicon.ico">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon/favicon-96x96.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg">
+    <link rel="manifest" href="/favicon/site.webmanifest">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-Tf8UPt3NwntSM6AfUsF96pAy43MPHRswCy7O0KlNNX+R1F0I06+nSgxWWJZKjFuRjRuhAuH9knFVw8NsK9zQ9g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <link rel="stylesheet" href="css/base/_global.css">
     <link rel="stylesheet" href="css/layout/_grid.css">
@@ -25,14 +28,15 @@
     <link rel="stylesheet" href="css/components/_modal.css">
     <link rel="stylesheet" href="css/pages/_wall.css">
     <link rel="stylesheet" href="css/custom.css">
-    <!--<script src="https://kit.fontawesome.com/636f762910.js" crossorigin="anonymous"></script>-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
-
+    <script src="https://kit.fontawesome.com/636f762910.js" crossorigin="anonymous"></script>
+    <script src="js/menu.js" defer></script>
+    <script src="js/modal.js" defer></script>
+    <script src="js/logout-modal.js" defer></script>
 
 
 <body class="app-layout">
     <header aria-label="Encabezado" class="logo-header">
-        <img src="assets/logop.svg" alt="logo de PsychoShare">
+        <img src="assets/logo/logo-black.png" alt="logo de PsychoShare">
         <h1>PsychoShare</h1>
     </header>
 
@@ -69,9 +73,7 @@
     </nav>
       
     <main>
-        <!-- Formulario para crear una nueva publicación -->
-        <main>
-    <!-- Formulario para crear una nueva publicación -->
+    <!-- Form new post -->
     <section aria-label="Sección de la publicación" class="new-post-section">
         <i class="fas fa-user-circle profile-photo"></i>
         <input type="text" placeholder="¿Sobre qué quieres hablar?" class="post-input">
@@ -80,7 +82,7 @@
         <button id="create-post-btn" class="btn submit-comment"><i class="fas fa-paper-plane"></i>Publicar</button> 
     </section>
 
-    <!-- Posteo completo -->
+    <!-- Complete Post -->
     <article>
         <section class="post">
             <i class="fas fa-user-circle profile-photo"></i>
@@ -92,7 +94,7 @@
             <p><strong>Autoría:</strong> Basantes Moscoso D. R.</p>
             <p><strong>Resumen:</strong> Ansiedad y depresión, dos síntomas muy comunes en la adolescencia...</p>
             <figure>
-                <img src="assets/img1.jpg" alt="Imagen del post" class="post-image">
+                <img src="assets/logo/img1.jpg" alt="Imagen del post" class="post-image">
                 <figcaption>
                     <div class="button-container">
                         <div class="action-buttons">
@@ -105,7 +107,7 @@
             </figure>
         </section>
 
-        <!-- Comentarios -->
+        <!-- Comments -->
         <section class="comment-section">
             <article class="comment">
                 <div class="comment-header">

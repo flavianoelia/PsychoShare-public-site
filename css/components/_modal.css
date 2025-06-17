@@ -40,3 +40,22 @@
 .logout-cancel {
     background-color: var(--color-border);
 }
+
+.modal-iframe {
+  width: 95vw;
+  max-width: 600px;
+  height: 90vh;
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  background-color: white;
+}
+
+.logout-modal {
+  padding: 24px;
+  text-align: center;
+  background-color: white;
+  border-radius: 10px;
+  z-index: 10001;
+  position: relative;
+}
