@@ -1,0 +1,265 @@
+
+.btn {
+    padding: 6px 10px;
+    background-color: #b58d93;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    border: none;
+}
+
+.btn:hover {
+    background-color: #8ea0bf;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+
+.submit-comment {
+    background-color: #b58d93;
+}
+.submit-comment:hover {
+    background-color: #8ea0bf;
+}
+
+
+.btn i {
+    font-size: 1em;
+}
+
+
+.post-image {
+    width: 200px;
+    height: 150px;
+    font-size: 120px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    background-color: #e0e0e0;
+    border-radius: 5px;
+    position: relative;
+    overflow: hidden;
+    line-height: 1;
+    color: #444;
+}
+
+
+.comment-section {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid #e0e0e0;
+}
+
+.comment {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-bottom: 10px;
+    background-color: #f0f0f0;
+    padding: 8px;
+    border-radius: 5px;
+}
+
+.comment-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+    margin-left: 40px;
+}
+
+.comment .profile-photo {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    position: absolute;
+    left: 8px;
+    top: 8px;
+    font-size: 24px;
+    line-height: 24px;
+    text-align: center;
+}
+
+.comment-content {
+    margin-left: 40px;
+}
+
+.view-more {
+    display: block;
+    margin: 8px 0;
+}
+
+
+.add-comment {
+    display: flex;
+    gap: 8px;
+    margin-top: 10px;
+    align-items: center;
+}
+
+.add-comment .profile-photo {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    font-size: 24px;
+    line-height: 24px;
+    text-align: center;
+}
+
+.comment-input {
+    flex: 1;
+    padding: 6px;
+    border-radius: 5px;
+    background-color: #f0f0f0;
+}
+
+
+.profile-photo {
+    color: #444;
+    display: inline-block;
+}
+
+
+.btn.like-button,
+.btn.comment-button,
+.btn.pdf-button {
+    background-color: #b58d93 !important;
+}
+.btn.like-button:hover,
+.btn.comment-button:hover,
+.btn.pdf-button:hover {
+    background-color: #8ea0bf !important;
+}
+
+
+
+
+.wall .like-button i,
+.wall .comment-button i,
+.wall .pdf-button i,
+.wall .submit-comment i {
+    font-size: 16px;
+    margin-right: 5px;
+}
+
+
+.wall .submit-comment {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 500;
+    font-size: 0.9em;
+    border: none;
+    padding: 6px 12px;
+}
+
+.wall .view-more {
+    font-size: 0.85em;
+    padding: 6px 10px;
+    background-color: #b58d93;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    border: none;
+}
+
+.wall .view-more:hover {
+    background-color: #8ea0bf;
+}
+
+
+.wall .post-image i {
+    font-size: 100px;
+    color: #777;
+}
+
+
+.wall article + article {
+    margin-top: 40px;
+}
+
+
+.wall figure figcaption {
+    margin-top: 10px;
+}
+
+
+.wall .action-buttons button {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+
+.search-bar .action-buttons .action-button i {
+    font-size: 20px;
+    color: #333;
+}
+
+
+.profile-photo {
+    width: 32px;
+    height: 32px;
+    font-size: 32px;
+    border-radius: 50%;
+    color: #444;
+    background-color: #ddd;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.post-image {
+    width: 200px;
+    height: 150px;
+    background-color: #e0e0e0;
+    border-radius: 5px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    margin: 0 auto; 
+}
+
+.post-image i {
+    font-size: 100px;
+    color: #777;
+}
+
+.menu-toggle {
+    display: none;
+}
+
+@media (max-width: 1024px) {
+  .menu-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+
+  nav.menu-nav {
+    position: fixed;
+    top: 60px; 
+    left: -100%;
+    width: 100%;
+    height: 100vh;
+    background-color: var(--color-ui-background);
+    z-index: 999;
+    transition: left 0.3s ease-in-out;
+  }
+
+  nav.menu-nav.active {
+    left: 0;
+  }
+}

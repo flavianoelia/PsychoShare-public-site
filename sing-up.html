@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <title>PsychoShare - Inicio de sesión</title>
+    
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <!-- ... -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+        <link rel="stylesheet" href="css/base/_global.css">
+        <link rel="stylesheet" href="css/layout/_footer.css">
+        <link rel="stylesheet" href="css/layout/_layout-split-page.css"> 
+        <link rel="stylesheet" href="css/components/_button.css">
+        <link rel="stylesheet" href="css/components/_form.css">
+        <link rel="stylesheet" href="css/components/_logo-section.css">
+    </head>
+<body>
+     <main class="split-page-layout">
+
+        <section class="logo-section">
+          <img src="assets/logo/logo-black.png" alt="Logo de PsychoShare" class="logo-avatar">
+          <h2 class="logo-subtitle">Psicología abierta: Explora, comparte, impulsa y transforma.</h2>
+      </section>
+
+        <section class="content-section">
+            <h1 class="mb-4">PsychoShare</h1>
+            <h1>Crear una nueva cuenta</h1>
+            
+            <form id="register-form" class= "card-form" novalidate>
+                <input type="text" class="form-control mb-3" id="nombre" name="nombre" placeholder="Nombre y apellido" aria-label="Nombre y apellido" required>
+                <input type="email" class="form-control mb-3" id="mail" name="mail" placeholder="Correo electrónico" aria-label="Correo electrónico" required>
+                <input type="password" class="form-control mb-3" id="password" name="password" placeholder="Contraseña" aria-label="Contraseña" required>
+                <input type="password" class="form-control mb-3" id="repetir-contraseña" name="repetir-contraseña" placeholder="Repetir contraseña" aria-label="Repetir contraseña" required>
+                
+                <label for="terms" class="checkbox-label">
+                  <input type="checkbox" id="terms" name="terms" required>
+                  Acepto los términos y condiciones y Política de Privacidad
+                </label>
+                
+                <button class="btn btn-primary">Registrarse</button>
+            </form>
+
+            <p class="mt-3 text-center">
+                ¿Ya tenés una cuenta?
+                <button type="button" class="link-login" data-bs-toggle="modal" data-bs-target="#modalLogin">
+                  Iniciá sesión
+                </button>
+            </p>
+        </section>
+    </main>
+   <footer class="footer-general" aria-label="Pie de página del sitio">
+            <p>2025 PsychoShare - Hecho por PsyNet - Licencia MIT</p>
+        </footer>
+        <div class="modal fade" id="modalLogin" tabindex="-1" aria-labelledby="modalLoginLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <section class="modal-content p-4">
+                <header class="modal-header border-0">
+                  <h5 class="modal-title" id="modalLoginLabel">Iniciar sesión</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </header>
+                <form id="login-form" class="needs-validation" novalidate>
+                  <div class="mb-3">
+                    <input type="email" class="form-control" id="modal-mail" name="mail" placeholder="Correo electrónico" required>
+                  </div>
+                  <div class="mb-3">
+                    <input type="password" class="form-control" id="modal-password" name="contraseña" placeholder="Contraseña" required>
+                  </div>
+                  <button type="submit" class="btn btn-primary w-100">Iniciar sesión</button>
+                </form>
+              </section>
+            </div>
+          </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

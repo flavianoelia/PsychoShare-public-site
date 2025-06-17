@@ -1,0 +1,29 @@
+
+main.split-page-layout {
+  display: flex;
+  flex-direction: column; 
+  min-height: 100vh;
+}
+
+.split-page-layout > .logo-section,
+.split-page-layout > .content-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center;    
+    padding: 2rem;
+}
+
+@media screen and (min-width: 1024px) {
+    main.split-page-layout {
+        flex-direction: row;
+    }
+
+    .split-page-layout > .logo-section {
+        flex: 1 1 50%; 
+    }
+
+    .split-page-layout > .content-section {
+        flex: 1 1 50%; 
+    }
+}

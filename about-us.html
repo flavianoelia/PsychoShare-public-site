@@ -1,76 +1,107 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Acerca de</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&family=Sora:wght@100..800&display=swap" rel="stylesheet">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Acerca de - PsychoShare</title>
 
-  <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&family=Sora:wght@100..800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-Tf8UPt3NwntSM6AfUsF96pAy43MPHRswCy7O0KlNNX+R1F0I06+nSgxWWJZKjFuRjRuhAuH9knFVw8NsK9zQ9g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Favicon y manifest -->
+    <link rel="icon" href="/favicon/favicon.ico">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon/favicon-96x96.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg">
+    <link rel="manifest" href="/favicon/site.webmanifest">
+
+    <link rel="stylesheet" href="css/base/_global.css">
+    <link rel="stylesheet" href="css/layout/_grid.css">
+    <link rel="stylesheet" href="css/layout/_header.css">
+    <link rel="stylesheet" href="css/layout/_navigation.css">
+    <link rel="stylesheet" href="css/layout/_footer.css">
+    <link rel="stylesheet" href="css/components/_search-bar.css">
+
+    <link rel="stylesheet" href="css/components/_button.css">
+    <link rel="stylesheet" href="css/components/_card.css">
+    <link rel="stylesheet" href="css/components/_form.css">
+    <link rel="stylesheet" href="css/components/_modal.css">
+    <link rel="stylesheet" href="css/pages/_about-us.css"> 
+    <link rel="stylesheet" href="css/custom.css">
+    <script src="https://kit.fontawesome.com/636f762910.js" crossorigin="anonymous"></script>
+    <!--<script src="js/menu.js" defer></script>-->
+
 </head>
-<body>
 
-  <main>
-    <nav aria-label="Menú de navegación">
-      <ul>
-          <li><a href="./wall.html">Inicio</a></li>
-          <li><a href="./profile.html">Perfil</a></li>
-          <li><a href="./contacts.html">Mis contactos</a></li>
-          <li><a href="#">Acerca de...</a></li>
-          <li><button>Cerrar sesión</button></li>
-      </ul>
-  </nav>
-  
-    <section>
-      <figure>
-        <img src="logo.png" alt="Logo de PsychoShare" />
-        <figcaption>
-          <h2>Psicología abierta :</h2> Explora, comparte, impulsa y transforma.
-        </figcaption>
-      </figure>
-    </section>
-
-    <section>
-      <header>
+<body class="app-layout">
+    <header aria-label="Encabezado" class="logo-header">
+        <img src="assets/logo/logo-black.png" alt="logo de PsychoShare">
         <h1>PsychoShare</h1>
-      </header>
+    </header>
 
-      <article>
-        <h3>¿Quiénes somos?</h3>
-        <p>
-          Somos una comunidad de divulgación científica en psicología. Conectamos a profesionales,
-          estudiantes y curiosos para compartir conocimiento riguroso, accesible y libre.
-          ¡Acercamos la psicología basada en evidencia a todos!
-        </p>
-      </article>
-
-      <article>
-        <h3>¿Por qué lo hacemos?</h3>
-        <p>
-          En un mundo saturado de desinformación, creemos que el conocimiento científico debe ser abierto,
-          compartido y discutido por todos. Buscamos combatir mitos, promover el pensamiento crítico
-          y crear comunidad alrededor del conocimiento psicológico riguroso.
-        </p>
-      </article>
-
-
-      <adress>
-        <h4>¡Contactanos!</h4>
-        <p>
-          Si tenés sugerencias o consultas escribinos a
-          <a href="mailto:dsoftware2023@gmail.com">dsoftware2023@gmail.com</a>
-        </p>
-      </adress>
+    <section aria-label="Buscador y acceso directo al perfil" class="search-bar">
+        <form action="search" method="get" class="search-form">
+            <input type="search" name="q" placeholder="Buscar..." class="search-input">
+            <button type="submit" class="search-button" aria-label="Buscar"><i class="fas fa-search"></i></button>
+        </form>
+        <span class="action-buttons">
+            <a href="./wall.html" class="action-button" aria-label="Inicio"><i class="fas fa-house"></i></a>
+            <a href="./profile.html" class="action-button" aria-label="Perfil"><i class="fas fa-circle-user"></i></a>
+            <button class="menu-toggle action-button" aria-label="Abrir menú"><i class="fas fa-bars"></i></button>       
+        </span>
     </section>
+    <nav class="menu-nav" aria-label="Menú principal de navegación">
+    <ul>
+        <li><a href="./wall.html" class="nav-link"><i class="fas fa-house"></i> Inicio</a></li>
+        <li><a href="./profile.html" class="nav-link"><i class="fas fa-circle-user"></i> Perfil</a></li>
+        <li><a href="./contacts.html" class="nav-link"><i class="fas fa-address-book"></i> Mis contactos</a></li>
+        <li><a href="./about-us.html" class="nav-link"><i class="fas fa-info-circle"></i> Acerca de...</a></li>
+        <li><button class="logout-button"><i class="fas fa-right-from-bracket"></i> Cerrar sesión</button></li>
+    </ul>
+    </nav>
+
 
     
-  </main>
-    
-  <footer>
-      <p>2025 PsychoShare - Hecho por PsyNet - Licencia MIT</p>
-  </footer>
+    <main>
+        <section class="about-us-content">
+            <header class="about-us-header">
+                <img src="assets/logo/logo-black.png" alt="Logo de PsychoShare" class="about-us-logo">
+                <p class="slogan">Psicología abierta: Explora, comparte, impulsa y transforma.</p>
+            </header>
+            
+            <article class="about-us-text">
+               <h2>¿Quiénes somos?</h2>
+               <p>
+                  Somos una comunidad de divulgación científica en psicología. Conectamos a profesionales,
+                  estudiantes y curiosos para compartir conocimiento riguroso, accesible y libre.
+                  ¡Acercamos la psicología basada en evidencia a todos!
+               </p>
+            </article>
+            
+            <article class="about-us-text">
+               <h2>¿Por qué lo hacemos?</h2>
+               <p>
+                  En un mundo saturado de desinformación, creemos que el conocimiento científico debe ser abierto,
+                  compartido y discutido por todos. Buscamos combatir mitos, promover el pensamiento crítico
+                  y crear comunidad alrededor del conocimiento psicológico riguroso.
+               </p>
+            </article>
+
+            <address class="contact-us">
+               <h2>¡Contactanos!</h2>
+               <p>
+                  Si tenés sugerencias o consultas escribinos a
+                  <a href="mailto:dsoftware2023@gmail.com">dsoftware2023@gmail.com</a>
+               </p>
+            </address>
+        </section>
+    </main>
+
+    <footer aria-label="Pie de página del sitio">
+        <p>2025 PsychoShare - Hecho por PsyNet - Licencia MIT</p>
+    </footer>
 
 </body>
 </html>

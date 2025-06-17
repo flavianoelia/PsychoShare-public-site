@@ -1,341 +1,145 @@
 <!DOCTYPE html>
 <html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Inicio - PsychoShare</title>
 
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Inicio</title>
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&family=Sora:wght@100..800&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="css/style.css">
-    </head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&family=Sora:wght@100..800&display=swap" rel="stylesheet">
+    <link rel="icon" href="/favicon/favicon.ico">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon/favicon-96x96.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg">
+    <link rel="manifest" href="/favicon/site.webmanifest">
 
-    <body>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-Tf8UPt3NwntSM6AfUsF96pAy43MPHRswCy7O0KlNNX+R1F0I06+nSgxWWJZKjFuRjRuhAuH9knFVw8NsK9zQ9g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-        <header aria-label="Encabezado">
-            <img src="" alt="logo de PsychoShare">
-            <h1>PsychoShare</h1>
-        </header>
+    <link rel="stylesheet" href="css/base/_global.css">
+    <link rel="stylesheet" href="css/layout/_grid.css">
+    <link rel="stylesheet" href="css/layout/_header.css">
+    <link rel="stylesheet" href="css/layout/_navigation.css">
+    <link rel="stylesheet" href="css/layout/_footer.css">
+    <link rel="stylesheet" href="css/components/_search-bar.css">
+    <link rel="stylesheet" href="css/components/_button.css">
+    <link rel="stylesheet" href="css/components/_card.css">
+    <link rel="stylesheet" href="css/components/_form.css">
+    <link rel="stylesheet" href="css/components/_modal.css">
+    <link rel="stylesheet" href="css/pages/_wall.css">
+    <link rel="stylesheet" href="css/custom.css">
+    <script src="https://kit.fontawesome.com/636f762910.js" crossorigin="anonymous"></script>
+    <!--<script src="js/menu.js" defer></script>-->
+    <!--<script src="js/modal.js" defer></script>-->
+    <!--<script src="js/logout-modal.js" defer></script>-->
 
-        <section aria-label="Buscador y acceso directo al perfil">
-            <form action="search" method="get" aria-label="Buscador de personas y publicaciones">
-                <input type="search" id="search" name="q" placeholder="¿Qué deseas buscar?">
-                <button type="submit" aria-label="Lupa para realizar busqueda">
-                    <img src="" alt="Lens">
-                </button>
-            </form>
 
-            <button aria-label="Acceso directo al perfil">
-                <img src="" alt="foto de perfil">
+<body class="app-layout">
+    <header aria-label="Encabezado" class="logo-header">
+        <img src="assets/logo/logo-black.png" alt="logo de PsychoShare">
+        <h1>PsychoShare</h1>
+    </header>
+
+    <section aria-label="Buscador y acceso directo al perfil" class="search-bar">
+    
+        <form action="search" method="get" class="search-form">
+            <input type="search" name="q" placeholder="¿Qué deseas buscar?" class="search-input">
+            <button type="submit" class="search-button" aria-label="Buscar">
+                <i class="fas fa-search"></i>
             </button>
+        </form>
+    
+        <span class="action-buttons">
+            <a href="./wall.html" class="action-button" aria-label="Inicio">
+                <i class="fas fa-house"></i>
+            </a>
+            <a href="./profile.html" class="action-button" aria-label="Perfil">
+                <i class="fas fa-circle-user"></i>
+            </a>
+            <button class="menu-toggle action-button" aria-label="Abrir menú">
+                <i class="fas fa-bars"></i>
+            </button>       
+        </span>
+    
+    </section>
+    <nav class="menu-nav" aria-label="Menú principal de navegación">
+        <ul>
+            <li><a href="./wall.html" class="nav-link">Inicio</a></li>
+            <li><a href="./profile.html" class="nav-link">Perfil</a></li>
+            <li><a href="./contacts.html" class="nav-link">Mis contactos</a></li>
+            <li><a href="./about-us.html" class="nav-link">Acerca de...</a></li>
+            <li><button class="logout-button">Cerrar sesión</button></li>
+        </ul>
+    </nav>
+      
+    <main>
+    <!-- Form new post -->
+    <section aria-label="Sección de la publicación" class="new-post-section">
+        <i class="fas fa-user-circle profile-photo"></i>
+        <input type="text" placeholder="¿Sobre qué quieres hablar?" class="post-input">
+        <button type="button" class="image-button" aria-label="Añadir imagen"><i class="fas fa-image"></i></button>
+        <button type="button" class="attach-button" aria-label="Adjuntar archivo"><i class="fas fa-paperclip"></i></button>
+        <button id="create-post-btn" class="btn submit-comment"><i class="fas fa-paper-plane"></i>Publicar</button> 
+    </section>
+
+    <!-- Complete Post -->
+    <article>
+        <section class="post">
+            <i class="fas fa-user-circle profile-photo"></i>
+            <p>Eduardo Basualdo</p>
+        </section>
+        <section class="post-content">
+            <p>Hola a todos, he encontrado este artículo que habla sobre la depresión y me ha parecido muy interesante... ¿Ustedes qué opinan?</p>
+            <h2>La depresión y su impacto en la salud pública</h2>
+            <p><strong>Autoría:</strong> Basantes Moscoso D. R.</p>
+            <p><strong>Resumen:</strong> Ansiedad y depresión, dos síntomas muy comunes en la adolescencia...</p>
+            <figure>
+                <img src="assets/logo/img1.jpg" alt="Imagen del post" class="post-image">
+                <figcaption>
+                    <div class="button-container">
+                        <div class="action-buttons">
+                            <button class="btn like-button"><i class="fas fa-thumbs-up"></i>Me gusta</button>
+                            <button class="btn comment-button"><i class="fas fa-comment"></i>Comentar</button>
+                        </div>
+                        <button class="btn pdf-button"><i class="fas fa-file-pdf"></i>Ver PDF</button>
+                    </div>
+                </figcaption>
+            </figure>
         </section>
 
-        <nav aria-label="Menú principal de navegación">
-            <ul>
-                <li><a href="#">Inicio</a></li>
-                <li><a href="./profile.html">Perfil</a></li>
-                <li><a href="./contacts.html">Mis contactos</a></li>
-                <li><a href="./about-us.html">Acerca de...</a></li>
-                <li><button>Cerrar sesión</button></li>
-            </ul>
-        </nav>
-
-        <main>
-
-            <section aria-label="Sección de la publicación">
-                <img src="" alt="foto de perfil">
-                <input type="text" aria-label="¿Sobre qué quieres hablar?" placeholder="¿Sobre qué quieres hablar?">
-                <button type="button">
-                    <img src="" alt="Image"> 
-                </button>
-                <button type="button">
-                    <img src="" alt="pdf">
-                </button>
-            </section>
-
-            <article>
-                <section class="post-container">
-                    <section class="post" aria-label="Post de usuario">
-                        <img src="" alt="foto de perfil">
-                        <p>Nombre Apellido</p>
-                        <div class="post-content">
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                                Odit libero eligendi minima magni mollitia? Culpa illo architecto consequat.</p>
-                            <h2>Lorem ipsum dolor sit amet consectetu</h2>
-                            <p>Autoría: Lorem</p>
-                            <p>Abstract:
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
-                                Quia, similique! Qui, animi quasi, blanditiis ratione repudiandae exercitationem nesciunt 
-                                corporis, quae cum quo vel culpa neque voluptas quas quis. Nisi, officia?
-                                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Obcaecati 
-                                architecto temporibus fugiat? Ipsum dicta numquam perferendis doloribus 
-                                explicabo magni in dolorum, eius placeat facere culpa, nesciunt debitis 
-                                quas laudantium quae.
-                            </p>
-                            <figure>
-                                <img src="" alt="portada de artículo">
-                                <figcaption>
-                                    <div>
-                                        <button>Me Gusta</button>
-                                        <button>Comentar</button>
-                                    </div>
-                                    <button>Ver PDF</button>
-                                </figcaption>
-                            </figure>
-                        </div>
-                    </section>
-                    <section class="comment-form">
-
-                        <article>
-                            <img src="" alt="foto de perfil">
-                            <p>Luisiana Carrera</p>
-                            <p>Muy interesante artículo, me gustó mucho como se ha tratado el tema con tanta objetividad</p>
-                        </article>
-                        <article>
-                            <img src="" alt="foto de perfil">
-                            <p>Gustavo Rafanini</p>
-                            <p>Difiero con el punto de vista que nos brinda el autor, yo opino que deberían haber hecho más estudios</p>
-                        </article>
-                        <button class="view-more" data-post-id="1">Ver más</button>
-                        <form action="#" method="post" aria-label="formulario de comentario" class="comment-form" data-post-id="1">
-                            <img src="" alt="foto de perfil de usuario">
-                            <label for="comment-1">Comentario</label>
-                            <textarea id="comment-1" name="comment" placeholder="Escribe un comentario..." required></textarea>
-                            <button type="submit">Enviar</button>
-                        </form>
-                    </section>
-                </section>
+        <!-- Comments -->
+        <section class="comment-section">
+            <article class="comment">
+                <div class="comment-header">
+                    <i class="fas fa-user-circle profile-photo"></i>
+                    <p>María Gómez</p>
+                </div>
+                <div class="comment-content">
+                    <p>Gran artículo, me ayudó a entender mejor el tema.</p>
+                </div>
             </article>
+            <article class="comment">
+                <div class="comment-header">
+                    <i class="fas fa-user-circle profile-photo"></i>
+                    <p>Lucía Fernández</p>
+                </div>
+                <div class="comment-content">
+                    <p>Excelente análisis, muy útil para mi trabajo.</p>
+                </div>
+            </article>
+            <button class="btn view-more">Ver más</button>
+            <div class="add-comment">
+                <i class="fas fa-user-circle profile-photo"></i>
+                <input type="text" class="comment-input" placeholder="Escribe un comentario...">
+                <button class="btn submit-comment"><i class="fas fa-paper-plane"></i>Enviar</button>
+            </div>
+        </section>
+    </article>
+</main>
 
-            <article>
-                <section class="post-container">
-                    <section class="post" aria-label="Post de usuario">
-                        <img src="" alt="Foto de perfil">
-                        <p>Eduardo Basualdo</p>
-                        <div class="post-content">
-                            <p>Hola a todos, he encontrado este artículo que habla sobre la depresión y me ha parecido muy interesante... ¿Ustedes qué opinan?</p>
-                            <h2>La depresión y su impacto en la salud pública</h2>
-                            <p>Autoría: Basantes Moscoso D. R.</p>
-                            <p>Resumen: Ansiedad y depresión, dos síntomas muy comunes en la adolescencia, generan múltiples retrasos académicos, afectivos y conductuales. La migración, disfunción familiar, embarazos prematuros, trastornos alimenticios, conflictos familiares, falta de habilidades sociales, enamoramientos, entre otros, son factores que marcan la personalidad del adolescente...</p>
-                            <figure>
-                                <img src="" alt="Portada del artículo">
-                                <figcaption>
-                                    <div>
-                                        <button>Me gusta</button>
-                                        <button>Comentar</button>
-                                    </div>
-                                    <button>Ver PDF</button>
-                                </figcaption>
-                            </figure>
-                        </div>
-                    </section>
-                    <section class="comment-form">
 
-                        <article>
-                            <img src="" alt="foto de perfil">
-                            <p>María Gómez</p>
-                            <p>Gran artículo, me ayudó a entender mejor el tema</p>
-                        </article>
-                        <article>
-                            <img src="" alt="foto de perfil">
-                            <p>Lucía Fernández</p>
-                            <p>Excelente análisis, muy útil para mi trabajo</p>
-                        </article>
-                        <button class="view-more" data-post-id="2">Ver más</button>
-                        <form action="#" method="post" aria-label="formulario de comentario" class="comment-form" data-post-id="2">
-                            <img src="" alt="foto de perfil de usuario">
-                            <label for="comment-2">Comentario</label>
-                            <textarea id="comment-2" name="comment" placeholder="Escribe un comentario..." required></textarea>
-                            <button type="submit">Enviar</button>
-                        </form>
-                    </section>
-                </section>
-            </article>
-    
-            <article>
-                <section class="post-container">
-                    <section class="post" aria-label="Post de usuario">
-                        <img src="" alt="Foto de perfil">
-                        <p>Aldana Machado</p>
-                        <div class="post-content">
-                            <p>Muy interesante para comprender cómo afecta el bullying en las escuelas.</p>
-                            <h2>Investigaciones sobre el acoso escolar en España</h2>
-                            <p>Autoría: Nocito Muñoz G.</p>
-                            <p>Resumen: El artículo tiene como objetivo favorecer la comprensión del acoso escolar en España desde una visión holística, integrando avances investigativos recientes y sus implicaciones psicoeducativas...</p>
-                            <figure>
-                                <img src="" alt="Portada del artículo">
-                                <figcaption>
-                                    <div>
-                                        <button>Me gusta</button>
-                                        <button>Comentar</button>
-                                    </div>
-                                    <button>Ver PDF</button>
-                                </figcaption>
-                            </figure>
-                        </div>
-                    </section>
-                    <section class="comment-form">
-
-                        <article>
-                            <img src="" alt="foto de perfil">
-                            <p>Lucía Fernández</p>
-                            <p>Excelente análisis, muy útil para mi trabajo</p>
-                        </article>
-                        <article>
-                            <img src="" alt="foto de perfil">
-                            <p>Pedro López</p>
-                            <p>Me gustaría ver más estadísticas</p>
-                        </article>
-                        <button class="view-more" data-post-id="3">Ver más</button>
-                        <form action="#" method="post" aria-label="formulario de comentario" class="comment-form" data-post-id="3">
-                            <img src="" alt="foto de perfil de usuario">
-                            <label for="comment-3">Comentario</label>
-                            <textarea id="comment-3" name="comment" placeholder="Escribe un comentario..." required></textarea>
-                            <button type="submit">Enviar</button>
-                        </form>
-                    </section>
-                </section>
-            </article>
-    
-            <article>
-                <section class="post-container">
-                    <section class="post" aria-label="Post de usuario">
-                        <img src="" alt="Foto de perfil">
-                        <p>Giovani Sandoval</p>
-                        <div class="post-content">
-                            <p>Definitivamente la ansiedad es un problema que nos afecta cada vez más, especialmente en jóvenes universitarios. Este artículo me pareció sumamente interesante por su relación con la procrastinación.</p>
-                            <h2>Ansiedad y procrastinación en estudiantes universitarios</h2>
-                            <p>Autoría: Marquina-Luján R. J., Horna Calderón V. E., Huairie Inacio E. J.</p>
-                            <p>Resumen: Se investigó la relación entre la procrastinación académica y la ansiedad en estudiantes universitarios de una universidad privada de Lima Metropolitana. Los resultados muestran una correlación negativa entre ambas variables, con niveles moderados...</p>
-                            <figure>
-                                <img src="" alt="Portada del artículo">
-                                <figcaption>
-                                    <div>
-                                        <button>Me gusta</button>
-                                        <button>Comentar</button>
-                                    </div>
-                                    <button>Ver PDF</button>
-                                </figcaption>
-                            </figure>
-                        </div>
-                    </section>
-                    <section class="comment-form">
-
-                        <article>
-                            <img src="" alt="foto de perfil">
-                            <p>Ana Rodríguez</p>
-                            <p>Muy relevante para estudiantes</p>
-                        </article>
-                        <article>
-                            <img src="" alt="foto de perfil">
-                            <p>Carlos Díaz</p>
-                            <p>Interesante, pero un poco denso</p>
-                        </article>
-                        <button class="view-more" data-post-id="4">Ver más</button>
-                        <form action="#" method="post" aria-label="formulario de comentario" class="comment-form" data-post-id="4">
-                            <img src="" alt="foto de perfil de usuario">
-                            <label for="comment-4">Comentario</label>
-                            <textarea id="comment-4" name="comment" placeholder="Escribe un comentario..." required></textarea>
-                            <button type="submit">Enviar</button>
-                        </form>
-                    </section>
-                </section>
-            </article>
-    
-            <article>
-                <section class="post-container">
-                    <section class="post" aria-label="Post de usuario">
-                        <img src="" alt="Foto de perfil">
-                        <p>María Moreno</p>
-                        <div class="post-content">
-                            <p>Este artículo habla sobre el aumento de diagnósticos de bipolaridad, su clasificación y relación con otras enfermedades mentales. Me pareció interesante el enfoque sobre el abuso de sustancias y la conclusión final.</p>
-                            <h2>Sobre el diagnóstico de bipolaridad</h2>
-                            <p>Autoría: Alejandro Koppmann A.</p>
-                            <p>Resumen: Dado el aumento en los diagnósticos de trastorno bipolar y las dificultades para diferenciar entre ánimo normal y patológico, el artículo revisa la historia del diagnóstico, clasificaciones actuales y conflictos diagnósticos frecuentes...</p>
-                            <figure>
-                                <img src="" alt="Portada del artículo">
-                                <figcaption>
-                                    <div>
-                                        <button>Me gusta</button>
-                                        <button>Comentar</button>
-                                    </div>
-                                    <button>Ver PDF</button>
-                                </figcaption>
-                            </figure>
-                        </div>
-                    </section>
-                    <section class="comment-form">
-                        <article>
-                            <img src="" alt="foto de perfil">
-                            <p>Sofía Martínez</p>
-                            <p>Muy informativo, gracias por compartir</p>
-                        </article>
-                        <article>
-                            <img src="" alt="foto de perfil">
-                            <p>Jorge Ruiz</p>
-                            <p>¿Hay más estudios recientes?</p>
-                        </article>
-                        <button class="view-more" data-post-id="5">Ver más</button>
-                        <form action="#" method="post" aria-label="formulario de comentario" class="comment-form" data-post-id="5">
-                            <img src="" alt="foto de perfil de usuario">
-                            <label for="comment-5">Comentario</label>
-                            <textarea id="comment-5" name="comment" placeholder="Escribe un comentario..." required></textarea>
-                            <button type="submit">Enviar</button>
-                        </form>
-                    </section>
-                </section>
-            </article>
-    
-            <article>
-                <section class="post-container">
-                    <section class="post" aria-label="Post de usuario">
-                        <img src="" alt="Foto de perfil">
-                        <p>Fernando Mercado</p>
-                        <div class="post-content">
-                            <p>Encontré este artículo sobre la depresión en adultos mayores. Me pareció muy interesante, sobre todo por los estudios y hallazgos presentados.</p>
-                            <h2>Epidemiología de la depresión en el adulto mayor</h2>
-                            <p>Autoría: Alejandro Koppmann A.</p>
-                            <p>Resumen: Se revisa la bibliografía desde el año 2000 sobre la prevalencia y factores de riesgo asociados a la depresión en adultos mayores. Se concluye que factores sociales y familiares modificables son clave en su prevención...</p>
-                            <figure>
-                                <img src="" alt="Portada del artículo">
-                                <figcaption>
-                                    <div>
-                                        <button>Me gusta</button>
-                                        <button>Comentar</button>
-                                    </div>
-                                    <button>Ver PDF</button>
-                                </figcaption>
-                            </figure>
-                        </div>
-                    </section>
-                    <section class="comment-form">
-                        <article>
-                            <img src="" alt="foto de perfil">
-                            <p>Laura Sánchez</p>
-                            <p>Muy útil para mi investigación</p>
-                        </article>
-                        <article>
-                            <img src="" alt="foto de perfil">
-                            <p>Miguel Torres</p>
-                            <p>Interesante perspectiva</p>
-                        </article>
-                        <button class="view-more" data-post-id="6">Ver más</button>
-                        <form action="#" method="post" aria-label="formulario de comentario" class="comment-form" data-post-id="6">
-                            <img src="" alt="foto de perfil de usuario">
-                            <label for="comment-6">Comentario</label>
-                            <textarea id="comment-6" name="comment" placeholder="Escribe un comentario..." required></textarea>
-                            <button type="submit">Enviar</button>
-                        </form>
-                    </section>
-                </section>
-            </article>
-    
-        </main>
-    
-        <footer>
-            <p>2025 PsychoShare - Hecho por PsyNet - Licencia MIT</p>
-        </footer>
-    
-    </body>
+    <footer aria-label="Pie de página del sitio">
+        <p>2025 PsychoShare - Hecho por PsyNet - Licencia MIT</p>
+    </footer>
+</body>
 </html>
