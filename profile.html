@@ -1,119 +1,152 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Perfil - PsychoShare</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Perfil - PsychoShare</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&family=Sora:wght@100..800&display=swap" rel="stylesheet">
-  <link rel="icon" href="favicon/favicon.ico">
-  <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
-  <link rel="icon" type="image/svg+xml" href="favicon/favicon.svg">
-  <link rel="manifest" href="favicon/site.webmanifest">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&family=Sora:wght@100..800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" href="favicon/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png" />
+    <link rel="icon" type="image/svg+xml" href="favicon/favicon.svg" />
+    <link rel="manifest" href="favicon/site.webmanifest" />
+    <script src="https://kit.fontawesome.com/636f762910.js" crossorigin="anonymous"></script>
 
-  <link rel="stylesheet" href="css/base/_global.css">
-  <link rel="stylesheet" href="css/layout/_grid.css">
-  <link rel="stylesheet" href="css/layout/_header.css">
-  <link rel="stylesheet" href="css/layout/_navigation.css">
-  <link rel="stylesheet" href="css/layout/_footer.css">
-  <link rel="stylesheet" href="css/components/_search-bar.css">
-  <link rel="stylesheet" href="css/components/_button.css">
-  <link rel="stylesheet" href="css/components/_card.css">
-  <link rel="stylesheet" href="css/components/_form.css">
-  <link rel="stylesheet" href="css/pages/_profile.css"> 
+    <link rel="stylesheet" href="css/base/_global.css" />
+    <link rel="stylesheet" href="css/layout/_grid.css" />
+    <link rel="stylesheet" href="css/layout/_header.css" />
+    <link rel="stylesheet" href="css/layout/_navigation.css" />
+    <link rel="stylesheet" href="css/layout/_footer.css" />
+    <link rel="stylesheet" href="css/components/_search-bar.css" />
+    <link rel="stylesheet" href="css/components/_button.css" />
+    <link rel="stylesheet" href="css/components/_card.css" />
+    <link rel="stylesheet" href="css/components/_form.css" />
+    <link rel="stylesheet" href="css/pages/_profile.css" />
+    <link rel="stylesheet" href="css/custom.css">
+    <link rel="stylesheet" href="css/components/_modal.css" />
+  </head>
 
-</head>
-
-<body class="app-layout">
+  <body class="app-layout">
     <header aria-label="Encabezado" class="logo-header">
-        <img src="assets/logop.svg" alt="logo de PsychoShare">
-        <h1>PsychoShare</h1>
+      <img src="assets/logop.svg" alt="logo de PsychoShare" />
+      <h1>PsychoShare</h1>
     </header>
 
     <section aria-label="Buscador y acceso directo al perfil" class="search-bar">
+      <form action="search" method="get" class="search-form">
+        <input type="search" name="q" placeholder="¿Qué deseas buscar?" class="search-input" />
+        <button type="submit" class="search-button" aria-label="Buscar">
+          <i class="fas fa-search"></i>
+        </button>
+      </form>
 
-        <form action="search" method="get" class="search-form">
-            <input type="search" name="q" placeholder="¿Qué deseas buscar?" class="search-input">
-            <button type="submit" class="search-button" aria-label="Buscar">
-                <i class="fas fa-search"></i>
-            </button>
-        </form>
-
-        <span class="action-buttons">
-            <a href="./wall.html" class="action-button" aria-label="Inicio">
-                <i class="fas fa-house"></i>
-            </a>
-            <a href="./profile.html" class="action-button" aria-label="Perfil">
-                <i class="fas fa-circle-user"></i>
-            </a>
-            <button class="menu-toggle action-button" aria-label="Abrir menú">
-                <i class="fas fa-bars"></i>
-            </button>       
-        </span>
-    
+      <span class="action-buttons">
+        <a href="./wall.html" class="action-button" aria-label="Inicio">
+          <i class="fas fa-house"></i>
+        </a>
+        <a href="./profile.html" class="action-button" aria-label="Perfil">
+          <i class="fas fa-circle-user"></i>
+        </a>
+        <button class="menu-toggle action-button" aria-label="Abrir menú">
+          <i class="fas fa-bars"></i>
+        </button>
+      </span>
     </section>
 
     <nav class="menu-nav" aria-label="Menú principal de navegación">
-        <ul>
-            <li><a href="./wall.html" class="nav-link">Inicio</a></li>
-            <li><a href="./profile.html" class="nav-link">Perfil</a></li>
-            <li><a href="./contacts.html" class="nav-link">Mis contactos</a></li>
-            <li><a href="./about-us.html" class="nav-link">Acerca de...</a></li>
-            <li><button class="logout-button">Cerrar sesión</button></li>
-        </ul>
+      <ul>
+        <li><a href="./wall.html" class="nav-link">Inicio</a></li>
+        <li><a href="./profile.html" class="nav-link">Perfil</a></li>
+        <li><a href="./contacts.html" class="nav-link">Mis contactos</a></li>
+        <li><a href="./about-us.html" class="nav-link">Acerca de...</a></li>
+        <li><button class="logout-button">Cerrar sesión</button></li>
+      </ul>
     </nav>
 
     <main>
-        <section class="profile-front-page">
-            <img src="assets/untitled.png" class="cover-photo" alt="Foto de portada del usuario">
-            <i class="fa-solid fa-circle-user profile-avatar" aria-label="Foto de perfil"></i>
-            <p class="user-name">Eduardo Basualdo</p>
-            <a href="edit-profile.html" aria-label="Editar perfil">
-                <button class="btn btn--primary">Editar perfil</button>
-            </a>
-        </section>
-    
-        <section class="profile-stats">
-            <span>2 Publicaciones</span>
-            <span>20 Contactos</span>
-        </section>
-    
-        <form aria-label="Crear nueva publicación" class="new-post-form">
-            <i class="fas fa-user-circle profile-photo"></i>
-            <input type="text" placeholder="¿Sobre qué quieres hablar?" class="post-input">
-            <a href="post-form.html" class="image-button" aria-label="Añadir imagen"><i class="fa-solid fa-image"></i></a>
-            <a href="post-form.html" class="attach-button" aria-label="Adjuntar archivo"><i class="fa-solid fa-paperclip"></i></a>
-        </form>
-    
-        <section class="profile-posts-list">
-            <h2 class="titulo-publicaciones">Publicaciones</h2>
-            <article class="post-card">
-                <header class="post-card-header">
-                    <i class="fa-solid fa-circle-user profile-photo"></i>
-                    <p>Eduardo Basualdo</p>
-                </header>
-                <section class="post-card-content">
-                    <p>"Hola a todos, he encontrado este artículo que habla sobre la depresión..."</p>
-                    <h2>La depresión: un desafío en la práctica médica general</h2>
-                    <figure>
-                        <img src="assets/img1.jpg" alt="Imagen del post sobre la depresión" class="post-image">
-                        <figcaption>
-                            <span class="action-buttons">
-                                <button class="btn btn--primary like-button"><i class="fas fa-thumbs-up"></i>Me gusta</button>
-                                <button class="btn btn--primary comment-button"><i class="fas fa-comment"></i>Comentar</button>
-                            </span>
-                            <button class="btn btn--primary pdf-button"><i class="fas fa-file-pdf"></i>Ver PDF</button>
-                        </figcaption>
-                    </figure>
-                </section>
-            </article>
-        </section>   
+      <section class="profile-front-page">
+        <img
+          src="assets/untitled.png"
+          class="cover-photo"
+          alt="Foto de portada del usuario"
+        />
+
+        <div class="profile-info-bar" role="region" aria-label="Información del usuario">
+          <div class="left-info">
+            <i class="fas fa-user-circle profile-photo profile-avatar" aria-hidden="true"></i>
+            <h1 class="user-name">Eduardo Basualdo</h1>
+          </div>
+          <a href="edit-profile.html">
+            <button class="btn-edit" aria-label="Editar perfil">Editar perfil</button>
+          </a>
+        </div>
+      </section>
+
+      <section class="profile-stats">
+        <span>2 Publicaciones</span>
+        <span>20 Contactos</span>
+      </section>
+
+      <form aria-label="Crear nueva publicación" class="new-post-form">
+        <i class="fas fa-user-circle profile-photo fa-2x"></i>
+        <input
+          type="text"
+          placeholder="¿Sobre qué quieres hablar?"
+          class="post-input"
+        />
+        <a href="post-form.html" class="image-button" aria-label="Añadir imagen">
+          <i class="fa-solid fa-image fa-1x"></i>
+        </a>
+        <a href="post-form.html" class="attach-button" aria-label="Adjuntar archivo">
+          <i class="fa-solid fa-paperclip fa-1x"></i>
+        </a>
+      </form>
+
+      <section class="profile-posts-list">
+        <h2 class="titulo-publicaciones">Publicaciones</h2>
+        <article class="post-card">
+          <header class="post-card-header">
+            <i class="fas fa-user-circle profile-photo fa-2x"></i>
+            <p>Eduardo Basualdo</p>
+          </header>
+          <section class="post-card-content">
+            <p>
+              "Hola a todos, he encontrado este artículo que habla sobre la
+              depresión..."
+            </p>
+            <h2>La depresión: un desafío en la práctica médica general</h2>
+            <figure>
+              <img
+                src="assets/img1.jpg"
+                alt="Imagen del post sobre la depresión"
+                class="post-image"
+              />
+              <figcaption>
+                <span class="action-buttons">
+                  <button class="btn btn--primary like-button">
+                    <i class="fas fa-thumbs-up"></i>Me gusta
+                  </button>
+                  <button class="btn btn--primary comment-button">
+                    <i class="fas fa-comment"></i>Comentar
+                  </button>
+                </span>
+                <button class="btn btn--primary pdf-button">
+                  <i class="fas fa-file-pdf"></i>Ver PDF
+                </button>
+              </figcaption>
+            </figure>
+          </section>
+        </article>
+      </section>
     </main>
 
-</body>
-<footer aria-label="Pie de página del sitio" class=".footer">
-    <p>2025 PsychoShare - Hecho por PsyNet - Licencia MIT</p>
-</footer>
+    <footer aria-label="Pie de página del sitio" class="footer">
+      <p>2025 PsychoShare - Hecho por PsyNet - Licencia MIT</p>
+    </footer>
+  </body>
 </html>

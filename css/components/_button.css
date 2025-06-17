@@ -84,3 +84,51 @@
 .image-button:hover, .attach-button:hover {
     color: var(--color-primary);
 }
+
+/*Estilos de botones de profile*/
+
+.btn-edit {
+  font-size: 14px;
+  padding: 8px 16px;
+  background-color:  #b58d93;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.btn-edit:hover {
+  background-color:  #b58d93;
+}
+/*Estilos de botones de edit profile*/
+.edit-button {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  background-color: #b58d93;
+  color: white;
+  padding: 0.3rem 0.7rem;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.delete-account,
+.save-changes-section {
+  display: flex;
+  justify-content: center;
+  font-weight: 600;
+  text-align: center;
+  align-items: center;
+  border-bottom: none;
+  top: 0.5rem;
+  right: 0.5rem;
+  background-color:  #888789;
+  color: white;
+  padding: 0.3rem 0.7rem;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+
+
+
