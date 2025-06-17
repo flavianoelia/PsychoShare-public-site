@@ -1,30 +1,32 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eliminación de cuenta</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&family=Sora:wght@100..800&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Eliminar cuenta</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Sora:wght@400;600&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="css/base/_global.css" />
-    <link rel="stylesheet" href="css/components/_form.css" />
-    <link rel="stylesheet" href="css/components/_button.css" />
-    <link rel="stylesheet" href="css/pages/_delete-profile.css" />
+  <link rel="stylesheet" href="css/base/_global.css" />
+  <link rel="stylesheet" href="css/components/_form.css" />
+  <link rel="stylesheet" href="css/components/_button.css" />
+  <link rel="stylesheet" href="css/pages/_delete-profile.css" />
 </head>
-    <body>
-        <section>
-            <p>¿Esta seguro que desea eliminar su cuenta?</p>
-            <p>Esta opción no podrá deshacerse </p>
-            <label for="password">Ingrese su contraseña</label>
-            <input id="password" name="password" type="password" value="" aria-label="Ingrese su contraseña">
-            <button id="eliminar" aria-label="Confirmar la eliminación de cuenta">
-                Eliminar cuenta
-            </button>
-            <button id="cancelar" aria-label="No eliminar-Cancelar">
-                Cancelar
-            </button>
-        </section>
-    </body>
+<body>
+  <main class="delete-container">
+    <section class="delete-card" role="dialog" aria-labelledby="delete-title">
+      <h1 id="delete-title">¿Estás seguro?</h1>
+      <p class="delete-text">Esta acción no se puede deshacer. Si continúas, tu cuenta será eliminada permanentemente.</p>
+      
+      <label for="password">Confirmá tu contraseña</label>
+      <input id="password" name="password" type="password" placeholder="Contraseña" required />
+
+      <div class="delete-buttons">
+        <button class="btn delete-btn" id="eliminar" aria-label="Confirmar eliminación">Eliminar cuenta</button>
+        <button class="btn cancel-btn" id="cancelar" aria-label="Cancelar y volver">Cancelar</button>
+      </div>
+    </section>
+  </main>
+</body>
 </html>

@@ -1,0 +1,31 @@
+section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+section.delete-account,
+section.save-changes {
+  border-bottom: none;
+}
+
+.update-photo-profile,
+.update-cover {
+  position: relative;
+}
+
+p {
+  font-size: 1.5em;
+  color: #000;
+  text-align: center;
+}
+
+label {
+  display: block;
+  margin-bottom: 0.4rem;
+  font-size: 0.9rem;
+  color: #374151;
+  text-align: left;
+}
