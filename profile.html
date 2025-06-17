@@ -29,7 +29,7 @@
   <link rel="stylesheet" href="css/pages/_profile.css">
   <link rel="stylesheet" href="css/custom.css">
   
-   
+    <script src="https://kit.fontawesome.com/636f762910.js" crossorigin="anonymous"></script>   
 
 </head>
 
@@ -45,7 +45,7 @@
       <form action="search" method="get" class="search-form">
         <input type="search" name="q" placeholder="¿Qué deseas buscar?" class="search-input" />
         <button type="submit" class="search-button" aria-label="Buscar">
-          <i class="fas fa-search"></i>
+          <i class=" fa-search"></i>
         </button>
       </form>
 
@@ -73,14 +73,20 @@
     </nav>
 
     <main>
-        <section class="profile-front-page">
-            <img src="assets/untitled.png" class="cover-photo" alt="Foto de portada del usuario">
-            <i class="fas fa-circle-user profile-avatar" aria-label="Foto de perfil"></i>
-            <p class="user-name">Eduardo Basualdo</p>
-            <a href="edit-profile.html" aria-label="Editar perfil">
-                <button class="btn btn--primary">Editar perfil</button>
-            </a>
-        </section>
+<section class="profile-front-page">
+  <img src="assets/logo/untitled.png" class="cover-photo" alt="Foto de portada del usuario">
+
+  <div class="profile-info-bar" role="region" aria-label="Información del usuario">
+    <div class="left-info">
+      <i class="fa-solid fa-circle-user profile-avatar" aria-hidden="true"></i>
+      <h1 class="user-name">Eduardo Basualdo</h1>
+    </div>
+    <a href="edit-profile.html">
+      <button class="btn-edit" aria-label="Editar perfil">Editar perfil</button>
+    </a>
+  </div>
+</section>
+
     
         <section class="profile-stats">
             <span>2 Publicaciones</span>
