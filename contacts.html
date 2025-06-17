@@ -24,13 +24,12 @@
     <link rel="stylesheet" href="css/components/_button.css">
     <link rel="stylesheet" href="css/pages/_contacts.css">
     <link rel="stylesheet" href="css/layout/_footer.css">
+    <link rel="stylesheet" href="css/components/_modal.css">
 
     <script src="https://kit.fontawesome.com/636f762910.js" crossorigin="anonymous"></script>   
 
     <link rel="stylesheet" href="css/custom.css">
 
-    
- 
 </head>
 
 <body class="app-layout">
@@ -164,10 +163,17 @@
             </ul>
         </section>
     </main>
-
+    <div class="modal-overlay" id="logout-modal">
+        <div class="modal-content logout-modal logout-title">
+            ¿Estás seguro que deseas cerrar sesión?
+        </div>
+        <div class="logout-actions">
+            <button class="logout-confirm">Cerrar sesión</button>
+            <button class="logout-cancel">Cancelar</button>
+        </div>
+    </div>
     <footer aria-label="Pie de página del sitio">
         <p>2025 PsychoShare - Hecho por PsyNet - Licencia MIT</p>
     </footer>
-
 </body>
 </html>
