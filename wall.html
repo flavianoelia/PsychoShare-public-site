@@ -23,6 +23,11 @@
     <link rel="stylesheet" href="css/components/_card.css">
     <link rel="stylesheet" href="css/components/_form.css">
     <link rel="stylesheet" href="css/components/_modal.css">
+    <link rel="stylesheet" href="css/pages/_wall.css">
+    <link rel="stylesheet" href="css/custom.css">
+    <!--<script src="https://kit.fontawesome.com/636f762910.js" crossorigin="anonymous"></script>-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 
 
 <body class="app-layout">
@@ -65,61 +70,71 @@
       
     <main>
         <!-- Formulario para crear una nueva publicación -->
-        <form aria-label="Crear nueva publicación" class="new-post-form">
+        <main>
+    <!-- Formulario para crear una nueva publicación -->
+    <section aria-label="Sección de la publicación" class="new-post-section">
+        <i class="fas fa-user-circle profile-photo"></i>
+        <input type="text" placeholder="¿Sobre qué quieres hablar?" class="post-input">
+        <button type="button" class="image-button" aria-label="Añadir imagen"><i class="fas fa-image"></i></button>
+        <button type="button" class="attach-button" aria-label="Adjuntar archivo"><i class="fas fa-paperclip"></i></button>
+        <button id="create-post-btn" class="btn submit-comment"><i class="fas fa-paper-plane"></i>Publicar</button> 
+    </section>
+
+    <!-- Posteo completo -->
+    <article>
+        <section class="post">
             <i class="fas fa-user-circle profile-photo"></i>
-            <input type="text" placeholder="¿Sobre qué quieres hablar?" class="post-input">
-            <button type="button" class="image-button" aria-label="Añadir imagen"><i class="fas fa-image"></i></button>
-            <button type="button" class="attach-button" aria-label="Adjuntar archivo"><i class="fas fa-paperclip"></i></button>
-            <button id="create-post-btn" class="btn btn--primary">Publicar</button> 
-        </form>
+            <p>Eduardo Basualdo</p>
+        </section>
+        <section class="post-content">
+            <p>Hola a todos, he encontrado este artículo que habla sobre la depresión y me ha parecido muy interesante... ¿Ustedes qué opinan?</p>
+            <h2>La depresión y su impacto en la salud pública</h2>
+            <p><strong>Autoría:</strong> Basantes Moscoso D. R.</p>
+            <p><strong>Resumen:</strong> Ansiedad y depresión, dos síntomas muy comunes en la adolescencia...</p>
+            <figure>
+                <img src="assets/img1.jpg" alt="Imagen del post" class="post-image">
+                <figcaption>
+                    <div class="button-container">
+                        <div class="action-buttons">
+                            <button class="btn like-button"><i class="fas fa-thumbs-up"></i>Me gusta</button>
+                            <button class="btn comment-button"><i class="fas fa-comment"></i>Comentar</button>
+                        </div>
+                        <button class="btn pdf-button"><i class="fas fa-file-pdf"></i>Ver PDF</button>
+                    </div>
+                </figcaption>
+            </figure>
+        </section>
 
-        <!--Ejemplo-->
-        <article class="post-card">
-            <header class="post-card-header">
+        <!-- Comentarios -->
+        <section class="comment-section">
+            <article class="comment">
+                <div class="comment-header">
+                    <i class="fas fa-user-circle profile-photo"></i>
+                    <p>María Gómez</p>
+                </div>
+                <div class="comment-content">
+                    <p>Gran artículo, me ayudó a entender mejor el tema.</p>
+                </div>
+            </article>
+            <article class="comment">
+                <div class="comment-header">
+                    <i class="fas fa-user-circle profile-photo"></i>
+                    <p>Lucía Fernández</p>
+                </div>
+                <div class="comment-content">
+                    <p>Excelente análisis, muy útil para mi trabajo.</p>
+                </div>
+            </article>
+            <button class="btn view-more">Ver más</button>
+            <div class="add-comment">
                 <i class="fas fa-user-circle profile-photo"></i>
-                <p>Eduardo Basualdo</p>
-            </header>
-            <section class="post-card-content">
-                <p>Hola a todos, he encontrado este artículo que habla sobre la depresión y me ha parecido muy interesante... ¿Ustedes qué opinan?</p>
-                <h2>La depresión y su impacto en la salud pública</h2>
-                <p><strong>Autoría:</strong> Basantes Moscoso D. R.</p>
-                <p><strong>Resumen:</strong> Ansiedad y depresión, dos síntomas muy comunes en la adolescencia...</p>
-                <figure>
-                    <img src="assets/img1.jpg" alt="Imagen del post" class="post-image">
-                    <figcaption>
-                        <span class="action-buttons">
-                            <button class="btn btn--primary like-button"><i class="fas fa-thumbs-up"></i>Me gusta</button>
-                            <button class="btn btn--primary comment-button"><i class="fas fa-comment"></i>Comentar</button>
-                        </span>
-                        <button class="btn btn--primary pdf-button"><i class="fas fa-file-pdf"></i>Ver PDF</button>
-                    </figcaption>
-                </figure>
-            </section>
-        </article>
+                <input type="text" class="comment-input" placeholder="Escribe un comentario...">
+                <button class="btn submit-comment"><i class="fas fa-paper-plane"></i>Enviar</button>
+            </div>
+        </section>
+    </article>
+</main>
 
-        <!--Ejemplo-->
-        <article class="post-card">
-            <header class="post-card-header">
-                <i class="fas fa-user-circle profile-photo"></i>
-                <p>María Gómez</p>
-            </header>
-            <section class="post-card-content">
-                <p>¡Excelente recurso! Les comparto este otro paper sobre el mismo tema.</p>
-                <h2>El abordaje cognitivo-conductual en trastornos de ansiedad</h2>
-                <figure>
-                    <img src="assets/img2.jpg" alt="Imagen del post" class="post-image">
-                    <figcaption>
-                         <span class="action-buttons">
-                            <button class="btn btn--primary like-button"><i class="fas fa-thumbs-up"></i>Me gusta</button>
-                            <button class="btn btn--primary comment-button"><i class="fas fa-comment"></i>Comentar</button>
-                        </span>
-                        <button class="btn btn--primary pdf-button"><i class="fas fa-file-pdf"></i>Ver PDF</button>
-                    </figcaption>
-                </figure>
-            </section>
-        </article>
-        
-    </main>
 
     <footer aria-label="Pie de página del sitio">
         <p>2025 PsychoShare - Hecho por PsyNet - Licencia MIT</p>

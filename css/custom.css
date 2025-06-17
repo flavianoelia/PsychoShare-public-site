@@ -1,0 +1,215 @@
+/* --- Reestilo de botones con íconos --- */
+.btn {
+    padding: 6px 10px;
+    background-color: #b58d93;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    border: none;
+}
+
+.btn:hover {
+    background-color: #8ea0bf;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+/* Botón específico para enviar comentario */
+.submit-comment {
+    background-color: #b58d93;
+}
+.submit-comment:hover {
+    background-color: #8ea0bf;
+}
+
+/* Íconos en botones */
+.btn i {
+    font-size: 1em;
+}
+
+/* --- Imagen falsa del post (ícono grande en fondo gris) --- */
+.post-image {
+    width: 200px;
+    height: 150px;
+    font-size: 120px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    background-color: #e0e0e0;
+    border-radius: 5px;
+    position: relative;
+    overflow: hidden;
+    line-height: 1;
+    color: #444;
+}
+
+/* --- Comentarios --- */
+.comment-section {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid #e0e0e0;
+}
+
+.comment {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-bottom: 10px;
+    background-color: #f0f0f0;
+    padding: 8px;
+    border-radius: 5px;
+}
+
+.comment-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+    margin-left: 40px;
+}
+
+.comment .profile-photo {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    position: absolute;
+    left: 8px;
+    top: 8px;
+    font-size: 24px;
+    line-height: 24px;
+    text-align: center;
+}
+
+.comment-content {
+    margin-left: 40px;
+}
+
+.view-more {
+    display: block;
+    margin: 8px 0;
+}
+
+/* Agregar nuevo comentario */
+.add-comment {
+    display: flex;
+    gap: 8px;
+    margin-top: 10px;
+    align-items: center;
+}
+
+.add-comment .profile-photo {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    font-size: 24px;
+    line-height: 24px;
+    text-align: center;
+}
+
+.comment-input {
+    flex: 1;
+    padding: 6px;
+    border-radius: 5px;
+    background-color: #f0f0f0;
+}
+
+/* Ícono user-circle de Font Awesome como perfil */
+.profile-photo {
+    color: #444;
+    display: inline-block;
+}
+
+/* Evitar conflictos si están usando variables de color */
+.btn.like-button,
+.btn.comment-button,
+.btn.pdf-button {
+    background-color: #b58d93 !important;
+}
+.btn.like-button:hover,
+.btn.comment-button:hover,
+.btn.pdf-button:hover {
+    background-color: #8ea0bf !important;
+}
+
+/* Agregados para completar y reparar estilo refined */
+
+/* Botones con iconos (like, comment, pdf) */
+.wall .like-button i,
+.wall .comment-button i,
+.wall .pdf-button i,
+.wall .submit-comment i {
+    font-size: 16px;
+    margin-right: 5px;
+}
+
+/* Ajuste del estilo de botones de publicación */
+.wall .submit-comment {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 500;
+    font-size: 0.9em;
+    border: none;
+    padding: 6px 12px;
+}
+
+.wall .view-more {
+    font-size: 0.85em;
+    padding: 6px 10px;
+    background-color: #b58d93;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    border: none;
+}
+
+.wall .view-more:hover {
+    background-color: #8ea0bf;
+}
+
+/* Ajustes a figura cuando no hay imagen */
+.wall .post-image i {
+    font-size: 100px;
+    color: #777;
+}
+
+/* Espaciado entre artículos */
+.wall article + article {
+    margin-top: 40px;
+}
+
+/* Corrige alineación en figcaption */
+.wall figure figcaption {
+    margin-top: 10px;
+}
+
+/* Fallback para .action-buttons fuera de figure */
+.wall .action-buttons button {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* Iconos en barra superior */
+.search-bar .action-buttons .action-button i {
+    font-size: 20px;
+    color: #fff;
+}
+
+/* Estilo para perfil cuando no hay foto */
+.profile-photo {
+    color: #444;
+    background-color: #ddd;
+    text-align: center;
+    border-radius: 50%;
+    font-size: 1.25em;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
