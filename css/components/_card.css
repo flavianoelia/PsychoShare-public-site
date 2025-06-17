@@ -9,7 +9,7 @@ article {
     margin: 0 auto 2rem;
 }
 
-/* Header del post */
+
 .post {
     display: flex;
     align-items: center;
@@ -17,7 +17,7 @@ article {
     margin-bottom: 1rem;
 }
 
-/* Contenido del post */
+
 .post-content p {
     margin-bottom: 1rem;
     line-height: 1.6;
@@ -39,7 +39,7 @@ article {
     padding-top: 1rem;
     margin-top: 1rem;
 }
-/* Contenedor de los botones de acción */
+
 .post-content .button-container {
     display: flex;
     gap: 0.5rem;
@@ -49,22 +49,3 @@ article {
     gap: 0.5rem;
 }
 
-/* Sección de Comentarios */
-.comment-section {
-    margin-top: 1.5rem;
-    padding-top: 1.5rem;
-    border-top: 1px solid var(--color-border);
-}
-.comment {
-    display: flex;
-    gap: 0.75rem;
-    padding: 1rem;
-    background-color: var(--color-primary-light);
-    border-radius: 8px;
-    margin-bottom: 1rem;
-}
-.comment-header { 
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
