@@ -1,4 +1,4 @@
-/* Sobrescribe estilos de Bootstrap para botones, usamos !important para poder hacerlo */
+
 .btn, 
 .btn-primary {
   background-color: var(--color-ui-background) !important;
@@ -20,7 +20,7 @@
   box-shadow: none !important;
 }
 
-/* Estilo para enlaces que parecen botones */
+
 .link-login {
   background: none;
   border: none;
@@ -37,7 +37,7 @@
 }
 
 
-/* Botones de Iconos de la Barra de Búsqueda */
+
 .search-button, .profile-button, .home-button {
     background: none;
     cursor: pointer;
@@ -55,7 +55,7 @@
     color: var(--color-text-main);
 }
 
-/* Botones de acción en Posts */
+
 .action-buttons {
     display: flex;
     gap: 10px;
@@ -73,7 +73,7 @@
     background-color: var(--color-secondary);
 }
 
-/* Estilos para los botones de icono sin fondo */
+
 .image-button, .attach-button {
     background: none;
     border: none;
@@ -85,7 +85,7 @@
     color: var(--color-primary);
 }
 
-/*Estilos de botones de profile*/
+
 
 .btn-edit {
   font-size: 14px;
@@ -101,7 +101,7 @@
 .btn-edit:hover {
   background-color:  #b58d93;
 }
-/*Estilos de botones de edit profile*/
+
 .edit-button {
   position: absolute;
   top: 0.5rem;

@@ -18,8 +18,8 @@
 
 .search-input {
 
-    -webkit-appearance: none; /* Para navegadores WebKit (Chrome, Safari) */
-    appearance: none;         /* Estándar */
+    -webkit-appearance: none; 
+    appearance: none;         
     flex-grow: 1;
     width: 100%;
     min-width: 0;

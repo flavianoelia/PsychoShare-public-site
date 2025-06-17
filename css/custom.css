@@ -1,4 +1,4 @@
-/* --- Reestilo de botones con íconos --- */
+
 .btn {
     padding: 6px 10px;
     background-color: #b58d93;
@@ -20,7 +20,7 @@
     gap: 10px;
 }
 
-/* Botón específico para enviar comentario */
+
 .submit-comment {
     background-color: #b58d93;
 }
@@ -28,12 +28,12 @@
     background-color: #8ea0bf;
 }
 
-/* Íconos en botones */
+
 .btn i {
     font-size: 1em;
 }
 
-/* --- Imagen falsa del post (ícono grande en fondo gris) --- */
+
 .post-image {
     width: 200px;
     height: 150px;
@@ -49,7 +49,7 @@
     color: #444;
 }
 
-/* --- Comentarios --- */
+
 .comment-section {
     margin-top: 10px;
     padding-top: 10px;
@@ -95,7 +95,7 @@
     margin: 8px 0;
 }
 
-/* Agregar nuevo comentario */
+
 .add-comment {
     display: flex;
     gap: 8px;
@@ -119,13 +119,13 @@
     background-color: #f0f0f0;
 }
 
-/* Ícono user-circle de Font Awesome como perfil */
+
 .profile-photo {
     color: #444;
     display: inline-block;
 }
 
-/* Evitar conflictos si están usando variables de color */
+
 .btn.like-button,
 .btn.comment-button,
 .btn.pdf-button {
@@ -137,9 +137,9 @@
     background-color: #8ea0bf !important;
 }
 
-/* Agregados para completar y reparar estilo refined */
 
-/* Botones con iconos (like, comment, pdf) */
+
+
 .wall .like-button i,
 .wall .comment-button i,
 .wall .pdf-button i,
@@ -148,7 +148,7 @@
     margin-right: 5px;
 }
 
-/* Ajuste del estilo de botones de publicación */
+
 .wall .submit-comment {
     display: flex;
     align-items: center;
@@ -173,36 +173,36 @@
     background-color: #8ea0bf;
 }
 
-/* Ajustes a figura cuando no hay imagen */
+
 .wall .post-image i {
     font-size: 100px;
     color: #777;
 }
 
-/* Espaciado entre artículos */
+
 .wall article + article {
     margin-top: 40px;
 }
 
-/* Corrige alineación en figcaption */
+
 .wall figure figcaption {
     margin-top: 10px;
 }
 
-/* Fallback para .action-buttons fuera de figure */
+
 .wall .action-buttons button {
     display: flex;
     align-items: center;
     gap: 6px;
 }
 
-/* Iconos en barra superior */
+
 .search-bar .action-buttons .action-button i {
     font-size: 20px;
     color: #333;
 }
 
-/* Estilo para perfil cuando no hay foto */
+
 .profile-photo {
     width: 32px;
     height: 32px;
@@ -225,7 +225,7 @@
     justify-content: center;
     align-items: center;
     overflow: hidden;
-    margin: 0 auto; /* Centra horizontalmente */
+    margin: 0 auto; 
 }
 
 .post-image i {

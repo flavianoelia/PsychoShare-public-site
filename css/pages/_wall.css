@@ -223,7 +223,7 @@ figcaption {
     background-color: #8ea0bf;
 }
 
-/* Responsive ajustes específicos del muro */
+
 @media (max-width: 560px) {
     figure {
         min-height: 112.5px;

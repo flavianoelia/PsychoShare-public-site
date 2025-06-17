@@ -35,7 +35,7 @@
     gap: 12px;
 }
 .logout-confirm {
-    background-color: #ff4d4d; /* Se mantiene rojo por ser una acción destructiva */
+    background-color: #ff4d4d; 
 }
 .logout-cancel {
     background-color: var(--color-border);

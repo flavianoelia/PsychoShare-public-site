@@ -1,38 +1,33 @@
-/* --- LAYOUT BASE (Móvil y Tablet < 1024px) --- */
+
 body.app-layout {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
 }
 .app-layout main {
-    flex-grow: 1; /* El main crece y empuja el footer hacia abajo */
-    padding-top: 115px; /* Espacio para las barras fijas */
+    flex-grow: 1; 
+    padding-top: 115px; 
     padding-left: 1rem;
     padding-right: 1rem;
 }
 
-/* --- LAYOUT PARA ESCRITORIO (1024px o más) --- */
+
 @media (min-width: 1024px) {
     body.app-layout {
         display: grid;
         height: 100vh;
         overflow: hidden;
-
-        /* 2 columnas: nav y el resto */
         grid-template-columns: 220px 1fr;
-        
-        /* 4 filas: header, search-bar, main (que crece), y footer */
         grid-template-rows: 60px 55px 1fr auto;
     }
 
-    /* Asignamos cada elemento a su celda en el grid */
+    
     .app-layout .menu-nav {
-        grid-column: 1 / 2; /* Ocupa la primera columna */
-        grid-row: 1 / 5;    /* Se expande por las 4 filas */
+        grid-column: 1 / 2;
+        grid-row: 1 / 5;    
         position: static;
         border-right: 1px solid var(--color-border);
-        /* Flexbox para posicionar el menú y un posible footer de nav si lo quisieras */
-        display: flex;
+       
         flex-direction: column;
     }
     .app-layout .menu-nav ul {
@@ -40,24 +35,24 @@ body.app-layout {
     }
 
     .app-layout .logo-header {
-        grid-column: 2 / 3; /* Ocupa la segunda columna */
-        grid-row: 1 / 2;    /* Ocupa la primera fila */
+        grid-column: 2 / 3; 
+        grid-row: 1 / 2;    
         position: static;
     }
     .app-layout .search-bar {
-        grid-column: 2 / 3; /* Segunda columna */
-        grid-row: 2 / 3;    /* Segunda fila */
+        grid-column: 2 / 3; 
+        grid-row: 2 / 3;   
         position: static;
     }
     .app-layout main {
-        grid-column: 2 / 3; /* Segunda columna */
-        grid-row: 3 / 4;    /* Tercera fila (la que crece) */
+        grid-column: 2 / 3; 
+        grid-row: 3 / 4;    
         overflow-y: auto;
         padding: 2rem;
     }
     .app-layout footer {
-        grid-column: 2 / 3; /* Segunda columna */
-        grid-row: 4 / 5;    /* Cuarta fila */
+        grid-column: 2 / 3;
+        grid-row: 4 / 5;    
         border-top: 1px solid var(--color-border);
     }
 }
