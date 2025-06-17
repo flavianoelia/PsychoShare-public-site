@@ -66,6 +66,10 @@
   color: var(--color-text-light);
 }
 
+#logout-modal{
+  display: none;
+}
+
 @media (max-width: 1023px){
   .app-layout main {
     padding-top: 20px;
