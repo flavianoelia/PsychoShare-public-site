@@ -102,7 +102,11 @@ form {
   border-radius: 8px;
   box-shadow: 0 2px 10px rgba(0,0,0,0.1);
 }
-
+.about-us-form{
+  display: flex;
+  flex-direction:row;
+  padding: 0px;
+}
 label {
   font-size: 0.9rem;
   color: #555;
@@ -289,5 +293,8 @@ footer {
   .logo-avatar {
     width: 200px;
     height: 200px;
+  }
+  .logo-section-about-us-1024{
+    flex-direction: column;
   }
 }
