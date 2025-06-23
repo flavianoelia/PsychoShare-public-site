@@ -71,6 +71,22 @@ article {
     margin: 0;
 }
 
+.post-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.name {
+  font-weight: 500;
+  margin: 0;
+}
+
+.timestamp {
+  margin: 0;
+  font-size: 0.5em;
+  color: #666;
+}
+
 .post-content {
     margin-top: 8px;
 }
