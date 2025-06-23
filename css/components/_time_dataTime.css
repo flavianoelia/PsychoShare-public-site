@@ -1,0 +1,16 @@
+/* usuario, fecha y hora */
+.post-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.name {
+  font-weight: 500;
+  margin: 0;
+}
+
+.timestamp {
+  margin: 0;
+  font-size: 0.5em;
+  color: #666;
+}
