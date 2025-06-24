@@ -24,27 +24,27 @@
     <main class="split-page-layout">
 
         <section class="logo-section">
-            <img src="assets/logo/logo-black.png" alt="Logo de PsycoShare" class="logo-avatar">
+            <img src="assets/logo/logo-black.png" alt="Logo de PsychoShare" class="logo-avatar">
             <h2 class="logo-subtitle">Psicología abierta: Explora, comparte, impulsa y transforma.</h2>
           </section>
 
-        <section class="content-section">
+        <section class="content-section" aria-label="Sección de inicio de sesión y registro">
             <h1>PsychoShare</h1>
-            <form id="login-form" class="card-form" novalidate>
-                <input type="email" class="form-control mb-3" id="mail" name="mail" placeholder="Correo electrónico" required>
-                <input type="password" class="form-control mb-3" id="password" name="contraseña" placeholder="Contraseña" required>
+            <form id="login-form" class="card-form" novalidate aria-label="Formulario de inicio de sesión">
+                <input type="email" class="form-control mb-3" id="mail" name="mail" placeholder="Correo electrónico" required aria-label="Correo electrónico">
+                <input type="password" class="form-control mb-3" id="password" name="contraseña" placeholder="Contraseña" required aria-label="Contraseña">
                 <button type="submit" class="btn btn-primary w-100">Iniciar sesión</button>
             </form>
             <p>¿No tienes cuenta? <a href="sing-up.html">Regístrate</a></p>
             <p>
                 Al registrarte, aceptás nuestros
-                <a href="#">Términos y Condiciones</a> y nuestra
-                <a href="#">Política de Privacidad</a>.
+                <a href="#" aria-label="Ver nuestros Términos y Condiciones">Términos y Condiciones</a> y nuestra
+                <a href="#" aria-label="Ver nuestra Política de Privacidad">Política de Privacidad</a>.
             </p>
         </section>
     </main>
 
-   <footer class="footer-general" aria-label="Pie de página del sitio">
+   <footer class="footer-general">
             <p>2025 PsychoShare - Hecho por PsyNet - Licencia MIT</p>
         </footer>   
 </body>

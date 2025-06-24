@@ -34,14 +34,14 @@
 
 <body class="app-layout">
 
-    <header class="logo-header" aria-label="Encabezado">
+    <header class="logo-header">
         <img src="assets/logo/logop (1).svg" alt="logo de PsychoShare">
         <h1>PsychoShare</h1>
     </header>
 
     <section class="search-bar" aria-label="Buscador">
         <form class="search-form" action="search" method="get">
-            <input type="search" name="q" placeholder="Buscar contactos..." class="search-input">
+            <input type="search" name="q" placeholder="Buscar contactos..." class="search-input" aria-label="Buscar contactos">
             <button type="submit" class="search-button" aria-label="Buscar"><i class="fas fa-search"></i></button>
         </form>
         <span class="action-buttons">
@@ -61,7 +61,7 @@
         </ul>
     </nav>
 
-    <main>
+    <main aria-label="Lista de contactos">
         <section class="contacts-list-container">
             <h2 class="contacts-count">19 Contactos</h2>
             <ul class="contacts-list">
@@ -172,7 +172,7 @@
             <button class="logout-cancel">Cancelar</button>
         </div>
     </div>
-    <footer aria-label="Pie de página del sitio">
+    <footer>
         <p>2025 PsychoShare - Hecho por PsyNet - Licencia MIT</p>
     </footer>
 </body>

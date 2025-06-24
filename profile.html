@@ -38,7 +38,7 @@
 
 <body class="app-layout">
 
-    <header aria-label="Encabezado" class="logo-header">
+    <header class="logo-header">
         <img src="assets/logo/logop (1).svg" alt="logo de PsychoShare">
         <h1>PsychoShare</h1>
 
@@ -46,8 +46,8 @@
 
     <section aria-label="Buscador y acceso directo al perfil" class="search-bar">
       <form action="search" method="get" class="search-form">
-        <input type="search" name="q" placeholder="¿Qué deseas buscar?" class="search-input" />
-        <button type="submit" class="search-button" aria-label="Buscar">
+        <input type="search" name="q" placeholder="¿Qué deseas buscar?" class="search-input" aria-label="Buscar publicaciones o usuarios">
+        <button type="submit" class="search-button" aria-label="Buscar publicaciones o usuarios">
           <i class=" fas fa-search"></i>
         </button>
       </form>
@@ -76,7 +76,7 @@
     </nav>
 
     <main>
-<section class="profile-front-page">
+<section class="profile-front-page" aria-label="Información principal del perfil">
   <img src="assets/logo/untitled.png" class="cover-photo" alt="Foto de portada del usuario">
 
   <div class="profile-info-bar" role="region" aria-label="Información del usuario">
@@ -91,20 +91,20 @@
 </section>
 
     
-        <section class="profile-stats">
+        <section class="profile-stats" aria-label="Estadísticas del perfil">
             <span>2 Publicaciones</span>
             <span>20 Contactos</span>
         </section>
     
         <form aria-label="Crear nueva publicación" class="new-post-form">
             <i class="fas fa-user-circle profile-photo"></i>
-            <input type="text" placeholder="¿Sobre qué quieres hablar?" class="post-input">
+            <input type="text" placeholder="¿Sobre qué quieres hablar?" class="post-input" aria-label="Campo para escribir nueva publicación">
             <a href="post-form.html" class="image-button" aria-label="Añadir imagen"><i class="fas fa-image"></i></a>
             <a href="post-form.html" class="attach-button" aria-label="Adjuntar archivo"><i class="fas fa-paperclip"></i></a>
         </form>
     
         <article>
-        <section class="post">
+        <section class="post" aria-label="Información del autor de la publicación">
             <i class="fas fa-user-circle profile-photo"></i>
             <div class="post-info">
                 <p class="name">Eduardo Basualdo</p>
@@ -132,7 +132,7 @@
         </section>
 
         <!-- Comments -->
-        <section class="comment-section">
+        <section class="comment-section" aria-label="Sección de comentarios de la publicación">
             <article class="comment">
                 <div class="comment-header">
                     <i class="fas fa-user-circle profile-photo"></i>
@@ -151,18 +151,18 @@
                     <p>Excelente análisis, muy útil para mi trabajo.</p>
                 </div>
             </article>
-            <button class="btn view-more">Ver más</button>
+            <button class="btn view-more" aria-label="Ver más comentarios de esta publicación">Ver más</button>
             <div class="add-comment">
                 <i class="fas fa-user-circle profile-photo"></i>
-                <input type="text" class="comment-input" placeholder="Escribe un comentario...">
-                <button class="btn submit-comment"><i class="fas fa-paper-plane"></i>Enviar</button>
+                <input type="text" class="comment-input" placeholder="Escribe un comentario..." aria-label="Escribe tu comentario">
+                <button class="btn submit-comment" aria-label="Enviar comentario"><i class="fas fa-paper-plane"></i>Enviar</button>
             </div>
         </section>
     </article>
 </main>
     </main>
 
-    <footer aria-label="Pie de página del sitio" class="footer">
+    <footer>
       <p>2025 PsychoShare - Hecho por PsyNet - Licencia MIT</p>
     </footer>
   </body>
