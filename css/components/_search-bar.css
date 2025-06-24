@@ -8,6 +8,9 @@
     height: 55px;
     padding: 0 1rem;
 }
+.search-bar-about-us{
+    max-width: 100%;
+}
 
 
 .search-form {
