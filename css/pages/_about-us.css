@@ -13,7 +13,21 @@
     padding-bottom: 2rem;
     margin-bottom: 2rem;
 }
+.about-us-form {
+  display: flex;
+  gap: 15px;
+  max-width: 500px;
+  margin: auto;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
 
+.search-input-about-us{
+    max-height: auto;
+    padding: 0px;
+
+}
 .about-us-logo {
     width: 120px;
     height: 120px;
@@ -28,7 +42,8 @@
 }
 
 .about-us-text {
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
+    height: 100%;
 }
 
 .about-us-text h2 {
