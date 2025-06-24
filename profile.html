@@ -30,6 +30,7 @@
   <link rel="stylesheet" href="css/components/_form.css">
   <link rel="stylesheet" href="css/pages/_profile.css">
   <link rel="stylesheet" href="css/custom.css">
+  <link rel="stylesheet" href="css/pages/_contacts.css">
   
     <script src="https://kit.fontawesome.com/636f762910.js" crossorigin="anonymous"></script>   
 
@@ -38,7 +39,7 @@
 <body class="app-layout">
 
     <header aria-label="Encabezado" class="logo-header">
-        <img src="assets/logo/logop (1).svg" alt="logo de PsychoShare">
+        <img src="assets/logo/logopsynet.webp" alt="logo de PsychoShare">
         <h1>PsychoShare</h1>
 
     </header>
@@ -76,12 +77,12 @@
 
     <main>
 <section class="profile-front-page">
-  <img src="assets/logo/untitled.png" class="cover-photo" alt="Foto de portada del usuario">
+  <img src="assets/imgwebp/portadaprofile2.webp" class="cover-photo" alt="Foto de portada del usuario">
 
   <div class="profile-info-bar" role="region" aria-label="Información del usuario">
     <div class="left-info">
-      <i class="fa-solid fa-circle-user profile-avatar" aria-hidden="true"></i>
-      <h1 class="user-name">Eduardo Basualdo</h1>
+      <img src="assets/imgwebp/flavia.webp" alt="Foto de contacto" class="contact-avatar">
+      <h1 class="user-name">Flavia Perin</h1>
     </div>
     <a href="edit-profile.html">
       <button class="btn-edit" aria-label="Editar perfil">Editar perfil</button>
@@ -92,11 +93,11 @@
     
         <section class="profile-stats">
             <span>2 Publicaciones</span>
-            <span>20 Contactos</span>
+            <span>5 Contactos</span>
         </section>
     
         <form aria-label="Crear nueva publicación" class="new-post-form">
-            <i class="fas fa-user-circle profile-photo"></i>
+            <img src="assets/imgwebp/flavia.webp" alt="Foto de contacto" class="contact-avatar">
             <input type="text" placeholder="¿Sobre qué quieres hablar?" class="post-input">
             <a href="post-form.html" class="image-button" aria-label="Añadir imagen"><i class="fas fa-image"></i></a>
             <a href="post-form.html" class="attach-button" aria-label="Adjuntar archivo"><i class="fas fa-paperclip"></i></a>
@@ -104,16 +105,16 @@
     
         <article>
         <section class="post">
-            <i class="fas fa-user-circle profile-photo"></i>
-            <p>Eduardo Basualdo</p>
+            <img src="assets/imgwebp/flavia.webp" alt="Foto de contacto" class="contact-avatar">
+            <p>Flavia Perin</p>
         </section>
         <section class="post-content">
-            <p>Hola a todos, he encontrado este artículo que habla sobre la depresión y me ha parecido muy interesante... ¿Ustedes qué opinan?</p>
-            <h2>La depresión y su impacto en la salud pública</h2>
-            <p><strong>Autoría:</strong> Basantes Moscoso D. R.</p>
-            <p><strong>Resumen:</strong> Ansiedad y depresión, dos síntomas muy comunes en la adolescencia...</p>
+            <p>¡Hola a todos! Estuve leyendo este artículo sobre la importancia del sueño para nuestra salud mental y me pareció súper relevante en estos tiempos. Es increíble cómo algo tan básico nos afecta tanto. ¿Ustedes cómo manejan sus hábitos de sueño?</p>
+            <h2>El impacto del sueño en la cognición y el bienestar emocional</h2>
+            <p><strong>Autoría:</strong> Dr. Pedro Gómez y Lic. Sofía Robles</p>
+            <p><strong>Resumen:</strong> Una exploración de la relación entre la calidad del sueño, la memoria, el estado de ánimo y la prevención de trastornos neurológicos...</p>
             <figure>
-                <img src="assets/logo/img1.jpg" alt="Imagen del post" class="post-image">
+              <img src="assets/imgwebp/profile.webp" alt="Imagen del post" class="post-image">
                 <figcaption>
                     <div class="button-container">
                         <div class="action-buttons">
@@ -130,20 +131,70 @@
         <section class="comment-section">
             <article class="comment">
                 <div class="comment-header">
-                    <i class="fas fa-user-circle profile-photo"></i>
-                    <p>María Gómez</p>
+                    <img src="assets/imgwebp/aloecontacts.webp" alt="Foto de contacto" class="contact-avatar">
+                    <p>Aloe Bordone</p>
                 </div>
                 <div class="comment-content">
-                    <p>Gran artículo, me ayudó a entender mejor el tema.</p>
+                    <p>Gran tema.</p>
                 </div>
             </article>
             <article class="comment">
                 <div class="comment-header">
-                    <i class="fas fa-user-circle profile-photo"></i>
-                    <p>Lucía Fernández</p>
+                    <img src="assets/imgwebp/danielcontacts.webp" alt="Foto de contacto" class="contact-avatar">
+                    <p>Daniel Llanes</p>
                 </div>
                 <div class="comment-content">
-                    <p>Excelente análisis, muy útil para mi trabajo.</p>
+                    <p>Excelente.</p>
+                </div>
+            </article>
+            <button class="btn view-more">Ver más</button>
+            <div class="add-comment">
+                <i class="fas fa-user-circle profile-photo"></i>
+                <input type="text" class="comment-input" placeholder="Escribe un comentario...">
+                <button class="btn submit-comment"><i class="fas fa-paper-plane"></i>Enviar</button>
+            </div>
+        </section>
+          <section class="post">
+           <img src="assets/imgwebp/flavia.webp" alt="Foto de contacto" class="contact-avatar">
+            <p>Flavia Perin</p>
+        </section>
+        <section class="post-content">
+            <p>Buenas, gente. Quería compartir con ustedes un artículo que encontré sobre los beneficios de la meditación en la reducción del estrés. Me pareció muy claro y útil, quizás a alguien más le sirva. ¿Alguno de ustedes practica meditación o alguna técnica de relajación?</p>
+            <h2>Meditación mindfulness: Una herramienta para la gestión del estrés y la ansiedad</h2>
+            <p><strong>Autoría:</strong> Instituto Argentino de Salud Mental</p>
+            <p><strong>Resumen:</strong> Se analizan las evidencias científicas que respaldan la eficacia de las prácticas de mindfulness en la mejora de la salud psicológica y el bienestar general...</p>
+            <figure>
+                <img src="assets/imgwebp/profile2.webp" alt="Imagen del post" class="post-image">
+                <figcaption>
+                    <div class="button-container">
+                        <div class="action-buttons">
+                            <button class="btn like-button"><i class="fas fa-thumbs-up"></i>Me gusta</button>
+                            <button class="btn comment-button"><i class="fas fa-comment"></i>Comentar</button>
+                        </div>
+                        <button class="btn pdf-button"><i class="fas fa-file-pdf"></i>Ver PDF</button>
+                    </div>
+                </figcaption>
+            </figure>
+        </section>
+
+        <!-- Comments -->
+        <section class="comment-section">
+            <article class="comment">
+                <div class="comment-header">
+                    <img src="assets/imgwebp/veronicacontacts.webp" alt="Foto de contacto" class="contact-avatar">
+                    <p>Veronica Ramirez</p>
+                </div>
+                <div class="comment-content">
+                    <p>Gran aporte.</p>
+                </div>
+            </article>
+            <article class="comment">
+                <div class="comment-header">
+                    <img src="assets/imgwebp/federicopi.webp" alt="Foto de contacto" class="contact-avatar">
+                    <p>Federico Piedrasanta</p>
+                </div>
+                <div class="comment-content">
+                    <p>Excelente.</p>
                 </div>
             </article>
             <button class="btn view-more">Ver más</button>

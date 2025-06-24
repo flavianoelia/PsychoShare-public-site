@@ -28,6 +28,7 @@
     <link rel="stylesheet" href="css/components/_modal.css">
     <link rel="stylesheet" href="css/pages/_wall.css">
     <link rel="stylesheet" href="css/custom.css">
+    <link rel="stylesheet" href="css/pages/_contacts.css">
     <script src="https://kit.fontawesome.com/636f762910.js" crossorigin="anonymous"></script>
     <!--<script src="js/menu.js" defer></script>-->
     <!--<script src="js/modal.js" defer></script>-->
@@ -36,7 +37,7 @@
 
 <body class="app-layout">
     <header aria-label="Encabezado" class="logo-header">
-        <img src="assets/logo/logop (1).svg" alt="logo de PsychoShare">
+        <img src="assets/logo/logopsynet.webp" alt="logo de PsychoShare">
         <h1>PsychoShare</h1>
     </header>
 
@@ -75,7 +76,7 @@
     <main>
     <!-- Form new post -->
     <section aria-label="Sección de la publicación" class="new-post-section">
-        <i class="fas fa-user-circle profile-photo"></i>
+        <img src="assets/imgwebp/flavia.webp" alt="Foto de contacto" class="contact-avatar">
         <input type="text" placeholder="¿Sobre qué quieres hablar?" class="post-input">
         <button type="button" class="image-button" aria-label="Añadir imagen"><i class="fas fa-image"></i></button>
         <button type="button" class="attach-button" aria-label="Adjuntar archivo"><i class="fas fa-paperclip"></i></button>
@@ -85,8 +86,8 @@
     <!-- Complete Post -->
     <article>
         <section class="post">
-            <i class="fas fa-user-circle profile-photo"></i>
-            <p>Eduardo Basualdo</p>
+            <img src="assets/imgwebp/veronicacontacts.webp" alt="Foto de contacto" class="contact-avatar">
+            <p>Veronica Ramirez</p>
         </section>
         <section class="post-content">
             <p>Hola a todos, he encontrado este artículo que habla sobre la depresión y me ha parecido muy interesante... ¿Ustedes qué opinan?</p>
@@ -94,7 +95,7 @@
             <p><strong>Autoría:</strong> Basantes Moscoso D. R.</p>
             <p><strong>Resumen:</strong> Ansiedad y depresión, dos síntomas muy comunes en la adolescencia...</p>
             <figure>
-                <img src="assets/logo/img1.jpg" alt="Imagen del post" class="post-image">
+                <img src="assets/imgwebp/wall.webp" alt="Imagen del post" class="post-image">
                 <figcaption>
                     <div class="button-container">
                         <div class="action-buttons">
@@ -111,8 +112,8 @@
         <section class="comment-section">
             <article class="comment">
                 <div class="comment-header">
-                    <i class="fas fa-user-circle profile-photo"></i>
-                    <p>María Gómez</p>
+                    <img src="assets/imgwebp/aloecontacts.webp" alt="Foto de contacto" class="contact-avatar">
+                    <p>Aloe Bordone</p>
                 </div>
                 <div class="comment-content">
                     <p>Gran artículo, me ayudó a entender mejor el tema.</p>
@@ -120,11 +121,115 @@
             </article>
             <article class="comment">
                 <div class="comment-header">
-                    <i class="fas fa-user-circle profile-photo"></i>
-                    <p>Lucía Fernández</p>
+                    <img src="assets/imgwebp/danielcontacts.webp" alt="Foto de contacto" class="contact-avatar">
+                    <p>Daniel Llanes</p>
                 </div>
                 <div class="comment-content">
                     <p>Excelente análisis, muy útil para mi trabajo.</p>
+                </div>
+            </article>
+            <button class="btn view-more">Ver más</button>
+            <div class="add-comment">
+                <i class="fas fa-user-circle profile-photo"></i>
+                <input type="text" class="comment-input" placeholder="Escribe un comentario...">
+                <button class="btn submit-comment"><i class="fas fa-paper-plane"></i>Enviar</button>
+            </div>
+        </section>
+    </article>
+    <article>
+        <section class="post">
+            <img src="assets/imgwebp/constanzacontacts.webp" alt="Foto de contacto" class="contact-avatar">
+            <p>Constanza Rodriguez</p>
+        </section>
+        <section class="post-content">
+            <p>Hola, compañeros. Estuve leyendo sobre el impacto del estrés crónico en nuestra salud física y mental, y me topé con este estudio que profundiza bastante en el tema. Me pareció muy relevante para todos nosotros que manejamos a veces tanta presión. ¿Qué les parece?</p>
+            <h2>Estrés crónico: Un enemigo silencioso para la salud cardiovascular</h2>
+            <p><strong>Autoría:</strong> Dr. Miguel Rojas y Lic. Ana García</p>
+            <p><strong>Resumen:</strong> Este artículo explora la relación entre los niveles elevados de estrés sostenido y el aumento del riesgo de enfermedades cardíacas en la población adulta joven...</p>
+            <figure>
+                <img src="assets/imgwebp/wall2.webp" alt="Imagen del post" class="post-image">
+                <figcaption>
+                    <div class="button-container">
+                        <div class="action-buttons">
+                            <button class="btn like-button"><i class="fas fa-thumbs-up"></i>Me gusta</button>
+                            <button class="btn comment-button"><i class="fas fa-comment"></i>Comentar</button>
+                        </div>
+                        <button class="btn pdf-button"><i class="fas fa-file-pdf"></i>Ver PDF</button>
+                    </div>
+                </figcaption>
+            </figure>
+        </section>
+
+        <!-- Comments -->
+        <section class="comment-section">
+            <article class="comment">
+                <div class="comment-header">
+                   <img src="assets/imgwebp/veronicacontacts.webp" alt="Foto de contacto" class="contact-avatar">
+                    <p>Veronica Ramirez</p>
+                </div>
+                <div class="comment-content">
+                    <p>Buenisimo.</p>
+                </div>
+            </article>
+            <article class="comment">
+                <div class="comment-header">
+                    <img src="assets/imgwebp/flavia.webp" alt="Foto de contacto" class="contact-avatar">
+                    <p>Flavia Perin</p>
+                </div>
+                <div class="comment-content">
+                    <p>Excelente análisis.</p>
+                </div>
+            </article>
+            <button class="btn view-more">Ver más</button>
+            <div class="add-comment">
+                <i class="fas fa-user-circle profile-photo"></i>
+                <input type="text" class="comment-input" placeholder="Escribe un comentario...">
+                <button class="btn submit-comment"><i class="fas fa-paper-plane"></i>Enviar</button>
+            </div>
+        </section>
+    </article>
+    <article>
+        <section class="post">
+           <img src="assets/imgwebp/danielcontacts.webp" alt="Foto de contacto" class="contact-avatar">
+            <p>Daniel Llanes</p>
+        </section>
+        <section class="post-content">
+            <p>¡Buenas! Quería compartir con ustedes algo interesante que encontré sobre la importancia de la salud mental en el ámbito laboral. Este documento aborda cómo un buen ambiente de trabajo influye directamente en el bienestar de los empleados. ¿Ustedes han tenido experiencias al respecto?</p>
+            <h2>Bienestar psicológico en el trabajo: Clave para la productividad y la satisfacción</h2>
+            <p><strong>Autoría:</strong> Fernández, L. y Solís, R.</p>
+            <p><strong>Resumen:</strong> Análisis de los factores organizacionales que contribuyen a un clima laboral positivo, reduciendo el burnout y fomentando la salud mental de los equipos...</p>
+            <figure>
+                <img src="assets/imgwebp/wall3.webp" alt="Imagen del post" class="post-image">
+                <figcaption>
+                    <div class="button-container">
+                        <div class="action-buttons">
+                            <button class="btn like-button"><i class="fas fa-thumbs-up"></i>Me gusta</button>
+                            <button class="btn comment-button"><i class="fas fa-comment"></i>Comentar</button>
+                        </div>
+                        <button class="btn pdf-button"><i class="fas fa-file-pdf"></i>Ver PDF</button>
+                    </div>
+                </figcaption>
+            </figure>
+        </section>
+
+        <!-- Comments -->
+        <section class="comment-section">
+            <article class="comment">
+                <div class="comment-header">
+                    <img src="assets/imgwebp/constanzacontacts.webp" alt="Foto de contacto" class="contact-avatar">
+                    <p>Constanza Rodriguez</p>
+                </div>
+                <div class="comment-content">
+                    <p>Gran artículo.</p>
+                </div>
+            </article>
+            <article class="comment">
+                <div class="comment-header">
+                    <img src="assets/imgwebp/flavia.webp" alt="Foto de contacto" class="contact-avatar">
+                    <p>Flavia Perin</p>
+                </div>
+                <div class="comment-content">
+                    <p>Muy útil para mi trabajo.</p>
                 </div>
             </article>
             <button class="btn view-more">Ver más</button>
