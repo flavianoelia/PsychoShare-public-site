@@ -54,6 +54,9 @@
     justify-content: center;
 }
 
+.search-button-about-us{
+    background-color: var(--color-ui-background)!important;
+}
 .action-buttons {
     display: flex;
     align-items: center;
@@ -73,6 +76,7 @@
         z-index: auto;
     }
 }
+
 .action-button i {
   font-size: 1.2rem;
   color: var(--color-text-main);

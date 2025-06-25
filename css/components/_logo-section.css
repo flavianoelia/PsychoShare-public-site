@@ -106,6 +106,9 @@ form {
   display: flex;
   flex-direction:row;
   padding: 0px;
+  min-width: 0px;
+  max-width: 90%;
+  background-color: var(--color-ui-background);
 }
 label {
   font-size: 0.9rem;
@@ -195,6 +198,11 @@ footer {
   .logo-avatar {
     width: 120px;
     height: 120px;
+  }
+}
+@media (min-width: 480px){
+  .search-bar-about-us {
+    width: 100%;
   }
 }
 
