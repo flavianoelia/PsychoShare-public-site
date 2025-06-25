@@ -2,7 +2,10 @@
 <html lang="es">
 <head>
   <meta charset="utf-8">
-  <title>Crear Publicación</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="keywords" content="crear publicación, muro, compartir contenido, psicología, salud mental, red social, artículos, posts, bibliografía" />
+  <meta name="description" content="Formulario para crear una publicación en PsychoShare, la red social de psicología colaborativa. Comparte tus artículos, posts y bibliografía sobre salud mental y psicología.">
+  <title>Crear Publicación | PsychoShare - Red de psicología colaborativa</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
@@ -20,6 +23,7 @@
 <body class="post-form">
 
   <main class="modal-form">
+    <h1 class="visually-hidden">Formulario para crear una publicación</h1>
     <div class="modal-header">
       <h2>Crear publicación</h2>
       <button aria-label="Cerrar" class="close-button">
@@ -34,10 +38,10 @@
 
     <div class="form-container">
       <form action="#" method="post" aria-label="Formulario de publicación">
-        <textarea id="description" placeholder="¿Sobre qué quieres hablar?"></textarea>
-        <input type="text" id="title" placeholder="Título">
-        <input type="text" id="authorship" placeholder="Autoría">
-        <textarea id="abstract" placeholder="Abstract"></textarea>
+        <textarea id="description" aria-label="Contenido de la publicación" placeholder="¿Sobre qué quieres hablar?"></textarea>
+        <input type="text" id="title" aria-label="Título de la publicación" placeholder="Título">
+        <input type="text" id="authorship" aria-label="Autoría" placeholder="Autoría">
+        <textarea id="abstract" aria-label="Resumen" placeholder="Resumen"></textarea>
 
     <div class="attachment-section">
         <div class="file-group">
@@ -49,8 +53,6 @@
             <input type="file" accept=".pdf">
         </div>
     </div>
-        
-
         <button type="submit">Enviar</button>
       </form>
     </div>
