@@ -3,25 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Comentario de Posteo</title>
+    <meta name="keywords" content="comentario, publicaciones, post, red social, salud mental, interacción, psicología, compartir opinión" />
+    <meta name="description" content="Formulario para agregar un comentario en PsychoShare, la red social de psicología colaborativa. Comparte tus opiniones y participa en las publicaciones de la comunidad.">
+    <title>Agregar comentario | PsychoShare - Publicaciones colaborativas</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&family=Sora:wght@100..800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/base/_global.css">
-    <link rel="stylesheet" href="css/components/_card.css">
-    <link rel="stylesheet" href="css/pages/_wall.css">
     <link rel="stylesheet" href="css/components/_button.css">
     <link rel="stylesheet" href="css/components/_form.css">
-    <link rel="stylesheet" href="css/components/_comment-form.css">
     <link rel="stylesheet" href="css/custom.css">
+    <link rel="stylesheet" href="css/components/_comment-form.css">
     <script src="https://kit.fontawesome.com/636f762910.js" crossorigin="anonymous"></script>  
 </head>
 <body>
     <section class="comment-section">
-        <form action="#" method="post" class="comment-form">
+        <form action="#" method="post" class="comment-form" aria-label="Formulario para agregar un comentario">
             <i class="fa-solid fa-circle-user contact-avatar-placeholder"></i>
-            <textarea id="comment-section" class=".add-comment-form" name="comment" aria-label="Escribe un comentario" placeholder="Escribe un comentario..." required></textarea>
-            <button class="wall submit-comment" type="submit">Enviar</button>
+            <textarea id="comment-section" class="add-comment-form .add-comment-form" name="comment" aria-label="Escribe un comentario" placeholder="Escribe un comentario..." required></textarea>
+            <button id="comment-form" class="wall submit-comment" type="submit">Enviar</button>
         </form>
     </section>
 </body>
