@@ -31,6 +31,7 @@
   <link rel="stylesheet" href="css/components/_form.css">
   <link rel="stylesheet" href="css/pages/_profile.css">
   <link rel="stylesheet" href="css/custom.css">
+  <link rel="stylesheet" href="css/pages/_contacts.css">
   
     <script src="https://kit.fontawesome.com/636f762910.js" crossorigin="anonymous"></script>   
 
@@ -39,7 +40,7 @@
 <body class="app-layout">
 
     <header aria-label="Encabezado" class="logo-header">
-        <img src="assets/logo/logop (1).svg" alt="logo de PsychoShare">
+        <img src="assets/logo/logopsynet_300x300.webp" alt="logo de PsychoShare">
         <h1>PsychoShare</h1>
 
     </header>
@@ -77,12 +78,12 @@
 
     <main>
 <section class="profile-front-page">
-  <img src="assets/logo/untitled.png" class="cover-photo" alt="Foto de portada del usuario">
+  <img src="assets/imgwebp/portadaprofile.webp" class="cover-photo" alt="Foto de portada del usuario">
 
   <div class="profile-info-bar" role="region" aria-label="Información del usuario">
     <div class="left-info">
-      <i class="fa-solid fa-circle-user profile-avatar" aria-hidden="true"></i>
-      <h1 class="user-name">Eduardo Basualdo</h1>
+      <img src="assets/imgwebp/flavia.webp" alt="Foto de contacto" class="contact-avatar">
+      <h1 class="user-name">Flavia Perin</h1>
     </div>
     <a href="edit-profile.html">
       <button class="btn-edit" aria-label="Editar perfil">Editar perfil</button>
@@ -93,11 +94,11 @@
     
         <section class="profile-stats">
             <span>2 Publicaciones</span>
-            <span>20 Contactos</span>
+            <span>5 Contactos</span>
         </section>
     
         <form aria-label="Crear nueva publicación" class="new-post-form">
-            <i class="fas fa-user-circle profile-photo"></i>
+            <img src="assets/imgwebp/flavia.webp" alt="Foto de contacto" class="contact-avatar">
             <input type="text" placeholder="¿Sobre qué quieres hablar?" class="post-input">
             <a href="post-form.html" class="image-button" aria-label="Añadir imagen"><i class="fas fa-image"></i></a>
             <a href="post-form.html" class="attach-button" aria-label="Adjuntar archivo"><i class="fas fa-paperclip"></i></a>
@@ -105,20 +106,16 @@
     
         <article>
         <section class="post">
-            <i class="fas fa-user-circle profile-photo"></i>
-            <div class="post-info">
-                <p class="name">Eduardo Basualdo</p>
-                <p class="timestamp">23 junio 2025</p>
-                <p class="timestamp">01:43 hs</p>
-            </div>
+            <img src="assets/imgwebp/flavia.webp" alt="Foto de contacto" class="contact-avatar">
+            <p>Flavia Perin</p>
         </section>
         <section class="post-content">
-            <p>Hola a todos, he encontrado este artículo que habla sobre la depresión y me ha parecido muy interesante... ¿Ustedes qué opinan?</p>
-            <h2>La depresión y su impacto en la salud pública</h2>
-            <p><strong>Autoría:</strong> Basantes Moscoso D. R.</p>
-            <p><strong>Resumen:</strong> Ansiedad y depresión, dos síntomas muy comunes en la adolescencia...</p>
+            <p>¡Hola a todos! Estuve leyendo este artículo y me pareció súper relevante en estos tiempos. ¿Qué les parece?</p>
+            <h2>Depresión Infanto‑Juvenil y exposición temprana a la violencia</h2>
+            <p><strong>Autoría:</strong> Eliana A. Orozco Henao, Bibiana A. Marín Díaz, Juan B. Zuluaga Valencia</p>
+            <p><strong>Resumen:</strong> Revisión sobre cómo la exposición temprana a la violencia interfiere en el desarrollo cerebral y favorece la aparición de síntomas depresivos en niños y adolescentes.</p>
             <figure>
-                <img src="assets/logo/img1.jpg" alt="Imagen del post" class="post-image">
+              <img src="assets/imgwebp/depresioninfantil.webp" alt="Imagen del post" class="post-image">
                 <figcaption>
                     <div class="button-container">
                         <div class="action-buttons">
@@ -135,25 +132,75 @@
         <section class="comment-section">
             <article class="comment">
                 <div class="comment-header">
-                    <i class="fas fa-user-circle profile-photo"></i>
-                    <p>María Gómez</p>
+                    <img src="assets/imgwebp/aloecontacts.webp" alt="Foto de contacto" class="contact-avatar">
+                    <p>Aloe Bordone</p>
                 </div>
                 <div class="comment-content">
-                    <p>Gran artículo, me ayudó a entender mejor el tema.</p>
+                    <p>Gran tema.</p>
                 </div>
             </article>
             <article class="comment">
                 <div class="comment-header">
-                    <i class="fas fa-user-circle profile-photo"></i>
-                    <p>Lucía Fernández</p>
+                    <img src="assets/imgwebp/danielcontacts.webp" alt="Foto de contacto" class="contact-avatar">
+                    <p>Daniel Llanes</p>
                 </div>
                 <div class="comment-content">
-                    <p>Excelente análisis, muy útil para mi trabajo.</p>
+                    <p>Excelente.</p>
                 </div>
             </article>
             <button class="btn view-more">Ver más</button>
             <div class="add-comment">
-                <i class="fas fa-user-circle profile-photo"></i>
+                <img src="assets/imgwebp/flavia.webp" alt="Foto de contacto" class="contact-avatar">
+                <input type="text" class="comment-input" placeholder="Escribe un comentario...">
+                <button class="btn submit-comment"><i class="fas fa-paper-plane"></i>Enviar</button>
+            </div>
+        </section>
+          <section class="post">
+           <img src="assets/imgwebp/flavia.webp" alt="Foto de contacto" class="contact-avatar">
+            <p>Flavia Perin</p>
+        </section>
+        <section class="post-content">
+            <p>Buenas, gente. Quería compartir con ustedes un libro que encontré sobre la criminologia </p>
+            <h2>Psicología Criminológica en 80 preguntas</h2>
+            <p><strong>Autoría:</strong>  Fernando Pérez Guzmán y Karina Domínguez Paz</p>
+            <p><strong>Resumen:</strong>  Libro estructurado en formato de preguntas y respuestas, brinda una visión práctica y accesible de la psicología criminológica. Aborda desde los fundamentos de la conducta delictiva hasta el perfilado criminal, integrando casos reales, victimología y enfoques terapéuticos....</p>
+            <figure>
+                <img src="assets/imgwebp/psicologiacrimino.webp" alt="Imagen del post" class="post-image">
+                <figcaption>
+                    <div class="button-container">
+                        <div class="action-buttons">
+                            <button class="btn like-button"><i class="fas fa-thumbs-up"></i>Me gusta</button>
+                            <button class="btn comment-button"><i class="fas fa-comment"></i>Comentar</button>
+                        </div>
+                        <button class="btn pdf-button"><i class="fas fa-file-pdf"></i>Ver PDF</button>
+                    </div>
+                </figcaption>
+            </figure>
+        </section>
+
+        <!-- Comments -->
+        <section class="comment-section">
+            <article class="comment">
+                <div class="comment-header">
+                    <img src="assets/imgwebp/veronicacontacts.webp" alt="Foto de contacto" class="contact-avatar">
+                    <p>Veronica Ramirez</p>
+                </div>
+                <div class="comment-content">
+                    <p>Gran aporte.</p>
+                </div>
+            </article>
+            <article class="comment">
+                <div class="comment-header">
+                    <img src="assets/imgwebp/federicopi.webp" alt="Foto de contacto" class="contact-avatar">
+                    <p>Federico Piedrasanta</p>
+                </div>
+                <div class="comment-content">
+                    <p>Excelente.</p>
+                </div>
+            </article>
+            <button class="btn view-more">Ver más</button>
+            <div class="add-comment">
+                <img src="assets/imgwebp/flavia.webp" alt="Foto de contacto" class="contact-avatar">
                 <input type="text" class="comment-input" placeholder="Escribe un comentario...">
                 <button class="btn submit-comment"><i class="fas fa-paper-plane"></i>Enviar</button>
             </div>

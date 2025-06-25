@@ -29,6 +29,7 @@
     <link rel="stylesheet" href="css/components/_modal.css">
     <link rel="stylesheet" href="css/pages/_wall.css">
     <link rel="stylesheet" href="css/custom.css">
+    <link rel="stylesheet" href="css/pages/_contacts.css">
     <script src="https://kit.fontawesome.com/636f762910.js" crossorigin="anonymous"></script>
     <!--<script src="js/menu.js" defer></script>-->
     <!--<script src="js/modal.js" defer></script>-->
@@ -37,7 +38,7 @@
 
 <body class="app-layout">
     <header aria-label="Encabezado" class="logo-header">
-        <img src="assets/logo/logop (1).svg" alt="logo de PsychoShare">
+        <img src="assets/logo/logopsynet_300x300.webp" alt="logo de PsychoShare">
         <h1>PsychoShare</h1>
     </header>
 
@@ -75,31 +76,26 @@
       
     <main>
     <!-- Form new post -->
-    <section aria-label="Sección de la publicación" class="new-post-section">
-        <i class="fas fa-user-circle profile-photo"></i>
-        <input type="text" placeholder="¿Sobre qué quieres hablar?" class="post-input">
-        <button type="button" class="image-button" aria-label="Añadir imagen"><i class="fas fa-image"></i></button>
-        <button type="button" class="attach-button" aria-label="Adjuntar archivo"><i class="fas fa-paperclip"></i></button>
-        <button id="create-post-btn" class="btn submit-comment"><i class="fas fa-paper-plane"></i>Publicar</button> 
-    </section>
+        <form aria-label="Crear nueva publicación" class="new-post-form">
+            <img src="assets/imgwebp/flavia.webp" alt="Foto de contacto" class="contact-avatar">
+            <input type="text" placeholder="¿Sobre qué quieres hablar?" class="post-input">
+            <a href="post-form.html" class="image-button" aria-label="Añadir imagen"><i class="fas fa-image"></i></a>
+            <a href="post-form.html" class="attach-button" aria-label="Adjuntar archivo"><i class="fas fa-paperclip"></i></a>
+        </form>
 
     <!-- Complete Post -->
     <article>
         <section class="post">
-            <i class="fas fa-user-circle profile-photo"></i>
-            <div class="post-info">
-                <p class="name">Eduardo Basualdo</p>
-                <p class="timestamp">23 junio 2025</p>
-                <p class="timestamp">01:43 hs</p>
-            </div>
+            <img src="assets/imgwebp/veronicacontacts.webp" alt="Foto de contacto" class="contact-avatar">
+            <p>Veronica Ramirez</p>
         </section>
         <section class="post-content">
-            <p>Hola a todos, he encontrado este artículo que habla sobre la depresión y me ha parecido muy interesante... ¿Ustedes qué opinan?</p>
-            <h2>La depresión y su impacto en la salud pública</h2>
-            <p><strong>Autoría:</strong> Basantes Moscoso D. R.</p>
-            <p><strong>Resumen:</strong> Ansiedad y depresión, dos síntomas muy comunes en la adolescencia...</p>
+            <p>Hola a todos, he encontrado este artículo que habla sobre la ansiedad y me ha parecido muy interesante... ¿Ustedes qué opinan?</p>
+            <h2>Terapia Cognitiva para Trastornos de Ansiedad (Clark & Beck)</h2>
+            <p><strong>Autoría:</strong> David A. Clark & Aaron T. Beck</p>
+            <p><strong>Resumen:</strong> Manual que explica el modelo cognitivo de la ansiedad, diferencia entre miedo normal y patológico, y detalla estrategias de evaluación e intervención cognitivo‑conductual.</p>
             <figure>
-                <img src="assets/logo/img1.jpg" alt="Imagen del post" class="post-image">
+                <img src="assets/imgwebp/depresionlanochemasoscura.webp" alt="Imagen del post" class="post-image">
                 <figcaption>
                     <div class="button-container">
                         <div class="action-buttons">
@@ -116,8 +112,8 @@
         <section class="comment-section">
             <article class="comment">
                 <div class="comment-header">
-                    <i class="fas fa-user-circle profile-photo"></i>
-                    <p>María Gómez</p>
+                    <img src="assets/imgwebp/aloecontacts.webp" alt="Foto de contacto" class="contact-avatar">
+                    <p>Aloe Bordone</p>
                 </div>
                 <div class="comment-content">
                     <p>Gran artículo, me ayudó a entender mejor el tema.</p>
@@ -125,8 +121,8 @@
             </article>
             <article class="comment">
                 <div class="comment-header">
-                    <i class="fas fa-user-circle profile-photo"></i>
-                    <p>Lucía Fernández</p>
+                    <img src="assets/imgwebp/danielcontacts.webp" alt="Foto de contacto" class="contact-avatar">
+                    <p>Daniel Llanes</p>
                 </div>
                 <div class="comment-content">
                     <p>Excelente análisis, muy útil para mi trabajo.</p>
@@ -134,7 +130,114 @@
             </article>
             <button class="btn view-more">Ver más</button>
             <div class="add-comment">
-                <i class="fas fa-user-circle profile-photo"></i>
+               <img src="assets/imgwebp/flavia.webp" alt="Foto de contacto" class="contact-avatar">
+                <input type="text" class="comment-input" placeholder="Escribe un comentario...">
+                <button class="btn submit-comment"><i class="fas fa-paper-plane"></i>Enviar</button>
+            </div>
+        </section>
+    </article>
+    <article>
+        <section class="post">
+            <img src="assets/imgwebp/constanzacontacts.webp" alt="Foto de contacto" class="contact-avatar">
+            <p>Constanza Rodriguez</p>
+        </section>
+        <section class="post-content">
+            <p>Hola, compañeros. Estuve leyendo sobre el sobre el comportamiento de las personas en el trabajo. Me pareció muy relevante para todos nosotros que manejamos a veces tanta presión. ¿Qué les parece?</p>
+            <h2> Psicología Laboral – Comportamiento humano en el ámbito laboral</h2>
+            <p><strong>Autoría:</strong> Eduardo Rame (edición propia, publicada en Wikimedia Commons)</p>
+            <p><strong>Resumen:</strong> Manual breve (5 páginas) que introduce la psicología del trabajo como ciencia aplicada. Describe cómo los procesos emocionales, cognitivos y físicos influyen en el ámbito laboral. Ideal para una visión general del comportamiento humano en el trabajo y su relevancia organizacional...</p>
+            <figure>
+                <img src="assets/imgwebp/psicologiatrabajo.webp" alt="Imagen del post" class="post-image">
+                <figcaption>
+                    <div class="button-container">
+                        <div class="action-buttons">
+                            <button class="btn like-button"><i class="fas fa-thumbs-up"></i>Me gusta</button>
+                            <button class="btn comment-button"><i class="fas fa-comment"></i>Comentar</button>
+                        </div>
+                        <button class="btn pdf-button"><i class="fas fa-file-pdf"></i>Ver PDF</button>
+                    </div>
+                </figcaption>
+            </figure>
+        </section>
+
+        <!-- Comments -->
+        <section class="comment-section">
+            <article class="comment">
+                <div class="comment-header">
+                   <img src="assets/imgwebp/veronicacontacts.webp" alt="Foto de contacto" class="contact-avatar">
+                    <p>Veronica Ramirez</p>
+                </div>
+                <div class="comment-content">
+                    <p>Buenisimo.</p>
+                </div>
+            </article>
+            <article class="comment">
+                <div class="comment-header">
+                    <img src="assets/imgwebp/flavia.webp" alt="Foto de contacto" class="contact-avatar">
+                    <p>Flavia Perin</p>
+                </div>
+                <div class="comment-content">
+                    <p>Excelente análisis.</p>
+                </div>
+            </article>
+            <button class="btn view-more">Ver más</button>
+            <div class="add-comment">
+                <img src="assets/imgwebp/flavia.webp" alt="Foto de contacto" class="contact-avatar">
+                <input type="text" class="comment-input" placeholder="Escribe un comentario...">
+                <button class="btn submit-comment"><i class="fas fa-paper-plane"></i>Enviar</button>
+            </div>
+        </section>
+    </article>
+    <article>
+        <section class="post">
+           <img src="assets/imgwebp/danielcontacts.webp" alt="Foto de contacto" class="contact-avatar">
+            <p>Daniel Llanes</p>
+        </section>
+        <section class="post-content">
+            <p>¡Buenas! Quería compartir con ustedes algo interesante que encontré sobre la importancia de la salud mental en el ámbito laboral. Este documento aborda cómo un buen ambiente de trabajo influye directamente en el bienestar de los empleados. ¿Ustedes han tenido experiencias al respecto?</p>
+            <h2>Psicología Educativa – Julio Varela Barraza</h2>
+            <p><strong>Autoría:</strong> Julio Varela Barraza (y colaboración de Jorge Campo, Grupo Autismo-ABA)</p>
+            <p><strong>Resumen:</strong> Este manual, pensado para formación de docentes de nivel básico y media, está organizado en 24 módulos didácticos.
+Primera parte (12 módulos): enfoques y principios conductuales aplicados a la enseñanza: observación, evaluación, refuerzo, técnicas de modelado y manejo de conductas.
+Segunda parte (12 módulos): casos prácticos sobre dinámicas en el aula, relaciones con familias, eventos institucionales (como uso de uniformes), estrategias para inclusión y manejo de la rotación docente.
+Combina teoría del análisis de conducta con sugerencias prácticas, útiles para entrenar docentes de forma efectiva y rígida.</p>
+            <figure>
+                <img src="assets/imgwebp/psicologiaeducativa.webp" alt="Imagen del post" class="post-image">
+                <figcaption>
+                    <div class="button-container">
+                        <div class="action-buttons">
+                            <button class="btn like-button"><i class="fas fa-thumbs-up"></i>Me gusta</button>
+                            <button class="btn comment-button"><i class="fas fa-comment"></i>Comentar</button>
+                        </div>
+                        <button class="btn pdf-button"><i class="fas fa-file-pdf"></i>Ver PDF</button>
+                    </div>
+                </figcaption>
+            </figure>
+        </section>
+
+        <!-- Comments -->
+        <section class="comment-section">
+            <article class="comment">
+                <div class="comment-header">
+                    <img src="assets/imgwebp/constanzacontacts.webp" alt="Foto de contacto" class="contact-avatar">
+                    <p>Constanza Rodriguez</p>
+                </div>
+                <div class="comment-content">
+                    <p>Gran artículo.</p>
+                </div>
+            </article>
+            <article class="comment">
+                <div class="comment-header">
+                    <img src="assets/imgwebp/flavia.webp" alt="Foto de contacto" class="contact-avatar">
+                    <p>Flavia Perin</p>
+                </div>
+                <div class="comment-content">
+                    <p>Muy útil para mi trabajo.</p>
+                </div>
+            </article>
+            <button class="btn view-more">Ver más</button>
+            <div class="add-comment">
+                <img src="assets/imgwebp/flavia.webp" alt="Foto de contacto" class="contact-avatar">
                 <input type="text" class="comment-input" placeholder="Escribe un comentario...">
                 <button class="btn submit-comment"><i class="fas fa-paper-plane"></i>Enviar</button>
             </div>
