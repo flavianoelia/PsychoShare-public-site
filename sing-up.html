@@ -27,13 +27,13 @@
             <h1 class="mb-4">PsychoShare</h1>
             <h1>Crear una nueva cuenta</h1>
             
-            <form id="register-form" class= "card-form" novalidate>
+            <form id="register-form" class= "card-form" novalidate aria-label="Formulario de registro de nueva cuenta">
                 <input type="text" class="form-control mb-3" id="nombre" name="nombre" placeholder="Nombre y apellido" aria-label="Nombre y apellido" required>
                 <input type="email" class="form-control mb-3" id="mail" name="mail" placeholder="Correo electrónico" aria-label="Correo electrónico" required>
                 <input type="password" class="form-control mb-3" id="password" name="password" placeholder="Contraseña" aria-label="Contraseña" required>
                 <input type="password" class="form-control mb-3" id="repetir-contraseña" name="repetir-contraseña" placeholder="Repetir contraseña" aria-label="Repetir contraseña" required>
                 
-                <label for="terms" class="checkbox-label">
+                <label for="terms" class="checkbox-label" aria-label="Términos y Condiciones y Política de Privacidad">
                   <input type="checkbox" id="terms" name="terms" required>
                   Acepto los términos y condiciones y Política de Privacidad
                 </label>
@@ -43,7 +43,7 @@
 
             <p class="mt-3 text-center">
                 ¿Ya tenés una cuenta?
-                <button type="button" class="link-login" data-bs-toggle="modal" data-bs-target="#modalLogin">
+                <button type="button" class="link-login" data-bs-toggle="modal" data-bs-target="#modalLogin" aria-label="Abrir ventana para iniciar sesión">                >
                   Iniciá sesión
                 </button>
             </p>
