@@ -5,6 +5,7 @@
   color: var(--color-text-light) !important;
 }
 
+
 .btn:hover,
 .btn-primary:hover,
 .btn:focus,
@@ -19,6 +20,7 @@
   box-shadow: none !important;
 }
 
+
 .btn {
   text-align: center;
   padding: 0.6rem 1.5rem;
@@ -28,6 +30,7 @@
   display: inline-block;
   margin-top: 1rem;
 }
+
 
 .btn.like-button,
 .btn.comment-button,
@@ -40,6 +43,7 @@
   gap: 5px;
 }
 
+
 .btn.like-button:hover,
 .btn.comment-button:hover,
 .btn.pdf-button:hover,
@@ -47,30 +51,34 @@
   background-color: var(--color-secondary);
 }
 
-.delete-button {
-  background-color: #8c5a5a;
+
+.delete-btn {
+  background-color: #8b735b;
   color: white;
+  margin-right: 1rem;
 }
 
-.save-button {
-  background-color: #8c7a6b;
-  color: white;
+
+.delete-btn:hover {
+  background-color: #7a634f;
 }
+
 
 .cancel-btn {
-  background-color: #e5e7eb;
-  color: #111827;
-  border: none;
-  padding: 0.75rem 1.5rem;
-  border-radius: 8px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+  background-color: #b5a691;
+  color: white;
 }
 
+
 .cancel-btn:hover {
-  background-color: #d1d5db;
+  background-color: #a49581;
 }
+.delete-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
 
 .search-button,
 .profile-button,
@@ -86,6 +94,7 @@
   border-radius: 50%;
 }
 
+
 .search-button i,
 .home-button i,
 .profile-button i {
@@ -93,10 +102,12 @@
   color: var(--color-text-main);
 }
 
+
 .action-buttons {
   display: flex;
   gap: 10px;
 }
+
 
 .image-button,
 .attach-button {
@@ -107,10 +118,12 @@
   color: var(--color-text-subtle);
 }
 
+
 .image-button:hover,
 .attach-button:hover {
   color: var(--color-primary);
 }
+
 
 .btn-edit {
   font-size: 14px;
@@ -123,9 +136,11 @@
   transition: background-color 0.3s;
 }
 
+
 .btn-edit:hover {
-  background-color: #b58d93; 
+  background-color: #b58d93;
 }
+
 
 .edit-button {
   position: absolute;
@@ -142,6 +157,8 @@
 }
 
 
+
+
 .close-button {
   position: absolute;
   top: 1.2rem;
@@ -152,9 +169,11 @@
   transition: color 0.2s ease;
 }
 
+
 .close-button:hover {
   color: #000;
 }
+
 
 .link-login {
   background: none;
@@ -165,6 +184,7 @@
   cursor: pointer;
   text-decoration: none;
 }
+
 
 .link-login:hover {
   text-decoration: underline;

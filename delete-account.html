@@ -10,6 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Sora:wght@400;600&display=swap" rel="stylesheet">
 
+
   <link rel="stylesheet" href="css/base/_global.css" />
   <link rel="stylesheet" href="css/components/_form.css" />
   <link rel="stylesheet" href="css/components/_button.css" />
@@ -18,15 +19,16 @@
 <body>
   <main class="delete-container">
     <section class="delete-card" role="dialog" aria-labelledby="delete-title">
-      <h1 id="delete-title">¿Estás seguro?</h1>
+      <h1 id="delete-title">¿Estás seguro que deseas eliminar tu cuenta?</h1>
       <p class="delete-text">Esta acción es irreversible. Si continúas, tu cuenta será eliminada permanentemente.</p>
-      
-      <label for="password">Confirmá tu contraseña</label>
+     
+      <label for="password">Introduce tu contraseña</label>
       <input id="password" name="password" type="password" placeholder="Contraseña" aria-label="Confirmar contraseña" required />
 
+
       <div class="delete-buttons">
-        <button class="btn delete-btn" id="eliminar" aria-label="Confirmar eliminación">Eliminar cuenta</button>
-        <button class="btn cancel-btn" id="cancelar" aria-label="Cancelar y volver">Cancelar</button>
+        <button class="btn delete-btn" id="eliminar" aria-label="Confirmar eliminación">Eliminar</button>
+        <a href="profile.html" class="btn cancel-btn" role="button" aria-label="Cancelar y volver">Cancelar</a>
       </div>
     </section>
   </main>

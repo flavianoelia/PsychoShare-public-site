@@ -7,6 +7,7 @@
   padding: 2rem;
 }
 
+
 .delete-card {
   background: #fff;
   padding: 3rem;
@@ -17,11 +18,13 @@
   font-family: 'Sora', sans-serif;
 }
 
+
 .delete-card h1 {
   font-size: 1.8rem;
   margin-bottom: 1rem;
   color: #b91c1c;
 }
+
 
 .delete-card .delete-text {
   margin-bottom: 1.5rem;
@@ -29,11 +32,13 @@
   color: #555;
 }
 
+
 .delete-card label {
   font-weight: 500;
   margin-bottom: 0.5rem;
   display: block;
 }
+
 
 .delete-card input {
   width: 100%;
@@ -43,7 +48,5 @@
   margin-bottom: 2rem;
   font-size: 1rem;
 }
-
-
 
 
