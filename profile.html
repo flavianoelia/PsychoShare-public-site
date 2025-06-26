@@ -11,12 +11,13 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&family=Sora:wght@100..800&display=swap" rel="stylesheet">
     
-    <!-- Favicon y manifest -->
+
     <link rel="icon" href="/favicon/favicon.ico">
     <link rel="icon" type="image/png" sizes="96x96" href="/favicon/favicon-96x96.png">
     <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
     <link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg">
     
+
     <link rel="manifest" href="/favicon/site.webmanifest">
     <script src="https://kit.fontawesome.com/636f762910.js" crossorigin="anonymous"></script>
 
@@ -33,10 +34,12 @@
     <link rel="stylesheet" href="css/components/_time_dataTime.css">
     <link rel="stylesheet" href="css/components/_form.css">
     <link rel="stylesheet" href="css/pages/_profile.css">
-    <link rel="stylesheet" href="css/custom.css">  
-  </head>
+    <link rel="stylesheet" href="css/custom.css">
+    <link rel="stylesheet" href="css/pages/_contacts.css">
+  
+</head>
 
-  <body class="app-layout">
+<body class="app-layout">
 
     <header aria-label="Encabezado" class="logo-header">
         <img src="assets/logo/logopsynet_300x300.webp" alt="logo de PsychoShare">
@@ -57,7 +60,7 @@
           <i class="fas fa-house"></i>
         </a>
         <a href="./profile.html" class="action-button" aria-label="Perfil">
-          <i class="fas fa-circle-user"></i>
+          <img src="assets/imgwebp/flavia.webp" alt="Foto de contacto" class="contact-photo">
         </a>
         <button class="menu-toggle action-button" aria-label="Abrir menú">
           <i class="fas fa-bars"></i>
@@ -78,29 +81,17 @@
     <main>
 <section class="profile-front-page">
   <img src="assets/imgwebp/portadaprofile.webp" class="cover-photo" alt="Foto de portada del usuario">
-        <section class="profile-front-page">
-          <img src="assets/logo/untitled.png" class="cover-photo" alt="Foto de portada del usuario">
 
   <div class="profile-info-bar" role="region" aria-label="Información del usuario">
     <div class="left-info">
       <img src="assets/imgwebp/flavia.webp" alt="Foto de contacto" class="contact-avatar">
-      <h1 class="user-name">Flavia Perin</h1>
+      <h1 class="user-name">Flavia Perín</h1>
     </div>
     <a href="edit-profile.html">
       <button class="btn-edit" aria-label="Editar perfil">Editar perfil</button>
     </a>
   </div>
 </section>
-          <div class="profile-info-bar" role="region" aria-label="Información del usuario">
-            <div class="left-info">
-              <i class="fa-solid fa-circle-user profile-avatar" aria-hidden="true"></i>
-              <h2 class="user-name">Eduardo Basualdo</h2>
-            </div>
-            <a href="edit-profile.html">
-              <button class="btn-edit" aria-label="Editar perfil">Editar perfil</button>
-            </a>
-          </div>
-        </section>
 
     
         <section class="profile-stats">
@@ -117,24 +108,74 @@
     
         <article>
         <section class="post">
-            <i class="fas fa-user-circle profile-photo"></i>
+            <img src="assets/imgwebp/flavia.webp" alt="Foto de contacto" class="contact-avatar">
             <div class="post-info">
-                <p class="name">Eduardo Basualdo</p>
+                <p class="name">Flavia Perín</p>
                 <p class="timestamp">23 junio 2025</p>
                 <p class="timestamp">01:43</p>
             </div>
         </section>
         <section class="post-content">
-            <p>Buenas, gente. Quería compartir con ustedes un libro que encontré sobre la criminologia </p>
-            <h2>Psicología Criminológica en 80 preguntas</h2>
-            <p><strong>Autoría:</strong>  Fernando Pérez Guzmán y Karina Domínguez Paz</p>
-            <p><strong>Resumen:</strong>  Libro estructurado en formato de preguntas y respuestas, brinda una visión práctica y accesible de la psicología criminológica. Aborda desde los fundamentos de la conducta delictiva hasta el perfilado criminal, integrando casos reales, victimología y enfoques terapéuticos....</p>
-            <p>Hola a todos. He encontrado un artículo sobre la depresión que me pareció muy interesante. ¿Qué opinan ustedes?</p>
-            <h3>La depresión y su impacto en la salud pública</h3>
-            <p><strong>Autoría:</strong> Basantes Moscoso D. R.</p>
-            <p><strong>Resumen:</strong> Ansiedad y depresión, dos síntomas muy comunes en la adolescencia...</p>
+            <p>¡Hola a todos! Estuve leyendo este artículo y me pareció súper relevante en estos tiempos. ¿Qué les parece?</p>
+            <h2>Depresión Infanto‑Juvenil y exposición temprana a la violencia</h2>
+            <p><strong>Autoría:</strong> Eliana A. Orozco Henao, Bibiana A. Marín Díaz, Juan B. Zuluaga Valencia</p>
+            <p><strong>Resumen:</strong> Revisión sobre cómo la exposición temprana a la violencia interfiere en el desarrollo cerebral y favorece la aparición de síntomas depresivos en niños y adolescentes.</p>
             <figure>
-                <img src="assets/imgwebp/psicologiacrimino.webp" alt="Imagen del post" class="post-image">
+              <img src="assets/imgwebp/depresioninfantil.webp" alt="Imagen del post" class="post-image">
+                <figcaption>
+                    <div class="button-container">
+                        <div class="action-buttons">
+                            <button class="btn like-button"><i class="fas fa-thumbs-up"></i>Me gusta</button>
+                            <button class="btn comment-button"><i class="fas fa-comment"></i>Comentar</button>
+                        </div>
+                        <button class="btn pdf-button"><i class="fas fa-file-pdf"></i>Ver PDF</button>
+                    </div>
+                </figcaption>
+            </figure>
+        </section>
+
+        <!-- Comments -->
+        <section class="comment-section">
+            <article class="comment">
+                <div class="comment-header">
+                    <img src="assets/imgwebp/aloecontacts.webp" alt="Foto de contacto" class="contact-avatar">
+                    <p>Aloe Bordone</p>
+                </div>
+                <div class="comment-content">
+                    <p>¿Conocen casos cercanos donde esto se haya manifestado? Sería valioso compartir miradas.</p>
+                </div>
+            </article>
+            <article class="comment">
+                <div class="comment-header">
+                    <img src="assets/imgwebp/danielcontacts.webp" alt="Foto de contacto" class="contact-avatar">
+                    <p>Daniel Llanes</p>
+                </div>
+                <div class="comment-content">
+                    <p>Tema urgente y poco visibilizado. ¿Ustedes creen que el entorno escolar debería tener un rol más activo frente a esto?</p>
+                </div>
+            </article>
+            <button class="btn view-more">Ver más</button>
+            <div class="add-comment">
+                <img src="assets/imgwebp/flavia.webp" alt="Foto de contacto" class="contact-avatar">
+                <input type="text" class="comment-input" placeholder="Escribe un comentario...">
+                <button class="btn submit-comment"><i class="fas fa-paper-plane"></i>Enviar</button>
+            </div>
+        </section>
+          <section class="post">
+           <img src="assets/imgwebp/flavia.webp" alt="Foto de contacto" class="contact-avatar">
+            <div class="post-info">
+                <p class="name">Flavia Perín</p>
+                <p class="timestamp">20 junio 2025</p>
+                <p class="timestamp">13:20</p>
+            </div>
+        </section>
+        <section class="post-content">
+            <p>Buenas, gente.Quería compartir un libro que me ha fascinado: "Mentes en la Sombra: Un Análisis Forense del Comportamiento Criminal" de la Dra. Elara Vance. Si te intriga saber cómo la psicología ayuda a entender las mentes criminales y la justicia, este es un must-read. Desde perfiles psicológicos hasta evaluaciones para juicios, la Dra. Vance te sumerge en el lado más oscuro y complejo de la psique humana. ¡Súper recomendado! </p>
+            <h2>Mentes en la Sombra: Un Análisis Forense del Comportamiento Criminal</h2>
+            <p><strong>Autoría:</strong> Dra. Elara Vance</p>
+            <p><strong>Resumen:</strong>  En "Mentes en la Sombra", la renombrada psicóloga forense Dra. Elara Vance nos sumerge en el fascinante y a menudo perturbador mundo de la mente criminal. A través de un análisis profundo y riguroso, este libro explora las complejas interacciones entre la psicología, el derecho y la criminología, desentrañando los motivos, patrones y trastornos que subyacen a los actos delictivos.</p>
+            <figure>
+                <img src="assets/imgwebp/forensic_psychology_300x300.webp" alt="Imagen del post" class="post-image">
                 <figcaption>
                     <div class="button-container">
                         <div class="action-buttons">
@@ -152,10 +193,10 @@
             <article class="comment">
                 <div class="comment-header">
                     <img src="assets/imgwebp/veronicacontacts.webp" alt="Foto de contacto" class="contact-avatar">
-                    <p>Veronica Ramirez</p>
+                    <p>Verónica Ramirez</p>
                 </div>
                 <div class="comment-content">
-                    <p>Gran aporte.</p>
+                    <p>Después de leerlo, no ves las noticias de la misma manera… ¿Les interesa la psicología forense?</p>
                 </div>
             </article>
             <article class="comment">
@@ -164,7 +205,7 @@
                     <p>Federico Piedrasanta</p>
                 </div>
                 <div class="comment-content">
-                    <p>Excelente.</p>
+                    <p>Me hizo cuestionar muchas ideas sobre el bien, el mal… y todo lo que hay en el medio.</p>
                 </div>
             </article>
             <button class="btn view-more">Ver más</button>
@@ -175,6 +216,7 @@
             </div>
         </section>
     </article>
+</main>
     </main>
 
     <footer aria-label="Pie de página del sitio" class="footer">
