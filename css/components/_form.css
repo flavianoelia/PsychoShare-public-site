@@ -5,28 +5,26 @@
   gap: 1rem;
   max-width: 500px;
   margin: auto;
-  padding: 1rem; 
+  padding: 1rem;
   background-color: var(--color-background-card);
   border-radius: 12px;
   border: 1px solid var(--color-border);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
-
 
 .card-form label {
   font-size: 0.9em;
   font-weight: 500;
-  margin-bottom: -0.5rem; 
+  margin-bottom: -0.5rem;
 }
 
 .checkbox-label {
-  display: flex; 
+  display: flex;
   align-items: center;
   gap: 0.75rem;
   font-size: 0.9em;
   cursor: pointer;
 }
-
 
 .new-post-form {
   display: flex;
@@ -46,10 +44,10 @@
   background-color: transparent;
   font-size: 1em;
 }
+
 .new-post-form .post-input:focus {
   outline: none;
 }
-
 
 .add-comment-form {
   display: flex;
@@ -65,24 +63,27 @@
   border: 1px solid var(--color-border);
   background-color: var(--color-input-background);
   padding: 0.75rem;
-  border-radius: 20px; 
+  border-radius: 20px;
   font-size: 0.9em;
 }
+
 .add-comment-form .comment-input:focus {
   outline: none;
   border-color: var(--color-primary);
 }
 
-
 .form-edit-profile {
-  position: relative;
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
-  background-color: var(--color-background-card);
+  margin: 2rem auto;
+  gap: 2rem;
   padding: 2rem;
+  max-width: 500px;
+  width: 100%;
+  background-color: #fff;
   border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  position: relative;
 }
 
 .close-button {
@@ -92,8 +93,6 @@
   color: #000;
   cursor: pointer;
 }
-
-
 
 body.post-form .modal-form {
   display: flex;
@@ -138,44 +137,3 @@ body.post-form .attachment-section {
   align-items: center;
   gap: 1rem;
 }
-
-body.post-form .attachment-section p {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-body.post-form .attachment-section .file-input {
-  margin-top: 0.5rem;
-}
-
-body.post-form button[type="submit"] {
-  padding: 0.75rem;
-  background: var(--color-primary, #b58d93);
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-body.post-form button[type="submit"]:hover {
-  background: var(--color-primary-dark, #8ea0bf);
-}
-
-.attachment-section {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.file-group {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.file-group i {
-  font-size: 1rem;
-  color: #606770;
-}
-
