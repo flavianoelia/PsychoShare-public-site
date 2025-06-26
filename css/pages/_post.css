@@ -22,23 +22,28 @@
     border:1px solid black;
     font-size: 1em;
     background-color: #f0f0f0;
+    border-radius: 5px;
 }
 
 #title{
     border:1px solid black;
     font-size: 1em;
     background-color: #f0f0f0;
+    border-radius: 5px;
 }
 
 #authorship{
     border:1px solid black;
     font-size: 1em;
     background-color: #f0f0f0;
+    border-radius: 5px;
 }
+
 #abstract{
     border:1px solid black;
     font-size: 1em;
     background-color: #f0f0f0;
+    border-radius: 5px;
 }
 
 .file-group{
