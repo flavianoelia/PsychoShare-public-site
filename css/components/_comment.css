@@ -1,10 +1,12 @@
 .comment-section {
   display: flex;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
   padding: 2rem 4rem;
   background: var(--color-background-main);
-  height: 400px;;
+  height: 400px;
+  background-color: #fff9f7;
+  height: 100vh;
 }
 
 .comment-form {
@@ -17,8 +19,9 @@
   box-shadow: 0 4px 12px rgba(0,0,0,0.05);
   padding: 1.5rem 2rem;
   width: 100%;
-  max-width: 540px;
-  border: 1px solid var(--color-border);
+  max-width: 900px;
+  height: 40%;
+  border: 1px solid black;
 }
 
 #comment-form{
@@ -26,9 +29,9 @@
 }
 
 .comment-form .contact-avatar-placeholder {
-  font-size: 2.8rem;
-  color: #333;
+  font-size: 3.8rem;
   margin-top: 0.2rem;
+  color: #bbb;
 }
 
 .comment-form textarea {
@@ -43,7 +46,14 @@
 }
 
 #comment-section{
-    width:100%;
+  width:100%;
+  height: 70%;
+  margin-top: 55px;
+  margin-left: 20px;
+  overflow-y: auto;
+  font-size: 2em;
+  border: 1px solid #e0e0e0;
+  
 }
 .comment-form .submit-comment {
   margin-left: 0.7rem;
@@ -53,7 +63,7 @@
   background-color: var(--color-ui-background);
   color: var(--color-text-light);
   font-weight: 600;
-  font-size: 1rem;
+  font-size: 1.5em;
   cursor: pointer;
   box-shadow: 0 1px 4px rgba(180,141,146,0.08);
   transition: background 0.2s, box-shadow 0.2s;
