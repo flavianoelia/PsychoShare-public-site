@@ -1,0 +1,69 @@
+.post-modal-form{
+    margin:2,5rem auto;
+}
+.post-form{
+    max-width: 75%;
+    min-width: 0px;
+    height: 100%;
+}
+
+.visually-hidden{
+    text-align: center;
+}
+.post-attachment-section{
+    display:flex;
+    flex-direction: column;
+    padding:5px;
+    width: 100%;
+    align-items: start;
+}
+
+#description{
+    border:1px solid black;
+    font-size: 1em;
+    background-color: #f0f0f0;
+}
+
+#title{
+    border:1px solid black;
+    font-size: 1em;
+    background-color: #f0f0f0;
+}
+
+#authorship{
+    border:1px solid black;
+    font-size: 1em;
+    background-color: #f0f0f0;
+}
+#abstract{
+    border:1px solid black;
+    font-size: 1em;
+    background-color: #f0f0f0;
+}
+
+.file-group{
+    display: flex;
+    flex-direction: row;
+    justify-content:space-evenly;
+    width:100%;
+}
+
+.post-image-button{
+    font-size: 1.2em;
+    width: 100%;
+    text-decoration: none;
+    align-items: start;
+    text-align: start;
+}
+
+.post-fa{
+    font-size:1.3em;
+}
+
+.submit-comment{
+    display: flex;
+    justify-content: center;
+    padding: 5px;
+    min-height: 33px;
+    max-height: 50px;
+}
