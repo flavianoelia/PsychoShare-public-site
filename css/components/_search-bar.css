@@ -69,6 +69,27 @@
     background-color: var(--color-background-card);
     cursor: pointer;
 }
+.contact-photo {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #ddd;
+  margin: 0; 
+  display: block;
+}
+
+.action-button img.contact-photo {
+  padding: 0;
+  border: none;
+}
+
+.action-button {
+  padding: 0.2rem; 
+  border: none; 
+  background-color: transparent; 
+}
+
 
 @media (min-width: 1024px) {
     .search-bar {
