@@ -16,18 +16,21 @@
 
   
   <link rel="stylesheet" href="css/base/_global.css">
+  <link rel="stylesheet" href="css/pages/_wall.css">
   <link rel="stylesheet" href="css/components/_form.css">
+  <link rel="stylesheet" href="css/components/_button.css">
   <link rel="stylesheet" href="css/custom.css">
+  <link rel="stylesheet" href="css/components/_comment.css">
+  <link rel="stylesheet" href="css/pages/_post.css">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/pages/_contacts.css">
 </head>
 <body class="post-form">
 
-  <main class="modal-form">
+  <main class="modal-form post-modal-form">
     <a href="wall.html" class="close-button" aria-label="Cerrar"></a>
-    <h1 class="visually-hidden">Formulario para crear una publicación</h1>
+    <h1 class="visually-hidden">Crear una publicación</h1>
     <div class="modal-header">
-      <h2>Crear publicación</h2>
       <button aria-label="Cerrar" class="close-button">
         <i class="fas fa-times"></i>
       </button>
@@ -45,17 +48,17 @@
         <input type="text" id="authorship" aria-label="Autoría" placeholder="Autoría">
         <textarea id="abstract" aria-label="Resumen" placeholder="Resumen"></textarea>
 
-    <div class="attachment-section">
-        <div class="file-group">
-            <i class="fas fa-image"></i>
-            <input type="file" accept="image/*">
+        <div class="attachment-section post-attachment-section">
+            <div class="file-group btn">
+              <a href="" class="image-button post-image-button" aria-label="Añadir imagen"></i>Adjuntar</a>
+              <i class="fas fa-image post-fa"></i>
+            </div>
+            <div class="file-group btn">
+              <a href="" class="attach-button post-image-button" aria-label="Adjuntar archivo">Adjuntar</a>
+              <i class="fas fa-paperclip post-fa"></i>
+            </div>
         </div>
-        <div class="file-group">
-            <i class="fas fa-paperclip"></i>
-            <input type="file" accept=".pdf">
-        </div>
-    </div>
-        <button type="submit">Enviar</button>
+        <button class="btn submit-comment"><i class="fas fa-paper-plane"></i>Enviar</button>
       </form>
     </div>
   </main>
