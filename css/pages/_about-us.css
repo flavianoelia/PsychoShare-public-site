@@ -26,7 +26,8 @@
 .search-input-about-us{
     max-height: auto;
     padding: 0px;
-
+    margin: 5px;
+    border-radius: 1px solid black;
 }
 .about-us-logo {
     width: 120px;
@@ -62,3 +63,9 @@
     padding-top: 2rem;
     border-top: 1px solid var(--color-border);
 }
+
+/*@media (min-width: 1024px){
+    .about-us-form{
+        min-width: 500px;
+    }
+}*/
