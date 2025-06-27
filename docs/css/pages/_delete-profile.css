@@ -1,0 +1,52 @@
+.delete-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #fff9f7;
+  padding: 2rem;
+}
+
+
+.delete-card {
+  background: #fff;
+  padding: 3rem;
+  border-radius: 1rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  max-width: 400px;
+  width: 100%;
+  font-family: 'Sora', sans-serif;
+}
+
+
+.delete-card h1 {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  color: #b91c1c;
+}
+
+
+.delete-card .delete-text {
+  margin-bottom: 1.5rem;
+  font-size: 1rem;
+  color: #555;
+}
+
+
+.delete-card label {
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+
+.delete-card input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+  font-size: 1rem;
+}
+
+

@@ -1,0 +1,77 @@
+
+.menu-nav {
+
+    position: fixed;
+    top: 0;
+    left: -280px; 
+    width: 250px;
+    max-height: 100vh;
+    z-index: 10001;
+    background-color: var(--color-background-card);
+    box-shadow: 4px 0 15px rgba(0,0,0,0.1);
+    transition: left 0.3s ease-in-out;
+    padding-top: 1rem;
+    overflow-y: auto;
+}
+
+
+.menu-nav.active {
+    left: 0; 
+}
+
+.menu-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.nav-link, .logout-button {
+    display: block;
+    padding: 1rem 1.5rem;
+    color: var(--color-text-main);
+    text-decoration: none;
+    font-weight: 500;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.logout-button {
+    width: 100%;
+    text-align: left;
+    background: none;
+    border: none;
+    font-size: inherit;
+    cursor: pointer;
+    border-bottom: 1px solid var(--color-border);
+}
+@media (min-width: 1024px) {
+    .menu-toggle{
+        display: none;
+    }
+    .menu-nav {
+        grid-area: nav-area; 
+        position: static; 
+        
+        width: auto;
+        height: auto;
+        left: auto;
+        box-shadow: none;
+
+        border-right: 1px solid var(--color-border);
+        background-color: var(--color-background-main);
+        display: flex;
+        flex-direction: column;
+    }
+
+    .menu-nav ul {
+        flex-direction: column;
+        flex-grow: 1;
+        padding: 0;
+        margin: 0;
+    }
+    .nav-link:hover, .logout-button:hover {
+        background-color: var(--color-primary);
+        color: var(--color-text-light);
+    }
+}

@@ -1,0 +1,36 @@
+/* Contenedor principal para el contenido de la página */
+.about-us-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem;
+    background-color: var(--color-background-card);
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+}
+
+/* En el CSS de la página, le decimos al componente .logo-section cómo queremos que se vea AQUÍ */
+.about-us-container .logo-section {
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: 2rem;
+    margin-bottom: 2rem;
+}
+
+.about-us-text {
+    margin-bottom: 2rem;
+}
+.about-us-text h2 {
+    font-size: 1.6em;
+    font-weight: 600;
+    color: var(--color-primary);
+    margin-bottom: 1rem;
+}
+.about-us-text p {
+    line-height: 1.7;
+}
+
+.contact-us {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--color-border);
+}

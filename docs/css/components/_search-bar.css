@@ -1,0 +1,104 @@
+
+.search-bar {
+    grid-area: search-bar;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    background-color: var(--color-ui-background);
+    height: 55px;
+    padding: 0 1rem;
+}
+.search-bar-about-us{
+    max-width: 100%;
+}
+
+
+.search-form {
+    display: flex;
+    flex: 1;
+    min-width: 0; 
+}
+
+.search-input {
+
+    -webkit-appearance: none; 
+    appearance: none;         
+    flex-grow: 1;
+    width: 100%;
+    min-width: 0;
+    height: 38px;
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--color-border);
+    border-radius: 8px 0 0 8px;
+    background-color: var(--color-background-card);
+    border-right: none;
+    font-size: 0.9em;
+}
+
+.search-input:focus {
+    outline: none;
+    border-color: var(--color-primary);
+}
+
+
+.search-button {
+    height: 38px;
+    width: 45px;
+    border: 1px solid var(--color-border);
+    border-radius: 0 8px 8px 0;
+    background-color: var(--color-background-card);
+    cursor: pointer;
+    color: var(--color-text-subtle);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.search-button-about-us{
+    background-color: var(--color-ui-background)!important;
+}
+.action-buttons {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.action-button {
+    padding: 0.5rem;
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    background-color: var(--color-background-card);
+    cursor: pointer;
+}
+.contact-photo {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #ddd;
+  margin: 0; 
+  display: block;
+}
+
+.action-button img.contact-photo {
+  padding: 0;
+  border: none;
+}
+
+.action-button {
+  padding: 0.2rem; 
+  border: none; 
+  background-color: transparent; 
+}
+
+
+@media (min-width: 1024px) {
+    .search-bar {
+        position: static;
+        z-index: auto;
+    }
+}
+
+.action-button i {
+  font-size: 1.2rem;
+  color: var(--color-text-main);
+}

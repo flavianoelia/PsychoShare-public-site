@@ -1,0 +1,238 @@
+.btn,
+.btn-primary {
+  background-color: var(--color-ui-background) !important;
+  border-color: var(--color-ui-background) !important;
+  color: var(--color-text-light) !important;
+}
+
+
+.btn:hover,
+.btn-primary:hover,
+.btn:focus,
+.btn-primary:focus,
+.btn:active,
+.btn-primary:active,
+.btn.active,
+.btn-primary.active {
+  background-color: var(--color-accent) !important;
+  border-color: var(--color-accent) !important;
+  color: var(--color-text-light) !important;
+  box-shadow: none !important;
+}
+
+
+.btn {
+  text-align: center;
+  padding: 0.6rem 1.5rem;
+  border-radius: 8px;
+  font-weight: bold;
+  text-decoration: none;
+  display: inline-block;
+  margin-top: 1rem;
+}
+
+
+.btn.like-button,
+.btn.comment-button,
+.btn.pdf-button,
+.btn.submit-comment {
+  background-color: var(--color-primary);
+  color: var(--color-text-light);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+
+.btn.like-button:hover,
+.btn.comment-button:hover,
+.btn.pdf-button:hover,
+.btn.submit-comment:hover {
+  background-color: var(--color-secondary);
+}
+
+
+.delete-btn {
+  background-color: #8b735b;
+  color: white;
+  margin-right: 1rem;
+}
+
+
+.delete-btn:hover {
+  background-color: #7a634f;
+}
+
+
+.cancel-btn {
+  background-color: #b5a691;
+  color: white;
+}
+
+
+.cancel-btn:hover {
+  background-color: #a49581;
+}
+.delete-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+
+.search-button,
+.profile-button,
+.home-button {
+  background: none;
+  cursor: pointer;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 48px;
+  min-height: 48px;
+  border-radius: 50%;
+}
+
+
+.search-button i,
+.home-button i,
+.profile-button i {
+  font-size: 24px;
+  color: var(--color-text-main);
+}
+
+
+.action-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+
+.image-button,
+.attach-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.5em;
+  color: var(--color-text-subtle);
+}
+
+
+.image-button:hover,
+.attach-button:hover {
+  color: var(--color-primary);
+}
+
+
+.btn-edit {
+  font-size: 14px;
+  padding: 8px 16px;
+  background-color: #b58d93;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+
+.btn-edit:hover {
+  background-color: #b58d93;
+}
+
+
+.edit-button {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 0.85rem;
+  background-color: #b58d93;
+  color: white;
+  padding: 0.3rem 0.7rem;
+  border-radius: 6px;
+  cursor: pointer;
+  z-index: 1;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+
+
+
+.close-button {
+  position: absolute;
+  top: 1.2rem;
+  right: 1.2rem;
+  font-size: 1.4rem;
+  color: #888;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+
+.close-button:hover {
+  color: #000;
+}
+
+
+.link-login {
+  background: none;
+  border: none;
+  color: #0d6efd;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+
+.link-login:hover {
+  text-decoration: underline;
+  color: #0a58ca;
+}
+
+.btns {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.logout-confirm {
+  background-color: #b58d93;
+  color: #fff;
+}
+
+.logout-confirm:hover {
+  background-color: #b58d93;
+  transform: scale(1.05);
+}
+
+.logout-cancel {
+  background-color: #e0d5c9;
+  color: #333;
+}
+
+.logout-cancel:hover {
+  background-color: #cbbeb1;
+  transform: scale(1.05);
+}
+
+.logout-close {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  line-height: 1;
+  color: #555;
+  cursor: pointer;
+}
+
+.logout-close:hover {
+  color: #000;
+  transform: scale(1.2);
+}

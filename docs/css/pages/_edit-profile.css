@@ -1,0 +1,51 @@
+section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+section.delete-account,
+section.save-changes-section {
+  border-bottom: none;
+}
+
+.update-photo-profile i,
+.update-cover i {
+  font-size: 7rem;
+  color: #bbb;
+}
+
+.update-photo-profile,
+.update-cover {
+  position: relative;
+  width: 100%;
+  text-align: center;
+}
+
+.update-data label,
+.update-password label {
+  align-self: flex-start;
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.update-data input,
+.update-password input {
+  width: 100%;
+  padding: 0.6rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+  background-color: #fefefe;
+}
+
+p {
+  font-size: 1.3rem;
+  color: #222;
+  text-align: center;
+  margin: 0.5rem 0;
+}

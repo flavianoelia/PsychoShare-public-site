@@ -1,0 +1,31 @@
+
+.logo-header {
+    position: static;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1001;
+    display: flex;
+    align-items: center;
+    background-color: var(--color-primary);
+    color: var(--color-text-light);
+    height: 60px;
+    padding: 0 1rem;
+}
+.logo-header img {
+    height: 65%;
+    width: auto;
+    margin-right: 0.75rem;
+}
+.logo-header h1 {
+    font-size: 1.5em;
+    margin: 0;
+}
+
+@media (min-width: 1024px) {
+    .logo-header {
+        position: static;
+        z-index: auto;
+        border-bottom: 1px solid var(--color-border);
+    }
+}

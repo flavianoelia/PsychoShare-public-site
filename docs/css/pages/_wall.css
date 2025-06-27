@@ -1,0 +1,247 @@
+/* Specific styles for wall.html */
+.new-post-section {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px;
+    background-color: white;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.profile-photo {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: inline-block;
+    font-size: 32px;
+    line-height: 32px;
+    text-align: center;
+}
+
+.post-input {
+    flex: 1;
+    padding: 6px;
+    border-radius: 5px;
+    background-color: #f0f0f0;
+}
+
+.image-button,
+.attach-button {
+    background: none;
+    cursor: pointer;
+}
+
+.image-button img,
+.attach-button img {
+    width: 16px;
+    height: 16px;
+}
+
+article {
+    margin-bottom: 40px;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+    padding: 10px;
+    max-width: 600px;
+    margin: 0 auto;
+    border-bottom: 2px solid #e0e0e0;
+}
+
+.post {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+}
+
+.post img {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+}
+
+.post p {
+    font-weight: 500;
+    margin: 0;
+}
+
+
+.post-content {
+    margin-top: 8px;
+}
+
+.post-content h2 {
+    font-size: 1.25em;
+    margin-bottom: 8px;
+}
+
+.post-content p {
+    margin-bottom: 8px;
+}
+
+figure {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    position: relative;
+    min-height: 150;
+}
+
+.post-image {
+    width: 200px;
+    height: 150px;
+    font-size: 120px;
+    align-items: center;
+    display: block;
+    justify-content: center;
+    background-color: #e0e0e0;
+    border-radius: 5px;
+    position: relative;
+    overflow: hidden;
+    line-height: 1;
+}
+
+.post-image i {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: block;
+    font-size: 120px;
+    transition: none;
+}
+
+figcaption {
+    width: 100%;
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.comment-section {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid #e0e0e0;
+}
+
+.comment {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-bottom: 10px;
+    position: relative;
+    background-color: #f0f0f0;
+    padding: 8px;
+    border-radius: 5px;
+}
+
+.comment-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+    margin-left: 40px;
+}
+
+.comment .profile-photo {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    position: absolute;
+    left: 8px;
+    top: 8px;
+    font-size: 24px;
+    line-height: 24px;
+    text-align: center;
+}
+
+.comment-content {
+    margin-left: 40px;
+}
+
+.comment-header p {
+    font-weight: 500;
+    margin: 0;
+}
+
+.comment-content p {
+    margin: 4px 0 0 0;
+    font-weight: normal;
+}
+
+.view-more {
+    display: block;
+    margin: 8px 0;
+}
+
+.add-comment {
+    display: flex;
+    gap: 8px;
+    margin-top: 10px;
+    align-items: center;
+}
+
+.add-comment .profile-photo {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    font-size: 24px;
+    line-height: 24px;
+    text-align: center;
+}
+
+.comment-input {
+    flex: 1;
+    padding: 6px;
+    border-radius: 5px;
+    background-color: #f0f0f0;
+}
+
+.submit-comment {
+    padding: 6px 10px;
+    background-color: #b58d93;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.submit-comment:hover {
+    background-color: #8ea0bf;
+}
+
+
+@media (max-width: 560px) {
+    figure {
+        min-height: 112.5px;
+    }
+
+    .post-image {
+        width: 150px;
+        height: 112.5px;
+        position: relative;
+    }
+
+    .post-image i {
+        font-size: 90px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        display: block;
+    }
+}

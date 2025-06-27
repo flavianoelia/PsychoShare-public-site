@@ -1,0 +1,147 @@
+.card-form {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem; 
+  max-width: 800px; 
+  margin: auto;
+  padding: 4rem; 
+  background-color: var(--color-background-card);
+  border-radius: 12px;
+  border: 1px solid var(--color-border);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+}
+
+.card-form label {
+  font-size: 0.9em;
+  font-weight: 500;
+  margin-bottom: -0.5rem;
+}
+.card-form input[type="email"],
+.card-form input[type="password"] {
+  width: 100%; 
+  height: 48px;
+  font-size: 1.1rem;
+  padding: 0.75rem 1rem;
+  box-sizing: border-box;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.9em;
+  cursor: pointer;
+}
+
+.new-post-form {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  background-color: var(--color-background-card);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  margin: 0 auto 1.5rem;
+  max-width: 600px;
+}
+
+.new-post-form .post-input {
+  flex-grow: 1;
+  border: none;
+  background-color: transparent;
+  font-size: 1em;
+}
+
+.new-post-form .post-input:focus {
+  outline: none;
+}
+
+.add-comment-form {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  border-top: 1px solid var(--color-border);
+  padding-top: 1.5rem;
+}
+
+.add-comment-form .comment-input {
+  flex-grow: 1;
+  border: 1px solid var(--color-border);
+  background-color: var(--color-input-background);
+  padding: 0.75rem;
+  border-radius: 20px;
+  font-size: 0.9em;
+}
+
+.add-comment-form .comment-input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+}
+
+.form-edit-profile {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin: 2rem auto;
+  gap: 2rem;
+  padding: 2rem;
+  max-width: 500px;
+  width: 100%;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+.close-button {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  color: #000;
+  cursor: pointer;
+}
+
+body.post-form .modal-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem;
+  background: var(--color-background-card);
+  border-radius: 12px;
+  max-width: 600px;
+  margin: 2rem auto;
+}
+
+body.post-form .modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+body.post-form .user-info {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 0;
+}
+
+body.post-form .form-container form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+body.post-form .form-container input,
+body.post-form .form-container textarea {
+  padding: 0.75rem;
+  border: 1px solid var(--color-border);
+  border-radius: 5px;
+  background: var(--color-input-background, #fff);
+}
+
+body.post-form .attachment-section {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}

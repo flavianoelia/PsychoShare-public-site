@@ -1,0 +1,84 @@
+.contacts-list-container {
+  background-color: var(--color-background-card);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  padding: 1.5rem;
+  max-width: 800px; 
+    margin: 0 auto; 
+  }
+
+.contacts-count {
+  font-size: 1.2em;
+  font-weight: 600;
+  margin: 0 0 1.5rem 0; 
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.contacts-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.contact-card {
+  display: flex;
+  align-items: center;
+  padding: 1rem 0;
+}
+
+.contact-card:not(:last-child) {
+  border-bottom: 1px solid var(--color-border);
+}
+
+.contact-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #ddd;
+  margin-right: 1rem;/
+}
+
+.contact-avatar-placeholder {
+  width: 48px;
+  height: 48px;
+  background-color: var(--color-input-background);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-subtle);
+  font-size: 1.5em;
+  margin-right: 1rem;
+}
+
+.contact-name {
+  flex-grow: 1; 
+  font-weight: 500;
+}
+
+
+.contact-card .btn--danger {
+  background-color: transparent;
+  color: var(--color-accent);
+  border: 1px solid var(--color-accent);
+  padding: 0.5rem 1rem;
+  font-weight: 600;
+  border-radius: 8px;
+}
+
+.contact-card .btn--danger:hover {
+  background-color: var(--color-accent);
+  color: var(--color-text-light);
+}
+
+#logout-modal{
+  display: none;
+}
+
+@media (max-width: 1023px){
+  .app-layout main {
+    padding-top: 20px;
+  }
+}
