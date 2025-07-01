@@ -27,10 +27,10 @@
 </head>
 <body class="post-form">
 
+
+
   <main class="modal-form post-modal-form">
-    <a href="wall.html" class="close-button" aria-label="Cerrar">
-      <i class="fa-solid fa-xmark"></i>
-    </a>
+
     <h1 class="visually-hidden">Crear una publicación</h1>
     <div class="modal-header">
       <button aria-label="Cerrar" class="close-button">
@@ -44,6 +44,9 @@
     </div>
 
     <div class="form-container">
+    <a href="wall.html" class="close-button" aria-label="Cerrar">
+      <i class="fa-solid fa-xmark"></i>
+    </a>
       <form action="#" method="post" aria-label="Formulario de publicación">
         <textarea id="description" aria-label="Contenido de la publicación" placeholder="¿Sobre qué quieres hablar?"></textarea>
         <input type="text" id="title" aria-label="Título de la publicación" placeholder="Título">
@@ -60,7 +63,7 @@
               <i class="fas fa-paperclip post-fa"></i>
             </div>
         </div>
-        <button class="btn submit-comment"><i class="fas fa-paper-plane"></i>Enviar</button>
+            <a href="wall.html" class="btn submit-comment"><i class="fas fa-paper-plane"></i>Enviar</a>
       </form>
     </div>
   </main>
