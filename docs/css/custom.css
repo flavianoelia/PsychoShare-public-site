@@ -126,15 +126,15 @@
 }
 
 
-.btn.like-button,
-.btn.comment-button,
-.btn.pdf-button {
-    background-color: #b58d93 !important;
+.wall .btn.like-button,
+.wall .btn.comment-button,
+.wall .btn.pdf-button {
+    background-color: #b58d93 
 }
-.btn.like-button:hover,
-.btn.comment-button:hover,
-.btn.pdf-button:hover {
-    background-color: #8ea0bf !important;
+.wall .btn.like-button:hover,
+.wall .btn.comment-button:hover,
+.wall .btn.pdf-button:hover {
+    background-color: #8ea0bf
 }
 
 
@@ -159,7 +159,7 @@
     padding: 6px 12px;
 }
 
-.wall .view-more {
+.view-more {
     font-size: 0.85em;
     padding: 6px 10px;
     background-color: #b58d93;
@@ -169,7 +169,7 @@
     border: none;
 }
 
-.wall .view-more:hover {
+.view-more:hover {
     background-color: #8ea0bf;
 }
 
