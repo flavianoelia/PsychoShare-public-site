@@ -1,8 +1,10 @@
 .post-modal-form{
+    display: flex;
+    justify-content: center;
+    position: relative;
     margin:2,5rem auto;
 }
 .post-form{
-    max-width: 75%;
     min-width: 0px;
     height: 100%;
 }
