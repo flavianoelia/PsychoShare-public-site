@@ -97,10 +97,13 @@
 
 
 .add-comment {
-    display: flex;
-    gap: 8px;
-    margin-top: 10px;
-    align-items: center;
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+  align-items: center;
+  flex-wrap: nowrap;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .add-comment .profile-photo {
@@ -136,9 +139,6 @@
 .wall .btn.pdf-button:hover {
     background-color: #8ea0bf
 }
-
-
-
 
 .wall .like-button i,
 .wall .comment-button i,

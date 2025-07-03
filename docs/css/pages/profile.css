@@ -60,3 +60,13 @@
   text-align: center;
   font-size: 16px;
 }
+.profile .submit-comment {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 500;
+  font-size: 0.9em;
+  border: none;
+  padding: 6px 12px;
+  white-space: nowrap; 
+}
