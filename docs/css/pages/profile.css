@@ -70,3 +70,33 @@
   padding: 6px 12px;
   white-space: nowrap; 
 }
+
+@media (max-width: 480px) {
+  .profile .add-comment {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0 10px; 
+    gap: 6px;
+  }
+
+  .profile .comment-input {
+    flex: 1;
+    min-width: 0;
+    font-size: 0.9em;
+    padding: 6px;
+    box-sizing: border-box;
+  }
+
+  .profile .submit-comment {
+    flex-shrink: 0;
+    padding: 6px 8px;
+    font-size: 0.8em;
+    white-space: nowrap;
+    max-width: 100px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
