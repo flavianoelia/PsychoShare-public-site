@@ -77,6 +77,22 @@
   display: none;
 }
 
+.following-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  background: #fff;
+}
+.following-card img.contact-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+}
+
 @media (max-width: 1023px){
   .app-layout main {
     padding-top: 20px;
