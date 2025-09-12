@@ -2,7 +2,7 @@ class FollowingRepresentation {
     constructor(usuario) {
         this.imgUser = usuario.imgUser;
         this.nameUser = usuario.nameUser;
-        this.profession = usuario.profession;
+    // ...existing code...
         this.isFollowing = usuario.isFollowing;
     }
 
@@ -14,7 +14,7 @@ class FollowingRepresentation {
                 <img src="${this.imgUser}" alt="User photo" class="contact-avatar">
                 <div class="user-info">
                     <p class="name">${this.nameUser}</p>
-                    <p class="profession">${this.profession}</p>
+                    <!-- Profession removed -->
                 </div>
             </section>
             <section class="following-content">
@@ -32,19 +32,19 @@ const followedUsers = [
     {
         imgUser: "assets/imgwebp/veronicacontacts.webp",
         nameUser: "Verónica Ramirez",
-        profession: "Clinical Psychologist",
+    // ...existing code...
         isFollowing: true
     },
     {
         imgUser: "assets/imgwebp/danielcontacts.webp",
         nameUser: "Daniel Llanes",
-        profession: "Work Psychologist",
+    // ...existing code...
         isFollowing: false
     },
     {
         imgUser: "assets/imgwebp/constanzacontacts.webp",
         nameUser: "Constanza Rodriguez",
-        profession: "Educational Psychologist",
+    // ...existing code...
         isFollowing: true
     }
 ];

@@ -3,19 +3,19 @@ const followings = [
     {
         imgUser: "assets/imgwebp/veronicacontacts.webp",
         nameUser: "Verónica Ramirez",
-        profession: "Clinical Psychologist",
+    // ...existing code...
         isFollowing: true
     },
     {
         imgUser: "assets/imgwebp/danielcontacts.webp",
         nameUser: "Daniel Llanes",
-        profession: "Work Psychologist",
+    // ...existing code...
         isFollowing: false
     },
     {
         imgUser: "assets/imgwebp/constanzacontacts.webp",
         nameUser: "Constanza Rodriguez",
-        profession: "Educational Psychologist",
+    // ...existing code...
         isFollowing: true
     }
 ];
