@@ -42,8 +42,37 @@ class Post {
                     </figcaption>
                 </figure>
             </section>
-        `;
 
+            <section class="comment-section">
+            <article class="comment">
+                <div class="comment-header">
+                    <img src="assets/imgwebp/aloecontacts.webp" alt="Foto de contacto" class="contact-avatar">
+                    <p>Aloe Bordone</p>
+                </div>
+                <div class="comment-content">
+                    <p>¿Qué enfoque terapéutico les parece más interesante: cognitivo-conductual, psicodinámico…? Este libro los explora todos con claridad.</p>
+                </div>
+            </article>
+            <article class="comment">
+                <div class="comment-header">
+                    <img src="assets/imgwebp/danielcontacts.webp" alt="Foto de contacto" class="contact-avatar">
+                    <p>Daniel Llanes</p>
+                </div>
+                <div class="comment-content">
+                    <p>Leerlo me recordó por qué la salud mental es tan importante y tan compleja a la vez.</p>
+                </div>
+            </article>
+            <button class="btn view-more">Ver más</button>
+            <div class="add-comment">
+               <img src="assets/imgwebp/flavia.webp" alt="Foto de contacto" class="contact-avatar">
+                <input type="text" class="comment-input" placeholder="Escribe un comentario">
+                <button class="btn submit-comment"><i class="fas fa-paper-plane"></i>Enviar</button>
+            </div>
+        </section>
+
+        `;
+    
+    /*
         const commentSection = document.createElement("section");
         commentSection.className = "comment-section";
 
@@ -70,7 +99,9 @@ class Post {
         commentSection.appendChild(addComment);
 
         post.appendChild(commentSection);
-        
+        */
+
         return post;
     }
 }
+
