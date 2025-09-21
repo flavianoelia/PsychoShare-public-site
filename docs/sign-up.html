@@ -37,7 +37,10 @@
             <h2>Crear una nueva cuenta</h2>
            
             <form id="register-form" class= "card-form" novalidate>
-                <input type="text" class="form-control mb-3" id="nombre" name="nombre" placeholder="Nombre y apellido" aria-label="Nombre y apellido" required>
+                <small id="nameError" class="error-message">Nombre inválido</small>
+                <input type="text" class="form-control mb-3" id="name" name="nombre" placeholder="Nombre" aria-label="Nombre" required>
+                <small id="lastnameError" class="error-message">Apellido inválido</small>
+                <input type="text" class="form-control mb-3" id="lastname" name="apellido" placeholder="Apellido" aria-label="Apellido" required>
                 <input type="email" class="form-control mb-3" id="mail" name="mail" placeholder="Correo electrónico" aria-label="Correo electrónico" required>
                 <input type="password" class="form-control mb-3" id="password" name="password" placeholder="Contraseña" aria-label="Contraseña" required>
                 <input type="password" class="form-control mb-3" id="repetir-contraseña" name="repetir-contraseña" placeholder="Repetir contraseña" aria-label="Repetir contraseña" required>
