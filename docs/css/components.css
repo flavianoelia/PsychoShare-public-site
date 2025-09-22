@@ -381,7 +381,7 @@ article {
 .card-form {
   display: flex;
   flex-direction: column;
-  gap: 3rem; 
+  gap: 2rem; 
   max-width: 800px; 
   margin: auto;
   padding: 4rem; 

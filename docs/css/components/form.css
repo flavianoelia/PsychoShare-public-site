@@ -1,7 +1,7 @@
 .card-form {
   display: flex;
   flex-direction: column;
-  gap: 3rem; 
+  gap: 1rem; 
   max-width: 800px; 
   margin: auto;
   padding: 4rem; 
@@ -144,4 +144,13 @@ body.post-form .attachment-section {
   display: flex;
   align-items: center;
   gap: 1rem;
+}
+
+input.is-invalid {
+  border: 2px solid red;
+}
+
+.error-message{
+  display:none; 
+  color:red;
 }
