@@ -66,3 +66,23 @@ function validatePassword() {
     }
 }
 passwordInput.addEventListener("blur", validatePassword);
+
+const confirmPasswordInput = document.getElementById("confirmPassword");
+
+/* Validation of confirm password */
+function validateConfirmPassword() {
+    let passwordTrimed = passwordInput.value.trim();
+    let confirmPasswordTrimed = confirmPasswordInput.value.trim();
+
+    if (passwordTrimed !== confirmPasswordTrimed || confirmPasswordTrimed === "") {
+        confirmPasswordInput.classList.add("is-invalid");
+        confirmPasswordError.style.display = "block";
+        return false;
+    } else {
+        confirmPasswordInput.classList.remove("is-invalid");
+        confirmPasswordError.style.display = "none";
+        return true;
+    }
+}
+confirmPasswordInput.addEventListener("blur", validateConfirmPassword);
+
