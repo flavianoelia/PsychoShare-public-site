@@ -86,3 +86,28 @@ function validateConfirmPassword() {
 }
 confirmPasswordInput.addEventListener("blur", validateConfirmPassword);
 
+
+function isValid(validateName, validateLastname, validateEmail, validatePassword, validateConfirmPassword){
+    if (validateName() && validateLastname() && validateEmail() &&validatePassword() && validateConfirmPassword()){
+        return true
+    }
+}
+
+function createUser(){
+    alert("usuario creado")
+}
+
+function registerUser(){
+    if (isValid){
+        server('https://localhost:8080/register', {
+            method: 'POST',
+            body: JSON.stringify({
+                name: nameInput.value,
+                lastname: lastnameInput.value,
+                email: emailInput.value,
+                password: passwordInput.value
+            })
+        }, createUser());
+    }
+}
+        
