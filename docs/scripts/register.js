@@ -86,11 +86,14 @@ function validateConfirmPassword() {
 }
 confirmPasswordInput.addEventListener("blur", validateConfirmPassword);
 
+function checkEmailExists(email, callback) {
+    server(`https://localhost:8080/check-email?email=${encodeURIComponent(email)}`, { method: 'GET' }, function(response) {
+        callback(response.exists);
+    });
+}
 
 function isValid(validateName, validateLastname, validateEmail, validatePassword, validateConfirmPassword){
-    if (validateName() && validateLastname() && validateEmail() &&validatePassword() && validateConfirmPassword()){
-        return true
-    }
+    return (validateName() && validateLastname() && validateEmail() &&validatePassword() && validateConfirmPassword())
 }
 
 function createUser(){
@@ -98,16 +101,27 @@ function createUser(){
 }
 
 function registerUser(){
-    if (isValid){
-        server('https://localhost:8080/register', {
-            method: 'POST',
-            body: JSON.stringify({
-                name: nameInput.value,
-                lastname: lastnameInput.value,
-                email: emailInput.value,
-                password: passwordInput.value
-            })
-        }, createUser());
+    if (isValid(validateName, validateLastname, validateEmail, validatePassword, validateConfirmPassword)) {
+        const email = emailInput.value;
+        checkEmailExists(email, function(exists) {
+            if (exists) {
+                emailInput.classList.add("is-invalid");
+                emailError.textContent = "El mail ya existe";
+                emailError.style.display = "block";
+            } else {
+                emailInput.classList.remove("is-invalid");
+                emailError.style.display = "none";
+
+                server('https://localhost:8080/register', {
+                    method: 'POST',
+                    body: JSON.stringify({
+                        name: nameInput.value,
+                        lastname: lastnameInput.value,
+                        email: email,
+                        password: passwordInput.value
+                    })
+                }, createUser);
+            }
+        });
     }
 }
-        
