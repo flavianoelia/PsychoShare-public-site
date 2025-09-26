@@ -103,14 +103,6 @@ function availableEmailAsync() {
     });
 }
 
-emailInput.addEventListener("blur", availableEmail);
-
-function checkEmailExists(email, callback) {
-    server(`https://localhost:8080/check-email?email=${encodeURIComponent(email)}`, { method: 'GET' }, function(response) {
-        callback(response.exists);
-    });
-}
-
 async function validateEmailBeforeCreating() {
     const canCreate = await availableEmailAsync();
     if (canCreate) {
@@ -118,6 +110,14 @@ async function validateEmailBeforeCreating() {
     } else {
     return false;
     }
+}
+
+emailInput.addEventListener("blur", validateEmailBeforeCreating);
+
+function checkEmailExists(email, callback) {
+    server(`https://localhost:8080/check-email?email=${encodeURIComponent(email)}`, { method: 'GET' }, function(response) {
+        callback(response.exists);
+    });
 }
 
 async function validatedFormForRegister(){
