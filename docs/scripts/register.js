@@ -86,22 +86,8 @@ function validateConfirmPassword() {
 }
 confirmPasswordInput.addEventListener("blur", validateConfirmPassword);
 
-function checkEmailExists(email, callback) {
-    server(`https://localhost:8080/check-email?email=${encodeURIComponent(email)}`, { method: 'GET' }, function(response) {
-        callback(response.exists);
-    });
-}
-
-function isValid(validateName, validateLastname, validateEmail, validatePassword, validateConfirmPassword){
-    return (validateName() && validateLastname() && validateEmail() &&validatePassword() && validateConfirmPassword())
-}
-
-function createUser(){
-    alert("usuario creado")
-}
-
-function registerUser(){
-    if (isValid(validateName, validateLastname, validateEmail, validatePassword, validateConfirmPassword)) {
+function availableEmailAsync() {
+    return new Promise((resolve) => {
         const email = emailInput.value;
         checkEmailExists(email, function(exists) {
             if (exists) {
@@ -111,17 +97,64 @@ function registerUser(){
             } else {
                 emailInput.classList.remove("is-invalid");
                 emailError.style.display = "none";
-
-                server('https://localhost:8080/register', {
-                    method: 'POST',
-                    body: JSON.stringify({
-                        name: nameInput.value,
-                        lastname: lastnameInput.value,
-                        email: email,
-                        password: passwordInput.value
-                    })
-                }, createUser);
             }
+            resolve(!exists);
         });
+    });
+}
+
+emailInput.addEventListener("blur", availableEmail);
+
+function checkEmailExists(email, callback) {
+    server(`https://localhost:8080/check-email?email=${encodeURIComponent(email)}`, { method: 'GET' }, function(response) {
+        callback(response.exists);
+    });
+}
+
+async function validateEmailBeforeCreating() {
+    const canCreate = await availableEmailAsync();
+    if (canCreate) {
+        return true;
+    } else {
+    return false;
     }
 }
+
+async function validatedFormForRegister(){
+    const validateNameResult = validateName();
+    const validateLastnameResult = validateLastname();
+    const validateEmailResult = validateEmail();
+    const validatePasswordResult = validatePassword();
+    const validateConfirmPasswordResult = validateConfirmPassword();
+    const availableEmailResult = await validateEmailBeforeCreating();
+
+    const esValido =
+    validateNameResult &&
+    validateLastnameResult &&
+    validateEmailResult &&
+    validatePasswordResult &&
+    validateConfirmPasswordResult &&
+    availableEmailResult;
+
+    return esValido;
+}
+
+const registerOk = await validatedFormForRegister();
+
+function createUser(){
+    alert("usuario creado")
+}
+
+function registerUser(){
+    if (registerOk) {
+        server('https://localhost:8080/register', {
+            method: 'POST',
+            body: JSON.stringify({
+                name: nameInput.value,
+                lastname: lastnameInput.value,
+                email: email,
+                password: passwordInput.value
+            })
+        }, createUser);
+    }
+};
