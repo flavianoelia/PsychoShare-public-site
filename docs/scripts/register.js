@@ -2,6 +2,7 @@ const nameInput = document.getElementById("name");
 const lastnameInput = document.getElementById("lastname");
 const emailInput = document.getElementById("mail");
 const passwordInput = document.getElementById("password");
+const registerButton = document.getElementById("registerButton");
 
 const nameRegex = /^[A-Za-zÁÉÍÓÚáéíóúñÑ\s]{2,30}$/;
 const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
@@ -130,6 +131,14 @@ function createUser(){
     alert("usuario creado")
 }
 
+async function validatedFormForRegister(){
+    const validateNameResult = validateName(); 
+    const validateLastnameResult = validateLastname(); 
+    const validateEmailResult = await validateEmailFull(); 
+    const validatePasswordResult = validatePassword(); 
+    const validateConfirmPasswordResult = validateConfirmPassword()
+}
+
 async function registerUser(){
     const esValido = await validatedFormForRegister();
     if (esValido){
@@ -138,7 +147,7 @@ async function registerUser(){
             body: JSON.stringify({
                 name: nameInput.value,
                 lastname: lastnameInput.value,
-                email: email,
+                email: emailInput.value,
                 password: passwordInput.value
             })
         }, createUser);
