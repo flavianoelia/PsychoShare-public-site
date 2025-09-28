@@ -127,8 +127,10 @@ function validateConfirmPassword() {
 }
 confirmPasswordInput.addEventListener("blur", validateConfirmPassword);
 
-function createUser(){
-    alert("usuario creado")
+function handleRegisterResponse(response) {
+    if (response.success) {
+        window.location.href = `/Wall.html?email=${encodeURIComponent(emailInput.value)}`;
+    }
 }
 
 async function validatedFormForRegister(){
@@ -139,17 +141,21 @@ async function validatedFormForRegister(){
     const validateConfirmPasswordResult = validateConfirmPassword()
 }
 
-async function registerUser(){
+registerButton.addEventListener("click", async (e) => {
+    e.preventDefault();
+
     const esValido = await validatedFormForRegister();
-    if (esValido){
+
+    if (esValido) {
+        const userData = {
+            name: nameInput.value,
+            lastname: lastnameInput.value,
+            email: emailInput.value,
+            password: passwordInput.value
+        };
         server('https://localhost:8080/register', {
             method: 'POST',
-            body: JSON.stringify({
-                name: nameInput.value,
-                lastname: lastnameInput.value,
-                email: emailInput.value,
-                password: passwordInput.value
-            })
-        }, createUser);
+            body: JSON.stringify(userData)
+        }, handleRegisterResponse);
     }
-};
+});
