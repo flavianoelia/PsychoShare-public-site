@@ -2,6 +2,7 @@ const nameInput = document.getElementById("name");
 const lastnameInput = document.getElementById("lastname");
 const emailInput = document.getElementById("mail");
 const passwordInput = document.getElementById("password");
+const registerButton = document.getElementById("registerButton");
 
 const nameRegex = /^[A-Za-zÁÉÍÓÚáéíóúñÑ\s]{2,30}$/;
 const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
@@ -50,7 +51,47 @@ function validateEmail() {
         return true;
     }
 }
-emailInput.addEventListener("blur", validateEmail);
+
+function availableEmailAsync() {
+    return new Promise((resolve) => {
+        const email = emailInput.value;
+        checkEmailExists(email, function(exists) {
+            if (exists) {
+                emailInput.classList.add("is-invalid");
+                emailError.textContent = "El mail ya existe";
+                emailError.style.display = "block";
+            } else {
+                emailInput.classList.remove("is-invalid");
+                emailError.style.display = "none";
+            }
+            resolve(!exists);
+        });
+    });
+}
+
+async function validateEmailBeforeCreating() {
+    const canCreate = await availableEmailAsync();
+    if (canCreate) {
+        return true;
+    } else {
+    return false;
+    }
+}
+
+function checkEmailExists(email, callback) {
+    server(`https://localhost:8080/check-email?email=${encodeURIComponent(email)}`, { method: 'GET' }, function(response) {
+        callback(response.exists);
+    });
+}
+
+async function validateEmailFull() {
+    const formatoValido = validateEmail();
+    if (!formatoValido) return false;
+    const disponible = await validateEmailBeforeCreating();
+    return disponible;
+}
+
+emailInput.addEventListener("blur", () => { validateEmailFull(); });
 
 /* Validation of the password format */
 function validatePassword() {
@@ -86,42 +127,29 @@ function validateConfirmPassword() {
 }
 confirmPasswordInput.addEventListener("blur", validateConfirmPassword);
 
-function checkEmailExists(email, callback) {
-    server(`https://localhost:8080/check-email?email=${encodeURIComponent(email)}`, { method: 'GET' }, function(response) {
-        callback(response.exists);
-    });
-}
-
-function isValid(validateName, validateLastname, validateEmail, validatePassword, validateConfirmPassword){
-    return (validateName() && validateLastname() && validateEmail() &&validatePassword() && validateConfirmPassword())
-}
-
 function createUser(){
     alert("usuario creado")
 }
 
-function registerUser(){
-    if (isValid(validateName, validateLastname, validateEmail, validatePassword, validateConfirmPassword)) {
-        const email = emailInput.value;
-        checkEmailExists(email, function(exists) {
-            if (exists) {
-                emailInput.classList.add("is-invalid");
-                emailError.textContent = "El mail ya existe";
-                emailError.style.display = "block";
-            } else {
-                emailInput.classList.remove("is-invalid");
-                emailError.style.display = "none";
-
-                server('https://localhost:8080/register', {
-                    method: 'POST',
-                    body: JSON.stringify({
-                        name: nameInput.value,
-                        lastname: lastnameInput.value,
-                        email: email,
-                        password: passwordInput.value
-                    })
-                }, createUser);
-            }
-        });
-    }
+async function validatedFormForRegister(){
+    const validateNameResult = validateName(); 
+    const validateLastnameResult = validateLastname(); 
+    const validateEmailResult = await validateEmailFull(); 
+    const validatePasswordResult = validatePassword(); 
+    const validateConfirmPasswordResult = validateConfirmPassword()
 }
+
+async function registerUser(){
+    const esValido = await validatedFormForRegister();
+    if (esValido){
+        server('https://localhost:8080/register', {
+            method: 'POST',
+            body: JSON.stringify({
+                name: nameInput.value,
+                lastname: lastnameInput.value,
+                email: emailInput.value,
+                password: passwordInput.value
+            })
+        }, createUser);
+    }
+};
