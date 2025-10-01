@@ -52,46 +52,41 @@ function validateEmail() {
     }
 }
 
-function availableEmailAsync() {
-    return new Promise((resolve) => {
-        const email = emailInput.value;
-        checkEmailExists(email, function(exists) {
-            if (exists) {
-                emailInput.classList.add("is-invalid");
-                emailError.textContent = "El mail ya existe";
-                emailError.style.display = "block";
-            } else {
-                emailInput.classList.remove("is-invalid");
-                emailError.style.display = "none";
-            }
-            resolve(!exists);
-        });
-    });
-}
-
-async function validateEmailBeforeCreating() {
-    const canCreate = await availableEmailAsync();
-    if (canCreate) {
-        return true;
-    } else {
-    return false;
-    }
-}
-
+//Validar existencia en la base de dato
 function checkEmailExists(email, callback) {
-    server(`https://localhost:8080/check-email?email=${encodeURIComponent(email)}`, { method: 'GET' }, function(response) {
-        callback(response.exists);
+    const url = `http://localhost:5174/User/check-email?email=${encodeURIComponent(email)}`;
+    const config = {
+        method: 'GET'
+    };
+    debugger
+    server(url, config, function(data) {
+        debugger
+        callback(data.exists);
     });
 }
 
-async function validateEmailFull() {
-    const formatoValido = validateEmail();
-    if (!formatoValido) return false;
-    const disponible = await validateEmailBeforeCreating();
-    return disponible;
+//Integrar ambas validacione
+function validateAndCheckEmail() {
+    debugger
+    if (!validateEmail()) return;
+
+    const emailTrimed = emailInput.value.trim();
+
+    checkEmailExists(emailTrimed, function(exists) {
+        debugger
+        if (exists) {
+            emailInput.classList.add("is-invalid");
+            emailError.textContent = "Error en email"
+            emailError.style.display = "block";
+        } else {
+            emailInput.classList.remove("is-invalid");
+            emailError.style.display = "none";
+        }
+    });
 }
 
-emailInput.addEventListener("blur", () => { validateEmailFull(); });
+emailInput.addEventListener("blur", validateAndCheckEmail);
+
 
 /* Validation of the password format */
 function validatePassword() {
@@ -127,22 +122,23 @@ function validateConfirmPassword() {
 }
 confirmPasswordInput.addEventListener("blur", validateConfirmPassword);
 
+
+function validated(){
+    const validateName = validateName(); 
+    const validateLastname = validateLastname(); 
+    const validatePassword = validatePassword(); 
+    const validateConfirmPassword = validateConfirmPassword();
+    const validateAndCheckEmail = validateAndCheckEmail();
+}
+
 function createUser(){
     alert("usuario creado")
 }
 
-async function validatedFormForRegister(){
-    const validateNameResult = validateName(); 
-    const validateLastnameResult = validateLastname(); 
-    const validateEmailResult = await validateEmailFull(); 
-    const validatePasswordResult = validatePassword(); 
-    const validateConfirmPasswordResult = validateConfirmPassword()
-}
-
-async function registerUser(){
-    const esValido = await validatedFormForRegister();
+function registerUser(){
+    const esValido = validated();
     if (esValido){
-        server('https://localhost:8080/register', {
+        server('https://localhost:5174/', {
             method: 'POST',
             body: JSON.stringify({
                 name: nameInput.value,
