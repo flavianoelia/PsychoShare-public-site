@@ -78,9 +78,13 @@ function validateAndCheckEmail() {
             emailInput.classList.add("is-invalid");
             emailError.textContent = "Error en email"
             emailError.style.display = "block";
+            callback(false);
+
         } else {
             emailInput.classList.remove("is-invalid");
             emailError.style.display = "none";
+            callback(true);
+
         }
     });
 }
@@ -121,21 +125,27 @@ function validateConfirmPassword() {
 }
 confirmPasswordInput.addEventListener("blur", validateConfirmPassword);
 
-function validated(){
+function validated(callback){
     const validateName = validateName(); 
     const validateLastname = validateLastname(); 
     const validatePassword = validatePassword(); 
     const validateConfirmPassword = validateConfirmPassword();
-    const validateAndCheckEmail = validateAndCheckEmail();
+    //const validateAndCheckEmail = validateAndCheckEmail();
+    if (!nameIsValid || !lastnameIsValid || !passwordIsValid || !confirmPasswordIsValid || !emailFormatIsValid) {
+        callback(false);
+        return;
+    }
 }
 
-function createUser(){
-    alert("usuario creado")
+function createUser(response){
+    if (response.success) {
+        window.location.href = `/Wall.html?email=${encodeURIComponent(emailInput.value)}`;
+    }
 }
 
 function registerUser(){
-    const esValido = validated();
-    if (esValido){
+    validated(function(esValido){
+        if (!esValido)return;
         server('https://localhost:5174/', {
             method: 'POST',
             body: JSON.stringify({
@@ -145,14 +155,6 @@ function registerUser(){
                 password: passwordInput.value
             })
         }, createUser);
-    }
-};
-
-/*
-para agergar en success para que me lleve al wall
-function handleRegisterResponse(response) {
-    if (response.success) {
-        window.location.href = `/Wall.html?email=${encodeURIComponent(emailInput.value)}`;
-    }
+    })
 }
-    */
+registerButton.addEventListener("click", registerUser);
