@@ -87,7 +87,6 @@ function validateAndCheckEmail() {
 
 emailInput.addEventListener("blur", validateAndCheckEmail);
 
-
 /* Validation of the password format */
 function validatePassword() {
     let passwordTrimed = passwordInput.value.trim();
@@ -122,7 +121,6 @@ function validateConfirmPassword() {
 }
 confirmPasswordInput.addEventListener("blur", validateConfirmPassword);
 
-
 function validated(){
     const validateName = validateName(); 
     const validateLastname = validateLastname(); 
@@ -149,3 +147,12 @@ function registerUser(){
         }, createUser);
     }
 };
+
+/*
+para agergar en success para que me lleve al wall
+function handleRegisterResponse(response) {
+    if (response.success) {
+        window.location.href = `/Wall.html?email=${encodeURIComponent(emailInput.value)}`;
+    }
+}
+    */
