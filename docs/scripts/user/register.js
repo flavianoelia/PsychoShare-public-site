@@ -39,7 +39,7 @@ function validateLastname() {
 lastnameInput.addEventListener("blur", validateLastname);
 
 /* Validation of the email format */
-function validateEmail() {
+function validateEmaiFormat() {
     let emailTrimed = emailInput.value.trim();
     if (!emailRegex.test(emailTrimed)) {
         emailInput.classList.add("is-invalid");
@@ -51,45 +51,39 @@ function validateEmail() {
         return true;
     }
 }
-
+/*
 //Validar existencia en la base de dato
 function checkEmailExists(email, callback) {
     const url = `http://localhost:5174/User/check-email?email=${encodeURIComponent(email)}`;
     const config = {
         method: 'GET'
     };
-    debugger
     server(url, config, function(data) {
-        debugger
         callback(data.exists);
     });
 }
 
 //Integrar ambas validacione
 function validateAndCheckEmail() {
-    debugger
     if (!validateEmail()) return;
-
     const emailTrimed = emailInput.value.trim();
-
     checkEmailExists(emailTrimed, function(exists) {
-        debugger
         if (exists) {
             emailInput.classList.add("is-invalid");
             emailError.textContent = "Error en email"
             emailError.style.display = "block";
-            callback(false);
-
         } else {
             emailInput.classList.remove("is-invalid");
             emailError.style.display = "none";
-            callback(true);
-
         }
     });
 }
-
+const prueba = checkEmailExists(emailInput.value, function(exists){
+    return exists;
+});
+console.log(prueba);
 emailInput.addEventListener("blur", validateAndCheckEmail);
+*/
 
 /* Validation of the password format */
 function validatePassword() {
@@ -125,7 +119,7 @@ function validateConfirmPassword() {
 }
 confirmPasswordInput.addEventListener("blur", validateConfirmPassword);
 
-function validated(callback){
+/*function validated(callback){
     const validateName = validateName(); 
     const validateLastname = validateLastname(); 
     const validatePassword = validatePassword(); 
@@ -157,4 +151,68 @@ function registerUser(){
         }, createUser);
     })
 }
+registerButton.addEventListener("click", registerUser);
+*/
+
+
+async function emailExists(email) {
+    const url = `http://localhost:5174/User/check-email?email=${encodeURIComponent(email)}`;
+    const config = { method: 'GET' };
+    const response = await server(url, config);
+    return response.exists;
+}
+
+async function validateEmail() {
+    const email = emailInput.value.trim();
+
+    if (!validateEmailFormat(email)) {
+        return false;
+    }
+
+    const exists = await emailExists(email);
+    if (exists) {
+        emailInput.classList.add("is-invalid");
+        emailError.textContent = "Error en email"
+        emailError.style.display = "block";
+        return false;
+    } else{
+        emailInput.classList.remove("is-invalid");
+        emailError.style.display = "none";
+        return true;
+        }
+}
+
+function validateAllFields() {
+    const nameIsValid = validateName();
+    const lastnameIsValid = validateLastname();
+    const passwordIsValid = validatePassword();
+    const confirmPasswordIsValid = validateConfirmPassword();
+
+    return nameIsValid && lastnameIsValid && passwordIsValid && confirmPasswordIsValid;
+}
+
+async function registerUser() {
+    const emailIsValid = await validateEmail();
+    const otherFieldsAreValid = validateAllFields();
+
+    if (!emailIsValid || !otherFieldsAreValid) return;
+
+    const userData = {
+        name: nameInput.value.trim(),
+        lastname: lastnameInput.value.trim(),
+        email: emailInput.value.trim(),
+        password: passwordInput.value
+    };
+
+    const response = await server('http://localhost:5174/User/register', {
+        method: 'POST',
+        body: JSON.stringify(userData)
+    });
+
+    if (response.success) {
+        window.location.href = `/Wall.html?email=${encodeURIComponent(userData.email)}`;
+    }
+}
+
+emailInput.addEventListener("blur", validateEmail);
 registerButton.addEventListener("click", registerUser);
