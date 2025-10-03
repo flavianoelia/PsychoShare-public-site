@@ -6,29 +6,29 @@ const registerButton = document.getElementById("registerButton");
 
 /* Validation of the name format */
 nameInput.addEventListener("blur", () => {
-    let nameTrimed = nameInput.value.trim();
-    if (!nameRegex.test(nameTrimed)) {
+    const nameTrimed = nameInput.value.trim();
+    
+    nameInput.classList.remove("is-invalid");
+    nameError.style.display = "none";
+    
+    if (!validateName(nameTrimed)) {
         nameInput.classList.add("is-invalid");
         nameError.style.display = "block";
-        return false;
-    } else {
-        nameInput.classList.remove("is-invalid");
-        nameError.style.display = "none";
-        return true;
+        return;
     }
 });
 
 /* Validation of the lastname format */
 lastnameInput.addEventListener("blur", () => {
-    let lastnameTrimed = lastnameInput.value.trim();
-    if (!nameRegex.test(lastnameTrimed)) {
+    const lastnameTrimed = lastnameInput.value.trim();
+    
+    lastnameInput.classList.remove("is-invalid");
+    lastnameError.style.display = "none";
+    
+    if (!validateLastName(lastnameTrimed)) {
         lastnameInput.classList.add("is-invalid");
         lastnameError.style.display = "block";
-        return false;
-    } else {
-        lastnameInput.classList.remove("is-invalid");
-        lastnameError.style.display = "none";
-        return true;
+        return;
     }
 });
 
@@ -55,39 +55,33 @@ emailInput.addEventListener("blur", () => {
     });
 });
 
-/* Validation of the password format */
-function validatePassword() {
-    let passwordTrimed = passwordInput.value.trim();
-    if (!passwordRegex.test(passwordTrimed)) {
+
+passwordInput.addEventListener("blur",() => {
+    const validatePasswordTrimed = passwordInput.value.trim();
+    
+    passwordInput.classList.remove("is-invalid");
+    passwordError.style.display = "none";
+    
+    if (!validatePassword(validatePasswordTrimed)) {
         passwordInput.classList.add("is-invalid");
         passwordError.style.display = "block";
-        return false;
-    } else {
-        passwordInput.classList.remove("is-invalid");
-        passwordError.style.display = "none";
-        return true;
+        return;
     }
-}
-passwordInput.addEventListener("blur", validatePassword);
+});
 
-const confirmPasswordInput = document.getElementById("confirmPassword");
+confirmPasswordInput.addEventListener("blur", () => {
+    const passwordTrimed = passwordInput.value.trim();
+    const confirmPasswordTrimed = confirmPasswordInput.value.trim();
 
-/* Validation of confirm password */
-function validateConfirmPassword() {
-    let passwordTrimed = passwordInput.value.trim();
-    let confirmPasswordTrimed = confirmPasswordInput.value.trim();
+    confirmPasswordInput.classList.remove("is-invalid");
+    confirmPasswordError.style.display = "none";
 
-    if (passwordTrimed !== confirmPasswordTrimed || confirmPasswordTrimed === "") {
+    if (!validateConfirmPassword(passwordTrimed, confirmPasswordTrimed)) {
         confirmPasswordInput.classList.add("is-invalid");
         confirmPasswordError.style.display = "block";
-        return false;
-    } else {
-        confirmPasswordInput.classList.remove("is-invalid");
-        confirmPasswordError.style.display = "none";
-        return true;
+        return;
     }
-}
-confirmPasswordInput.addEventListener("blur", validateConfirmPassword);
+});
 
 function validated() {
     const validateName = validateName(); 
