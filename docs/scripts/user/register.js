@@ -4,12 +4,8 @@ const emailInput = document.getElementById("mail");
 const passwordInput = document.getElementById("password");
 const registerButton = document.getElementById("registerButton");
 
-const nameRegex = /^[A-Za-zÁÉÍÓÚáéíóúñÑ\s]{2,30}$/;
-const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
-const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/;
-
 /* Validation of the name format */
-function validateName() {
+nameInput.addEventListener("blur", () => {
     let nameTrimed = nameInput.value.trim();
     if (!nameRegex.test(nameTrimed)) {
         nameInput.classList.add("is-invalid");
@@ -20,11 +16,10 @@ function validateName() {
         nameError.style.display = "none";
         return true;
     }
-}
-nameInput.addEventListener("blur", validateName);
+});
 
 /* Validation of the lastname format */
-function validateLastname() {
+lastnameInput.addEventListener("blur", () => {
     let lastnameTrimed = lastnameInput.value.trim();
     if (!nameRegex.test(lastnameTrimed)) {
         lastnameInput.classList.add("is-invalid");
@@ -35,61 +30,30 @@ function validateLastname() {
         lastnameError.style.display = "none";
         return true;
     }
-}
-lastnameInput.addEventListener("blur", validateLastname);
-
-/* Validation of the email format */
-function validateEmail() {
-    let emailTrimed = emailInput.value.trim();
-    if (!emailRegex.test(emailTrimed)) {
-        emailInput.classList.add("is-invalid");
-        emailError.style.display = "block";
-        return false;
-    } else {
-        emailInput.classList.remove("is-invalid");
-        emailError.style.display = "none";
-        return true;
-    }
-}
-
-//Validar existencia en la base de dato
-function checkEmailExists(email, callback) {
-    const url = `http://localhost:5174/User/check-email?email=${encodeURIComponent(email)}`;
-    const config = {
-        method: 'GET'
-    };
-    debugger
-    server(url, config, function(data) {
-        debugger
-        callback(data.exists);
-    });
-}
+});
 
 //Integrar ambas validacione
-function validateAndCheckEmail() {
-    debugger
-    if (!validateEmail()) return;
-
+emailInput.addEventListener("blur", () => {
     const emailTrimed = emailInput.value.trim();
 
-    checkEmailExists(emailTrimed, function(exists) {
-        debugger
-        if (exists) {
+    emailInput.classList.remove("is-invalid");
+    emailError.style.display = "none";
+
+    if (!validateEmail(emailTrimed)) {
+        emailInput.classList.add("is-invalid");
+        emailError.style.display = "block";
+        return;
+    }
+
+    //ASINCRONICO
+    existsMail(emailTrimed, data => {
+        if (data.exists) {
             emailInput.classList.add("is-invalid");
-            emailError.textContent = "Error en email"
+            emailError.textContent = "El correo electrónico ya existe";
             emailError.style.display = "block";
-            callback(false);
-
-        } else {
-            emailInput.classList.remove("is-invalid");
-            emailError.style.display = "none";
-            callback(true);
-
         }
     });
-}
-
-emailInput.addEventListener("blur", validateAndCheckEmail);
+});
 
 /* Validation of the password format */
 function validatePassword() {
@@ -125,36 +89,32 @@ function validateConfirmPassword() {
 }
 confirmPasswordInput.addEventListener("blur", validateConfirmPassword);
 
-function validated(callback){
+function validated() {
     const validateName = validateName(); 
     const validateLastname = validateLastname(); 
     const validatePassword = validatePassword(); 
     const validateConfirmPassword = validateConfirmPassword();
-    //const validateAndCheckEmail = validateAndCheckEmail();
+    
     if (!nameIsValid || !lastnameIsValid || !passwordIsValid || !confirmPasswordIsValid || !emailFormatIsValid) {
-        callback(false);
-        return;
+        return false;
     }
+
+    return true;
 }
 
-function createUser(response){
-    if (response.success) {
+registerButton.addEventListener("click", () => {
+    if(!validated()) return;
+    
+    const user = {
+        name: nameInput.value,
+        lastname: lastnameInput.value,
+        email: emailInput.value,
+        password: passwordInput.value
+    };
+
+    createUser(user, (data) => {
+        //sweet alert: TODO OK.
+        alert(data.message);
         window.location.href = `/Wall.html?email=${encodeURIComponent(emailInput.value)}`;
-    }
-}
-
-function registerUser(){
-    validated(function(esValido){
-        if (!esValido)return;
-        server('https://localhost:5174/', {
-            method: 'POST',
-            body: JSON.stringify({
-                name: nameInput.value,
-                lastname: lastnameInput.value,
-                email: emailInput.value,
-                password: passwordInput.value
-            })
-        }, createUser);
-    })
-}
-registerButton.addEventListener("click", registerUser);
+    });
+});

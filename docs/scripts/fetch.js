@@ -1,21 +1,19 @@
-function server(url, config, success){
-    debugger
-    config.headers = {
-            'Content-type': 'application/json; charset=UTF-8'}
-            //en header inyecto el token bearer}
+function server(url, config, success) {
+    config.headers = { 'Content-type': 'application/json; charset=UTF-8' }
     
-    fetch(url, config)
+    fetch(`http://localhost:5174${url}`, config)
         .then(response => {
-            debugger
-            if (!response.ok){
-                alert(response.status)
-                //sweetAlert
-            } else{
-                return response.json()
+            if (!response.ok) {
+                //sweet alert
+                alert(response.status);
+                return;
+            } else {
+                return response.json();
             }
         })
-        .then(data => success(data))
+        .then(data => success(data)) // { exists: true }
         .catch(error => {
             //sweetAlert
+            console.log(JSON.stringify(error));
         })
 }
