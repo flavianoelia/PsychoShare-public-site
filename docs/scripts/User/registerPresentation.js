@@ -2,6 +2,7 @@ const nameInput = document.getElementById("name");
 const lastnameInput = document.getElementById("lastname");
 const emailInput = document.getElementById("mail");
 const passwordInput = document.getElementById("password");
+const confirmPasswordInput = document.getElementById("confirmPassword"); 
 const registerButton = document.getElementById("registerButton");
 
 /* Validation of the name format */
