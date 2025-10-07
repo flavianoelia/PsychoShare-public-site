@@ -40,9 +40,40 @@ function openPostCreationModal(){
 			</div>
 		</main>
 		`;
-		document.body.appendChild(newModalPost);	
-	}
+	document.body.appendChild(newModalPost);
+
+	const closeButtons = newModalPost.querySelectorAll('.close-button');
+    closeButtons.forEach(btn => {
+        btn.addEventListener('click', event => {
+            event.preventDefault();
+			console.log('Clic en botón de cerrar:', btn);
+            closePostCreationModal(newModalPost);
+			window.location.href = 'wall.html';
+        });
+    });
+
+	const imageButtons = newModalPost.querySelectorAll('.image-button');
+    imageButtons.forEach(btn => {
+        btn.addEventListener('click', event => {
+            event.preventDefault();
+            alert('No implementado por ahora');
+        });
+    });
+
+    const attachButtons = newModalPost.querySelectorAll('.attach-button');
+    attachButtons.forEach(btn => {
+        btn.addEventListener('click', event => {
+            event.preventDefault();
+            alert('No implementado por ahora');
+        });
+    })
+}
+
+function closePostCreationModal(newModalPost) {
+	document.body.removeChild(newModalPost);
+}
 
 
-/*En modal.js, dentro de openPostCreationModal, crea un elemento div con document.createElement('div'), agrega la clase 'modal-overlay' a ese div. Copia literalmente el HTML del ... (solo el main y su contenido interno, sin <html>, <head>, <body>) como una string multiline y asigna esa string al innerHTML del div. Asegúrate de que el HTML incluya exactamente los campos: textarea#description, input#title, input#authorship, textarea#abstract, y los botones de attachment desactivados (href vacío). Push: Commit con "feat: add modal HTML template to openPostCreationModal". Prueba: Llama la función en console y verifica que el div se crea con el HTML.*/
+
+
 
