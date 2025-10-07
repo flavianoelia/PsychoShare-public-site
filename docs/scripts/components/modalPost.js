@@ -40,9 +40,16 @@ function openPostCreationModal(){
 			</div>
 		</main>
 		`;
-		document.body.appendChild(newModalPost);	
+		document.body.appendChild(newModalPost);
+
+		document.querySelector('header').classList.add('blur-active');
+		document.querySelector('main').classList.add('blur-active');
+		document.querySelector('footer').classList.add('blur-active');
+		document.querySelector('.search-bar').classList.add('blur-active');
+		document.querySelector('.menu-nav').classList.add('blur-active');
+
+
 	}
 
 
-/*En modal.js, dentro de openPostCreationModal, crea un elemento div con document.createElement('div'), agrega la clase 'modal-overlay' a ese div. Copia literalmente el HTML del ... (solo el main y su contenido interno, sin <html>, <head>, <body>) como una string multiline y asigna esa string al innerHTML del div. Asegúrate de que el HTML incluya exactamente los campos: textarea#description, input#title, input#authorship, textarea#abstract, y los botones de attachment desactivados (href vacío). Push: Commit con "feat: add modal HTML template to openPostCreationModal". Prueba: Llama la función en console y verifica que el div se crea con el HTML.*/
 
