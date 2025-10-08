@@ -40,40 +40,42 @@ function openPostCreationModal(){
 			</div>
 		</main>
 		`;
-	document.body.appendChild(newModalPost);
+		document.body.appendChild(newModalPost);
 
-	const closeButtons = newModalPost.querySelectorAll('.close-button');
-    closeButtons.forEach(btn => {
-        btn.addEventListener('click', event => {
-            event.preventDefault();
-			console.log('Clic en botón de cerrar:', btn);
-            closePostCreationModal(newModalPost);
-			window.location.href = 'wall.html';
-        });
-    });
+		document.querySelector('header').classList.add('blur-active');
+		document.querySelector('main').classList.add('blur-active');
+		document.querySelector('footer').classList.add('blur-active');
+		document.querySelector('.search-bar').classList.add('blur-active');
+		document.querySelector('.menu-nav').classList.add('blur-active');
 
-	const imageButtons = newModalPost.querySelectorAll('.image-button');
-    imageButtons.forEach(btn => {
-        btn.addEventListener('click', event => {
-            event.preventDefault();
-            alert('No implementado por ahora');
-        });
-    });
+		const closeButtons = newModalPost.querySelectorAll('.close-button');
+		closeButtons.forEach(btn => {
+			btn.addEventListener('click', event => {
+				event.preventDefault();
+				console.log('Clic en botón de cerrar:', btn);
+				closePostCreationModal(newModalPost);
+				window.location.href = 'wall.html';
+			});
+		});
 
-    const attachButtons = newModalPost.querySelectorAll('.attach-button');
-    attachButtons.forEach(btn => {
-        btn.addEventListener('click', event => {
-            event.preventDefault();
-            alert('No implementado por ahora');
-        });
-    })
+		const imageButtons = newModalPost.querySelectorAll('.image-button');
+		imageButtons.forEach(btn => {
+			btn.addEventListener('click', event => {
+				event.preventDefault();
+				alert('No implementado por ahora');
+			});
+		});
+
+		const attachButtons = newModalPost.querySelectorAll('.attach-button');
+		attachButtons.forEach(btn => {
+			btn.addEventListener('click', event => {
+				event.preventDefault();
+				alert('No implementado por ahora');
+			});
+		})
 }
 
 function closePostCreationModal(newModalPost) {
 	document.body.removeChild(newModalPost);
 }
-
-
-
-
 
