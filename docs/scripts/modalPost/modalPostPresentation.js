@@ -24,16 +24,24 @@ function openPostCreationModal(){
 
 	const imageButtons = newModalPost.querySelectorAll('.image-button');
 	imageButtons.forEach(btn => {
-		btn.addEventListener('click', event => {
-			event.preventDefault();
+		btn.addEventListener('click', (e) => {
+			e.preventDefault();
 			alert('No implementado por ahora');
 		});
 	});
 
 	const attachButtons = newModalPost.querySelectorAll('.attach-button');
 	attachButtons.forEach(btn => {
-		btn.addEventListener('click', event => {
-			event.preventDefault();
+		btn.addEventListener('click', (e) => {
+			e.preventDefault();
+			alert('No implementado por ahora');
+		});
+	})
+
+	const postInput = newModalPost.querySelectorAll('.post-input');
+	postInput.forEach(btn => {
+		btn.addEventListener('click', (e) => {
+			e.preventDefault();
 			alert('No implementado por ahora');
 		});
 	})
