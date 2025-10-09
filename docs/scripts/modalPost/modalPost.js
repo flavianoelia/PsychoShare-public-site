@@ -1,11 +1,12 @@
-class modalPost{
-
-    getModalPost(){
-        const newModalPost = document.createElement("div");
-	    newModalPost.className = "modal-overlay";
-	    newModalPost.innerHTML = ` 
+class ModalPost {
+    getModalPost() {
+        const modal = document.createElement('div');
+        modal.classList.add('modal-overlay');
+        
+        modal.innerHTML = ` 
             <main class="modal-form post-modal-form">
                 <h1 class="visually-hidden" aria-label="Sección crear publicación">Crear una publicación</h1>
+                
                 <div class="modal-header">
                     <button class="close-button" aria-label="Cerrar ventana">
                         <i class="fas fa-times"></i>
@@ -21,27 +22,32 @@ class modalPost{
                     <a href="wall.html" class="close-button" aria-label="Cerrar">
                         <i class="fa-solid fa-xmark"></i>
                     </a>
+
                     <form action="#" method="post" aria-label="Formulario de publicación">
                         <textarea id="description" aria-label="Contenido de la publicación" placeholder="¿Sobre qué quieres hablar?"></textarea>
                         <input type="text" id="title" aria-label="Título de la publicación" placeholder="Título">
                         <input type="text" id="authorship" aria-label="Autoría" placeholder="Autoría">
                         <textarea id="abstract" aria-label="Resumen" placeholder="Resumen"></textarea>
 
-                        <div class="attachment-section post-attachment-section">
-                            <div class="file-group btn">
-                                <a href="" class="image-button post-image-button" aria-label="Añadir imagen">Adjuntar imagen</a>
-                                <i class="fas fa-image post-fa"></i>
-                            </div>
-                            <div class="file-group btn">
-                                <a href="" class="attach-button post-image-button" aria-label="Adjuntar archivo">Adjuntar documento</a>
-                                <i class="fas fa-paperclip post-fa"></i>
-                            </div>
+                        <div class="file-group btn">
+                        <a href="#" class="image-button post-image-button" aria-label="Añadir imagen">
+                            <i class="fas fa-image post-fa"></i> Adjuntar imagen
+                        </a>
                         </div>
-                        <a href="wall.html" class="btn submit-comment"><i class="fas fa-paper-plane" aria-label="Enviar"></i>Enviar</a>
+                        <div class="file-group btn">
+                        <a href="#" class="attach-button post-image-button" aria-label="Adjuntar archivo">
+                            <i class="fas fa-paperclip post-fa"></i> Adjuntar documento
+                        </a>
+                        </div>
+
+                        <a href="wall.html" class="btn submit-comment">
+                            <i class="fas fa-paper-plane" aria-label="Enviar"></i>Enviar
+                        </a>
                     </form>
                 </div>
             </main>
-            `;
-        return newModalPost;
+        `;
+
+        return modal; 
     }
 }

@@ -8,11 +8,11 @@ function openModal() {
     openElementsModal.forEach(element => {
         if (element) {
             element.addEventListener('click', (e) => {
-            e.preventDefault();
-            openPostCreationModal();
+                e.preventDefault();
+                openPostCreationModal(); 
             });
         }
     });
-
-    openModal() 
 }
+
+openModal();
