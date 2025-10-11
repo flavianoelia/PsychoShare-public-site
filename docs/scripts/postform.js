@@ -1,4 +1,23 @@
-// Esta función valida y envía el form de creación de post
 function validateAndSubmitPostForm() {
-    // TODO: implementar validación y envío
+    const container = document.querySelector('.form-container');
+    if (!container) return;
+
+    const form = container.querySelector('form');
+    if (!form) return;
+
+    const description = form.querySelector('#description'); 
+    const title = form.querySelector('#title'); 
+    const authorship = form.querySelector('#authorship'); 
+    const abstract = form.querySelector('#abstract'); 
+
+    form.addEventListener('submit', function (event) {
+        event.preventDefault();
+        console.log('postform submit intercepted');
+        console.log({
+            title: title ? title.value : null,
+            description: description ? description.value : null,
+            authorship: authorship ? authorship.value : null,
+            abstract: abstract ? abstract.value : null
+        });
+    });
 }
