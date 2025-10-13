@@ -16,6 +16,12 @@ function validateAndSubmitPostForm() {
     
     form.addEventListener('submit', function (event) {
         event.preventDefault();
+        const isDescriptionValid = validateRequiredField(description);
+
+        if (!isDescriptionValid) {
+            return;
+        }
+
         console.log('postform submit intercepted');
         console.log({
             title: title ? title.value : null,
@@ -23,7 +29,6 @@ function validateAndSubmitPostForm() {
             authorship: authorship ? authorship.value : null,
             abstract: abstract ? abstract.value : null
         });
-        window.location.href = 'wall.html';
     });
 }
 

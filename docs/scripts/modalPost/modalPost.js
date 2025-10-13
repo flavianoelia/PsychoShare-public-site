@@ -40,9 +40,9 @@ class ModalPost {
                         </a>
                         </div>
 
-                        <a href="wall.html" class="btn submit-comment">
+                        <button type="submit" class="btn submit-comment">
                             <i class="fas fa-paper-plane" aria-label="Enviar"></i>Enviar
-                        </a>
+                        </button>
                     </form>
                 </div>
             </main>

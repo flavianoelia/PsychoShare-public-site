@@ -35,7 +35,7 @@ function showError(input, message) {
     errorSpan.style.color = message ? 'red' : '';
 }
 
-function validateRequiredField(input, message = 'Este campo es obligatorio') {
+function validateRequiredField(input, message = 'El campo de descripción es obligatorio') {
     const value = input.value.trim();
     const isValid = value.length > 0;
 
