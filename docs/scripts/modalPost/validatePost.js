@@ -8,8 +8,12 @@ function validateAndSubmitPostForm() {
     const description = form.querySelector('#description'); 
     const title = form.querySelector('#title'); 
     const authorship = form.querySelector('#authorship'); 
-    const abstract = form.querySelector('#abstract'); 
+    const abstract = form.querySelector('#abstract');
 
+    description.addEventListener('blur', function () {
+        validateRequiredField(description);
+    });
+    
     form.addEventListener('submit', function (event) {
         event.preventDefault();
         console.log('postform submit intercepted');
@@ -19,5 +23,7 @@ function validateAndSubmitPostForm() {
             authorship: authorship ? authorship.value : null,
             abstract: abstract ? abstract.value : null
         });
+        window.location.href = 'wall.html';
     });
 }
+
