@@ -46,6 +46,9 @@ function openPostCreationModal() {
             alert('Función para adjuntar documento no implementada todavía.');
         }
     );
+
+    validateAndSubmitPostForm();
+    return newModalPost;
 }
 
 function closePostCreationModal(newModalPost) {
