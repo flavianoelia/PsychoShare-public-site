@@ -1,3 +1,30 @@
+function isDescriptionValid(descriptionInput) {
+    return validateRequiredField(descriptionInput, 'La descripción es obligatoria');
+}
+
+function buildPostObject(description, title, authorship, abstract) {
+    return {
+        description: description.value.trim(),
+        title: title.value.trim(),
+        authorship: authorship.value.trim(),
+        abstract: abstract.value.trim(),
+        image: "",
+        pdf: ""
+    };
+}
+
+function handlePostSubmit(form) {
+    const description = form.querySelector('#description');
+    const title = form.querySelector('#title');
+    const authorship = form.querySelector('#authorship');
+    const abstract = form.querySelector('#abstract');
+
+    if (!isDescriptionValid(description)) return;
+
+    const post = buildPostObject(description, title, authorship, abstract);
+    console.log('✅ Post creado:', post);
+}
+
 function validateAndSubmitPostForm() {
     const container = document.querySelector('.form-container');
     if (!container) return;
@@ -5,30 +32,11 @@ function validateAndSubmitPostForm() {
     const form = container.querySelector('form');
     if (!form) return;
 
-    const description = form.querySelector('#description'); 
-    const title = form.querySelector('#title'); 
-    const authorship = form.querySelector('#authorship'); 
-    const abstract = form.querySelector('#abstract');
+    const description = form.querySelector('#description');
+    description.addEventListener('blur', () => isDescriptionValid(description));
 
-    description.addEventListener('blur', function () {
-        validateRequiredField(description);
-    });
-    
-    form.addEventListener('submit', function (event) {
+    form.addEventListener('submit', event => {
         event.preventDefault();
-        const isDescriptionValid = validateRequiredField(description);
-
-        if (!isDescriptionValid) {
-            return;
-        } else{
-            console.log('postform submit intercepted');
-            console.log({
-                title: title ? title.value : null,
-                description: description.value,
-                authorship: authorship ? authorship.value : null,
-                abstract: abstract ? abstract.value : null
-            });
-        }
+        handlePostSubmit(form);
     });
 }
-

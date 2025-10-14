@@ -37,8 +37,19 @@ function showError(input, message) {
 
 function validateRequiredField(input, message = 'El campo de descripción es obligatorio') {
     const value = input.value.trim();
-    const isValid = value.length > 0;
+    const isNotEmpty = value.length > 0;
+    const isValidContent = /^[a-zA-Z0-9\s.,!?()-áéíóúñ]+$/.test(value) && value !== '.';
 
-    showError(input, isValid ? '' : message);
-    return isValid;
+    if (!isNotEmpty) {
+        showError(input, message);
+        return false;
+    }
+
+    if (!isValidContent) {
+        showError(input, 'Contenido inválido: solo letras, números, puntuación básica, mínimo contenido real');
+        return false;
+    }
+
+    showError(input, '');
+    return true;
 }
