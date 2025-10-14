@@ -24,7 +24,7 @@ class ModalPost {
                     </a>
 
                     <form action="#" method="post" aria-label="Formulario de publicación">
-                        <textarea id="description" aria-label="Contenido de la publicación" placeholder="¿Sobre qué quieres hablar?"></textarea>
+                        <textarea id="description" class="post-input" aria-label="Contenido de la publicación" placeholder="¿Sobre qué quieres hablar?"></textarea>
                         <input type="text" id="title" aria-label="Título de la publicación" placeholder="Título">
                         <input type="text" id="authorship" aria-label="Autoría" placeholder="Autoría">
                         <textarea id="abstract" aria-label="Resumen" placeholder="Resumen"></textarea>
