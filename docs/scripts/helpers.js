@@ -23,12 +23,12 @@ function validateConfirmPassword(passwordTrimed, confirmPasswordTrimed) {
 }
 
 function showError(input, message) {
-    let errorSpan = input.nextElementSibling;
+    let errorSpan = input.parentElement.querySelector('.error');
 
-    if (!errorSpan || !errorSpan.classList.contains('error')) {
+    if (!errorSpan) {
         errorSpan = document.createElement('span');
         errorSpan.classList.add('error');
-        input.insertAdjacentElement('afterend', errorSpan);
+        input.insertAdjacentElement('beforebegin', errorSpan);
     }
 
     errorSpan.textContent = message || '';
