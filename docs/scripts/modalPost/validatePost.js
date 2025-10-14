@@ -20,15 +20,15 @@ function validateAndSubmitPostForm() {
 
         if (!isDescriptionValid) {
             return;
+        } else{
+            console.log('postform submit intercepted');
+            console.log({
+                title: title ? title.value : null,
+                description: description.value,
+                authorship: authorship ? authorship.value : null,
+                abstract: abstract ? abstract.value : null
+            });
         }
-
-        console.log('postform submit intercepted');
-        console.log({
-            title: title ? title.value : null,
-            description: description ? description.value : null,
-            authorship: authorship ? authorship.value : null,
-            abstract: abstract ? abstract.value : null
-        });
     });
 }
 
