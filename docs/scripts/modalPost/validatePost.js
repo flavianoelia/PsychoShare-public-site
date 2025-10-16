@@ -13,18 +13,6 @@ function buildPostObject(description, title, authorship, abstract) {
     };
 }
 
-function handlePostSubmit(form) {
-    const description = form.querySelector('#description');
-    const title = form.querySelector('#title');
-    const authorship = form.querySelector('#authorship');
-    const abstract = form.querySelector('#abstract');
-
-    if (!isDescriptionValid(description)) return;
-
-    const post = buildPostObject(description, title, authorship, abstract);
-    console.log('✅ Post creado:', post);
-}
-
 function validateAndSubmitPostForm() {
     const container = document.querySelector('.form-container');
     if (!container) return;
@@ -39,4 +27,16 @@ function validateAndSubmitPostForm() {
         event.preventDefault();
         handlePostSubmit(form);
     });
+}
+
+function handlePostSubmit(form) {
+    const description = form.querySelector('#description');
+    const title = form.querySelector('#title');
+    const authorship = form.querySelector('#authorship');
+    const abstract = form.querySelector('#abstract');
+
+    if (!isDescriptionValid(description)) return;
+
+    const post = buildPostObject(description, title, authorship, abstract);
+    console.log('✅ Post creado:', post);
 }

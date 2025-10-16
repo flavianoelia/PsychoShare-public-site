@@ -22,6 +22,7 @@ function openPostCreationModal() {
 
     document.body.appendChild(newModalPost);
     toggleBlur(true);
+    validateAndSubmitPostForm();
 
     addListeners(
         newModalPost.querySelectorAll('.close-button'),
@@ -47,7 +48,7 @@ function openPostCreationModal() {
         }
     );
 
-    validateAndSubmitPostForm();
+    
     return newModalPost;
 }
 
