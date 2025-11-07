@@ -13,7 +13,7 @@ class Following {
     following.innerHTML = `
       <img src="${this.imgUser}" alt="Foto de contacto" class="contact-avatar" />
       <span class="contact-name">${this.nameUser}</span>
-      <button class="btn btn--danger">Dejar de seguir</button>
+      <button class="btn btn-danger">Dejar de seguir</button>
     `;
     return following;
   }

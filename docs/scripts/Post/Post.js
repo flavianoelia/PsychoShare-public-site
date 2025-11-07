@@ -33,7 +33,7 @@ class Post {
                     <img src=${this.image} alt="Imagen del post" class="post-image">
                     <figcaption>
                         <div class="button-container">
-                            <div class="action-buttons">
+                            <div class="post-buttons">
                                 <button class="btn like-button"><i class="fas fa-thumbs-up"></i>${this.coutLike} Me gusta</button>
                                 <button class="btn comment-button"><i class="fas fa-comment"></i>${this.comments.length} Comentarios</button>
                                 <button class="btn pdf-button"><i class="fas fa-file-pdf"></i>Ver PDF</button>
