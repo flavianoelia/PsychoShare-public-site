@@ -232,6 +232,49 @@ body.about-us-layout{
     color: var(--color-text-main);
   }
 
+/*--- CARD FORM COMPONENT ---*/
+.card-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem; 
+  max-width: 700px; 
+  margin: auto;
+  padding: 4rem; 
+  background-color: var(--color-background-card);
+  border-radius: 12px;
+  border: 1px solid var(--color-border);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+}
+.card-form label {
+  font-size: 0.9em;
+  font-weight: 500;
+  margin-bottom: -0.5rem;
+}
+.card-form input[type="email"],
+.card-form input[type="password"] {
+  width: 100%; 
+  height: 48px;
+  font-size: 1.1rem;
+  padding: 0.75rem 1rem;
+  box-sizing: border-box;
+}
+.btn,
+.btn-primary {
+  background-color: var(--color-ui-background);
+  border-color: var(--color-ui-background);
+  color: var(--color-text-light);
+}
+.btn:hover, 
+.btn-primary:hover{
+  background-color: var(--color-accent);
+  border-color: var(--color-accent);
+  color: var(--color-text-light);
+  box-shadow: none;
+}
+.login-text{
+  font-size: 0.9rem;
+}
+
 /*--- NEW POST COMPONENT ---*/
 .new-post-form {
   display: flex;
@@ -682,49 +725,6 @@ main.split-page-layout {
     padding: 2rem;
 }
 
-/*--- CARD FORM COMPONENT ---*/
-.card-form {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem; 
-  max-width: 700px; 
-  margin: auto;
-  padding: 4rem; 
-  background-color: var(--color-background-card);
-  border-radius: 12px;
-  border: 1px solid var(--color-border);
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
-}
-.card-form label {
-  font-size: 0.9em;
-  font-weight: 500;
-  margin-bottom: -0.5rem;
-}
-.card-form input[type="email"],
-.card-form input[type="password"] {
-  width: 100%; 
-  height: 48px;
-  font-size: 1.1rem;
-  padding: 0.75rem 1rem;
-  box-sizing: border-box;
-}
-.btn,
-.btn-primary {
-  background-color: var(--color-ui-background);
-  border-color: var(--color-ui-background);
-  color: var(--color-text-light);
-}
-.btn:hover, 
-.btn-primary:hover{
-  background-color: var(--color-accent);
-  border-color: var(--color-accent);
-  color: var(--color-text-light);
-  box-shadow: none;
-}
-.login-text{
-  font-size: 0.9rem;
-}
-
 /*--- MAIN TITLE COMPONENT ---*/
 .title{
   padding: 30px;
@@ -792,7 +792,7 @@ main.split-page-layout {
   margin: 2rem auto;
   gap: 2rem;
   padding: 2rem;
-  max-width: 700px;
+  max-width: 600px;
   width: 100%;
   background-color: #fff;
   border-radius: 12px;
@@ -804,6 +804,9 @@ main.split-page-layout {
   position: relative;
   width: 100%;
   text-align: center;
+  gap: 0.75rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid #e0e0e0;
 }
 .update-photo-profile i,
 .update-cover i {
@@ -863,4 +866,123 @@ main.split-page-layout {
 section.delete-account,
 section.save-changes-section {
   border-bottom: none;
+}
+.delete-button{
+  background-color: var(--color-danger);
+}
+
+/*--- LOG-OUT MODAL ---*/
+.logout-layout{
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.logout-modal {
+    text-align: center;
+    padding: 2rem;
+    text-align: center;
+    background-color: white;
+    border-radius: 16px;
+    position: relative;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+.logout-title {
+    font-weight: 500;
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+}
+.logout-actions {
+    display: flex;
+    justify-content: space-around;
+    gap: 12px;
+}
+.logout-confirm {
+    background-color: var(--color-danger);
+    font-weight: 400;
+    padding: 0.75rem;
+    transition: background-color 0.3s;
+}
+.logout-confirm:hover {
+    background-color: var(--color-accent);
+}
+.logout-cancel {
+    background-color: var(--color-border);
+    font-weight: 400;
+    padding: 0.75rem;
+    color: var(--color-text-main);
+    transition: background-color 0.3s;
+}
+.logout-cancel:hover{
+  background-color: var(--color-accent);
+}
+@media (max-width: 1024px){
+  body.wall-layout,
+  body.my-profile-layout,
+  body.contacts-layout,
+  body.about-us-layout{
+   display: grid;
+        height: 100vh;
+        overflow: hidden;
+
+        grid-template-columns: auto;
+        grid-template-rows: 60px 55px 1fr auto;
+
+        grid-template-areas:
+        "logo-header"
+        "search-bar"
+        "main-content"
+        "footer"
+  }
+  .menu-toggle{
+  display: block;
+  }
+  .menu-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+  .menu-nav {
+    position: fixed;
+    top: 115px;
+    left: -1025px; 
+    width: 1024px;
+    z-index: 1001;
+    background-color: var(--color-background-card);
+    box-shadow: 4px 0 15px rgba(0,0,0,0.1);
+    transition: left 0.3s ease-in-out;
+    padding-top: 1rem;
+    overflow-y: auto;
+  }
+  .menu-nav.active {
+      left: 0; 
+  }
+  p {
+    font-size: 18px;
+  }
+
+  main.split-page-layout{
+    display: flex;
+    flex-direction: column;
+  }
+}
+@media (max-width: 560px){
+  .new-post-form{
+    min-width: 400px;
+  }
+  .new-post-form .post-input{
+    font-size: 16px;
+  }
+  p {
+    font-size: 16px;
+  }
+  .post-content h2 {
+    font-size: 1em;
+  }
 }
