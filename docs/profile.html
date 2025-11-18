@@ -22,9 +22,11 @@
     <script src="https://kit.fontawesome.com/636f762910.js" crossorigin="anonymous"></script>
 
 
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-Tf8UPt3NwntSM6AfUsF96pAy43MPHRswCy7O0KlNNX+R1F0I06+nSgxWWJZKjFuRjRuhAuH9knFVw8NsK9zQ9g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
     <link rel="stylesheet" href="css/style.css">
-   
+
   
 </head>
 
@@ -203,19 +205,38 @@
             </article>
             <button class="btn view-more">Ver más</button>
             <div class="add-comment">
-               <img src="assets/imgwebp/flavia.webp" alt="Foto de contacto" class="contact-avatar">
-               <input type="text" class="comment-input" placeholder="Escribe un comentario">
-               <button class="btn submit-comment"><i class="fas fa-paper-plane"></i>Enviar</button>
+              <img src="assets/imgwebp/flavia.webp" alt="Foto de contacto" class="contact-avatar">
+              <input type="text" class="comment-input" placeholder="Escribe un comentario">
+              <button class="btn submit-comment"><i class="fas fa-paper-plane"></i>Enviar</button>
             </div>
         </section>
     </article>
+<<<<<<< HEAD
     
 </main>
+=======
+    </article>
+    </main>
+>>>>>>> 67f7f62481bcd3948f396c046736fed44f3e5307
 
     <footer aria-label="Pie de página del sitio" class="footer">
       <p>2025 PsychoShare - Hecho por PsyNet - Licencia MIT</p>
     </footer>
-    <script src="scripts/components/hamburgerMenu.js"></script>
-    <script src="./scripts/components/modalPost.js"></script>
+    
+<script src="scripts/components/hamburgerMenu.js"></script>
+
+<!-- Definición de ModalPost -->
+<script src="./scripts/modalPost/modalPost.js"></script>
+
+<!-- Presentación / funciones que usan ModalPost -->
+<script src="./scripts/modalPost/modalPostPresentation.js"></script>
+
+<!-- Lógica de la página (listeners, presentaciones) -->
+<script src="./scripts/profile/profile.js"></script>
+<script src="./scripts/profile/profilePresentation.js"></script>
+
+<script src="./scripts/modalPost/validatePost.js"></script>
+<script src="./scripts/helpers.js" ></script>
+
   </body>
 </html>
