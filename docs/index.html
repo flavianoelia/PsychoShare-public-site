@@ -16,17 +16,11 @@
         <link rel="icon" type="image/svg+xml" href="favicon/favicon.svg">
         <link rel="manifest" href="favicon/site.webmanifest">
 
-        <link rel="stylesheet" href="css/base/global.css">
-        <link rel="stylesheet" href="css/layout/footer.css">
-        <link rel="stylesheet" href="css/layout/layout-split-page.css"> 
-        <link rel="stylesheet" href="css/components/button.css">
-        <link rel="stylesheet" href="css/components/form.css">
-        <link rel="stylesheet" href="css/components/logo-section.css">
-        <link rel="stylesheet" href="css/pages/terms-adn-conditions.css">
+        <link rel="stylesheet" href="css/style.css">
     </head>
 <body>
     <main class="split-page-layout">
-      <h1 class="mb-4">PsychoShare</h1>
+      <h1 class="mb-4 title">PsychoShare</h1>
 
         <section class="logo-section">
            <img src="assets/logo/logo-black_300x300.webp" alt="Logo de PsycoShare" class="logo-avatar">
@@ -40,17 +34,17 @@
                 <input type="password" class="form-control mb-3" id="password" name="contraseña" placeholder="Contraseña" required>
                 <a href="wall.html" class="btn btn-primary w-100">Iniciar sesión</a>
             </form>
-            <p>¿No tienes cuenta? <a href="sign-up.html">Regístrate</a></p>
-            <p>
+            <p class="login-text">¿No tienes cuenta? <a href="sign-up.html">Regístrate</a></p>
+            <p class="login-text">
                 Al registrarte, aceptás nuestros
                 <a href="#" data-bs-toggle="modal" data-bs-target="#modalTerms">Términos y Condiciones y la Política de Privacidad</a>.
             </p>
         </section>
     </main>
 
-   <footer class="footer-general" aria-label="Pie de página del sitio">
-            <p>2025 PsychoShare - Hecho por PsyNet - Licencia MIT</p>
-   </footer>
+      <footer class="footer" aria-label="Pie de página del sitio">
+         <p>2025 PsychoShare - Hecho por PsyNet - Licencia MIT</p>
+      </footer>
    
 
 <div class="modal fade" id="modalTerms" tabindex="-1" aria-labelledby="modalTermsLabel" aria-hidden="true">
