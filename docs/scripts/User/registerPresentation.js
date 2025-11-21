@@ -3,6 +3,7 @@ const lastnameInput = document.getElementById("lastname");
 const emailInput = document.getElementById("mail");
 const passwordInput = document.getElementById("password");
 const confirmPasswordInput = document.getElementById("confirmPassword"); 
+const termsCheckbox = document.getElementById("terms");
 const registerButton = document.getElementById("registerButton");
 
 /* Validation of the name format */
@@ -84,28 +85,40 @@ confirmPasswordInput.addEventListener("blur", () => {
     }
 });
 
-function isFormValid() {
+function getValidationMessage() {
     const nameValue = nameInput.value.trim();
     const lastnameValue = lastnameInput.value.trim();
     const emailValue = emailInput.value.trim();
     const passwordValue = passwordInput.value.trim();
     const confirmPasswordValue = confirmPasswordInput.value.trim();
     
-    // Validate all fields
-    const nameIsValid = validateName(nameValue);
-    const lastnameIsValid = validateLastName(lastnameValue);
-    const emailIsValid = validateEmail(emailValue);
-    const passwordIsValid = validatePassword(passwordValue);
-    const passwordsMatch = validateConfirmPassword(passwordValue, confirmPasswordValue);
+    // Check each field and return specific message
+    if (!nameValue) return "Por favor ingresá tu nombre";
+    if (!validateName(nameValue)) return "El nombre debe tener entre 2 y 30 caracteres y solo letras";
     
-    return nameIsValid && lastnameIsValid && emailIsValid && passwordIsValid && passwordsMatch;
+    if (!lastnameValue) return "Por favor ingresá tu apellido";
+    if (!validateLastName(lastnameValue)) return "El apellido debe tener entre 2 y 30 caracteres y solo letras";
+    
+    if (!emailValue) return "Por favor ingresá tu email";
+    if (!validateEmail(emailValue)) return "Por favor ingresá un email válido";
+    
+    if (!passwordValue) return "Por favor ingresá una contraseña";
+    if (!validatePassword(passwordValue)) return "La contraseña debe tener mínimo 8 caracteres, incluir mayúscula, minúscula, número y símbolo";
+    
+    if (!confirmPasswordValue) return "Por favor confirmá tu contraseña";
+    if (!validateConfirmPassword(passwordValue, confirmPasswordValue)) return "Las contraseñas no coinciden";
+    
+    if (!termsCheckbox.checked) return "Debés aceptar los Términos y Condiciones para continuar";
+    
+    return null; // All valid
 }
 
 registerButton.addEventListener("click", (event) => {
     event.preventDefault();
     
-    if(!isFormValid()) {
-        alert("Por favor completá correctamente todos los campos");
+    const errorMessage = getValidationMessage();
+    if(errorMessage) {
+        alert(errorMessage);
         return;
     }
     
