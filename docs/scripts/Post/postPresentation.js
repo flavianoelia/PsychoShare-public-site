@@ -6,4 +6,7 @@ getPost((posts) => {
         const nodo = post.getNode();
         sectionPost.append(nodo);
     }
+    
+    // Initialize follow/unfollow buttons after rendering posts
+    initializeFollowButtons();
 });

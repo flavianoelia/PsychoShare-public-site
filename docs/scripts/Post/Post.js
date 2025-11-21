@@ -1,5 +1,6 @@
 class Post {
     constructor(post){
+        this.userId = post.userId;
         this.imgOwner = post.imgOwner;
         this.nameOwner = post.nameOwner;
         this.description = post.description;
@@ -13,6 +14,9 @@ class Post {
 
     //template string que tiene un post
     getNode(){
+        const currentUserId = localStorage.getItem('userId');
+        const isOwnPost = this.userId == currentUserId;
+        
         const post = document.createElement("article");
         post.className = "article";
         post.innerHTML = `
@@ -23,6 +27,10 @@ class Post {
                     <p class="timestamp">18 junio 2025</p>
                     <p class="timestamp">17:40</p>
                 </div>
+                ${!isOwnPost ? `<button class="btn btn-sm follow-toggle-btn" data-user-id="${this.userId}" style="margin-left: auto;">
+                    <span class="spinner-border spinner-border-sm d-none" role="status"></span>
+                    <span class="btn-text">Cargando...</span>
+                </button>` : ''}
             </section>
             <section class="post-content">
                 <p>${this.description}</p>
