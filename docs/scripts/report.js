@@ -40,8 +40,8 @@ document.addEventListener('DOMContentLoaded', () => {
       };
 
       try {
-        // Cambia la URL a la endpoint real del backend
-        const res = await fetch('/api/reports', {
+        // Endpoint backend proporcionado por el equipo
+        const res = await fetch('http://localhost:5174/api/Report', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(payload)
