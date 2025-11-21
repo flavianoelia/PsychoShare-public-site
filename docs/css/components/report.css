@@ -1,0 +1,66 @@
+/* Estilos para botones de reporte y alerta */
+.btn-report, .report-comment, .btn-report-profile {
+  background: #dc3545; /* rojo bootstrap */
+  color: white;
+  border: none;
+  padding: 0.4rem 0.6rem;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.btn-report:hover, .report-comment:hover, .btn-report-profile:hover {
+  background: #c82333;
+  cursor: pointer;
+}
+
+.report-comment {
+  margin-left: 0.6rem;
+  background: transparent;
+  color: #dc3545;
+  padding: 0.15rem;
+  border-radius: 4px;
+}
+
+.report-comment i {
+  color: #dc3545;
+}
+
+/* Contenedor de banderas en esquina superior derecha del post */
+.comment-report-stack {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  z-index: 30;
+}
+
+.comment-report-stack .small-flag {
+  background: transparent;
+  color: #dc3545;
+  border: none;
+  padding: 0.25rem;
+  border-radius: 4px;
+  font-size: 0.9rem;
+}
+
+.comment-report-stack .small-flag i {
+  color: #dc3545;
+}
+
+/* Cada post (article) debe ser relativo para ubicar el stack */
+.article {
+  position: relative;
+}
+
+/* ajustar tamaño en pantallas pequeñas */
+@media (max-width: 480px) {
+  .btn-report, .btn-report-profile {
+    font-size: 0.8rem;
+    padding: 0.3rem 0.4rem;
+  }
+}
