@@ -1,5 +1,8 @@
 function server(url, config, success) {
-    config.headers = { 'Content-type': 'application/json; charset=UTF-8' }
+    config.headers = { 
+        'Content-type': 'application/json; charset=UTF-8',
+        ...config.headers
+    }
     
     fetch(`http://localhost:5174${url}`, config)
         .then(response => {
