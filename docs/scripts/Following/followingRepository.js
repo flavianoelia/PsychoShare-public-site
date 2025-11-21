@@ -2,30 +2,29 @@
 // CONTACTS REPOSITORY - Fetch contacts from backend API
 // ====================================================================
 
-// TODO: Replace with real userId from localStorage when login is implemented
-// After implementing login, use: const userId = localStorage.getItem('userId');
-const TEMP_USER_ID = 1; // Temporary hardcoded user ID for testing
-
 /**
  * Fetches all contacts (followed users) for a given user
- * @param {number} userId - The ID of the user whose contacts to fetch
+ * @param {number} userId - Optional. If not provided, gets from localStorage
  * @param {Function} callback - Callback function to handle the response
- * 
- * TODO FUTURE (when login is implemented):
- * 1. Remove TEMP_USER_ID constant
- * 2. Get userId from: localStorage.getItem('userId')
- * 3. Get token from: localStorage.getItem('token')
- * 4. Uncomment Authorization header in server() config
  */
-function getContacts(userId = TEMP_USER_ID, callback) {
-    const url = `/api/Following/following/${userId}`;
+function getContacts(userId, callback) {
+    // Get userId and token from localStorage
+    const currentUserId = userId || localStorage.getItem('userId');
+    const token = localStorage.getItem('token');
+    
+    if (!currentUserId) {
+        console.error('No userId found in localStorage');
+        callback([]);
+        return;
+    }
+    
+    const url = `/api/Following/following/${currentUserId}`;
     
     const config = {
-        method: 'GET'
-        // TODO: Add when login is implemented:
-        // headers: {
-        //     'Authorization': `Bearer ${localStorage.getItem('token')}`
-        // }
+        method: 'GET',
+        headers: {
+            'Authorization': `Bearer ${token}`
+        }
     };
 
     // Use server() function for consistency with the rest of the project
