@@ -6,12 +6,11 @@
  * Fetches and renders all contacts for the current user
  * Uses Following class for HTML generation
  */
-async function renderContacts() {
-    try {
-        // TODO: When login is implemented, replace TEMP_USER_ID with:
-        // const userId = localStorage.getItem('userId');
-        const contacts = await getContacts(); // Uses TEMP_USER_ID from repository
-        
+function renderContacts() {
+    // TODO: When login is implemented, replace TEMP_USER_ID with:
+    // const userId = localStorage.getItem('userId');
+    
+    getContacts(undefined, function(contacts) {
         const sectionFollowing = document.getElementById("following_collection");
         
         if (!sectionFollowing) {
@@ -22,18 +21,15 @@ async function renderContacts() {
         sectionFollowing.innerHTML = "";
         
         // Render each contact using Following class
-        contacts.forEach(contactData => {
+        for (const contactData of contacts) {
             const following = new Following(contactData);
             const node = following.getNode();
             sectionFollowing.append(node);
-        });
+        }
         
         // Update contacts count dynamically
         updateContactsCount(contacts.length);
-        
-    } catch (error) {
-        console.error('Error rendering contacts:', error);
-    }
+    });
 }
 
 /**
