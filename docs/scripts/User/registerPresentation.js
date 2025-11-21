@@ -84,32 +84,44 @@ confirmPasswordInput.addEventListener("blur", () => {
     }
 });
 
-function validated() {
-    const validateName = validateName(); 
-    const validateLastname = validateLastname(); 
-    const validatePassword = validatePassword(); 
-    const validateConfirmPassword = validateConfirmPassword();
+function isFormValid() {
+    const nameValue = nameInput.value.trim();
+    const lastnameValue = lastnameInput.value.trim();
+    const emailValue = emailInput.value.trim();
+    const passwordValue = passwordInput.value.trim();
+    const confirmPasswordValue = confirmPasswordInput.value.trim();
     
-    if (!nameIsValid || !lastnameIsValid || !passwordIsValid || !confirmPasswordIsValid || !emailFormatIsValid) {
-        return false;
-    }
-
-    return true;
+    // Validate all fields
+    const nameIsValid = validateName(nameValue);
+    const lastnameIsValid = validateLastName(lastnameValue);
+    const emailIsValid = validateEmail(emailValue);
+    const passwordIsValid = validatePassword(passwordValue);
+    const passwordsMatch = validateConfirmPassword(passwordValue, confirmPasswordValue);
+    
+    return nameIsValid && lastnameIsValid && emailIsValid && passwordIsValid && passwordsMatch;
 }
 
-registerButton.addEventListener("click", () => {
-    if(!validated()) return;
+registerButton.addEventListener("click", (event) => {
+    event.preventDefault();
+    
+    if(!isFormValid()) {
+        alert("Por favor completá correctamente todos los campos");
+        return;
+    }
     
     const user = {
-        name: nameInput.value,
-        lastname: lastnameInput.value,
-        email: emailInput.value,
-        password: passwordInput.value
+        name: nameInput.value.trim(),
+        lastname: lastnameInput.value.trim(),
+        email: emailInput.value.trim(),
+        password: passwordInput.value.trim()
     };
 
     createUser(user, (data) => {
-        //sweet alert: TODO OK.
-        alert(data.message);
-        window.location.href = `/Wall.html?email=${encodeURIComponent(emailInput.value)}`;
+        if (data && data.success) {
+            alert("¡Registro exitoso! Ahora podés iniciar sesión");
+            window.location.href = "index.html";
+        } else {
+            alert(data?.message || "Error al registrarse. Intentá nuevamente");
+        }
     });
 });
