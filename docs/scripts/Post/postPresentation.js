@@ -9,4 +9,7 @@ getPost((posts) => {
     
     // Initialize follow/unfollow buttons after rendering posts
     initializeFollowButtons();
+    
+    // Initialize like buttons after rendering posts
+    initializeLikeButtons();
 });

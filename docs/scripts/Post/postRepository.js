@@ -22,6 +22,7 @@ function getPost(callback) {
 
     // Transformar los datos del backend al formato que espera el frontend
     const transformedPosts = posts.map((post) => ({
+      postId: post.id, // ID del post para likes
       userId: post.userId,
       imgOwner: "assets/imgwebp/default-avatar.webp", // Default, podríamos agregar esto al backend
       nameOwner: `${post.nameOwner} ${post.lastnameOwner}`,
@@ -30,7 +31,7 @@ function getPost(callback) {
       authorship: post.authorship,
       abstract: post.resume, // El backend usa "resume" en lugar de "abstract"
       image: post.imageUrl || "assets/imgwebp/default-post.webp",
-      countLike: 0, // Por ahora no tenemos likes en el backend
+      countLike: 0, // Se cargará dinámicamente con getLikeStats
       comments: [], // Por ahora no tenemos comentarios en el backend
     }));
 
