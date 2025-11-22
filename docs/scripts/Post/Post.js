@@ -19,11 +19,24 @@ class Post {
 
     const post = document.createElement("article");
     post.className = "article";
+    
+    // build comments html with report button
+    const commentsHtml = this.comments.map((c, idx) => `
+        <article class="comment">
+            <div class="comment-header">
+                <img src="${c.imgOwner}" alt="Foto de contacto" class="contact-avatar">
+                <p>${c.nameOwner}</p>
+                <button class="report-comment" data-report-type="comment" data-report-id="${this.title}-c${idx}" aria-label="Reportar comentario" title="Reportar comentario"><i class="fas fa-flag"></i></button>
+            </div>
+            <div class="comment-content">
+                <p>${c.text}</p>
+            </div>
+        </article>
+    `).join('\n');
+
     post.innerHTML = `
             <section class="post">
-                <img src=${
-                  this.imgOwner
-                } alt="Foto de contacto" class="contact-avatar">
+                <img src="${this.imgOwner}" alt="Foto de contacto" class="contact-avatar">
                 <div class="post-info">
                     <p class="name">${this.nameOwner}</p>
                     <p class="timestamp">18 junio 2025</p>
@@ -41,12 +54,10 @@ class Post {
             <section class="post-content">
                 <p>${this.description}</p>
                 <h2>${this.title}</h2>
-                <p><strong>Autoría:</strong>${this.authorship}</p>
-                <p><strong>Resumen:</strong>${this.abstract}</p>
+                <p><strong>Autoría:</strong> ${this.authorship}</p>
+                <p><strong>Resumen:</strong> ${this.abstract}</p>
                 <figure>
-                    <img src=${
-                      this.image
-                    } alt="Imagen del post" class="post-image">
+                    <img src="${this.image}" alt="Imagen del post" class="post-image">
                     <figcaption>
                         <div class="button-container">
                             <div class="post-buttons">
@@ -57,6 +68,7 @@ class Post {
                                   this.comments.length
                                 } Comentarios</button>
                                 <button class="btn pdf-button"><i class="fas fa-file-pdf"></i>Ver PDF</button>
+                                <button class="btn btn-report" data-report-type="post" data-report-id="${this.title}" type="button"><i class="fas fa-flag"></i> Reportar</button>
                             </div>
                         </div>
                     </figcaption>
@@ -64,32 +76,14 @@ class Post {
             </section>
 
             <section class="comment-section">
-            <article class="comment">
-                <div class="comment-header">
-                    <img src="assets/imgwebp/aloecontacts.webp" alt="Foto de contacto" class="contact-avatar">
-                    <p>Aloe Bordone</p>
+                ${commentsHtml}
+                ${this.comments.length > 2 ? '<button class="btn view-more">Ver más</button>' : ''}
+                <div class="add-comment">
+                   <img src="assets/imgwebp/flavia.webp" alt="Foto de contacto" class="contact-avatar">
+                    <input type="text" class="comment-input" placeholder="Escribe un comentario">
+                    <button class="btn submit-comment"><i class="fas fa-paper-plane"></i>Enviar</button>
                 </div>
-                <div class="comment-content">
-                    <p>¿Qué enfoque terapéutico les parece más interesante: cognitivo-conductual, psicodinámico…? Este libro los explora todos con claridad.</p>
-                </div>
-            </article>
-            <article class="comment">
-                <div class="comment-header">
-                    <img src="assets/imgwebp/danielcontacts.webp" alt="Foto de contacto" class="contact-avatar">
-                    <p>Daniel Llanes</p>
-                </div>
-                <div class="comment-content">
-                    <p>Leerlo me recordó por qué la salud mental es tan importante y tan compleja a la vez.</p>
-                </div>
-            </article>
-            <button class="btn view-more">Ver más</button>
-            <div class="add-comment">
-               <img src="assets/imgwebp/flavia.webp" alt="Foto de contacto" class="contact-avatar">
-                <input type="text" class="comment-input" placeholder="Escribe un comentario">
-                <button class="btn submit-comment"><i class="fas fa-paper-plane"></i>Enviar</button>
-            </div>
-        </section>
-
+            </section>
         `;
 
     /*
