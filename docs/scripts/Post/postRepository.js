@@ -33,6 +33,7 @@ function getPost(callback) {
       image: post.imageUrl || "assets/imgwebp/default-post.webp",
       countLike: 0, // Se cargará dinámicamente con getLikeStats
       comments: [], // Por ahora no tenemos comentarios en el backend
+      createdAt: post.createdAt, // Fecha de creación del post
     }));
 
     console.log("✅ Posts transformados:", transformedPosts);

@@ -11,12 +11,16 @@ class Post {
     this.image = post.image;
     this.coutLike = post.countLike || 0;
     this.comments = post.comments || [];
+    this.createdAt = post.createdAt; // Fecha ISO del backend
   }
 
   //template string que tiene un post
   getNode() {
     const currentUserId = localStorage.getItem("userId");
     const isOwnPost = this.userId == currentUserId;
+
+    // Formatear fecha y hora
+    const { date, time } = formatDateTime(this.createdAt);
 
     const post = document.createElement("article");
     post.className = "article";
@@ -40,8 +44,8 @@ class Post {
                 <img src="${this.imgOwner}" alt="Foto de contacto" class="contact-avatar">
                 <div class="post-info">
                     <p class="name">${this.nameOwner}</p>
-                    <p class="timestamp">18 junio 2025</p>
-                    <p class="timestamp">17:40</p>
+                    <p class="timestamp">${date}</p>
+                    <p class="timestamp">${time}</p>
                 </div>
                 ${
                   !isOwnPost
