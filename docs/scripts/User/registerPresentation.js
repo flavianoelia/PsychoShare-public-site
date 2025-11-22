@@ -122,7 +122,11 @@ registerButton.addEventListener("click", (event) => {
 
   const errorMessage = getValidationMessage();
   if (errorMessage) {
-    alert(errorMessage);
+    Swal.fire({
+      icon: 'error',
+      title: 'Error de validación',
+      text: errorMessage
+    });
     return;
   }
 
@@ -135,10 +139,19 @@ registerButton.addEventListener("click", (event) => {
 
   createUser(user, (data) => {
     if (data && data.success) {
-      alert("¡Registro exitoso! Ahora podés iniciar sesión");
-      window.location.href = "index.html";
+      Swal.fire({
+        icon: 'success',
+        title: '¡Registro exitoso!',
+        text: 'Ahora podés iniciar sesión'
+      }).then(() => {
+        window.location.href = "index.html";
+      });
     } else {
-      alert(data?.message || "Error al registrarse. Intentá nuevamente");
+      Swal.fire({
+        icon: 'error',
+        title: 'Error al registrarse',
+        text: data?.message || "Intentá nuevamente"
+      });
     }
   });
 });
