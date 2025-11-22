@@ -1,5 +1,6 @@
 class Post {
   constructor(post) {
+    this.postId = post.postId || post.id; // Backend puede usar 'id' o 'postId'
     this.userId = post.userId;
     this.imgOwner = post.imgOwner;
     this.nameOwner = post.nameOwner;
@@ -8,7 +9,7 @@ class Post {
     this.authorship = post.authorship;
     this.abstract = post.abstract;
     this.image = post.image;
-    this.coutLike = post.countLike;
+    this.coutLike = post.countLike || 0;
     this.comments = post.comments || [];
   }
 
@@ -61,9 +62,10 @@ class Post {
                     <figcaption>
                         <div class="button-container">
                             <div class="post-buttons">
-                                <button class="btn like-button"><i class="fas fa-thumbs-up"></i>${
-                                  this.coutLike
-                                } Me gusta</button>
+                                <button class="btn like-button" data-post-id="${this.postId}">
+                                    <i class="fa-regular fa-thumbs-up"></i>
+                                    <span class="like-text">${this.coutLike} Me gusta</span>
+                                </button>
                                 <button class="btn comment-button"><i class="fas fa-comment"></i>${
                                   this.comments.length
                                 } Comentarios</button>
