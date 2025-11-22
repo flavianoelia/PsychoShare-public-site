@@ -1,4 +1,3 @@
-
 // Following class: responsible for formatting a contact as HTML
 class Following {
   constructor(usuario) {

@@ -8,37 +8,37 @@
  * @param {Function} callback - Callback function to handle the response
  */
 function getContacts(userId, callback) {
-    // Get userId and token from localStorage
-    const currentUserId = userId || localStorage.getItem('userId');
-    const token = localStorage.getItem('token');
-    
-    if (!currentUserId) {
-        console.error('No userId found in localStorage');
-        callback([]);
-        return;
-    }
-    
-    const url = `/api/Following/following/${currentUserId}`;
-    
-    const config = {
-        method: 'GET',
-        headers: {
-            'Authorization': `Bearer ${token}`
-        }
-    };
+  // Get userId and token from localStorage
+  const currentUserId = userId || localStorage.getItem("userId");
+  const token = localStorage.getItem("token");
 
-    // Use server() function for consistency with the rest of the project
-    server(url, config, (users) => {
-        // Map backend response to frontend format
-        const contacts = users.map(user => ({
-            id: user.id,
-            imgUser: user.imageUrl || "assets/imgwebp/default.webp",
-            nameUser: `${user.name} ${user.lastName}`,
-            isFollowing: true
-        }));
-        
-        callback(contacts);
-    });
+  if (!currentUserId) {
+    console.error("No userId found in localStorage");
+    callback([]);
+    return;
+  }
+
+  const url = `/api/Following/following/${currentUserId}`;
+
+  const config = {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
+  // Use server() function for consistency with the rest of the project
+  server(url, config, (users) => {
+    // Map backend response to frontend format
+    const contacts = users.map((user) => ({
+      id: user.id,
+      imgUser: user.imageUrl || "assets/imgwebp/default.webp",
+      nameUser: `${user.name} ${user.lastName}`,
+      isFollowing: true,
+    }));
+
+    callback(contacts);
+  });
 }
 
 /**
@@ -47,29 +47,25 @@ function getContacts(userId, callback) {
  * @param {Function} callback - Callback function to handle the response
  */
 function followUser(followedUserId, callback) {
-    const currentUserId = localStorage.getItem('userId');
-    const token = localStorage.getItem('token');
-    
-    if (!currentUserId) {
-        console.error('No userId found in localStorage');
-        callback({ success: false, message: 'User not logged in' });
-        return;
-    }
-    
-    const url = `/api/Following`;
-    
-    const config = {
-        method: 'POST',
-        headers: {
-            'Authorization': `Bearer ${token}`
-        },
-        body: JSON.stringify({
-            userId: parseInt(currentUserId),
-            followedUserId: followedUserId
-        })
-    };
+  const currentUserId = localStorage.getItem("userId");
+  const token = localStorage.getItem("token");
 
-    server(url, config, callback);
+  if (!currentUserId) {
+    console.error("No userId found in localStorage");
+    callback({ success: false, message: "User not logged in" });
+    return;
+  }
+
+  const url = `/api/Following/${followedUserId}`;
+
+  const config = {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
+  server(url, config, callback);
 }
 
 /**
@@ -78,25 +74,25 @@ function followUser(followedUserId, callback) {
  * @param {Function} callback - Callback function to handle the response
  */
 function unfollowUser(followedUserId, callback) {
-    const currentUserId = localStorage.getItem('userId');
-    const token = localStorage.getItem('token');
-    
-    if (!currentUserId) {
-        console.error('No userId found in localStorage');
-        callback(false);
-        return;
-    }
-    
-    const url = `/api/Following/${currentUserId}/${followedUserId}`;
-    
-    const config = {
-        method: 'DELETE',
-        headers: {
-            'Authorization': `Bearer ${token}`
-        }
-    };
+  const currentUserId = localStorage.getItem("userId");
+  const token = localStorage.getItem("token");
 
-    server(url, config, callback);
+  if (!currentUserId) {
+    console.error("No userId found in localStorage");
+    callback(false);
+    return;
+  }
+
+  const url = `/api/Following/${followedUserId}`;
+
+  const config = {
+    method: "DELETE",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
+  server(url, config, callback);
 }
 
 /**
@@ -105,23 +101,23 @@ function unfollowUser(followedUserId, callback) {
  * @param {Function} callback - Callback function to handle the response (boolean)
  */
 function checkIsFollowing(targetUserId, callback) {
-    const currentUserId = localStorage.getItem('userId');
-    const token = localStorage.getItem('token');
-    
-    if (!currentUserId) {
-        console.error('No userId found in localStorage');
-        callback(false);
-        return;
-    }
-    
-    const url = `/api/Following/check/${currentUserId}/${targetUserId}`;
-    
-    const config = {
-        method: 'GET',
-        headers: {
-            'Authorization': `Bearer ${token}`
-        }
-    };
+  const currentUserId = localStorage.getItem("userId");
+  const token = localStorage.getItem("token");
 
-    server(url, config, callback);
+  if (!currentUserId) {
+    console.error("No userId found in localStorage");
+    callback(false);
+    return;
+  }
+
+  const url = `/api/Following/check/${targetUserId}`;
+
+  const config = {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
+  server(url, config, callback);
 }

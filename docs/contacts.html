@@ -1,107 +1,133 @@
 <!DOCTYPE html>
 <html lang="es">
-   <head>
-      <meta charset="utf-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <meta
-         name="keywords"
-         content="contactos, red social, salud mental, profesionales, usuarios, red de psicólogos, comunidad de práctica"/>
-      <meta
-         name="description"
-         content="Lista de contactos en PsychoShare, la red social de salud mental. Conecta con profesionales y usuarios interesados en psicología y bienestar emocional."/>
-      <title>Lista de contactos | PsychoShare - Comunidad de salud mental</title>
-      <!-- Favicon and manifest -->
-      <link rel="icon" href="favicon/favicon.ico" />
-      <link rel="icon" type="image/png" sizes="96x96" href="favicon/favicon-96x96.png"/>
-      <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png"/>
-      <link rel="icon" type="image/svg+xml" href="favicon/favicon.svg" />
-      <link rel="manifest" href="favicon/site.webmanifest" />
-      <link rel="preconnect" href="https://fonts.googleapis.com" />
-      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-      <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&family=Sora:wght@100..800&display=swap" rel="stylesheet"/>
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-Tf8UPt3NwntSM6AfUsF96pAy43MPHRswCy7O0KlNNX+R1F0I06+nSgxWWJZKjFuRjRuhAuH9knFVw8NsK9zQ9g==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
-      
-      <link rel="stylesheet" href="css/style.css"/>
-    
-      <script src="https://kit.fontawesome.com/636f762910.js" crossorigin="anonymous"></script>
-   </head>
-   <body class="contacts-layout">
-      <header class="logo-header" aria-label="Encabezado">
-         <img
-            src="assets/logo/logopsynet_300x300.webp"
-            alt="logo de PsychoShare"
-            />
-         <h1>PsychoShare</h1>
-      </header>
-      <section class="search-bar" aria-label="Buscador">
-         <form class="search-form" action="search" method="get">
-            <input
-               type="search"
-               name="q"
-               placeholder="Buscar contactos..."
-               class="search-input"
-               />
-            <button type="submit" class="search-button" aria-label="Buscar">
-            <i class="fas fa-search"></i>
-            </button>
-         </form>
-         <span class="action-buttons">
-         <a href="wall.html" class="action-button" aria-label="Inicio"
-            ><i class="fas fa-house"></i
-            ></a>
-         <a href="profile.html" class="action-button" aria-label="Perfil"
-            ><img
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="keywords"
+      content="contactos, red social, salud mental, profesionales, usuarios, red de psicólogos, comunidad de práctica"
+    />
+    <meta
+      name="description"
+      content="Lista de contactos en PsychoShare, la red social de salud mental. Conecta con profesionales y usuarios interesados en psicología y bienestar emocional."
+    />
+    <title>Lista de contactos | PsychoShare - Comunidad de salud mental</title>
+    <!-- Favicon and manifest -->
+    <link rel="icon" href="favicon/favicon.ico" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="96x96"
+      href="favicon/favicon-96x96.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="favicon/apple-touch-icon.png"
+    />
+    <link rel="icon" type="image/svg+xml" href="favicon/favicon.svg" />
+    <link rel="manifest" href="favicon/site.webmanifest" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&family=Sora:wght@100..800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+      integrity="sha512-Tf8UPt3NwntSM6AfUsF96pAy43MPHRswCy7O0KlNNX+R1F0I06+nSgxWWJZKjFuRjRuhAuH9knFVw8NsK9zQ9g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <link rel="stylesheet" href="css/style.css" />
+
+    <script
+      src="https://kit.fontawesome.com/636f762910.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body class="contacts-layout">
+    <header class="logo-header" aria-label="Encabezado">
+      <img
+        src="assets/logo/logopsynet_300x300.webp"
+        alt="logo de PsychoShare"
+      />
+      <h1>PsychoShare</h1>
+    </header>
+    <section class="search-bar" aria-label="Buscador">
+      <form class="search-form" action="search" method="get">
+        <input
+          type="search"
+          name="q"
+          placeholder="Buscar contactos..."
+          class="search-input"
+        />
+        <button type="submit" class="search-button" aria-label="Buscar">
+          <i class="fas fa-search"></i>
+        </button>
+      </form>
+      <span class="action-buttons">
+        <a href="wall.html" class="action-button" aria-label="Inicio"
+          ><i class="fas fa-house"></i
+        ></a>
+        <a href="profile.html" class="action-button" aria-label="Perfil"
+          ><img
             src="assets/imgwebp/flavia.webp"
             alt="Foto de contacto"
             class="contact-photo"
-            /></a>
-         <button class="menu-toggle action-button" aria-label="Abrir menú">
-         <i class="fas fa-bars"></i>
-         </button>
-         </span>
-      </section>
-      <nav class="menu-nav" aria-label="Menú principal de navegación">
-         <ul>
-            <li>
-               <a href="wall.html" class="nav-link"
-                  ><i class="fas fa-house"></i> Inicio</a
-                  >
-            </li>
-            <li>
-               <a href="profile.html" class="nav-link"
-                  ><i class="fas fa-circle-user"></i> Perfil</a
-                  >
-            </li>
-            <li>
-               <a href="contacts.html" class="nav-link"
-                  ><i class="fas fa-address-book"></i> Mis contactos</a
-                  >
-            </li>
-            <li>
-               <a href="about-us.html" class="nav-link"
-                  ><i class="fas fa-info-circle"></i> Acerca de...</a
-                  >
-            </li>
-            <li>
-               <a href="logout-modal.html" class="nav-link"
-                  ><i class="fas fa-right-from-bracket"></i> Cerrar sesión</a
-                  >
-            </li>
-         </ul>
-      </nav>
-      <main class="main-content">
-            <h2 class="contacts-count">5 Contactos</h2>
-            <section class="contacts-list-container" id="following_collection"></section>
-      </main>
+        /></a>
+        <button class="menu-toggle action-button" aria-label="Abrir menú">
+          <i class="fas fa-bars"></i>
+        </button>
+      </span>
+    </section>
+    <nav class="menu-nav" aria-label="Menú principal de navegación">
+      <ul>
+        <li>
+          <a href="wall.html" class="nav-link"
+            ><i class="fas fa-house"></i> Inicio</a
+          >
+        </li>
+        <li>
+          <a href="profile.html" class="nav-link"
+            ><i class="fas fa-circle-user"></i> Perfil</a
+          >
+        </li>
+        <li>
+          <a href="contacts.html" class="nav-link"
+            ><i class="fas fa-address-book"></i> Mis contactos</a
+          >
+        </li>
+        <li>
+          <a href="about-us.html" class="nav-link"
+            ><i class="fas fa-info-circle"></i> Acerca de...</a
+          >
+        </li>
+        <li>
+          <a href="logout-modal.html" class="nav-link"
+            ><i class="fas fa-right-from-bracket"></i> Cerrar sesión</a
+          >
+        </li>
+      </ul>
+    </nav>
+    <main class="main-content">
+      <h2 class="contacts-count">5 Contactos</h2>
+      <section
+        class="contacts-list-container"
+        id="following_collection"
+      ></section>
+    </main>
 
-      <footer class="footer" aria-label="Pie de página del sitio">
-         <p>2025 PsychoShare - Hecho por PsyNet - Licencia MIT</p>
-      </footer>
+    <footer class="footer" aria-label="Pie de página del sitio">
+      <p>2025 PsychoShare - Hecho por PsyNet - Licencia MIT</p>
+    </footer>
 
-      <script src="./scripts/fetch.js"></script>
-      <script src="./scripts/Following/following.js"></script>
-      <script src="./scripts/Following/followingRepository.js"></script>
-      <script src="./scripts/Following/followingRepresentation.js"></script>
-      <script src="./scripts/components/hamburgerMenu.js"></script>
-   </body>
+    <script src="./scripts/fetch.js"></script>
+    <script src="./scripts/Following/following.js"></script>
+    <script src="./scripts/Following/followingRepository.js"></script>
+    <script src="./scripts/Following/followingRepresentation.js"></script>
+    <script src="./scripts/components/hamburgerMenu.js"></script>
+  </body>
 </html>
