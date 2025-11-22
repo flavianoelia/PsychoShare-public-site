@@ -40,16 +40,31 @@ function attachUnfollowListeners() {
 
   unfollowButtons.forEach((button) => {
     button.addEventListener("click", function () {
+      // Prevent race condition: disable button if request is in progress
+      if (this.disabled) {
+        return;
+      }
+
       const userId = parseInt(this.getAttribute("data-user-id"));
       const contactCard = this.closest(".following-card");
       const contactName =
         contactCard.querySelector(".contact-name").textContent;
 
-      if (
-        confirm(`¿Estás seguro de que querés dejar de seguir a ${contactName}?`)
-      ) {
-        handleUnfollow(userId, contactCard);
-      }
+      Swal.fire({
+        title: '¿Estás seguro?',
+        text: `¿Querés dejar de seguir a ${contactName}?`,
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#b48d92',
+        cancelButtonColor: '#6c757d',
+        confirmButtonText: 'Sí, dejar de seguir',
+        cancelButtonText: 'Cancelar'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.disabled = true; // Disable button during request
+          handleUnfollow(userId, contactCard, this);
+        }
+      });
     });
   });
 }
@@ -58,19 +73,33 @@ function attachUnfollowListeners() {
  * Handles the unfollow action
  * @param {number} userId - The ID of the user to unfollow
  * @param {HTMLElement} contactCard - The card element to remove from DOM
+ * @param {HTMLElement} button - The unfollow button to re-enable on error
  */
-function handleUnfollow(userId, contactCard) {
-  unfollowUser(userId, function (success) {
-    if (success) {
+function handleUnfollow(userId, contactCard, button) {
+  unfollowUser(userId, function (result) {
+    if (result.success) {
       // Remove card from DOM with animation
       contactCard.style.opacity = "0";
       setTimeout(() => {
         contactCard.remove();
-        // Re-render to update count
-        renderContacts();
+        // Update count directly without re-rendering everything
+        const countElem = document.querySelector(".contacts-count");
+        if (countElem) {
+          const match = countElem.textContent.match(/^(\d+)/);
+          const currentCount = match ? parseInt(match[1]) : 0;
+          updateContactsCount(Math.max(0, currentCount - 1));
+        }
       }, 300);
     } else {
-      alert("Error al dejar de seguir. Intentá nuevamente.");
+      // Re-enable button on error
+      if (button) {
+        button.disabled = false;
+      }
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: result.message || "Error al dejar de seguir. Intentá nuevamente."
+      });
     }
   });
 }

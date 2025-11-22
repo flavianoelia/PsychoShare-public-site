@@ -7,16 +7,23 @@ function server(url, config, success) {
     fetch(`http://localhost:5174${url}`, config)
         .then(response => {
             if (!response.ok) {
-                //sweet alert
-                alert(response.status);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error del servidor',
+                    text: `Código de error: ${response.status}`
+                });
                 return;
             } else {
                 return response.json();
             }
         })
-        .then(data => success(data)) // { exists: true }
+        .then(data => success(data))
         .catch(error => {
-            //sweetAlert
+            Swal.fire({
+                icon: 'error',
+                title: 'Error de conexión',
+                text: 'No se pudo conectar con el servidor'
+            });
             console.log(JSON.stringify(error));
         })
 }

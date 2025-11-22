@@ -44,7 +44,7 @@ function getContacts(userId, callback) {
 /**
  * Follow a user
  * @param {number} followedUserId - The ID of the user to follow
- * @param {Function} callback - Callback function to handle the response
+ * @param {Function} callback - Callback function to handle the response with format {success: boolean, data: object, message: string}
  */
 function followUser(followedUserId, callback) {
   const currentUserId = localStorage.getItem("userId");
@@ -53,6 +53,13 @@ function followUser(followedUserId, callback) {
   if (!currentUserId) {
     console.error("No userId found in localStorage");
     callback({ success: false, message: "User not logged in" });
+    return;
+  }
+
+  // Validate followedUserId is a valid positive integer
+  if (!followedUserId || !Number.isInteger(followedUserId) || followedUserId <= 0) {
+    console.error("Invalid followedUserId:", followedUserId);
+    callback({ success: false, message: "Invalid user ID" });
     return;
   }
 
@@ -65,13 +72,19 @@ function followUser(followedUserId, callback) {
     },
   };
 
-  server(url, config, callback);
+  server(url, config, function(response) {
+    if (response && response.id) {
+      callback({ success: true, data: response });
+    } else {
+      callback({ success: false, message: "Error al seguir usuario" });
+    }
+  });
 }
 
 /**
  * Unfollow a user
  * @param {number} followedUserId - The ID of the user to unfollow
- * @param {Function} callback - Callback function to handle the response
+ * @param {Function} callback - Callback function to handle the response with format {success: boolean, message: string}
  */
 function unfollowUser(followedUserId, callback) {
   const currentUserId = localStorage.getItem("userId");
@@ -79,7 +92,14 @@ function unfollowUser(followedUserId, callback) {
 
   if (!currentUserId) {
     console.error("No userId found in localStorage");
-    callback(false);
+    callback({ success: false, message: "User not logged in" });
+    return;
+  }
+
+  // Validate followedUserId is a valid positive integer
+  if (!followedUserId || !Number.isInteger(followedUserId) || followedUserId <= 0) {
+    console.error("Invalid followedUserId:", followedUserId);
+    callback({ success: false, message: "Invalid user ID" });
     return;
   }
 
@@ -92,13 +112,20 @@ function unfollowUser(followedUserId, callback) {
     },
   };
 
-  server(url, config, callback);
+  server(url, config, function(response) {
+    // DELETE typically returns 204 No Content or empty response on success
+    if (response !== undefined && response !== null) {
+      callback({ success: true, message: "Usuario dejado de seguir exitosamente" });
+    } else {
+      callback({ success: false, message: "Error al dejar de seguir" });
+    }
+  });
 }
 
 /**
  * Check if current user is following another user
  * @param {number} targetUserId - The ID of the user to check
- * @param {Function} callback - Callback function to handle the response (boolean)
+ * @param {Function} callback - Callback function to handle the response with format {success: boolean, data: boolean}
  */
 function checkIsFollowing(targetUserId, callback) {
   const currentUserId = localStorage.getItem("userId");
@@ -106,7 +133,14 @@ function checkIsFollowing(targetUserId, callback) {
 
   if (!currentUserId) {
     console.error("No userId found in localStorage");
-    callback(false);
+    callback({ success: false, data: false });
+    return;
+  }
+
+  // Validate targetUserId is a valid positive integer
+  if (!targetUserId || !Number.isInteger(targetUserId) || targetUserId <= 0) {
+    console.error("Invalid targetUserId:", targetUserId);
+    callback({ success: false, data: false });
     return;
   }
 
@@ -119,5 +153,9 @@ function checkIsFollowing(targetUserId, callback) {
     },
   };
 
-  server(url, config, callback);
+  server(url, config, function(response) {
+    // Backend returns boolean or object with isFollowing property
+    const isFollowing = typeof response === 'boolean' ? response : response.isFollowing;
+    callback({ success: true, data: isFollowing });
+  });
 }

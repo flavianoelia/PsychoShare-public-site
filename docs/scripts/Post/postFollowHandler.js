@@ -9,8 +9,10 @@ function initializeFollowButtons() {
     const targetUserId = parseInt(button.getAttribute("data-user-id"));
 
     // Check if already following and update button
-    checkIsFollowing(targetUserId, function (isFollowing) {
-      updateFollowButton(button, isFollowing);
+    checkIsFollowing(targetUserId, function (result) {
+      if (result.success) {
+        updateFollowButton(button, result.data);
+      }
     });
 
     // Add click handler
@@ -55,24 +57,32 @@ function handleFollowToggle(button, targetUserId) {
 
   if (isCurrentlyFollowing) {
     // Unfollow
-    unfollowUser(targetUserId, function (success) {
+    unfollowUser(targetUserId, function (result) {
       button.disabled = false;
-      if (success) {
+      if (result.success) {
         updateFollowButton(button, false);
       } else {
-        alert("Error al dejar de seguir");
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: result.message || "Error al dejar de seguir"
+        });
         spinner.classList.add("d-none");
         btnText.textContent = "Dejar de seguir";
       }
     });
   } else {
     // Follow
-    followUser(targetUserId, function (response) {
+    followUser(targetUserId, function (result) {
       button.disabled = false;
-      if (response && response.id) {
+      if (result.success) {
         updateFollowButton(button, true);
       } else {
-        alert("Error al seguir usuario");
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: result.message || "Error al seguir usuario"
+        });
         spinner.classList.add("d-none");
         btnText.textContent = "Seguir";
       }
