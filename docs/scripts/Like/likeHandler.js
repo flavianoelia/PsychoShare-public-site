@@ -41,6 +41,12 @@ function updateLikeButton(button, likeCount, isLiked) {
   const icon = button.querySelector("i");
   const textSpan = button.querySelector(".like-text");
 
+  // Validate DOM elements exist
+  if (!icon || !textSpan) {
+    console.error("Like button missing required elements (icon or text span)");
+    return;
+  }
+
   // Update icon style
   if (isLiked) {
     icon.classList.remove("fa-regular");
@@ -53,9 +59,7 @@ function updateLikeButton(button, likeCount, isLiked) {
   }
 
   // Update text
-  if (textSpan) {
-    textSpan.textContent = likeCount + (likeCount === 1 ? " Me gusta" : " Me gusta");
-  }
+  textSpan.textContent = likeCount + " Me gusta";
 }
 
 /**
@@ -72,7 +76,6 @@ function handleLikeClick(button, postId) {
   // Disable button during request
   button.disabled = true;
 
-  const icon = button.querySelector("i");
   const textSpan = button.querySelector(".like-text");
   const isCurrentlyLiked = button.classList.contains("liked");
 

@@ -17,6 +17,14 @@ function toggleLike(postId, callback) {
     return;
   }
 
+  // Validate currentUserId is a valid positive integer
+  const parsedUserId = parseInt(currentUserId);
+  if (!Number.isInteger(parsedUserId) || parsedUserId <= 0) {
+    console.error("Invalid userId in localStorage:", currentUserId);
+    callback({ success: false, message: "Invalid user ID" });
+    return;
+  }
+
   // Validate postId is a valid positive integer
   if (!postId || !Number.isInteger(postId) || postId <= 0) {
     console.error("Invalid postId:", postId);
@@ -32,17 +40,30 @@ function toggleLike(postId, callback) {
       Authorization: `Bearer ${token}`,
     },
     body: JSON.stringify({
-      userId: parseInt(currentUserId),
+      userId: parsedUserId,
       postId: postId,
     }),
   };
 
+  let callbackCalled = false;
+  // Timeout fallback: call callback with error if not called in 10s
+  const timeoutId = setTimeout(function () {
+    if (!callbackCalled) {
+      callbackCalled = true;
+      callback({ success: false, message: "Error de red o sin respuesta del servidor" });
+    }
+  }, 10000);
+
   server(url, config, function (response) {
-    // Backend returns true (now liked) or false (like removed)
-    if (typeof response === "boolean") {
-      callback({ success: true, data: response });
-    } else {
-      callback({ success: false, message: "Error al procesar like" });
+    if (!callbackCalled) {
+      callbackCalled = true;
+      clearTimeout(timeoutId);
+      // Backend returns true (now liked) or false (like removed)
+      if (typeof response === "boolean") {
+        callback({ success: true, data: response });
+      } else {
+        callback({ success: false, message: "Error al procesar like" });
+      }
     }
   });
 }
@@ -65,6 +86,17 @@ function getLikeStats(postId, callback) {
     return;
   }
 
+  // Validate currentUserId is a valid positive integer
+  const parsedUserId = parseInt(currentUserId);
+  if (!Number.isInteger(parsedUserId) || parsedUserId <= 0) {
+    console.error("Invalid userId in localStorage:", currentUserId);
+    callback({
+      success: false,
+      data: { likeCount: 0, isLikedByCurrentUser: false, recentLikerNames: [] },
+    });
+    return;
+  }
+
   // Validate postId is a valid positive integer
   if (!postId || !Number.isInteger(postId) || postId <= 0) {
     console.error("Invalid postId:", postId);
@@ -75,7 +107,7 @@ function getLikeStats(postId, callback) {
     return;
   }
 
-  const url = `/api/Like/stats/${postId}?currentUserId=${currentUserId}`;
+  const url = `/api/Like/stats/${postId}?currentUserId=${encodeURIComponent(currentUserId)}`;
 
   const config = {
     method: "GET",
@@ -84,14 +116,32 @@ function getLikeStats(postId, callback) {
     },
   };
 
-  server(url, config, function (response) {
-    if (response && typeof response.likeCount === "number") {
-      callback({ success: true, data: response });
-    } else {
+  let callbackCalled = false;
+  // Timeout fallback: call callback with error if not called in 10s
+  const timeoutId = setTimeout(function () {
+    if (!callbackCalled) {
+      callbackCalled = true;
       callback({
         success: false,
         data: { likeCount: 0, isLikedByCurrentUser: false, recentLikerNames: [] },
+        message: "Error de red o sin respuesta del servidor",
       });
+    }
+  }, 10000);
+
+  server(url, config, function (response) {
+    if (!callbackCalled) {
+      callbackCalled = true;
+      clearTimeout(timeoutId);
+      if (response && typeof response.likeCount === "number") {
+        callback({ success: true, data: response });
+      } else {
+        callback({
+          success: false,
+          data: { likeCount: 0, isLikedByCurrentUser: false, recentLikerNames: [] },
+          message: response && response.message ? response.message : "Respuesta inválida del servidor",
+        });
+      }
     }
   });
 }
