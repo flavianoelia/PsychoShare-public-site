@@ -1,93 +1,191 @@
 <!DOCTYPE html>
 <html lang="es">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="keywords" content="registro, crear cuenta, iniciar sesión, psicología, red social, salud mental, profesionales, estudiantes" />
-        <meta name="description" content="Crea una cuenta en PsychoShare para explorar, compartir y transformar el mundo de la psicología abierta. Únete a nuestra comunidad de profesionales y estudiantes.">
-        <title>Registrarse | PsychoShare - Red de psicología abierta</title>
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-        <link rel="icon" href="favicon/favicon.ico">
-        <link rel="icon" type="image/png" sizes="96x96" href="favicon/favicon-96x96.png">
-        <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
-        <link rel="icon" type="image/svg+xml" href="favicon/favicon.svg">
-        <link rel="manifest" href="favicon/site.webmanifest">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="keywords"
+      content="registro, crear cuenta, iniciar sesión, psicología, red social, salud mental, profesionales, estudiantes"
+    />
+    <meta
+      name="description"
+      content="Crea una cuenta en PsychoShare para explorar, compartir y transformar el mundo de la psicología abierta. Únete a nuestra comunidad de profesionales y estudiantes."
+    />
+    <title>Registrarse | PsychoShare - Red de psicología abierta</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
 
-        <link rel="stylesheet" href="css/style.css">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="icon" href="favicon/favicon.ico" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="96x96"
+      href="favicon/favicon-96x96.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="favicon/apple-touch-icon.png"
+    />
+    <link rel="icon" type="image/svg+xml" href="favicon/favicon.svg" />
+    <link rel="manifest" href="favicon/site.webmanifest" />
 
-    </head>
-<body>
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  </head>
+  <body>
     <main class="split-page-layout">
-        <section class="logo-section">
-          <img src="assets/logo/logo-black_300x300.webp" alt="Logo de PsychoShare" class="logo-avatar">
-          <h2 class="logo-subtitle">Psicología abierta: Explora, comparte, impulsa y transforma.</h2>
-        </section>
-        <section class="content-section">
-            <h1 class="mb-4 title">PsychoShare</h1>
-            <h2>Crear una nueva cuenta</h2>
-            <form id="register-form" class= "card-form" novalidate>
-                <small id="nameError" class="error-message">Nombre inválido</small>
-                <input type="text" class="form-control mb-3" id="name" name="nombre" placeholder="Nombre" aria-label="Nombre" required>
-                <small id="lastnameError" class="error-message">Apellido inválido</small>
-                <input type="text" class="form-control mb-3" id="lastname" name="apellido" placeholder="Apellido" aria-label="Apellido" required>
-                <small id="emailError" class="error-message">Email inválido</small>
-                <input type="email" class="form-control mb-3" id="mail" name="mail" placeholder="Correo electrónico" aria-label="Correo electrónico" required>
-                <small id="passwordError" class="error-message">La contraseña debe tener mínimo 8 caracteres, incluir mayúscula, minúscula, número y símbolo.</small>
-                <input type="password" class="form-control mb-3" id="password" name="password" placeholder="Contraseña" aria-label="Contraseña" required>
-                <small id="confirmPasswordError" class="error-message">Las contraseñas no coinciden</small>
-                <input type="password" class="form-control mb-3" id="confirmPassword" name="confirmPassword" placeholder="Repetir contraseña" aria-label="Repetir contraseña" required>
-                            
+      <section class="logo-section">
+        <img
+          src="assets/logo/logo-black_300x300.webp"
+          alt="Logo de PsychoShare"
+          class="logo-avatar"
+        />
+        <h2 class="logo-subtitle">
+          Psicología abierta: Explora, comparte, impulsa y transforma.
+        </h2>
+      </section>
+      <section class="content-section">
+        <h1 class="mb-4 title">PsychoShare</h1>
+        <h2>Crear una nueva cuenta</h2>
+        <form id="register-form" class="card-form" novalidate>
+          <small id="nameError" class="error-message">Nombre inválido</small>
+          <input
+            type="text"
+            class="form-control mb-3"
+            id="name"
+            name="nombre"
+            placeholder="Nombre"
+            aria-label="Nombre"
+            required
+          />
+          <small id="lastnameError" class="error-message"
+            >Apellido inválido</small
+          >
+          <input
+            type="text"
+            class="form-control mb-3"
+            id="lastname"
+            name="apellido"
+            placeholder="Apellido"
+            aria-label="Apellido"
+            required
+          />
+          <small id="emailError" class="error-message">Email inválido</small>
+          <input
+            type="email"
+            class="form-control mb-3"
+            id="mail"
+            name="mail"
+            placeholder="Correo electrónico"
+            aria-label="Correo electrónico"
+            required
+          />
+          <small id="passwordError" class="error-message"
+            >La contraseña debe tener mínimo 8 caracteres, incluir mayúscula,
+            minúscula, número y símbolo.</small
+          >
+          <input
+            type="password"
+            class="form-control mb-3"
+            id="password"
+            name="password"
+            placeholder="Contraseña"
+            aria-label="Contraseña"
+            required
+          />
+          <small id="confirmPasswordError" class="error-message"
+            >Las contraseñas no coinciden</small
+          >
+          <input
+            type="password"
+            class="form-control mb-3"
+            id="confirmPassword"
+            name="confirmPassword"
+            placeholder="Repetir contraseña"
+            aria-label="Repetir contraseña"
+            required
+          />
 
+          <label for="terms" class="checkbox-label">
+            <input type="checkbox" id="terms" name="terms" required />
+            Acepto los Términos y Condiciones y la Política de Privacidad.
+          </label>
 
-              
-                <label for="terms" class="checkbox-label">
-                  <input type="checkbox" id="terms" name="terms" required>
-                  Acepto los Términos y Condiciones y la Política de Privacidad.
-                </label>
-              
-                <button type="submit" id="registerButton" class="btn btn-primary">Registrarse</button>
-            </form>
+          <button type="submit" id="registerButton" class="btn btn-primary">
+            Registrarse
+          </button>
+        </form>
 
-
-            <p class="mt-3 text-center">
-                ¿Ya tenés una cuenta?
-                <button type="button" class="link-login" data-bs-toggle="modal" data-bs-target="#modalLogin">
-                  Iniciá sesión
-                </button>
-            </p>
-        </section>
+        <p class="mt-3 text-center">
+          ¿Ya tenés una cuenta?
+          <button
+            type="button"
+            class="link-login"
+            data-bs-toggle="modal"
+            data-bs-target="#modalLogin"
+          >
+            Iniciá sesión
+          </button>
+        </p>
+      </section>
     </main>
-    
-        <div class="modal fade" id="modalLogin" tabindex="-1" aria-labelledby="modalLoginLabel" aria-hidden="true">
-            <div class="modal-dialog">
-              <section class="modal-content p-4">
-                <header class="modal-header border-0">
-                  <h5 class="modal-title" id="modalLoginLabel">Iniciar sesión</h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
-                </header>
-                <form id="login-form" class="needs-validation" novalidate>
-                  <div class="mb-3">
-                    <input type="email" class="form-control" id="modal-mail" name="mail" placeholder="Correo electrónico" required>
-                  </div>
-                  <div class="mb-3">
-                    <input type="password" class="form-control" id="modal-password" name="contraseña" placeholder="Contraseña" required>
-                  </div>
-                  <a href="wall.html" class="btn btn-primary w-100">Iniciar sesión</a>
-                </form>
-              </section>
-            </div>
-          </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-      <footer class="footer" aria-label="Pie de página del sitio">
-            <p>2025 PsychoShare - Hecho por PsyNet - Licencia MIT</p>
-      </footer>
-      <script src="scripts/fetch.js"></script>
-      <script src="scripts/helpers.js"></script>
-      <script src="scripts/User/userRepository.js"></script>
-      <script src="scripts/User/user.js"></script>
-      <script src="scripts/User/registerPresentation.js"></script>
 
-</body>
+    <div
+      class="modal fade"
+      id="modalLogin"
+      tabindex="-1"
+      aria-labelledby="modalLoginLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <section class="modal-content p-4">
+          <header class="modal-header border-0">
+            <h5 class="modal-title" id="modalLoginLabel">Iniciar sesión</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Cerrar"
+            ></button>
+          </header>
+          <form id="login-form" class="needs-validation" novalidate>
+            <div class="mb-3">
+              <input
+                type="email"
+                class="form-control"
+                id="modal-mail"
+                name="mail"
+                placeholder="Correo electrónico"
+                required
+              />
+            </div>
+            <div class="mb-3">
+              <input
+                type="password"
+                class="form-control"
+                id="modal-password"
+                name="contraseña"
+                placeholder="Contraseña"
+                required
+              />
+            </div>
+            <a href="wall.html" class="btn btn-primary w-100">Iniciar sesión</a>
+          </form>
+        </section>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <footer class="footer" aria-label="Pie de página del sitio">
+      <p>2025 PsychoShare - Hecho por PsyNet - Licencia MIT</p>
+    </footer>
+    <script src="scripts/fetch.js"></script>
+    <script src="scripts/helpers.js"></script>
+    <script src="scripts/User/userRepository.js"></script>
+    <script src="scripts/User/user.js"></script>
+    <script src="scripts/User/registerPresentation.js"></script>
+  </body>
 </html>

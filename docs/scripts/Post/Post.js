@@ -1,35 +1,40 @@
 class Post {
-    constructor(post){
-        this.imgOwner = post.imgOwner;
-        this.nameOwner = post.nameOwner;
-        this.description = post.description;
-        this.title = post.title;
-        this.authorship = post.authorship;
-        this.abstract = post.abstract;
-        this.image = post.image;
-        this.coutLike = post.countLike;
-        this.comments = post.comments || [];
-    }
+  constructor(post) {
+    this.userId = post.userId;
+    this.imgOwner = post.imgOwner;
+    this.nameOwner = post.nameOwner;
+    this.description = post.description;
+    this.title = post.title;
+    this.authorship = post.authorship;
+    this.abstract = post.abstract;
+    this.image = post.image;
+    this.coutLike = post.countLike;
+    this.comments = post.comments || [];
+  }
 
-    //template string que tiene un post
-    getNode(){
-        const post = document.createElement("article");
-        post.className = "article";
-        // build comments html
-        const commentsHtml = this.comments.map((c, idx) => `
-            <article class="comment">
-                <div class="comment-header">
-                    <img src="${c.imgOwner}" alt="Foto de contacto" class="contact-avatar">
-                    <p>${c.nameOwner}</p>
-                    <button class="report-comment" data-report-type="comment" data-report-id="${this.title}-c${idx}" aria-label="Reportar comentario" title="Reportar comentario"><i class="fas fa-flag"></i></button>
-                </div>
-                <div class="comment-content">
-                    <p>${c.text}</p>
-                </div>
-            </article>
-        `).join('\n');
+  //template string que tiene un post
+  getNode() {
+    const currentUserId = localStorage.getItem("userId");
+    const isOwnPost = this.userId == currentUserId;
 
-        post.innerHTML = `
+    const post = document.createElement("article");
+    post.className = "article";
+    
+    // build comments html with report button
+    const commentsHtml = this.comments.map((c, idx) => `
+        <article class="comment">
+            <div class="comment-header">
+                <img src="${c.imgOwner}" alt="Foto de contacto" class="contact-avatar">
+                <p>${c.nameOwner}</p>
+                <button class="report-comment" data-report-type="comment" data-report-id="${this.title}-c${idx}" aria-label="Reportar comentario" title="Reportar comentario"><i class="fas fa-flag"></i></button>
+            </div>
+            <div class="comment-content">
+                <p>${c.text}</p>
+            </div>
+        </article>
+    `).join('\n');
+
+    post.innerHTML = `
             <section class="post">
                 <img src="${this.imgOwner}" alt="Foto de contacto" class="contact-avatar">
                 <div class="post-info">
@@ -37,6 +42,14 @@ class Post {
                     <p class="timestamp">18 junio 2025</p>
                     <p class="timestamp">17:40</p>
                 </div>
+                ${
+                  !isOwnPost
+                    ? `<button class="btn btn-sm follow-toggle-btn" data-user-id="${this.userId}" style="margin-left: auto;">
+                    <span class="spinner-border spinner-border-sm d-none" role="status"></span>
+                    <span class="btn-text">Cargando...</span>
+                </button>`
+                    : ""
+                }
             </section>
             <section class="post-content">
                 <p>${this.description}</p>
@@ -48,8 +61,12 @@ class Post {
                     <figcaption>
                         <div class="button-container">
                             <div class="post-buttons">
-                                <button class="btn like-button"><i class="fas fa-thumbs-up"></i>${this.coutLike} Me gusta</button>
-                                <button class="btn comment-button"><i class="fas fa-comment"></i>${this.comments.length} Comentarios</button>
+                                <button class="btn like-button"><i class="fas fa-thumbs-up"></i>${
+                                  this.coutLike
+                                } Me gusta</button>
+                                <button class="btn comment-button"><i class="fas fa-comment"></i>${
+                                  this.comments.length
+                                } Comentarios</button>
                                 <button class="btn pdf-button"><i class="fas fa-file-pdf"></i>Ver PDF</button>
                                 <button class="btn btn-report" data-report-type="post" data-report-id="${this.title}" type="button"><i class="fas fa-flag"></i> Reportar</button>
                             </div>
@@ -68,7 +85,7 @@ class Post {
                 </div>
             </section>
         `;
-    
+
     /*
         const commentSection = document.createElement("section");
         commentSection.className = "comment-section";
@@ -98,7 +115,6 @@ class Post {
         post.appendChild(commentSection);
         */
 
-        return post;
-    }
+    return post;
+  }
 }
-

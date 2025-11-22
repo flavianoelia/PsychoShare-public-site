@@ -22,9 +22,10 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/components/report.css">
     <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script src="https://kit.fontawesome.com/636f762910.js" crossorigin="anonymous"></script>
-
+</head>
 
 <body class="wall-layout">
 
@@ -83,55 +84,58 @@
         <p>2025 PsychoShare - Hecho por PsyNet - Licencia MIT</p>
     </footer>
 
-        <!-- Modal de reporte (Bootstrap) -->
-        <div class="modal fade" id="reportModal" tabindex="-1" aria-labelledby="reportModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="reportModalLabel">Reportar contenido</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
-                    </div>
-                    <form id="reportForm">
-                        <div class="modal-body">
-                            <input type="hidden" name="target_type" id="report_target_type">
-                            <input type="hidden" name="target_id" id="report_target_id">
-                            <div class="mb-3">
-                                <label for="report_reason" class="form-label">Motivo</label>
-                                <select id="report_reason" name="reason" class="form-select" required>
-                                    <option value="acoso">Acoso</option>
-                                    <option value="spam">Spam</option>
-                                    <option value="contenido_inapropiado">Contenido inapropiado</option>
-                                    <option value="discurso_odio">Discurso de odio</option>
-                                    <option value="violencia_amenazas">Violencia/Amenazas</option>
-                                    <option value="robo_identidad">Robo de identidad</option>
-                                    <option value="infraccion_copyright">Infracción de copyright</option>
-                                    <option value="actividad_bot">Actividad de bot</option>
-                                    <option value="multiples_infracciones">Múltiples infracciones</option>
-                                    <option value="other">Otro</option>
-                                </select>
-                            </div>
-                            <!-- Detalles eliminado: ahora solo se requiere el motivo -->
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                            <button type="submit" class="btn btn-danger">Enviar reporte</button>
-                        </div>
-                    </form>
+    <!-- Modal de reporte (Bootstrap) -->
+    <div class="modal fade" id="reportModal" tabindex="-1" aria-labelledby="reportModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="reportModalLabel">Reportar contenido</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
                 </div>
+                <form id="reportForm">
+                    <div class="modal-body">
+                        <input type="hidden" name="target_type" id="report_target_type">
+                        <input type="hidden" name="target_id" id="report_target_id">
+                        <div class="mb-3">
+                            <label for="report_reason" class="form-label">Motivo</label>
+                            <select id="report_reason" name="reason" class="form-select" required>
+                                <option value="acoso">Acoso</option>
+                                <option value="spam">Spam</option>
+                                <option value="contenido_inapropiado">Contenido inapropiado</option>
+                                <option value="discurso_odio">Discurso de odio</option>
+                                <option value="violencia_amenazas">Violencia/Amenazas</option>
+                                <option value="robo_identidad">Robo de identidad</option>
+                                <option value="infraccion_copyright">Infracción de copyright</option>
+                                <option value="actividad_bot">Actividad de bot</option>
+                                <option value="multiples_infracciones">Múltiples infracciones</option>
+                                <option value="other">Otro</option>
+                            </select>
+                        </div>
+                        <!-- Detalles eliminado: ahora solo se requiere el motivo -->
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-danger">Enviar reporte</button>
+                    </div>
+                </form>
             </div>
         </div>
+    </div>
 
-        <script src="./scripts/Post/Post.js"></script>
-        <script src="./scripts/Post/postRepository.js"></script>
-        <script src="./scripts/Post/postPresentation.js"></script>
-        <script src="./scripts/components/hamburgerMenu.js"></script>
-        <script src="./scripts/helpers.js"></script>
-        <script src="./scripts/modalPost/modalPost.js"></script>
-        <script src="./scripts/modalPost/validatePost.js"></script>
-        <script src="./scripts/modalPost/modalPostPresentation.js"></script>
-        <script src="./scripts/profile/profilePresentation.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-        <script src="scripts/report.js" defer></script>
+    <script src="./scripts/fetch.js"></script>
+    <script src="./scripts/Following/followingRepository.js"></script>
+    <script src="./scripts/Post/Post.js"></script>
+    <script src="./scripts/Post/postRepository.js"></script>
+    <script src="./scripts/Post/postFollowHandler.js"></script>
+    <script src="./scripts/Post/postPresentation.js"></script>
+    <script src="./scripts/components/hamburgerMenu.js"></script>
+    <script src="./scripts/helpers.js"></script>
+    <script src="./scripts/modalPost/modalPost.js"></script>
+    <script src="./scripts/modalPost/validatePost.js"></script>
+    <script src="./scripts/modalPost/modalPostPresentation.js"></script>
+    <script src="./scripts/profile/profilePresentation.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="scripts/report.js" defer></script>
 
 </body>
 </html>
