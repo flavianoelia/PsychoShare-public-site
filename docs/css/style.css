@@ -569,6 +569,14 @@ figure {
   align-items: center;
   gap: 15px;
 }
+.right-info{
+  display: flex;
+  gap: 1rem;
+}
+.right-info button {
+  font-size: 0.7rem;
+  padding: 10px 1rem;
+}
 .user-name {
   font-size: 1.5em;
   font-weight: 600;
