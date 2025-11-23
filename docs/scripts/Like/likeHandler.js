@@ -20,7 +20,11 @@ function initializeLikeButtons() {
     // Load initial like stats
     getLikeStats(postId, function (result) {
       if (result.success) {
-        updateLikeButton(button, result.data.likeCount, result.data.isLikedByCurrentUser);
+        updateLikeButton(
+          button,
+          result.data.likeCount,
+          result.data.isLikedByCurrentUser
+        );
       }
     });
 
@@ -99,7 +103,11 @@ function handleLikeClick(button, postId) {
       // Refresh stats to get accurate count
       getLikeStats(postId, function (statsResult) {
         if (statsResult.success) {
-          updateLikeButton(button, statsResult.data.likeCount, statsResult.data.isLikedByCurrentUser);
+          updateLikeButton(
+            button,
+            statsResult.data.likeCount,
+            statsResult.data.isLikedByCurrentUser
+          );
         }
       });
     } else {
@@ -108,7 +116,8 @@ function handleLikeClick(button, postId) {
       Swal.fire({
         icon: "error",
         title: "Error",
-        text: result.message || "No se pudo procesar el like. Intentá nuevamente.",
+        text:
+          result.message || "No se pudo procesar el like. Intentá nuevamente.",
       });
     }
   });
