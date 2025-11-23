@@ -3,59 +3,73 @@
 // ====================================================================
 
 /**
+ * Cache for following IDs (Set for O(1) lookup)
+ * null = not loaded yet
+ */
+let followingCache = null;
+
+/**
  * Fetches and renders ALL users (not just followed users)
  * This allows users to discover people to follow
  * @param {string} searchQuery - Optional search term to filter users
  */
 function renderContacts(searchQuery) {
-  getAllUsers(searchQuery, function (users) {
-    const sectionFollowing = document.getElementById("following_collection");
-
-    if (!sectionFollowing) {
-      console.error("Element #following_collection not found");
-      return;
+  // First, load the following IDs cache if not already loaded
+  getMyFollowingIds(function (result) {
+    if (result.success) {
+      // Store in Set for O(1) lookup: followingCache.has(userId)
+      followingCache = new Set(result.data);
+    } else {
+      console.error("Failed to load following IDs, using empty cache");
+      followingCache = new Set();
     }
 
-    sectionFollowing.innerHTML = "";
+    // Now fetch all users
+    getAllUsers(searchQuery, function (users) {
+      const sectionFollowing = document.getElementById("following_collection");
 
-    const currentUserId = parseInt(localStorage.getItem("userId"));
+      if (!sectionFollowing) {
+        console.error("Element #following_collection not found");
+        return;
+      }
 
-    // Filter out current user from the list
-    const filteredUsers = users.filter(user => user.id !== currentUserId);
+      sectionFollowing.innerHTML = "";
 
-    let followingCount = 0; // Counter for users we're following
+      const currentUserId = parseInt(localStorage.getItem("userId"));
 
-    // Render each user using Following class
-    for (const userData of filteredUsers) {
-      const following = new Following(userData);
-      const node = following.getNode();
-      sectionFollowing.append(node);
+      // Filter out current user from the list
+      const filteredUsers = users.filter((user) => user.id !== currentUserId);
 
-      // Check if current user is following this user
-      checkIsFollowing(userData.id, function(result) {
-        if (result.success) {
-          const button = node.querySelector('.unfollow-btn');
-          if (button) {
-            if (result.data) {
-              button.textContent = 'Dejar de seguir';
-              button.classList.add('following');
-              followingCount++;
-              // Update counter after checking each user
-              updateContactsCount(filteredUsers.length, followingCount);
-            } else {
-              button.textContent = 'Seguir';
-              button.classList.remove('following');
-            }
+      let followingCount = 0; // Counter for users we're following
+
+      // Render each user using Following class
+      for (const userData of filteredUsers) {
+        const following = new Following(userData);
+        const node = following.getNode();
+        sectionFollowing.append(node);
+
+        // Use cache to check if following (O(1) instead of API call)
+        const isFollowing = followingCache.has(userData.id);
+        const button = node.querySelector(".unfollow-btn");
+
+        if (button) {
+          if (isFollowing) {
+            button.textContent = "Dejar de seguir";
+            button.classList.add("following");
+            followingCount++;
+          } else {
+            button.textContent = "Seguir";
+            button.classList.remove("following");
           }
         }
-      });
-    }
+      }
 
-    // Add event listeners to follow/unfollow buttons
-    attachUnfollowListeners();
+      // Add event listeners to follow/unfollow buttons
+      attachUnfollowListeners();
 
-    // Initial update (will be updated again as checks complete)
-    updateContactsCount(filteredUsers.length, 0);
+      // Update counter with final count
+      updateContactsCount(filteredUsers.length, followingCount);
+    });
   });
 }
 
@@ -74,20 +88,21 @@ function attachUnfollowListeners() {
 
       const userId = parseInt(this.getAttribute("data-user-id"));
       const contactCard = this.closest(".following-card");
-      const contactName = contactCard.querySelector(".contact-name").textContent;
-      const isCurrentlyFollowing = this.classList.contains('following');
+      const contactName =
+        contactCard.querySelector(".contact-name").textContent;
+      const isCurrentlyFollowing = this.classList.contains("following");
 
       if (isCurrentlyFollowing) {
         // User wants to UNFOLLOW
         Swal.fire({
-          title: '¿Estás seguro?',
+          title: "¿Estás seguro?",
           text: `¿Querés dejar de seguir a ${contactName}?`,
-          icon: 'warning',
+          icon: "warning",
           showCancelButton: true,
-          confirmButtonColor: '#b48d92',
-          cancelButtonColor: '#6c757d',
-          confirmButtonText: 'Sí, dejar de seguir',
-          cancelButtonText: 'Cancelar'
+          confirmButtonColor: "#b48d92",
+          cancelButtonColor: "#6c757d",
+          confirmButtonText: "Sí, dejar de seguir",
+          cancelButtonText: "Cancelar",
         }).then((result) => {
           if (result.isConfirmed) {
             this.disabled = true; // Disable button during request
@@ -111,11 +126,16 @@ function attachUnfollowListeners() {
 function handleFollow(userId, button) {
   followUser(userId, function (result) {
     button.disabled = false;
-    
+
     if (result.success) {
-      button.textContent = 'Dejar de seguir';
-      button.classList.add('following');
-      
+      // Update cache: add new following
+      if (followingCache) {
+        followingCache.add(userId);
+      }
+
+      button.textContent = "Dejar de seguir";
+      button.classList.add("following");
+
       // Update counter: increment following count
       const countElem = document.querySelector(".contacts-count");
       if (countElem) {
@@ -127,19 +147,20 @@ function handleFollow(userId, button) {
           updateContactsCount(total, currentFollowing + 1);
         }
       }
-      
+
       Swal.fire({
-        icon: 'success',
-        title: 'Éxito',
-        text: '¡Ahora estás siguiendo a este usuario!',
+        icon: "success",
+        title: "Éxito",
+        text: "¡Ahora estás siguiendo a este usuario!",
         timer: 2000,
-        showConfirmButton: false
+        showConfirmButton: false,
       });
     } else {
       Swal.fire({
-        icon: 'error',
-        title: 'Error',
-        text: result.message || 'No se pudo seguir al usuario. Intentá nuevamente.'
+        icon: "error",
+        title: "Error",
+        text:
+          result.message || "No se pudo seguir al usuario. Intentá nuevamente.",
       });
     }
   });
@@ -153,11 +174,16 @@ function handleFollow(userId, button) {
 function handleUnfollow(userId, button) {
   unfollowUser(userId, function (result) {
     button.disabled = false;
-    
+
     if (result.success) {
-      button.textContent = 'Seguir';
-      button.classList.remove('following');
-      
+      // Update cache: remove from following
+      if (followingCache) {
+        followingCache.delete(userId);
+      }
+
+      button.textContent = "Seguir";
+      button.classList.remove("following");
+
       // Update counter: decrement following count
       const countElem = document.querySelector(".contacts-count");
       if (countElem) {
@@ -169,19 +195,19 @@ function handleUnfollow(userId, button) {
           updateContactsCount(total, Math.max(0, currentFollowing - 1));
         }
       }
-      
+
       Swal.fire({
-        icon: 'success',
-        title: 'Listo',
-        text: 'Dejaste de seguir a este usuario',
+        icon: "success",
+        title: "Listo",
+        text: "Dejaste de seguir a este usuario",
         timer: 2000,
-        showConfirmButton: false
+        showConfirmButton: false,
       });
     } else {
       Swal.fire({
-        icon: 'error',
-        title: 'Error',
-        text: result.message || 'No se pudo dejar de seguir al usuario.'
+        icon: "error",
+        title: "Error",
+        text: result.message || "No se pudo dejar de seguir al usuario.",
       });
     }
   });
@@ -211,16 +237,16 @@ renderContacts();
  * Attaches search functionality to the search form
  */
 function initializeSearch() {
-  const searchForm = document.querySelector('.search-form');
-  const searchInput = document.querySelector('.search-input');
+  const searchForm = document.querySelector(".search-form");
+  const searchInput = document.querySelector(".search-input");
 
   if (!searchForm || !searchInput) {
-    console.warn('Search form or input not found');
+    console.warn("Search form or input not found");
     return;
   }
 
   // Prevent default form submission
-  searchForm.addEventListener('submit', function(e) {
+  searchForm.addEventListener("submit", function (e) {
     e.preventDefault();
     const query = searchInput.value.trim();
     renderContacts(query);
@@ -228,7 +254,7 @@ function initializeSearch() {
 
   // Optional: Search on input (real-time search)
   let searchTimeout;
-  searchInput.addEventListener('input', function() {
+  searchInput.addEventListener("input", function () {
     clearTimeout(searchTimeout);
     searchTimeout = setTimeout(() => {
       const query = this.value.trim();
