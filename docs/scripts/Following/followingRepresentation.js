@@ -48,7 +48,7 @@ function loadUsers(page, searchQuery, append = false) {
   if (isLoading) return;
 
   isLoading = true;
-  
+
   // Show spinner only when appending (page 2+), not on first load
   if (append) {
     showSpinner();
@@ -56,10 +56,10 @@ function loadUsers(page, searchQuery, append = false) {
 
   getAllUsers({ page, size: pageSize, searchQuery }, function (result) {
     const { users, hasMore, totalCount } = result;
-    const currentUserId = parseInt(localStorage.getItem("userId"));
+      const currentUserId = parseInt(localStorage.getItem("userId"));
 
-    // Filter out current user
-    const filteredUsers = users.filter((user) => user.id !== currentUserId);
+      // Filter out current user
+      const filteredUsers = users.filter((user) => user.id !== currentUserId);
 
     // Clear or append
     const sectionFollowing = document.getElementById("following_collection");
@@ -131,7 +131,7 @@ function loadUsers(page, searchQuery, append = false) {
 function showSpinner() {
   const spinner = document.getElementById("loading-spinner");
   if (spinner) {
-    spinner.style.display = "flex";
+    spinner.classList.add("active");
   }
 }
 
@@ -141,7 +141,7 @@ function showSpinner() {
 function hideSpinner() {
   const spinner = document.getElementById("loading-spinner");
   if (spinner) {
-    spinner.style.display = "none";
+    spinner.classList.remove("active");
   }
 }
 

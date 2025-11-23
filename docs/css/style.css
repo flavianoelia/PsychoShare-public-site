@@ -1034,12 +1034,16 @@ section.save-changes-section {
    LOADING SPINNER (for infinite scroll)
    ==================================================================== */
 .loading-spinner {
-  display: flex;
+  display: none; /* Hidden by default */
   flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: 2rem;
   gap: 1rem;
+}
+
+.loading-spinner.active {
+  display: flex; /* Visible when active */
 }
 
 .loading-spinner .spinner {
