@@ -1,5 +1,5 @@
 // ====================================================================
-// CONTACTS PRESENTATION - Render contacts to DOM
+// CONTACTS PRESENTATION - Render contacts to DOM with Infinite Scroll
 // ====================================================================
 
 /**
@@ -9,68 +9,140 @@
 let followingCache = null;
 
 /**
- * Fetches and renders ALL users (not just followed users)
- * This allows users to discover people to follow
- * @param {string} searchQuery - Optional search term to filter users
+ * Pagination state
  */
-function renderContacts(searchQuery) {
-  // First, load the following IDs cache if not already loaded
+let currentPage = 1;
+let isLoading = false;
+let hasMoreUsers = true;
+const pageSize = 10;
+let currentSearchQuery = "";
+
+/**
+ * Initializes the contacts page
+ */
+function initializeContacts() {
+  // First, load the following IDs cache
   getMyFollowingIds(function (result) {
     if (result.success) {
-      // Store in Set for O(1) lookup: followingCache.has(userId)
       followingCache = new Set(result.data);
     } else {
       console.error("Failed to load following IDs, using empty cache");
       followingCache = new Set();
     }
 
-    // Now fetch all users
-    getAllUsers(searchQuery, function (users) {
-      const sectionFollowing = document.getElementById("following_collection");
+    // Load first page of users
+    loadUsers(1, "");
+  });
 
-      if (!sectionFollowing) {
-        console.error("Element #following_collection not found");
-        return;
-      }
+  // Setup infinite scroll observer
+  setupInfiniteScroll();
+}
 
-      sectionFollowing.innerHTML = "";
+/**
+ * Loads a page of users
+ * @param {number} page - Page number to load
+ * @param {string} searchQuery - Optional search term
+ * @param {boolean} append - If true, appends to existing list. If false, replaces list
+ */
+function loadUsers(page, searchQuery, append = false) {
+  if (isLoading) return;
 
+  isLoading = true;
+
+  // Show spinner only when appending (page 2+), not on first load
+  if (append) {
+    showSpinner();
+  }
+
+  getAllUsers({ page, size: pageSize, searchQuery }, function (result) {
+    const { users, hasMore, totalCount } = result;
       const currentUserId = parseInt(localStorage.getItem("userId"));
 
-      // Filter out current user from the list
+      // Filter out current user
       const filteredUsers = users.filter((user) => user.id !== currentUserId);
 
-      let followingCount = 0; // Counter for users we're following
+    // Clear or append
+    const sectionFollowing = document.getElementById("following_collection");
+    if (!sectionFollowing) {
+      console.error("Element #following_collection not found");
+      hideSpinner();
+      isLoading = false;
+      return;
+    }
 
-      // Render each user using Following class
-      for (const userData of filteredUsers) {
-        const following = new Following(userData);
-        const node = following.getNode();
-        sectionFollowing.append(node);
+    if (!append) {
+      sectionFollowing.innerHTML = "";
+    }
 
-        // Use cache to check if following (O(1) instead of API call)
-        const isFollowing = followingCache.has(userData.id);
-        const button = node.querySelector(".unfollow-btn");
+    // Render users
+    let followingCount = 0;
+    for (const userData of filteredUsers) {
+      const following = new Following(userData);
+      const node = following.getNode();
+      sectionFollowing.append(node);
 
-        if (button) {
-          if (isFollowing) {
-            button.textContent = "Dejar de seguir";
-            button.classList.add("following");
-            followingCount++;
-          } else {
-            button.textContent = "Seguir";
-            button.classList.remove("following");
-          }
+      // Use cache to check if following
+      const isFollowing = followingCache.has(userData.id);
+      const button = node.querySelector(".unfollow-btn");
+
+      if (button) {
+        if (isFollowing) {
+          button.textContent = "Dejar de seguir";
+          button.classList.add("following");
+          followingCount++;
+        } else {
+          button.textContent = "Seguir";
+          button.classList.remove("following");
         }
       }
+    }
 
-      // Add event listeners to follow/unfollow buttons
-      attachUnfollowListeners();
+    // Update state
+    hasMoreUsers = hasMore;
+    currentPage = page;
+    currentSearchQuery = searchQuery;
 
-      // Update counter with final count
+    // Add event listeners
+    attachUnfollowListeners();
+
+    // Update counter (only on first page or when not appending)
+    if (!append) {
       updateContactsCount(filteredUsers.length, followingCount);
-    });
+    } else {
+      // When appending, recalculate total count
+      const allCards = document.querySelectorAll(".following-card");
+      const followingButtons = document.querySelectorAll(
+        ".unfollow-btn.following"
+      );
+      updateContactsCount(allCards.length, followingButtons.length);
+    }
+
+    hideSpinner();
+    isLoading = false;
+
+    // Re-observe last element for infinite scroll
+    observeLastElement();
   });
+}
+
+/**
+ * Shows loading spinner
+ */
+function showSpinner() {
+  const spinner = document.getElementById("loading-spinner");
+  if (spinner) {
+    spinner.classList.add("active");
+  }
+}
+
+/**
+ * Hides loading spinner
+ */
+function hideSpinner() {
+  const spinner = document.getElementById("loading-spinner");
+  if (spinner) {
+    spinner.classList.remove("active");
+  }
 }
 
 /**
@@ -226,8 +298,42 @@ function updateContactsCount(totalCount, followingCount) {
   }
 }
 
-// Initialize: Render contacts when page loads
-renderContacts();
+// ====================================================================
+// INFINITE SCROLL
+// ====================================================================
+
+let scrollObserver = null;
+
+/**
+ * Sets up IntersectionObserver for infinite scroll
+ */
+function setupInfiniteScroll() {
+  scrollObserver = new IntersectionObserver(
+    (entries) => {
+      if (entries[0].isIntersecting && hasMoreUsers && !isLoading) {
+        // Load next page
+        loadUsers(currentPage + 1, currentSearchQuery, true);
+      }
+    },
+    {
+      rootMargin: "100px", // Start loading 100px before reaching the end
+    }
+  );
+}
+
+/**
+ * Observes the last element in the list for infinite scroll
+ */
+function observeLastElement() {
+  if (!scrollObserver) return;
+
+  // Unobserve previous element
+  const allCards = document.querySelectorAll(".following-card");
+  if (allCards.length > 0) {
+    const lastCard = allCards[allCards.length - 1];
+    scrollObserver.observe(lastCard);
+  }
+}
 
 // ====================================================================
 // SEARCH FUNCTIONALITY
@@ -249,19 +355,30 @@ function initializeSearch() {
   searchForm.addEventListener("submit", function (e) {
     e.preventDefault();
     const query = searchInput.value.trim();
-    renderContacts(query);
+    // Reset pagination and load first page with search
+    currentPage = 1;
+    hasMoreUsers = true;
+    loadUsers(1, query, false);
   });
 
-  // Optional: Search on input (real-time search)
+  // Optional: Search on input (real-time search with debounce)
   let searchTimeout;
   searchInput.addEventListener("input", function () {
     clearTimeout(searchTimeout);
     searchTimeout = setTimeout(() => {
       const query = this.value.trim();
-      renderContacts(query);
+      // Reset pagination and load first page with search
+      currentPage = 1;
+      hasMoreUsers = true;
+      loadUsers(1, query, false);
     }, 500); // Wait 500ms after user stops typing
   });
 }
 
-// Initialize search when page loads
+// ====================================================================
+// INITIALIZATION
+// ====================================================================
+
+// Initialize contacts page when DOM is ready
+initializeContacts();
 initializeSearch();
