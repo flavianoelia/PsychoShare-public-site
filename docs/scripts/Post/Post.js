@@ -47,14 +47,6 @@ class Post {
                     <p class="timestamp">${date}</p>
                     <p class="timestamp">${time}</p>
                 </div>
-                ${
-                  !isOwnPost
-                    ? `<button class="btn btn-sm follow-toggle-btn" data-user-id="${this.userId}" style="margin-left: auto;">
-                    <span class="spinner-border spinner-border-sm d-none" role="status"></span>
-                    <span class="btn-text">Cargando...</span>
-                </button>`
-                    : ""
-                }
             </section>
             <section class="post-content">
                 <p>${this.description}</p>

@@ -50,7 +50,10 @@ function toggleLike(postId, callback) {
   const timeoutId = setTimeout(function () {
     if (!callbackCalled) {
       callbackCalled = true;
-      callback({ success: false, message: "Error de red o sin respuesta del servidor" });
+      callback({
+        success: false,
+        message: "Error de red o sin respuesta del servidor",
+      });
     }
   }, 10000);
 
@@ -107,7 +110,9 @@ function getLikeStats(postId, callback) {
     return;
   }
 
-  const url = `/api/Like/stats/${postId}?currentUserId=${encodeURIComponent(currentUserId)}`;
+  const url = `/api/Like/stats/${postId}?currentUserId=${encodeURIComponent(
+    currentUserId
+  )}`;
 
   const config = {
     method: "GET",
@@ -123,7 +128,11 @@ function getLikeStats(postId, callback) {
       callbackCalled = true;
       callback({
         success: false,
-        data: { likeCount: 0, isLikedByCurrentUser: false, recentLikerNames: [] },
+        data: {
+          likeCount: 0,
+          isLikedByCurrentUser: false,
+          recentLikerNames: [],
+        },
         message: "Error de red o sin respuesta del servidor",
       });
     }
@@ -138,8 +147,15 @@ function getLikeStats(postId, callback) {
       } else {
         callback({
           success: false,
-          data: { likeCount: 0, isLikedByCurrentUser: false, recentLikerNames: [] },
-          message: response && response.message ? response.message : "Respuesta inválida del servidor",
+          data: {
+            likeCount: 0,
+            isLikedByCurrentUser: false,
+            recentLikerNames: [],
+          },
+          message:
+            response && response.message
+              ? response.message
+              : "Respuesta inválida del servidor",
         });
       }
     }
