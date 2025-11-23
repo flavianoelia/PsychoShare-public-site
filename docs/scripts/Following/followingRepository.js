@@ -159,3 +159,52 @@ function checkIsFollowing(targetUserId, callback) {
     callback({ success: true, data: isFollowing });
   });
 }
+
+/**
+ * Fetches ALL users from the system (for "discover people to follow" feature)
+ * @param {string} searchQuery - Optional search term to filter users by name/lastname/email
+ * @param {Function} callback - Callback function to handle the response
+ */
+function getAllUsers(searchQuery, callback) {
+  // If only one argument (callback), searchQuery is undefined
+  if (typeof searchQuery === 'function') {
+    callback = searchQuery;
+    searchQuery = '';
+  }
+
+  const token = localStorage.getItem("token");
+
+  if (!token) {
+    console.error("No token found in localStorage");
+    callback([]);
+    return;
+  }
+
+  // Build URL with optional search parameter
+  let url = `/api/User/all?page=1&size=50`;
+  if (searchQuery && searchQuery.trim()) {
+    url += `&search=${encodeURIComponent(searchQuery.trim())}`;
+  }
+
+  const config = {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
+  server(url, config, (response) => {
+    // Backend returns array of users or paginated response
+    const users = Array.isArray(response) ? response : (response.users || response.data || []);
+    
+    // Map backend response to frontend format
+    const allUsers = users.map((user) => ({
+      id: user.id,
+      imgUser: user.avatarUrl || "assets/imgwebp/default.webp",
+      nameUser: `${user.name} ${user.lastName || user.lastname || ''}`.trim(),
+      isFollowing: false, // Se actualizará dinámicamente con checkIsFollowing()
+    }));
+
+    callback(allUsers);
+  });
+}

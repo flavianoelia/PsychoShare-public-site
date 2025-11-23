@@ -2,8 +2,8 @@
 function getPost(callback) {
   const token = localStorage.getItem("token");
 
-  // Usamos el endpoint GET /api/post para obtener todos los posts
-  const url = "/api/post?page=1&size=20";
+  // Usamos el endpoint GET /api/Post/feed para obtener posts de usuarios que seguimos + nuestros propios posts
+  const url = "/api/Post/feed?page=1&size=20";
 
   const config = {
     method: "GET",
