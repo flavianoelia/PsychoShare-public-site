@@ -203,7 +203,6 @@ function getMyFollowingIds(callback) {
   // Use fetch directly to handle errors properly
   fetch(`http://localhost:5174${url}`, config)
     .then((response) => {
-      console.log('[DEBUG] my-following-ids response status:', response.status);
       // 204 No Content means empty array
       if (response.status === 204) {
         console.log('[DEBUG] Backend returned 204, using empty cache');
@@ -219,7 +218,6 @@ function getMyFollowingIds(callback) {
     })
     .then((data) => {
       if (data !== null) {
-        console.log('[DEBUG] Backend returned following IDs:', data);
         // Backend returns {followedUserIds: [2, 5, 8, 12, ...]} or just array
         let ids = [];
         if (Array.isArray(data)) {
@@ -227,7 +225,6 @@ function getMyFollowingIds(callback) {
         } else if (data.followedUserIds && Array.isArray(data.followedUserIds)) {
           ids = data.followedUserIds;
         }
-        console.log('[DEBUG] Extracted IDs for cache:', ids);
         callback({ success: true, data: ids });
       }
     })
@@ -238,27 +235,35 @@ function getMyFollowingIds(callback) {
 }
 
 /**
- * Fetches ALL users from the system (for "discover people to follow" feature)
- * @param {string} searchQuery - Optional search term to filter users by name/lastname/email
- * @param {Function} callback - Callback function to handle the response
+ * Fetches users from the system with pagination support
+ * @param {Object} options - Options object
+ * @param {number} options.page - Page number (starts at 1)
+ * @param {number} options.size - Number of users per page (default 10)
+ * @param {string} options.searchQuery - Optional search term
+ * @param {Function} callback - Callback with format {users: [], hasMore: boolean, totalCount: number}
  */
-function getAllUsers(searchQuery, callback) {
-  // If only one argument (callback), searchQuery is undefined
-  if (typeof searchQuery === "function") {
-    callback = searchQuery;
-    searchQuery = "";
+function getAllUsers(options, callback) {
+  // Support old signature: getAllUsers(searchQuery, callback) or getAllUsers(callback)
+  if (typeof options === "function") {
+    callback = options;
+    options = { page: 1, size: 10, searchQuery: "" };
+  } else if (typeof options === "string") {
+    const searchQuery = options;
+    callback = callback || function() {};
+    options = { page: 1, size: 10, searchQuery };
   }
 
+  const { page = 1, size = 10, searchQuery = "" } = options;
   const token = localStorage.getItem("token");
 
   if (!token) {
     console.error("No token found in localStorage");
-    callback([]);
+    callback({ users: [], hasMore: false, totalCount: 0 });
     return;
   }
 
-  // Build URL with optional search parameter
-  let url = `/api/User/all?page=1&size=50`;
+  // Build URL with pagination and search
+  let url = `/api/User/all?page=${page}&size=${size}`;
   if (searchQuery && searchQuery.trim()) {
     url += `&search=${encodeURIComponent(searchQuery.trim())}`;
   }
@@ -271,19 +276,19 @@ function getAllUsers(searchQuery, callback) {
   };
 
   server(url, config, (response) => {
-    // Backend returns array of users or paginated response
-    const users = Array.isArray(response)
-      ? response
-      : response.users || response.data || [];
+    // Backend returns paginated response: {users: [], totalCount, page, size, hasMore}
+    const users = response.users || response.data || [];
+    const hasMore = response.hasMore || false;
+    const totalCount = response.totalCount || users.length;
 
     // Map backend response to frontend format
     const allUsers = users.map((user) => ({
       id: user.id,
       imgUser: user.avatarUrl || "assets/imgwebp/default.webp",
       nameUser: `${user.name} ${user.lastName || user.lastname || ""}`.trim(),
-      isFollowing: false, // Se actualizará dinámicamente con checkIsFollowing()
+      isFollowing: false, // Will be updated with cache
     }));
 
-    callback(allUsers);
+    callback({ users: allUsers, hasMore, totalCount });
   });
 }
