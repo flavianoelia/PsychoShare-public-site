@@ -284,7 +284,7 @@ function getAllUsers(options, callback) {
     // Map backend response to frontend format
     const allUsers = users.map((user) => ({
       id: user.id,
-      imgUser: user.avatarUrl || "assets/imgwebp/default.webp",
+      imgUser: user.avatarUrl || null, // null if no avatar (will show icon)
       nameUser: `${user.name} ${user.lastName || user.lastname || ""}`.trim(),
       isFollowing: false, // Will be updated with cache
     }));
