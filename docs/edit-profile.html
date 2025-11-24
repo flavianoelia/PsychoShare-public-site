@@ -13,6 +13,7 @@
   <script src="https://kit.fontawesome.com/636f762910.js" crossorigin="anonymous"></script>
 
   <link rel="stylesheet" href="css/style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   
 </head>
 
@@ -27,39 +28,21 @@
       <section class="update-photo-profile">
         <label for="photo-profile" class="edit-button">Editar</label>
         <p>Foto de Perfil</p>
-        <input id="photo-profile" name="photo-profile" type="file" style="opacity: 0; position: absolute; left: -9999px;" />
+        <input id="photo-profile" name="photo-profile" type="file" accept="image/jpeg,image/jpg,image/png,image/webp" style="opacity: 0; position: absolute; left: -9999px;" />
         <i class="fa-solid fa-circle-user"></i>
       </section>
-
-      <section class="update-cover">
-        <label for="cover" class="edit-button">Editar</label>
-        <p>Foto de Portada</p>
-        <input id="cover" name="cover" type="file" style="opacity: 0; position: absolute; left: -9999px;" />
-        <i class="fa-solid fa-image"></i>
-      </section>
-
 
       <section class="update-data">
         <p>Datos Personales</p>
 
-        <label for="name">Nombre y Apellido</label>
-        <input id="name" name="name" type="text" value="" aria-label="Editar nombre y apellido" />
+        <label for="name">Nombre</label>
+        <input id="name" name="name" type="text" value="" required aria-label="Editar nombre" />
+
+        <label for="lastname">Apellido</label>
+        <input id="lastname" name="lastname" type="text" value="" required aria-label="Editar apellido" />
 
         <label for="email">Correo electrónico</label>
-        <input id="email" name="email" type="email" value="" aria-label="Editar correo electrónico" />
-      </section>
-
-      <section class="update-password">
-        <p>Cambiar Contraseña</p>
-
-        <label for="old-password">Contraseña actual</label>
-        <input id="old-password" name="old-password" type="password" aria-label="Ingresar contraseña actual" />
-
-        <label for="new-password">Nueva contraseña</label>
-        <input id="new-password" name="new-password" type="password" aria-label="Ingresar nueva contraseña" />
-
-        <label for="repeat-password">Repetir nueva contraseña</label>
-        <input id="repeat-password" name="repeat-password" type="password" aria-label="Repetir nueva contraseña" />
+        <input id="email" name="email" type="email" value="" required aria-label="Editar correo electrónico" />
       </section>
 
 
@@ -70,11 +53,18 @@
       </section>
 
       <section class="save-changes-section">
-        <a href="profile.html" class="btn save-button" aria-label="Guardar cambios">
+        <button type="button" class="btn save-button" aria-label="Guardar cambios">
           Guardar Cambios
-        </a>
+        </button>
       </section>
     </form>
   </main>
+
+  <!-- Scripts -->
+  <script src="scripts/fetch.js"></script>
+  <script src="scripts/helpers.js"></script>
+  <script src="scripts/profile/profileRepository.js"></script>
+  <script src="scripts/profile/avatarRepository.js"></script>
+  <script src="scripts/profile/editProfilePresentation.js"></script>
 </body>
 </html>
