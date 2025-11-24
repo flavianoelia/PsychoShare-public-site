@@ -3,7 +3,7 @@
 // ====================================================================
 
 /**
- * Loads and displays the current user's avatar in the header
+ * Loads and displays the current user's avatar in the header and new post form
  * Should be called on every page that has the header with user photo
  */
 function loadUserAvatar() {
@@ -15,11 +15,12 @@ function loadUserAvatar() {
     return;
   }
 
-  // Find the header profile image
+  // Find all elements that should display user avatar
   const headerProfileImg = document.querySelector(".action-buttons .contact-photo");
+  const newPostAvatar = document.getElementById("new-post-avatar");
   
-  if (!headerProfileImg) {
-    console.warn("Header profile image element not found");
+  if (!headerProfileImg && !newPostAvatar) {
+    console.warn("No avatar elements found");
     return;
   }
 
@@ -36,7 +37,8 @@ function loadUserAvatar() {
       if (!response.ok) {
         // If no avatar found (404), use default
         if (response.status === 404) {
-          headerProfileImg.src = "assets/imgwebp/flavia.webp";
+          if (headerProfileImg) headerProfileImg.src = "assets/imgwebp/flavia.webp";
+          if (newPostAvatar) newPostAvatar.src = "assets/imgwebp/flavia.webp";
           return null;
         }
         throw new Error(`HTTP error! status: ${response.status}`);
@@ -45,18 +47,26 @@ function loadUserAvatar() {
     })
     .then((data) => {
       if (data && data.url) {
-        // Set the avatar URL
-        headerProfileImg.src = data.url;
-        // Add error handler in case the URL is invalid
-        headerProfileImg.onerror = function() {
-          this.src = "assets/imgwebp/flavia.webp";
-        };
+        // Set the avatar URL for all elements
+        if (headerProfileImg) {
+          headerProfileImg.src = data.url;
+          headerProfileImg.onerror = function() {
+            this.src = "assets/imgwebp/flavia.webp";
+          };
+        }
+        if (newPostAvatar) {
+          newPostAvatar.src = data.url;
+          newPostAvatar.onerror = function() {
+            this.src = "assets/imgwebp/flavia.webp";
+          };
+        }
       }
     })
     .catch((error) => {
       console.error("Error loading user avatar:", error);
       // Use default image on error
-      headerProfileImg.src = "assets/imgwebp/flavia.webp";
+      if (headerProfileImg) headerProfileImg.src = "assets/imgwebp/flavia.webp";
+      if (newPostAvatar) newPostAvatar.src = "assets/imgwebp/flavia.webp";
     });
 }
 

@@ -22,14 +22,30 @@ class Post {
     // Formatear fecha y hora
     const { date, time } = formatDateTime(this.createdAt);
 
+    // Avatar dinámico con fallback a ícono
+    let ownerAvatarHTML;
+    if (this.imgOwner && this.imgOwner.trim() !== "") {
+      ownerAvatarHTML = `<img src="${this.imgOwner}" alt="Foto de contacto" class="contact-avatar" onerror="this.outerHTML='<i class=\\'fa-solid fa-circle-user contact-avatar-icon\\'></i>'" />`;
+    } else {
+      ownerAvatarHTML = `<i class="fa-solid fa-circle-user contact-avatar-icon"></i>`;
+    }
+
     const post = document.createElement("article");
     post.className = "article";
     
-    // build comments html with report button
-    const commentsHtml = this.comments.map((c, idx) => `
+    // build comments html with report button and dynamic avatars
+    const commentsHtml = this.comments.map((c, idx) => {
+      let commentAvatarHTML;
+      if (c.imgOwner && c.imgOwner.trim() !== "") {
+        commentAvatarHTML = `<img src="${c.imgOwner}" alt="Foto de contacto" class="contact-avatar" onerror="this.outerHTML='<i class=\\'fa-solid fa-circle-user contact-avatar-icon\\'></i>'" />`;
+      } else {
+        commentAvatarHTML = `<i class="fa-solid fa-circle-user contact-avatar-icon"></i>`;
+      }
+      
+      return `
         <article class="comment">
             <div class="comment-header">
-                <img src="${c.imgOwner}" alt="Foto de contacto" class="contact-avatar">
+                ${commentAvatarHTML}
                 <p>${c.nameOwner}</p>
                 <button class="report-comment" data-report-type="comment" data-report-id="${this.title}-c${idx}" aria-label="Reportar comentario" title="Reportar comentario"><i class="fas fa-flag"></i></button>
             </div>
@@ -37,11 +53,12 @@ class Post {
                 <p>${c.text}</p>
             </div>
         </article>
-    `).join('\n');
+    `;
+    }).join('\n');
 
     post.innerHTML = `
             <section class="post">
-                <img src="${this.imgOwner}" alt="Foto de contacto" class="contact-avatar">
+                ${ownerAvatarHTML}
                 <div class="post-info">
                     <p class="name">${this.nameOwner}</p>
                     <p class="timestamp">${date}</p>
@@ -77,7 +94,7 @@ class Post {
                 ${commentsHtml}
                 ${this.comments.length > 2 ? '<button class="btn view-more">Ver más</button>' : ''}
                 <div class="add-comment">
-                   <img src="assets/imgwebp/flavia.webp" alt="Foto de contacto" class="contact-avatar">
+                   <i class="fa-solid fa-circle-user contact-avatar-icon"></i>
                     <input type="text" class="comment-input" placeholder="Escribe un comentario">
                     <button class="btn submit-comment"><i class="fas fa-paper-plane"></i>Enviar</button>
                 </div>
@@ -104,7 +121,7 @@ class Post {
         const addComment = document.createElement("div");
         addComment.className = "add-comment";
         addComment.innerHTML = `
-            <img src="assets/imgwebp/flavia.webp" alt="Foto de contacto" class="contact-avatar">
+            <i class="fa-solid fa-circle-user contact-avatar-icon"></i>
             <input type="text" class="comment-input" placeholder="Escribe un comentario">
             <button class="btn submit-comment"><i class="fas fa-paper-plane"></i>Enviar</button>
         `;
