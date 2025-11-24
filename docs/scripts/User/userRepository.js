@@ -29,3 +29,12 @@ function login(email, password, callback) {
 
   server(url, config, callback);
 }
+
+function getUserById(id, callback) {
+  server(`/api/User/${id}`, { method: "GET" }, (data) => {
+    if (data.error) return callback(data);
+
+    callback(new User(data));
+  });
+}
+

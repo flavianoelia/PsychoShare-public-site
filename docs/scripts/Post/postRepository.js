@@ -41,3 +41,9 @@ function getPost(callback) {
     callback(transformedPosts);
   });
 }
+
+function getUserPosts(id, callback) {
+  server(`/api/Post/user/${id}`, { method: "GET" }, (data) => {
+    callback(data); // data = array de posts
+  });
+}

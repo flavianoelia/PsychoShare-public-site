@@ -43,7 +43,7 @@ class Post {
             <section class="post">
                 <img src="${this.imgOwner}" alt="Foto de contacto" class="contact-avatar">
                 <div class="post-info">
-                    <p class="name">${this.nameOwner}</p>
+                    <p class="name" data-user-id="${this.userId}>${this.nameOwner}</p>
                     <p class="timestamp">${date}</p>
                     <p class="timestamp">${time}</p>
                 </div>
