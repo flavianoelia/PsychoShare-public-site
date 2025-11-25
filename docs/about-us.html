@@ -25,7 +25,7 @@
 
     <section aria-label="Buscador y acceso directo al perfil" class="search-bar">
     
-        <form action="search" method="get" class="search-form">
+        <form action="search" method="get" class="search-form hidden">
             <input type="search" name="q" placeholder="¿Qué deseas buscar?" class="search-input">
             <button type="submit" class="search-button" aria-label="Buscar">
                 <i class="fas fa-search"></i>
@@ -37,7 +37,7 @@
                 <i class="fas fa-house"></i>
             </a>
             <a href="profile.html" class="action-button" aria-label="Perfil">
-                <img src="assets/imgwebp/flavia.webp" alt="Foto de contacto" class="contact-photo">
+                <img id="header-profile-img" src="assets/imgwebp/flavia.webp" alt="Foto de contacto" class="contact-photo">
             </a>
             <button class="menu-toggle action-button" aria-label="Abrir menú">
                 <i class="fas fa-bars"></i>
@@ -93,6 +93,7 @@
      <footer aria-label="Pie de página del sitio" class="footer">
          <p>2025 PsychoShare - Hecho por PsyNet - Licencia MIT</p>
      </footer>
+     <script src="scripts/config.js"></script>
      <script src="scripts/helpers/loadUserAvatar.js"></script>
      <script src="scripts/components/hamburgerMenu.js"></script>
 </body>

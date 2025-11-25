@@ -19,6 +19,12 @@
     padding: 0;
     box-sizing: border-box;
   }  
+  
+  /* Utility classes */
+  .hidden {
+    display: none !important;
+  }
+  
   html {
     font-size: 100%;
   }  
@@ -152,6 +158,12 @@ body.about-us-layout{
     height: 55px;
     padding: 0 1rem;
 }
+
+/* When search form is hidden, align action buttons to the right */
+.search-bar:has(.search-form.hidden) {
+    justify-content: flex-end;
+}
+
 .search-form {
     display: flex;
     flex: 1;
