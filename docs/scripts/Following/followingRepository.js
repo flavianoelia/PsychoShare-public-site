@@ -201,7 +201,7 @@ function getMyFollowingIds(callback) {
   };
 
   // Use fetch directly to handle errors properly
-  fetch(`http://localhost:5174${url}`, config)
+  fetch(`${API_BASE_URL}${url}`, config)
     .then((response) => {
       // 204 No Content means empty array
       if (response.status === 204) {

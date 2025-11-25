@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       try {
         // Endpoint backend proporcionado por el equipo
-        const res = await fetch('http://localhost:5174/api/Report', {
+        const res = await fetch(`${API_BASE_URL}/api/Report`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(payload)

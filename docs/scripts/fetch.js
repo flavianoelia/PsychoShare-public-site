@@ -4,7 +4,7 @@ function server(url, config, success) {
     ...config.headers,
   };
 
-  fetch(`http://localhost:5174${url}`, config)
+  fetch(`${API_BASE_URL}${url}`, config)
     .then((response) => {
       if (!response.ok) {
         // Try to get error message from response body

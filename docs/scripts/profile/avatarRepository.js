@@ -16,7 +16,7 @@ function getUserAvatar(userId, callback) {
     return;
   }
 
-  const url = `http://localhost:5174/api/Avatar/${userId}`;
+  const url = `${API_BASE_URL}/api/Avatar/${userId}`;
 
   fetch(url, {
     method: "GET",
@@ -95,7 +95,7 @@ function uploadUserAvatar(userId, file, callback) {
   const formData = new FormData();
   formData.append("file", file);
 
-  const url = `http://localhost:5174/api/Avatar/${userId}`;
+  const url = `${API_BASE_URL}/api/Avatar/${userId}`;
 
   fetch(url, {
     method: "POST",
@@ -143,7 +143,7 @@ function deleteUserAvatar(userId, callback) {
     return;
   }
 
-  const url = `http://localhost:5174/api/Avatar/${userId}`;
+  const url = `${API_BASE_URL}/api/Avatar/${userId}`;
 
   fetch(url, {
     method: "DELETE",

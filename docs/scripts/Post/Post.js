@@ -72,10 +72,14 @@ class Post {
                 <h2>${this.title}</h2>
                 <p><strong>Autoría:</strong> ${this.authorship}</p>
                 <p><strong>Resumen:</strong> ${this.abstract}</p>
+                ${
+                  this.image
+                    ? `<figure>
+                    <img src="${this.image}" alt="Imagen del post" class="post-image">
+                </figure>`
+                    : ""
+                }
                 <figure>
-                    <img src="${
-                      this.image
-                    }" alt="Imagen del post" class="post-image">
                     <figcaption>
                         <div class="button-container">
                             <div class="post-buttons">

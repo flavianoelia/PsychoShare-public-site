@@ -142,6 +142,7 @@
         >
           <div class="left-info">
             <img
+              id="profile-avatar"
               src="assets/imgwebp/flavia.webp"
               alt="Foto de contacto"
               class="contact-avatar"
@@ -168,12 +169,13 @@
       </section>
 
       <section class="profile-stats">
-        <span>2 Publicaciones</span>
-        <span>5 Contactos</span>
+        <span><span id="posts-count">0</span> Publicaciones</span>
+        <span><span id="contacts-count">0</span> Contactos</span>
       </section>
 
       <form aria-label="Crear nueva publicación" class="new-post-form">
         <img
+          id="new-post-avatar-profile"
           src="assets/imgwebp/flavia.webp"
           alt="Foto de contacto"
           class="contact-avatar"
@@ -465,6 +467,12 @@
           </div>
         </section>
       </article>
+
+      <!-- Loading indicator -->
+      <div id="loading-indicator" style="display: none; text-align: center; padding: 2rem;">
+        <div class="spinner"></div>
+        <p>Cargando publicaciones...</p>
+      </div>
     </main>
 
     <footer aria-label="Pie de página del sitio" class="footer">
@@ -551,15 +559,28 @@
     <script src="./scripts/modalPost/modalPostPresentation.js"></script>
 
     <!-- Helper de fetch y validaciones -->
+    <script src="./scripts/config.js"></script>
     <script src="./scripts/fetch.js"></script>
     <script src="./scripts/helpers.js"></script>
+    
+    <!-- Following repository for follow/unfollow -->
+    <script src="./scripts/Following/followingRepository.js"></script>
+    
+    <!-- Like system -->
+    <script src="./scripts/Like/likeRepository.js"></script>
+    <script src="./scripts/Like/likeHandler.js"></script>
+    
+    <!-- Post system -->
+    <script src="./scripts/Post/Post.js"></script>
+    <script src="./scripts/Post/postRepository.js"></script>
+    <script src="./scripts/Post/postFollowHandler.js"></script>
+    <script src="./scripts/Post/postPresentation.js"></script>
     
     <!-- Profile repositories -->
     <script src="./scripts/profile/profileRepository.js"></script>
     <script src="./scripts/profile/avatarRepository.js"></script>
 
     <!-- Lógica de la página (listeners, presentaciones) -->
-    <script src="./scripts/profile/profile.js"></script>
     <script src="./scripts/profile/profilePresentation.js"></script>
 
     <script src="./scripts/modalPost/validatePost.js"></script>

@@ -33,7 +33,7 @@ function loadPosts(page, searchTerm, append) {
   getPost({ page, size: pageSize, searchTerm }, function (result) {
     const { posts, hasMore } = result;
 
-    if (!append) {
+    if (!append && sectionPost) {
       sectionPost.innerHTML = "";
     }
 
@@ -41,7 +41,9 @@ function loadPosts(page, searchTerm, append) {
     for (const jsonPost of posts) {
       const post = new Post(jsonPost);
       const nodo = post.getNode();
-      sectionPost.append(nodo);
+      if (sectionPost) {
+        sectionPost.append(nodo);
+      }
     }
 
     // Update state
@@ -155,5 +157,7 @@ function initializeSearch() {
   });
 }
 
-// Initialize wall when DOM is ready
-initializeWall();
+// Initialize wall when DOM is ready (only if post_collection exists)
+if (sectionPost) {
+  initializeWall();
+}

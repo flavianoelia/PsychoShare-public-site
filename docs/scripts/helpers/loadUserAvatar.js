@@ -25,7 +25,7 @@ function loadUserAvatar() {
   }
 
   // Fetch user's avatar from backend
-  const url = `http://localhost:5174/api/Avatar/${userId}`;
+  const url = `${API_BASE_URL}/api/Avatar/${userId}`;
 
   fetch(url, {
     method: "GET",

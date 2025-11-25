@@ -34,7 +34,7 @@ function openPostCreationModal() {
     const userId = localStorage.getItem("userId");
     const token = localStorage.getItem("token");
     if (userId && token) {
-        fetch(`http://localhost:5174/api/Avatar/${userId}`, {
+        fetch(`${API_BASE_URL}/api/Avatar/${userId}`, {
             headers: { 'Authorization': `Bearer ${token}` }
         })
         .then(r => r.ok ? r.json() : null)
@@ -136,7 +136,7 @@ function openPostCreationModal() {
         
         try {
             const token = localStorage.getItem('token');
-            const response = await fetch('http://localhost:5174/api/post', {
+            const response = await fetch(`${API_BASE_URL}/api/post`, {
                 method: 'POST',
                 headers: { 'Authorization': `Bearer ${token}` },
                 body: formData
@@ -150,8 +150,12 @@ function openPostCreationModal() {
             Swal.fire({ icon: 'success', title: '¡Listo!', text: 'Publicación creada', timer: 2000, showConfirmButton: false });
             closePostCreationModal(newModalPost);
             
-            // Reload posts
-            if (typeof loadPosts === 'function') {
+            // Reload posts - check which page we're on
+            if (typeof loadUserPosts === 'function') {
+                // We're on profile page
+                loadUserPosts(1, false);
+            } else if (typeof loadPosts === 'function') {
+                // We're on wall page
                 loadPosts(1, "", false);
             }
         } catch (error) {
