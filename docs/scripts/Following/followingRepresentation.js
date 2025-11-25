@@ -18,6 +18,71 @@ const pageSize = 10;
 let currentSearchQuery = "";
 
 /**
+ * Creates the following and suggestions sections
+ * @param {HTMLElement} container - The main container element
+ */
+function createSections(container) {
+  container.innerHTML = `
+    <div id="following-section" class="contacts-section"></div>
+    <div id="suggestions-divider" class="suggestions-divider">
+      <h3>Sugerencias</h3>
+    </div>
+    <div id="suggestions-section" class="contacts-section"></div>
+  `;
+}
+
+/**
+ * Toggles the visibility of the suggestions divider
+ */
+function toggleSuggestionsDivider() {
+  const suggestionsSection = document.getElementById("suggestions-section");
+  const suggestionsDivider = document.getElementById("suggestions-divider");
+  
+  if (suggestionsSection && suggestionsDivider) {
+    const hasSuggestions = suggestionsSection.children.length > 0;
+    if (hasSuggestions) {
+      suggestionsDivider.classList.add("visible");
+    } else {
+      suggestionsDivider.classList.remove("visible");
+    }
+  }
+}
+
+/**
+ * Moves a user card from following to suggestions
+ * @param {number} userId - The ID of the user to move
+ */
+function moveToSuggestions(userId) {
+  const followingSection = document.getElementById("following-section");
+  const suggestionsSection = document.getElementById("suggestions-section");
+  
+  if (!followingSection || !suggestionsSection) return;
+  
+  const userCard = followingSection.querySelector(`[data-user-id="${userId}"]`);
+  if (userCard) {
+    suggestionsSection.prepend(userCard); // Add to top of suggestions
+    toggleSuggestionsDivider();
+  }
+}
+
+/**
+ * Moves a user card from suggestions to following
+ * @param {number} userId - The ID of the user to move
+ */
+function moveToFollowing(userId) {
+  const followingSection = document.getElementById("following-section");
+  const suggestionsSection = document.getElementById("suggestions-section");
+  
+  if (!followingSection || !suggestionsSection) return;
+  
+  const userCard = suggestionsSection.querySelector(`[data-user-id="${userId}"]`);
+  if (userCard) {
+    followingSection.append(userCard); // Add to bottom of following
+    toggleSuggestionsDivider();
+  }
+}
+
+/**
  * Initializes the contacts page
  */
 function initializeContacts() {
@@ -72,30 +137,65 @@ function loadUsers(page, searchQuery, append = false) {
 
     if (!append) {
       sectionFollowing.innerHTML = "";
+      // Create sections for following and suggestions
+      createSections(sectionFollowing);
     }
 
-    // Render users
-    let followingCount = 0;
+    // Separate users into following and not following
+    const followingUsers = [];
+    const suggestedUsers = [];
+
     for (const userData of filteredUsers) {
-      const following = new Following(userData);
-      const node = following.getNode();
-      sectionFollowing.append(node);
-
-      // Use cache to check if following
       const isFollowing = followingCache.has(userData.id);
-      const button = node.querySelector(".unfollow-btn");
-
-      if (button) {
-        if (isFollowing) {
-          button.textContent = "Dejar de seguir";
-          button.classList.add("following");
-          followingCount++;
-        } else {
-          button.textContent = "Seguir";
-          button.classList.remove("following");
-        }
+      if (isFollowing) {
+        followingUsers.push(userData);
+      } else {
+        suggestedUsers.push(userData);
       }
     }
+
+    // Render following users first
+    let followingCount = 0;
+    const followingSection = document.getElementById("following-section");
+    const suggestionsSection = document.getElementById("suggestions-section");
+
+    if (!followingSection || !suggestionsSection) {
+      console.error("Sections not found, falling back to default render");
+      hideSpinner();
+      isLoading = false;
+      return;
+    }
+
+    for (const userData of followingUsers) {
+      const following = new Following(userData);
+      const node = following.getNode();
+      node.dataset.userId = userData.id; // Add data attribute for easier manipulation
+      followingSection.append(node);
+
+      const button = node.querySelector(".unfollow-btn");
+      if (button) {
+        button.textContent = "Dejar de seguir";
+        button.classList.add("following");
+        followingCount++;
+      }
+    }
+
+    // Render suggested users
+    for (const userData of suggestedUsers) {
+      const following = new Following(userData);
+      const node = following.getNode();
+      node.dataset.userId = userData.id; // Add data attribute for easier manipulation
+      suggestionsSection.append(node);
+
+      const button = node.querySelector(".unfollow-btn");
+      if (button) {
+        button.textContent = "Seguir";
+        button.classList.remove("following");
+      }
+    }
+
+    // Show/hide suggestions divider based on whether there are suggestions
+    toggleSuggestionsDivider();
 
     // Update state
     hasMoreUsers = hasMore;
@@ -208,6 +308,9 @@ function handleFollow(userId, button) {
       button.textContent = "Dejar de seguir";
       button.classList.add("following");
 
+      // Move user card from suggestions to following
+      moveToFollowing(userId);
+
       // Update counter: increment following count
       const countElem = document.querySelector(".contacts-count");
       if (countElem) {
@@ -255,6 +358,9 @@ function handleUnfollow(userId, button) {
 
       button.textContent = "Seguir";
       button.classList.remove("following");
+
+      // Move user card from following to suggestions
+      moveToSuggestions(userId);
 
       // Update counter: decrement following count
       const countElem = document.querySelector(".contacts-count");
