@@ -131,8 +131,9 @@
 
     <main class="main-content">
       <!-- Form new post -->
-      <form class="new-post-form" aria-label="Crear nueva publicación">
+      <div class="new-post-form" aria-label="Crear nueva publicación">
         <img
+          id="new-post-avatar"
           class="contact-avatar"
           src="assets/imgwebp/flavia.webp"
           alt="Foto de contacto"
@@ -141,22 +142,38 @@
           class="post-input"
           type="text"
           placeholder="¿Sobre qué quieres hablar?"
+          readonly
+          onclick="openPostCreationModal()"
+          style="cursor: pointer"
         />
-        <a href="post-form.html" class="image-button" aria-label="Añadir imagen"
-          ><i class="fas fa-image"></i
-        ></a>
-        <a
-          href="post-form.html"
+        <button
+          type="button"
+          onclick="openPostCreationModal()"
+          class="image-button"
+          aria-label="Añadir imagen"
+        >
+          <i class="fas fa-image"></i>
+        </button>
+        <button
+          type="button"
+          onclick="openPostCreationModal()"
           class="attach-button"
           aria-label="Adjuntar archivo"
-          ><i class="fas fa-paperclip"></i
-        ></a>
-      </form>
+        >
+          <i class="fas fa-paperclip"></i>
+        </button>
+      </div>
 
       <!-- Complete Post -->
       <section id="post_collection">
         <div id="posts-container"></div>
       </section>
+
+      <!-- Loading Spinner -->
+      <div id="loading-spinner" class="loading-spinner">
+        <div class="spinner"></div>
+        <p>Cargando publicaciones...</p>
+      </div>
     </main>
 
     <footer class="footer" aria-label="Pie de página del sitio">
@@ -234,6 +251,7 @@
     </div>
 
     <script src="./scripts/fetch.js"></script>
+    <script src="./scripts/helpers/loadUserAvatar.js"></script>
     <script src="./scripts/Following/followingRepository.js"></script>
     <script src="./scripts/Like/likeRepository.js"></script>
     <script src="./scripts/Post/Post.js"></script>

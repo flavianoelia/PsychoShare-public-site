@@ -1,49 +1,59 @@
-// Obtener posts desde el backend
-function getPost(callback) {
+// Obtener posts desde el backend con paginación y búsqueda
+/**
+ * @param {Object} options - Opciones de paginación y búsqueda
+ * @param {number} options.page - Número de página (default: 1)
+ * @param {number} options.size - Cantidad de posts por página (default: 10)
+ * @param {string} options.searchTerm - Término de búsqueda opcional
+ * @param {Function} callback - Callback con formato {posts: [], hasMore: boolean, totalCount: number}
+ */
+function getPost(options, callback) {
+  // Support old signature: getPost(callback)
+  if (typeof options === "function") {
+    callback = options;
+    options = { page: 1, size: 10, searchTerm: "" };
+  }
+
+  const { page = 1, size = 10, searchTerm = "" } = options;
   const token = localStorage.getItem("token");
 
-  // Usamos el endpoint GET /api/Post/feed para obtener posts de usuarios que seguimos + nuestros propios posts
-  const url = "/api/Post/feed?page=1&size=20";
+  // Construir URL con parámetros
+  let url = `/api/Post/feed?Page=${page}&Size=${size}`;
+  if (searchTerm && searchTerm.trim()) {
+    url += `&SearchTerm=${encodeURIComponent(searchTerm.trim())}`;
+  }
 
   const config = {
     method: "GET",
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
+    headers: {  Authorization: `Bearer ${token}` },
   };
 
   server(url, config, (response) => {
-    console.log("📦 Respuesta del backend:", response);
-
-    // El backend devuelve { posts: [...], totalCount, page, size, hasMore }
     const posts = response.posts || [];
-
-    console.log("📝 Posts recibidos:", posts);
+    const hasMore = response.hasMore || false;
+    const totalCount = response.totalCount || 0;
 
     // Transformar los datos del backend al formato que espera el frontend
+
     const formatPosts = posts.map((post) => ({
-      postId: post.id, // ID del post para likes
+      postId: post.id,
       userId: post.userId,
-      imgOwner: "assets/imgwebp/default-avatar.webp", // Default, podríamos agregar esto al backend
+      imgOwner: post.avatarUrl || null, // Avatar dinámico o null para ícono
       nameOwner: `${post.nameOwner} ${post.lastnameOwner}`,
       description: post.description,
       title: post.title,
       authorship: post.authorship,
-      abstract: post.resume, // El backend usa "resume" en lugar de "abstract"
-      image: post.imageUrl || "assets/imgwebp/default-post.webp",
+      abstract: post.resume,
+      image: post.imageUrl || null,
       countLike: 0, // Se cargará dinámicamente con getLikeStats
-      comments: [], // Por ahora no tenemos comentarios en el backend
-      createdAt: post.createdAt, // Fecha de creación del post
+      comments: [],
+      createdAt: post.createdAt,
     }));
-
-    console.log("✅ Posts transformados:", formatPosts);
-
-    callback(formatPosts.map(p => new Post(p)));
-  });
+})
 }
 
 function getUserPosts(id, callback) {
   server(`/api/Post/user/${id}`, { method: "GET" }, (data) => {
     callback(data); // data = array de posts
-  });
-}
+    callback({ posts: formatPosts.map(p => new Post(p)), hasMore, totalCount });
+     });
+  }

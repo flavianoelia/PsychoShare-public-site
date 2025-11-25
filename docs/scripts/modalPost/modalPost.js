@@ -14,30 +14,30 @@ class ModalPost {
                 </div>
 
                 <div class="user-info">
-                    <img src="assets/imgwebp/flavia.webp" alt="Foto de contacto" class="contact-avatar" aria-label="Foto de perfil del usuario">
-                    <h3 aria-label="Nombre de usuario">Flavia Perín</h3>
+                    <img id="modal-user-avatar" src="assets/imgwebp/flavia.webp" alt="Foto de contacto" class="contact-avatar" aria-label="Foto de perfil del usuario">
+                    <h3 aria-label="Nombre de usuario">Usuario</h3>
                 </div>
 
                 <div class="form-container">
-                    <a href="wall.html" class="close-button" aria-label="Cerrar">
-                        <i class="fa-solid fa-xmark"></i>
-                    </a>
-
-                    <form action="#" method="post" aria-label="Formulario de publicación">
-                        <textarea id="description" class="post-input" aria-label="Contenido de la publicación" placeholder="¿Sobre qué quieres hablar?"></textarea>
-                        <input type="text" id="title" aria-label="Título de la publicación" placeholder="Título">
-                        <input type="text" id="authorship" aria-label="Autoría" placeholder="Autoría">
-                        <textarea id="abstract" aria-label="Resumen" placeholder="Resumen"></textarea>
+                    <form id="create-post-form" action="#" method="post" aria-label="Formulario de publicación">
+                        <textarea id="description" class="post-input" aria-label="Contenido de la publicación" placeholder="¿Sobre qué quieres hablar?" required></textarea>
+                        <input type="text" id="title" aria-label="Título de la publicación" placeholder="Título" required>
+                        <input type="text" id="authorship" aria-label="Autoría" placeholder="Autoría" required>
+                        <textarea id="abstract" aria-label="Resumen" placeholder="Resumen" required></textarea>
 
                         <div class="file-group btn">
-                        <a href="#" class="image-button post-image-button" aria-label="Añadir imagen">
-                            <i class="fas fa-image post-fa"></i> Adjuntar imagen
-                        </a>
+                            <label for="post-image-input" class="image-button post-image-button" aria-label="Añadir imagen">
+                                <i class="fas fa-image post-fa"></i> Adjuntar imagen
+                                <input type="file" id="post-image-input" accept="image/jpeg,image/jpg,image/png,image/gif" style="display:none">
+                            </label>
+                            <span id="image-filename" style="font-size: 0.9rem; color: #666;"></span>
                         </div>
                         <div class="file-group btn">
-                        <a href="#" class="attach-button post-image-button" aria-label="Adjuntar archivo">
-                            <i class="fas fa-paperclip post-fa"></i> Adjuntar documento
-                        </a>
+                            <label for="post-pdf-input" class="attach-button post-image-button" aria-label="Adjuntar archivo">
+                                <i class="fas fa-paperclip post-fa"></i> Adjuntar documento
+                                <input type="file" id="post-pdf-input" accept="application/pdf" style="display:none">
+                            </label>
+                            <span id="pdf-filename" style="font-size: 0.9rem; color: #666;"></span>
                         </div>
 
                         <button type="submit" class="btn submit-comment">
