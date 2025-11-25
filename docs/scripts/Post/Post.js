@@ -45,15 +45,15 @@ class Post {
             </section>
 
             <section class="comment-section">
-
+                <!-- Los comentarios se inyectan acá -->
                 <button class="btn view-more">Ver más</button>
 
                 <div class="add-comment">
-                    <img src="assets/imgwebp/flavia.webp" alt="Foto de contacto" class="contact-avatar">
-                    <input type="text" class="comment-input" placeholder="Escribe un comentario">
-                    <button class="btn submit-comment">
-                        <i class="fas fa-paper-plane"></i>Enviar
-                    </button>
+                <img src="assets/imgwebp/flavia.webp" alt="Foto de contacto" class="contact-avatar">
+                <input type="text" class="comment-input" placeholder="Escribe un comentario">
+                <button class="btn submit-comment">
+                    <i class="fas fa-paper-plane"></i>Enviar
+                </button>
                 </div>
             </section>
         `;

@@ -94,3 +94,33 @@ function formatDateTime(isoDateString) {
     return { date: "Fecha inválida", time: "" };
   }
 }
+
+// =========================
+// Helpers de autenticación
+// =========================
+
+function getCurrentAuthContext() {
+  return {
+    userId: Number(localStorage.getItem("userId") || 0),
+    roleId: Number(localStorage.getItem("roleId") || 1), // 1 = User
+  };
+}
+
+/**
+ * Devuelve los permisos del usuario actual sobre un contenido
+ * (en este caso, un comentario)
+ */
+function getCommentPermissions(ownerUserId) {
+  const { userId, roleId } = getCurrentAuthContext();
+
+  return {
+    canEdit: ownerUserId === userId,               // solo dueño
+    canDelete: ownerUserId === userId || roleId >= 2, // dueño o Admin/SuperAdmin
+    canReport: true,                               // cualquier usuario logueado
+  };
+}
+
+function isAdminOrSuperAdmin() {
+  const { roleId } = getCurrentAuthContext();
+  return roleId >= 2;
+}
