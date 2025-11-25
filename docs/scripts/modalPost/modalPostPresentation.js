@@ -150,8 +150,12 @@ function openPostCreationModal() {
             Swal.fire({ icon: 'success', title: '¡Listo!', text: 'Publicación creada', timer: 2000, showConfirmButton: false });
             closePostCreationModal(newModalPost);
             
-            // Reload posts
-            if (typeof loadPosts === 'function') {
+            // Reload posts - check which page we're on
+            if (typeof loadUserPosts === 'function') {
+                // We're on profile page
+                loadUserPosts(1, false);
+            } else if (typeof loadPosts === 'function') {
+                // We're on wall page
                 loadPosts(1, "", false);
             }
         } catch (error) {

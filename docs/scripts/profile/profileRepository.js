@@ -102,3 +102,77 @@ function updateUserProfile(userId, userData, callback) {
     }
   });
 }
+
+/**
+ * Get posts from a specific user
+ * @param {number} userId - The ID of the user
+ * @param {number} page - Page number
+ * @param {number} size - Number of posts per page
+ * @param {Function} callback - Callback with format {success: boolean, data: array, message: string}
+ */
+function getUserPosts(userId, page = 1, size = 10, callback) {
+  const token = localStorage.getItem("token");
+  const currentUserId = localStorage.getItem("userId");
+
+  if (!userId) {
+    console.error("No userId provided");
+    callback({ success: false, message: "User ID is required" });
+    return;
+  }
+
+  const url = `/api/Post/user/${userId}?Page=${page}&Size=${size}`;
+
+  const config = {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
+  server(url, config, function (response) {
+    console.log("getUserPosts response:", response);
+    
+    if (response && response.error) {
+      callback({ success: false, message: response.message || "Error al cargar publicaciones" });
+    } else if (Array.isArray(response)) {
+      // Backend returns array of posts directly
+      const posts = response.map(post => ({
+        postId: post.id || post.postId,
+        userId: post.userId || post.idPerson,
+        title: post.title || "",
+        description: post.description || "",
+        authorship: post.authorship || "",
+        abstract: post.resume || "",
+        createdAt: post.createdAt || post.createAt,
+        imgOwner: post.avatarUrl || null,
+        image: post.imageUrl || null,
+        nameOwner: post.userName || `${post.name || ''} ${post.lastName || ''}`.trim() || "Usuario",
+        countLike: 0,
+        comments: post.comments || []
+      }));
+      callback({ success: true, data: posts });
+    } else if (response && response.posts && Array.isArray(response.posts)) {
+      // Backend returns posts array nested inside 'posts' property
+      const posts = response.posts.map(post => ({
+        postId: post.id || post.postId,
+        userId: post.userId || post.idPerson,
+        title: post.title || "",
+        description: post.description || "",
+        authorship: post.authorship || "",
+        abstract: post.resume || "",
+        createdAt: post.createdAt || post.createAt,
+        imgOwner: post.avatarUrl || null,
+        image: post.imageUrl || null,
+        nameOwner: post.userName || `${post.name || ''} ${post.lastName || ''}`.trim() || "Usuario",
+        countLike: 0,
+        comments: post.comments || []
+      }));
+      callback({ success: true, data: posts });
+    } else if (response && response.message) {
+      callback({ success: false, message: response.message });
+    } else {
+      console.error("Unexpected response format:", response);
+      callback({ success: false, message: "Error al cargar publicaciones" });
+    }
+  });
+}
