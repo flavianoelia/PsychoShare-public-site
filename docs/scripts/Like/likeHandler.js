@@ -96,8 +96,6 @@ function handleLikeClick(button, postId) {
 
   // Call backend
   toggleLike(postId, function (result) {
-    button.disabled = false;
-
     if (result.success) {
       // Backend confirms the new state (result.data is true if now liked, false if unliked)
       // Refresh stats to get accurate count
@@ -109,16 +107,17 @@ function handleLikeClick(button, postId) {
             statsResult.data.isLikedByCurrentUser
           );
         }
+        // Re-enable button after getting fresh stats
+        button.disabled = false;
       });
     } else {
-      // Rollback on error
+      // Rollback on error silently (don't show error to avoid interrupting UX)
       updateLikeButton(button, currentCount, isCurrentlyLiked);
-      Swal.fire({
-        icon: "error",
-        title: "Error",
-        text:
-          result.message || "No se pudo procesar el like. Intentá nuevamente.",
-      });
+      console.error("Like error:", result.message);
+      // Re-enable button after a small delay to prevent rapid clicking
+      setTimeout(() => {
+        button.disabled = false;
+      }, 500);
     }
   });
 }

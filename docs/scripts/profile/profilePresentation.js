@@ -64,6 +64,15 @@ function loadUserPosts(page = 1, append = false) {
     const posts = result.data || [];
     profileHasMorePosts = posts.length === profilePageSize;
 
+    // Update posts count on first load
+    if (page === 1) {
+      const postsCountElement = document.getElementById('posts-count');
+      if (postsCountElement) {
+        // Count total posts by fetching all pages or use the length of first page as minimum
+        postsCountElement.textContent = posts.length;
+      }
+    }
+
     // Render posts
     const container = document.querySelector("main");
     if (!container) {
@@ -132,9 +141,19 @@ function loadUserProfile() {
       userNameElement.textContent = `${user.name} ${user.lastName}`;
     }
 
+    // Load contacts count
+    if (typeof getMyFollowingIds === 'function') {
+      getMyFollowingIds(function(result) {
+        const contactsCountElement = document.getElementById('contacts-count');
+        if (contactsCountElement && result.success) {
+          contactsCountElement.textContent = result.data.length;
+        }
+      });
+    }
+
     // Load and update avatar
     const token = localStorage.getItem("token");
-    const avatarUrl = `http://localhost:5174/api/Avatar/${profileUserId}`;
+    const avatarUrl = `${API_BASE_URL}/api/Avatar/${profileUserId}`;
     
     fetch(avatarUrl, {
       method: "GET",
