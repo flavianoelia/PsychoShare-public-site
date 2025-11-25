@@ -611,8 +611,14 @@ figure {
   border-radius: 12px;
   padding: 1.5rem;
   max-width: 1000px; 
-    margin: 0 auto; 
-  }
+  margin: 0 auto; 
+}
+
+/* Sections for following and suggestions */
+.contacts-section {
+  /* Empty for now, can add styles if needed */
+}
+
 .contact-name {
   flex-grow: 1; 
   font-weight: 500;
@@ -624,6 +630,29 @@ figure {
   border-bottom: 1px solid var(--color-border);
   background: #fff;
 }
+
+.suggestions-divider {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--color-border);
+  background: #fff;
+}
+
+.suggestions-divider.visible {
+  display: flex;
+}
+
+.suggestions-divider h3 {
+  margin: 0;
+  color: var(--color-text-secondary);
+  font-size: 1.1rem;
+  font-weight: 500;
+  width: 100%;
+}
+
 .btn-danger {
   background-color: transparent;
   color: var(--color-primary);
