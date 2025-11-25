@@ -32,17 +32,18 @@ class Post {
 
     const post = document.createElement("article");
     post.className = "article";
-    
+
     // build comments html with report button and dynamic avatars
-    const commentsHtml = this.comments.map((c, idx) => {
-      let commentAvatarHTML;
-      if (c.imgOwner && c.imgOwner.trim() !== "") {
-        commentAvatarHTML = `<img src="${c.imgOwner}" alt="Foto de contacto" class="contact-avatar" onerror="this.outerHTML='<i class=\\'fa-solid fa-circle-user contact-avatar-icon\\'></i>'" />`;
-      } else {
-        commentAvatarHTML = `<i class="fa-solid fa-circle-user contact-avatar-icon"></i>`;
-      }
-      
-      return `
+    const commentsHtml = this.comments
+      .map((c, idx) => {
+        let commentAvatarHTML;
+        if (c.imgOwner && c.imgOwner.trim() !== "") {
+          commentAvatarHTML = `<img src="${c.imgOwner}" alt="Foto de contacto" class="contact-avatar" onerror="this.outerHTML='<i class=\\'fa-solid fa-circle-user contact-avatar-icon\\'></i>'" />`;
+        } else {
+          commentAvatarHTML = `<i class="fa-solid fa-circle-user contact-avatar-icon"></i>`;
+        }
+
+        return `
         <article class="comment">
             <div class="comment-header">
                 ${commentAvatarHTML}
@@ -54,7 +55,8 @@ class Post {
             </div>
         </article>
     `;
-    }).join('\n');
+      })
+      .join("\n");
 
     post.innerHTML = `
             <section class="post">
@@ -71,19 +73,27 @@ class Post {
                 <p><strong>Autoría:</strong> ${this.authorship}</p>
                 <p><strong>Resumen:</strong> ${this.abstract}</p>
                 <figure>
-                    <img src="${this.image}" alt="Imagen del post" class="post-image">
+                    <img src="${
+                      this.image
+                    }" alt="Imagen del post" class="post-image">
                     <figcaption>
                         <div class="button-container">
                             <div class="post-buttons">
-                                <button class="btn like-button" data-post-id="${this.postId}">
+                                <button class="btn like-button" data-post-id="${
+                                  this.postId
+                                }">
                                     <i class="fa-regular fa-thumbs-up"></i>
-                                    <span class="like-text">${this.coutLike} Me gusta</span>
+                                    <span class="like-text">${
+                                      this.coutLike
+                                    } Me gusta</span>
                                 </button>
                                 <button class="btn comment-button"><i class="fas fa-comment"></i>${
                                   this.comments.length
                                 } Comentarios</button>
                                 <button class="btn pdf-button"><i class="fas fa-file-pdf"></i>Ver PDF</button>
-                                <button class="btn btn-report" data-report-type="post" data-report-id="${this.title}" type="button"><i class="fas fa-flag"></i> Reportar</button>
+                                <button class="btn btn-report" data-report-type="post" data-report-id="${
+                                  this.title
+                                }" type="button"><i class="fas fa-flag"></i> Reportar</button>
                             </div>
                         </div>
                     </figcaption>
@@ -92,7 +102,11 @@ class Post {
 
             <section class="comment-section">
                 ${commentsHtml}
-                ${this.comments.length > 2 ? '<button class="btn view-more">Ver más</button>' : ''}
+                ${
+                  this.comments.length > 2
+                    ? '<button class="btn view-more">Ver más</button>'
+                    : ""
+                }
                 <div class="add-comment">
                    <i class="fa-solid fa-circle-user contact-avatar-icon"></i>
                     <input type="text" class="comment-input" placeholder="Escribe un comentario">
