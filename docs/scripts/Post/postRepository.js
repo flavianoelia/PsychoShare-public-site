@@ -21,7 +21,7 @@ function getPost(callback) {
     console.log("📝 Posts recibidos:", posts);
 
     // Transformar los datos del backend al formato que espera el frontend
-    const transformedPosts = posts.map((post) => ({
+    const formatPosts = posts.map((post) => ({
       postId: post.id, // ID del post para likes
       userId: post.userId,
       imgOwner: "assets/imgwebp/default-avatar.webp", // Default, podríamos agregar esto al backend
@@ -36,9 +36,9 @@ function getPost(callback) {
       createdAt: post.createdAt, // Fecha de creación del post
     }));
 
-    console.log("✅ Posts transformados:", transformedPosts);
+    console.log("✅ Posts transformados:", formatPosts);
 
-    callback(transformedPosts);
+    callback(formatPosts.map(p => new Post(p)));
   });
 }
 

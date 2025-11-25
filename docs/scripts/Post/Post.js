@@ -9,12 +9,12 @@ class Post {
     this.authorship = post.authorship;
     this.abstract = post.abstract;
     this.image = post.image;
-    this.coutLike = post.countLike || 0;
+    this.countLike = post.countLike || 0;
     this.comments = post.comments || [];
     this.createdAt = post.createdAt; // Fecha ISO del backend
   }
 
-  //template string que tiene un post
+  //template string que tiene un post   
   getNode() {
     const currentUserId = localStorage.getItem("userId");
     const isOwnPost = this.userId == currentUserId;
