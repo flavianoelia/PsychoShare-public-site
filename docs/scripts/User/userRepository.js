@@ -29,3 +29,14 @@ function login(email, password, callback) {
 
   server(url, config, callback);
 }
+
+function changePassword(userId, oldPassword, newPassword, callback) {
+  const url = `/api/User/change-password/${userId}`;
+
+  const config = {
+    method: "PUT",
+    body: JSON.stringify({ oldPassword, newPassword }),
+  };
+
+  server(url, config, callback);
+}

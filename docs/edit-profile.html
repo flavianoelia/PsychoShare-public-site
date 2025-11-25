@@ -45,6 +45,18 @@
         <input id="email" name="email" type="email" value="" required aria-label="Editar correo electrónico" />
       </section>
 
+      <section class="update-password">
+        <p>Cambiar Contraseña</p>
+
+        <label for="old-password">Contraseña actual</label>
+        <input id="old-password" name="old-password" type="password" aria-label="Ingresar contraseña actual" />
+
+        <label for="new-password">Nueva contraseña</label>
+        <input id="new-password" name="new-password" type="password" aria-label="Ingresar nueva contraseña" />
+
+        <label for="repeat-password">Repetir nueva contraseña</label>
+        <input id="repeat-password" name="repeat-password" type="password" aria-label="Repetir nueva contraseña" />
+      </section>
 
       <section class="delete-account">
         <a href="delete-account.html" class="btn delete-button" aria-label="Eliminar cuenta">
@@ -64,6 +76,7 @@
   <script src="scripts/config.js"></script>
   <script src="scripts/fetch.js"></script>
   <script src="scripts/helpers.js"></script>
+  <script src="scripts/User/userRepository.js"></script>
   <script src="scripts/profile/profileRepository.js"></script>
   <script src="scripts/profile/avatarRepository.js"></script>
   <script src="scripts/profile/editProfilePresentation.js"></script>
