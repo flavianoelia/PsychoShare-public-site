@@ -157,8 +157,24 @@ function openPostCreationModal() {
             });
             
             if (!response.ok) {
-                const error = await response.json();
-                throw new Error(Array.isArray(error) ? error.join(', ') : error.message || 'Error al crear post');
+                let errorMessage = 'Error al crear post';
+                const contentType = response.headers.get('content-type');
+                
+                if (contentType && contentType.includes('application/json')) {
+                    try {
+                        const error = await response.json();
+                        errorMessage = Array.isArray(error) ? error.join(', ') : error.message || errorMessage;
+                    } catch (e) {
+                        console.error('Error parsing JSON:', e);
+                    }
+                } else {
+                    // Not JSON - probably HTML error page
+                    const text = await response.text();
+                    console.error('Server error (not JSON):', text.substring(0, 200));
+                    errorMessage = `Error del servidor (${response.status}). Verifica que el backend esté corriendo.`;
+                }
+                
+                throw new Error(errorMessage);
             }
             
             Swal.fire({ icon: 'success', title: '¡Listo!', text: 'Publicación creada', timer: 2000, showConfirmButton: false });
