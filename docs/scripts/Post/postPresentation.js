@@ -156,6 +156,23 @@ function initializeSearch() {
     }, 500);
   });
 }
+document.addEventListener("click", function(e) {
+    const isBtn = e.target.classList.contains("menu-btn");
+
+    // Cerrar todos los menús
+    document.querySelectorAll(".dropdown-menu").forEach(menu => {
+        menu.style.display = "none";
+    });
+
+    // Si clickeaste el botón...
+    if (isBtn) {
+        const container = e.target.closest(".post-menu-container");
+        const menu = container.querySelector(".dropdown-menu");
+        menu.style.display = "flex";
+        e.stopPropagation();
+    }
+});
+
 
 // Initialize wall when DOM is ready (only if post_collection exists)
 if (sectionPost) {
