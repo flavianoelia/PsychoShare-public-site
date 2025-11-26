@@ -30,26 +30,29 @@ document.addEventListener("click", async function (e) {
     const postId = e.target.dataset.id;
 
     try {
-      // 1. Traemos el post actual para tener TODOS los campos que necesita el backend
+      // Obtener post actual
       const getRes = await fetch(`${API_BASE_URL}/api/post/${postId}`, {
-        headers: {
-          "Authorization": `Bearer ${localStorage.getItem("token")}`
-        }
+        headers: { "Authorization": `Bearer ${localStorage.getItem("token")}` }
       });
 
-      if (!getRes.ok) {
-        throw new Error("No se pudo obtener el post");
-      }
+      if (!getRes.ok) throw new Error("No se pudo obtener el post");
 
       const post = await getRes.json();
 
-      // 2. Pedimos al usuario los nuevos valores, pre-cargados
+      // Modal con labels + valores cargados
       const { value: edited } = await Swal.fire({
         title: "Editar publicación",
         html: `
-          <input id="sw-title" class="swal2-input" value="${post.title}">
+          <label>Sobre qué quieres hablar?</label>
           <textarea id="sw-desc" class="swal2-textarea">${post.description}</textarea>
+          
+          <label>Título</label>
+          <input id="sw-title" class="swal2-input" value="${post.title}">
+
+          <label>Autoría</label>
           <input id="sw-auth" class="swal2-input" value="${post.authorship}">
+
+          <label>Resumen</label>
           <textarea id="sw-resume" class="swal2-textarea">${post.resume}</textarea>
         `,
         focusConfirm: false,
@@ -67,14 +70,7 @@ document.addEventListener("click", async function (e) {
 
       if (!edited) return;
 
-      // 3. Validación mínima del front (opcional)
-      if (edited.title.length < 2 || edited.description.length < 2 ||
-          edited.authorship.length < 2 || edited.resume.length < 2) {
-        Swal.fire("Error", "Todos los campos deben tener al menos 2 caracteres.", "error");
-        return;
-      }
-
-      // 4. Enviar PUT con TODOS los datos (así el backend no devuelve 400)
+      // Enviar el PUT con TODOS los campos
       const putRes = await fetch(`${API_BASE_URL}/api/post/${postId}`, {
         method: "PUT",
         headers: {
