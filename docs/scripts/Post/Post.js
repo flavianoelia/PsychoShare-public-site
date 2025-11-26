@@ -66,6 +66,20 @@ class Post {
                     <p class="timestamp">${date}</p>
                     <p class="timestamp">${time}</p>
                 </div>
+            ${
+              isOwnPost
+                ? `
+                <div class="post-menu-container">
+                    <button class="menu-btn">⋮</button>
+
+                    <div class="dropdown-menu">
+                        <button class="dropdown-item edit-btn" data-id="${this.postId}"> Editar</button>
+                        <button class="dropdown-item delete-btn" data-id="${this.postId}">Eliminar</button>
+                    </div>
+                </div>
+                `
+                : ""
+            }
             </section>
             <section class="post-content">
                 <p>${this.description}</p>
