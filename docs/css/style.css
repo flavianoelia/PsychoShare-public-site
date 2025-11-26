@@ -565,10 +565,11 @@ figure {
     cursor: pointer;
     font-size: 14px;
     border-radius: 6px;
+    color: var(--color-text-main);
 }
 
 .dropdown-item:hover {
-    background: #f2f2f2;
+    background: var(--color-background-ui-light);
 }
 
 
@@ -1077,12 +1078,12 @@ main.split-page-layout {
   text-align: center;
   gap: 0.75rem;
   padding-bottom: 1.5rem;
-  border-bottom: 1px solid #e0e0e0;
+  border-bottom: 1px solid var(--color-border);
 }
 .update-photo-profile i,
 .update-cover i {
   font-size: 7rem;
-  color: #bbb;
+  color: var(--color-ui-background);
 }
 .update-data,
 .update-password{
@@ -1091,42 +1092,43 @@ main.split-page-layout {
   align-items: center;
   gap: 0.75rem;
   padding-bottom: 1.5rem;
-  border-bottom: 1px solid #e0e0e0;
+  border-bottom: 1px solid var(--color-border);
 }
 .update-data input,
 .update-password input {
   width: 100%;
   padding: 0.6rem 1rem;
-  border: 1px solid #ccc;
+  border: 1px solid var(--color-border);
   border-radius: 6px;
   font-size: 1rem;
-  background-color: #fefefe;
+  background-color: var(--color-background-main);
+  color: var(--color-text-main);
 }
 .update-data label,
 .update-password label {
   align-self: flex-start;
   margin-top: 0.5rem;
   font-size: 0.9rem;
-  color: #555;
+  color: var(--color-text-main);
 }
 .close-button {
   position: absolute;
   top: 1.2rem;
   right: 1.2rem;
   font-size: 1.4rem;
-  color: #888;
+  color: var(--color-ui-background);
   text-decoration: none;
   transition: color 0.2s ease;
 }
 .close-button:hover {
-  color: #000;
+  color: var(--color-text-main);
 }
 .edit-button {
   position: absolute;
   top: 1rem;
   right: 1rem;
   font-size: 0.85rem;
-  background-color: #b58d93;
+  background-color: var(--color-primary);
   color: white;
   padding: 0.3rem 0.7rem;
   border-radius: 6px;
@@ -1335,4 +1337,31 @@ section.save-changes-section {
 .loading-spinner p {
   color: #666;
   font-size: 0.9rem;
+}
+
+/* SweetAlert2 dark mode styles */
+[data-theme="dark"] .swal2-popup {
+  background-color: var(--color-background-card) !important;
+  color: var(--color-text-main) !important;
+}
+
+[data-theme="dark"] .swal2-title {
+  color: var(--color-text-main) !important;
+}
+
+[data-theme="dark"] .swal2-html-container {
+  color: var(--color-text-main) !important;
+}
+
+[data-theme="dark"] .swal2-input,
+[data-theme="dark"] .swal2-textarea {
+  background-color: var(--color-background-main) !important;
+  color: var(--color-text-main) !important;
+  border: 1px solid var(--color-border) !important;
+}
+
+[data-theme="dark"] .swal2-input::placeholder,
+[data-theme="dark"] .swal2-textarea::placeholder {
+  color: var(--color-text-main) !important;
+  opacity: 0.5;
 }
