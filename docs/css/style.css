@@ -573,10 +573,12 @@ figure {
 }
 
 .swal2-html-container {
-  text-align: left !important; /* Alinea labels + inputs como tu diseño */
-  display: flex !important;
-  flex-direction: column !important;
-  gap: 12px !important; /* Espaciado limpio como tus cards */
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  overflow-x: hidden;
+  max-width: 100%;
 }
 
 .swal2-html-container label {
@@ -588,23 +590,38 @@ figure {
 
 .swal2-input,
 .swal2-textarea {
-  width: 100% !important;
+  width: 100%;
+  max-width: 100%;
   box-sizing: border-box;
-
-  border-radius: 8px !important; 
-  padding: 10px !important;
-  font-size: 14px !important;
-
-  border: 1px solid #ccc !important;
+  border-radius: 8px; 
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  margin: 0;
 }
 
 .swal2-textarea {
-  min-height: 70px !important;
+  min-height: 70px;
+  resize: vertical;
+}
+
+.swal2-popup {
+  padding: 1.5rem;
+  max-width: 90vw;
+  box-sizing: border-box;
 }
 
 .swal2-confirm, .swal2-cancel {
-  border-radius: 8px !important;
-  padding: 8px 20px !important;
+  border-radius: 8px;
+  padding: 8px 20px;
+}
+
+.swal2-confirm {
+  background-color: var(--color-primary);
+}
+
+.swal2-confirm:hover {
+  background-color: var(--color-accent);
 }
 
 /*--- COMMENTS COMPONENT ---*/
@@ -1375,27 +1392,27 @@ section.save-changes-section {
 
 /* SweetAlert2 dark mode styles */
 [data-theme="dark"] .swal2-popup {
-  background-color: var(--color-background-card) !important;
-  color: var(--color-text-main) !important;
+  background-color: var(--color-background-card);
+  color: var(--color-text-main);
 }
 
 [data-theme="dark"] .swal2-title {
-  color: var(--color-text-main) !important;
+  color: var(--color-text-main);
 }
 
 [data-theme="dark"] .swal2-html-container {
-  color: var(--color-text-main) !important;
+  color: var(--color-text-main);
 }
 
 [data-theme="dark"] .swal2-input,
 [data-theme="dark"] .swal2-textarea {
-  background-color: var(--color-background-main) !important;
-  color: var(--color-text-main) !important;
-  border: 1px solid var(--color-border) !important;
+  background-color: var(--color-background-main);
+  color: var(--color-text-main);
+  border: 1px solid var(--color-border);
 }
 
 [data-theme="dark"] .swal2-input::placeholder,
 [data-theme="dark"] .swal2-textarea::placeholder {
-  color: var(--color-text-main) !important;
+  color: var(--color-text-main);
   opacity: 0.5;
 }
