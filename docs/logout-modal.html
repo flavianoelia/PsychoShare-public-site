@@ -6,21 +6,23 @@
   <meta name="keywords" content="cerrar sesión, logout, red social, salud mental, psicología, comunidad científica, profesionales, estudiantes">
   <meta description="Confirma que deseas cerrar sesión en PsychoShare, la red social de psicología colaborativa.">
   <title>Cerrar sesión | PsychoShare - Psicología colaborativa</title>
-  <link rel="stylesheet" href="css/pages/logout-modal.css">
-  <link rel="stylesheet" href="css/components/buttons.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&family=Sora:wght@100..800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css">
+
 </head>
-<body>
+<body class="logout-layout">
   <div class="logout-modal" role="dialog" aria-labelledby="logout-title" aria-modal="true">
     <h1>Cerrar sesión</h1>
     <h2 class="logout-title" id="logout-title">¿Estás seguro que deseas cerrar la sesión?</h2>
     <div class="logout-actions">
-      <a href="index.html">
-      <button class="btns logout-confirm" aria-label="Confirmar cierre de sesión">Cerrar sesión</button>
+      <a href="index.html" class="btn logout-confirm" aria-label="Confirmar cierre de sesión">
+          Cerrar sesión
       </a>
-      <a href="wall.html">
-      <button class="btns logout-cancel" aria-label="Cancelar cierre de sesión">Cancelar</button>
+      <a href="wall.html" class="btn logout-cancel" aria-label="Cancelar cierre de sesión">
+          Cancelar
       </a>
     </div>
   </div>
+  <script src="./scripts/theme.js"></script>
 </body>
 </html>

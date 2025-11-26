@@ -1,270 +1,278 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="utf-8">
+  <head>
+    <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="keywords" content="psicología, salud mental, muro, publicaciones, artículos científicos, red social, comunidad, material educativo, colaboración, Creative Commons">
-    <meta name="description" content="PsychoShare es una red social dedicada a la divulgación científica en psicología, donde los usuarios pueden compartir publicaciones, artículos y material educativo sobre salud mental y psicología.">
+    <meta
+      name="keywords"
+      content="psicología, salud mental, muro, publicaciones, artículos científicos, red social, comunidad, material educativo, colaboración, Creative Commons"
+    />
+    <meta
+      name="description"
+      content="PsychoShare es una red social dedicada a la divulgación científica en psicología, donde los usuarios pueden compartir publicaciones, artículos y material educativo sobre salud mental y psicología."
+    />
 
-    <title>Muro de publicaciones | PsychoShare - Red social para la divulgación científica en psicología</title>
- 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&family=Sora:wght@100..800&display=swap" rel="stylesheet">
-    <link rel="icon" href="favicon/favicon.ico">
-    <link rel="icon" type="image/png" sizes="96x96" href="favicon/favicon-96x96.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
-    <link rel="icon" type="image/svg+xml" href="favicon/favicon.svg">
-    <link rel="manifest" href="favicon/site.webmanifest">
+    <title>
+      Muro de publicaciones | PsychoShare - Red social para la divulgación
+      científica en psicología
+    </title>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-Tf8UPt3NwntSM6AfUsF96pAy43MPHRswCy7O0KlNNX+R1F0I06+nSgxWWJZKjFuRjRuhAuH9knFVw8NsK9zQ9g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&family=Sora:wght@100..800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" href="favicon/favicon.ico" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="96x96"
+      href="favicon/favicon-96x96.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="favicon/apple-touch-icon.png"
+    />
+    <link rel="icon" type="image/svg+xml" href="favicon/favicon.svg" />
+    <link rel="manifest" href="favicon/site.webmanifest" />
 
-    <link rel="stylesheet" href="css/base/global.css">
-    <link rel="stylesheet" href="css/layout/grid.css">
-    <link rel="stylesheet" href="css/layout/header.css">
-    <link rel="stylesheet" href="css/layout/navigation.css">
-    <link rel="stylesheet" href="css/layout/footer.css">
-    <link rel="stylesheet" href="css/components/search-bar.css">
-    <link rel="stylesheet" href="css/components/button.css">
-    <link rel="stylesheet" href="css/components/card.css">
-    <link rel="stylesheet" href="css/components/time_dataTime.css">
-    <link rel="stylesheet" href="css/components/form.css">
-    <link rel="stylesheet" href="css/components/modal.css">
-    <link rel="stylesheet" href="css/pages/wall.css">
-    <link rel="stylesheet" href="css/custom.css">
-    <link rel="stylesheet" href="css/pages/contacts.css">
-    <script src="https://kit.fontawesome.com/636f762910.js" crossorigin="anonymous"></script>
-    <!--<script src="js/menu.js" defer></script>-->
-    <!--<script src="js/modal.js" defer></script>-->
-    <!--<script src="js/logout-modal.js" defer></script>-->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
 
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/components/report.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-<body class="app-layout">
-    <header aria-label="Encabezado" class="logo-header">
-        <img src="assets/logo/logopsynet_300x300.webp" alt="logo de PsychoShare">
-        <h1>PsychoShare</h1>
+    <script
+      src="https://kit.fontawesome.com/636f762910.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+
+  <body class="wall-layout">
+    <header class="logo-header" aria-label="Encabezado">
+      <img
+        src="assets/logo/logopsynet_300x300.webp"
+        alt="logo de PsychoShare"
+      />
+      <h1>PsychoShare</h1>
     </header>
 
-    <section aria-label="Buscador y acceso directo al perfil" class="search-bar">
-    
-        <form action="search" method="get" class="search-form">
-            <input type="search" name="q" placeholder="¿Qué deseas buscar?" class="search-input">
-            <button type="submit" class="search-button" aria-label="Buscar">
-                <i class="fas fa-search"></i>
-            </button>
-        </form>
-    
-        <span class="action-buttons">
-            <a href="wall.html" class="action-button" aria-label="Inicio">
-                <i class="fas fa-house"></i>
-            </a>
-            <a href="profile.html" class="action-button" aria-label="Perfil">
-                <img src="assets/imgwebp/flavia.webp" alt="Foto de contacto" class="contact-photo">
-            </a>
-            <button class="menu-toggle action-button" aria-label="Abrir menú">
-                <i class="fas fa-bars"></i>
-            </button>       
-        </span>
-    
+    <section
+      class="search-bar"
+      aria-label="Buscador y acceso directo al perfil"
+    >
+      <form action="search" method="get" class="search-form">
+        <input
+          type="search"
+          name="q"
+          placeholder="¿Qué deseas buscar?"
+          class="search-input"
+        />
+        <button type="submit" class="search-button" aria-label="Buscar">
+          <i class="fas fa-search"></i>
+        </button>
+      </form>
+
+      <span class="action-buttons">
+        <button class="theme-toggle action-button" onclick="toggleTheme()" aria-label="Cambiar tema">
+          <i id="theme-icon" class="fas fa-moon"></i>
+        </button>
+        <a href="wall.html" class="action-button" aria-label="Inicio">
+          <i class="fas fa-house"></i>
+        </a>
+        <a href="profile.html" class="action-button" aria-label="Perfil">
+          <img
+            src="assets/imgwebp/flavia.webp"
+            alt="Foto de contacto"
+            class="contact-photo"
+          />
+        </a>
+        <button class="menu-toggle action-button" aria-label="Abrir menú">
+          <i class="fas fa-bars"></i>
+        </button>
+      </span>
     </section>
+
     <nav class="menu-nav" aria-label="Menú principal de navegación">
-        <ul>
-            <li><a href="wall.html" class="nav-link"><i class="fas fa-house"></i> Inicio</a></li>
-            <li><a href="profile.html" class="nav-link"><i class="fas fa-circle-user"></i> Perfil</a></li>
-            <li><a href="contacts.html" class="nav-link"><i class="fas fa-address-book"></i> Mis contactos</a></li>
-            <li><a href="about-us.html" class="nav-link"><i class="fas fa-info-circle"></i> Acerca de...</a></li>
-            <li><a href="logout-modal.html"class="nav-link"><i class="fas fa-right-from-bracket"></i> Cerrar sesión</a></li>
-        </ul>
+      <ul>
+        <li>
+          <a href="wall.html" class="nav-link"
+            ><i class="fas fa-house"></i> Inicio</a
+          >
+        </li>
+        <li>
+          <a href="profile.html" class="nav-link"
+            ><i class="fas fa-circle-user"></i> Perfil</a
+          >
+        </li>
+        <li>
+          <a href="contacts.html" class="nav-link"
+            ><i class="fas fa-address-book"></i> Mis contactos</a
+          >
+        </li>
+        <li>
+          <a href="about-us.html" class="nav-link"
+            ><i class="fas fa-info-circle"></i> Acerca de...</a
+          >
+        </li>
+        <li>
+          <a href="logout-modal.html" class="nav-link"
+            ><i class="fas fa-right-from-bracket"></i> Cerrar sesión</a
+          >
+        </li>
+      </ul>
     </nav>
+
+    <main class="main-content">
+      <!-- Form new post -->
+      <div class="new-post-form" aria-label="Crear nueva publicación">
+        <img
+          id="new-post-avatar"
+          class="contact-avatar"
+          src="assets/imgwebp/flavia.webp"
+          alt="Foto de contacto"
+        />
+        <input
+          class="post-input"
+          type="text"
+          placeholder="¿Sobre qué quieres hablar?"
+          readonly
+          onclick="openPostCreationModal()"
+          style="cursor: pointer"
+        />
+        <button
+          type="button"
+          onclick="openPostCreationModal()"
+          class="image-button"
+          aria-label="Añadir imagen"
+        >
+          <i class="fas fa-image"></i>
+        </button>
+        <button
+          type="button"
+          onclick="openPostCreationModal()"
+          class="attach-button"
+          aria-label="Adjuntar archivo"
+        >
+          <i class="fas fa-paperclip"></i>
+        </button>
+      </div>
+
+      <!-- Complete Post -->
+      <section id="post_collection">
+        <div id="posts-container"></div>
+      </section>
       
-    <main>
-    <!-- Form new post -->
-        <form aria-label="Crear nueva publicación" class="new-post-form">
-            <img src="assets/imgwebp/flavia.webp" alt="Foto de contacto" class="contact-avatar">
-            <input type="text" placeholder="¿Sobre qué quieres hablar?" class="post-input">
-            <a href="post-form.html" class="image-button" aria-label="Añadir imagen"><i class="fas fa-image"></i></a>
-            <a href="post-form.html" class="attach-button" aria-label="Adjuntar archivo"><i class="fas fa-paperclip"></i></a>
-        </form>
 
-    <!-- Complete Post -->
-    <article>
-        <section class="post">
-            <img src="assets/imgwebp/veronicacontacts.webp" alt="Foto de contacto" class="contact-avatar">
-            <div class="post-info">
-                <p class="name">Verónica Ramirez</p>
-                <p class="timestamp">18 junio 2025</p>
-                <p class="timestamp">17:40</p>
-            </div>
-        </section>
-        <section class="post-content">
-            <p>Hola a todos, Les traigo una excelente recomendación de lectura: "El Arte de Sanar: Principios y Prácticas de la Psicología Clínica" del Dr. Alejandro Ríos. Este libro es perfecto para cualquiera que quiera entender cómo la psicología ayuda a las personas a superar el sufrimiento y encontrar bienestar. El Dr. Ríos explica las terapias y enfoques clínicos de forma clara y accesible. ¡Una lectura esencial para comprender el arte de la salud mental!</p>
-            <h2>El Arte de Sanar: Principios y Prácticas de la Psicología Clínica</h2>
-            <p><strong>Autoría:</strong> Dr. Alejandro Ríos</p>
-            <p><strong>Resumen:</strong> En "El Arte de Sanar", el Dr. Alejandro Ríos, un destacado psicólogo clínico, ofrece una guía exhaustiva y accesible sobre los fundamentos y las aplicaciones de la psicología clínica. Este libro profundiza en las diversas teorías y enfoques terapéuticos, desde la terapia cognitivo-conductual hasta las intervenciones psicodinámicas, proporcionando una comprensión clara de cómo los profesionales abordan el sufrimiento humano y fomentan el bienestar.</p>
-            <figure>
-                <img src="assets/imgwebp/clinical_psychology_300x300.webp" alt="Imagen del post" class="post-image">
-                <figcaption>
-                    <div class="button-container">
-                        <div class="action-buttons">
-                            <button class="btn like-button"><i class="fas fa-thumbs-up"></i>40 Me gusta</button>
-                            <button class="btn comment-button"><i class="fas fa-comment"></i>2 Comentarios</button>
-                            <button class="btn pdf-button"><i class="fas fa-file-pdf"></i>Ver PDF</button>
-                        </div>
-                    </div>
-                </figcaption>
-            </figure>
-        </section>
+      <!-- Loading Spinner -->
+      <div id="loading-spinner" class="loading-spinner">
+        <div class="spinner"></div>
+        <p>Cargando publicaciones...</p>
+      </div>
+    </main>
 
-        <!-- Comments -->
-        <section class="comment-section">
-            <article class="comment">
-                <div class="comment-header">
-                    <img src="assets/imgwebp/aloecontacts.webp" alt="Foto de contacto" class="contact-avatar">
-                    <p>Aloe Bordone</p>
-                </div>
-                <div class="comment-content">
-                    <p>¿Qué enfoque terapéutico les parece más interesante: cognitivo-conductual, psicodinámico…? Este libro los explora todos con claridad.</p>
-                </div>
-            </article>
-            <article class="comment">
-                <div class="comment-header">
-                    <img src="assets/imgwebp/danielcontacts.webp" alt="Foto de contacto" class="contact-avatar">
-                    <p>Daniel Llanes</p>
-                </div>
-                <div class="comment-content">
-                    <p>Leerlo me recordó por qué la salud mental es tan importante y tan compleja a la vez.</p>
-                </div>
-            </article>
-            <button class="btn view-more">Ver más</button>
-            <div class="add-comment">
-               <img src="assets/imgwebp/flavia.webp" alt="Foto de contacto" class="contact-avatar">
-                <input type="text" class="comment-input" placeholder="Escribe un comentario">
-                <button class="btn submit-comment"><i class="fas fa-paper-plane"></i>Enviar</button>
-            </div>
-        </section>
-    </article>
-    <article>
-        <section class="post">
-            <img src="assets/imgwebp/constanzacontacts.webp" alt="Foto de contacto" class="contact-avatar">
-           <div class="post-info">
-                <p class="name">Constanza Rodriguez</p>
-                <p class="timestamp">15 junio 2025</p>
-                <p class="timestamp">02:00</p>
-            </div>
-        </section>
-        <section class="post-content">
-            <p>Hola, compañeros. Estuve leyendo sobre el sobre el comportamiento de las personas en el trabajo. Me pareció muy relevante para todos nosotros que manejamos a veces tanta presión. ¿Qué les parece?</p>
-            <h2> Psicología Laboral – Comportamiento humano en el ámbito laboral</h2>
-            <p><strong>Autoría:</strong> Eduardo Rame (edición propia, publicada en Wikimedia Commons)</p>
-            <p><strong>Resumen:</strong> Manual breve (5 páginas) que introduce la psicología del trabajo como ciencia aplicada. Describe cómo los procesos emocionales, cognitivos y físicos influyen en el ámbito laboral. Ideal para una visión general del comportamiento humano en el trabajo y su relevancia organizacional...</p>
-            <figure>
-                <img src="assets/imgwebp/psicologiatrabajo.webp" alt="Imagen del post" class="post-image">
-                <figcaption>
-                    <div class="button-container">
-                        <div class="action-buttons">
-                            <button class="btn like-button"><i class="fas fa-thumbs-up"></i>40 Me gusta</button>
-                            <button class="btn comment-button"><i class="fas fa-comment"></i>2 Comentarios</button>
-                            <button class="btn pdf-button"><i class="fas fa-file-pdf"></i>Ver PDF</button>
-                        </div>
-                    </div>
-                </figcaption>
-            </figure>
-        </section>
-
-        <!-- Comments -->
-        <section class="comment-section">
-            <article class="comment">
-                <div class="comment-header">
-                   <img src="assets/imgwebp/veronicacontacts.webp" alt="Foto de contacto" class="contact-avatar">
-                    <p>Verónica Ramirez</p>
-                </div>
-                <div class="comment-content">
-                    <p>¿Alguna vez se detuvieron a pensar cómo nuestras emociones influyen en el clima de trabajo?</p>
-                </div>
-            </article>
-            <article class="comment">
-                <div class="comment-header">
-                    <img src="assets/imgwebp/flavia.webp" alt="Foto de contacto" class="contact-avatar">
-                    <p>Flavia Perín</p>
-                </div>
-                <div class="comment-content">
-                    <p>Este texto me hizo ver la importancia de hablar más de salud emocional en el trabajo.</p>
-                </div>
-            </article>
-            <button class="btn view-more">Ver más</button>
-            <div class="add-comment">
-                <img src="assets/imgwebp/flavia.webp" alt="Foto de contacto" class="contact-avatar">
-                <input type="text" class="comment-input" placeholder="Escribe un comentario">
-                <button class="btn submit-comment"><i class="fas fa-paper-plane"></i>Enviar</button>
-            </div>
-        </section>
-    </article>
-    <article>
-        <section class="post">
-           <img src="assets/imgwebp/danielcontacts.webp" alt="Foto de contacto" class="contact-avatar">
-            <div class="post-info">
-                <p class="name">Daniel Llanes</p>
-                <p class="timestamp">10 junio 2025</p>
-                <p class="timestamp">12:36</p>
-            </div>
-        </section>
-        <section class="post-content">
-            <p>¡Buenas! Descubrí un recurso clave: "Psicología Educativa" de Julio Varela Barraza (con Grupo Autismo-ABA).
-Este manual es ideal para la formación, con 24 módulos prácticos. Cubre desde principios de análisis de conducta aplicados en el aula (observación, refuerzo, manejo de conductas) hasta casos prácticos sobre dinámicas, relación con familias y estrategias de inclusión</p>
-            <h2>Psicología Educativa – Julio Varela Barraza</h2>
-            <p><strong>Autoría:</strong> Julio Varela Barraza (y colaboración de Jorge Campo, Grupo Autismo-ABA)</p>
-            <p><strong>Resumen:</strong> Este manual, pensado para formación de docentes de nivel básico y media, está organizado en 24 módulos didácticos.
-Primera parte (12 módulos): enfoques y principios conductuales aplicados a la enseñanza: observación, evaluación, refuerzo, técnicas de modelado y manejo de conductas.
-Segunda parte (12 módulos): casos prácticos sobre dinámicas en el aula, relaciones con familias, eventos institucionales (como uso de uniformes), estrategias para inclusión y manejo de la rotación docente.
-Combina teoría del análisis de conducta con sugerencias prácticas, útiles para entrenar docentes de forma efectiva y rígida.</p>
-            <figure>
-                <img src="assets/imgwebp/psicologiaeducativa.webp" alt="Imagen del post" class="post-image">
-                <figcaption>
-                    <div class="button-container">
-                        <div class="action-buttons">
-                            <button class="btn like-button"><i class="fas fa-thumbs-up"></i>40 Me gusta</button>
-                            <button class="btn comment-button"><i class="fas fa-comment"></i>2 Comentarios</button>
-                            <button class="btn pdf-button"><i class="fas fa-file-pdf"></i>Ver PDF</button>
-                        </div>
-                    </div>
-                </figcaption>
-            </figure>
-        </section>
-
-        <!-- Comments -->
-        <section class="comment-section">
-            <article class="comment">
-                <div class="comment-header">
-                    <img src="assets/imgwebp/constanzacontacts.webp" alt="Foto de contacto" class="contact-avatar">
-                    <p>Constanza Rodriguez</p>
-                </div>
-                <div class="comment-content">
-                    <p>Incluye desde técnicas de refuerzo positivo hasta cómo abordar temas como la inclusión o la rotación del personal..</p>
-                </div>
-            </article>
-            <article class="comment">
-                <div class="comment-header">
-                    <img src="assets/imgwebp/flavia.webp" alt="Foto de contacto" class="contact-avatar">
-                    <p>Flavia Perín</p>
-                </div>
-                <div class="comment-content">
-                    <p>A veces, lo más difícil no es enseñar, sino gestionar el contexto humano alrededor del aprendizaje. Este manual lo refleja bien.</p>
-                </div>
-            </article>
-            <button class="btn view-more">Ver más</button>
-            <div class="add-comment">
-                <img src="assets/imgwebp/flavia.webp" alt="Foto de contacto" class="contact-avatar">
-                <input type="text" class="comment-input" placeholder="Escribe un comentario">
-                <button class="btn submit-comment"><i class="fas fa-paper-plane"></i>Enviar</button>
-            </div>
-        </section>
-    </article>
-</main>
-
-
-    <footer aria-label="Pie de página del sitio">
-        <p>2025 PsychoShare - Hecho por PsyNet - Licencia MIT</p>
+    <footer class="footer" aria-label="Pie de página del sitio">
+      <p>2025 PsychoShare - Hecho por PsyNet - Licencia MIT</p>
     </footer>
-    <script src="scripts/components/hamburgerMenu.js"></script>
-</body>
+
+    <!-- Modal de reporte (Bootstrap) -->
+    <div
+      class="modal fade"
+      id="reportModal"
+      tabindex="-1"
+      aria-labelledby="reportModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="reportModalLabel">
+              Reportar contenido
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Cerrar"
+            ></button>
+          </div>
+          <form id="reportForm">
+            <div class="modal-body">
+              <input type="hidden" name="target_type" id="report_target_type" />
+              <input type="hidden" name="target_id" id="report_target_id" />
+              <div class="mb-3">
+                <label for="report_reason" class="form-label">Motivo</label>
+                <select
+                  id="report_reason"
+                  name="reason"
+                  class="form-select"
+                  required
+                >
+                  <option value="acoso">Acoso</option>
+                  <option value="spam">Spam</option>
+                  <option value="contenido_inapropiado">
+                    Contenido inapropiado
+                  </option>
+                  <option value="discurso_odio">Discurso de odio</option>
+                  <option value="violencia_amenazas">Violencia/Amenazas</option>
+                  <option value="robo_identidad">Robo de identidad</option>
+                  <option value="infraccion_copyright">
+                    Infracción de copyright
+                  </option>
+                  <option value="actividad_bot">Actividad de bot</option>
+                  <option value="multiples_infracciones">
+                    Múltiples infracciones
+                  </option>
+                  <option value="other">Otro</option>
+                </select>
+              </div>
+              <!-- Detalles eliminado: ahora solo se requiere el motivo -->
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Cancelar
+              </button>
+              <button type="submit" class="btn btn-danger">
+                Enviar reporte
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <script src="./scripts/theme.js"></script>
+    <script src="./scripts/config.js"></script>
+    <script src="./scripts/fetch.js"></script>
+    <script src="./scripts/helpers/loadUserAvatar.js"></script>
+    <script src="./scripts/Following/followingRepository.js"></script>
+    <script src="./scripts/Like/likeRepository.js"></script>
+    <script src="./scripts/Post/Post.js"></script>
+    <script src="./scripts/Post/postRepository.js"></script>
+    <script src="./scripts/Post/postFollowHandler.js"></script>
+    <script src="./scripts/Post/PostCrudHandler.js"></script>
+    <script src="./scripts/Like/likeHandler.js"></script>
+    <script src="./scripts/Post/postPresentation.js"></script>
+    <script src="./scripts/components/hamburgerMenu.js"></script>
+    <script src="./scripts/helpers.js"></script>
+    <script src="./scripts/modalPost/modalPost.js"></script>
+    <script src="./scripts/modalPost/validatePost.js"></script>
+    <script src="./scripts/modalPost/modalPostPresentation.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="scripts/report.js" defer></script>
+  </body>
 </html>
+

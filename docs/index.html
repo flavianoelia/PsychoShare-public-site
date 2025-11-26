@@ -1,126 +1,256 @@
 <!DOCTYPE html>
 <html lang="es">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="keywords" content="iniciar sesión, login, salud mental, psicología, red social, comunidad científica, profesionales, estudiantes">
-        <meta name="description" content="Inicia sesión en PsychoShare, la red social de psicología colaborativa. Accede a publicaciones, contactos y más información relevante.">
-        <title>Iniciar sesión | PsychoShare - Psicología colaborativa</title>
-       
-       
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-        <link rel="icon" href="favicon/favicon.ico">
-        <link rel="icon" type="image/png" sizes="96x96" href="favicon/favicon-96x96.png">
-        <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
-        <link rel="icon" type="image/svg+xml" href="favicon/favicon.svg">
-        <link rel="manifest" href="favicon/site.webmanifest">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="keywords"
+      content="iniciar sesión, login, salud mental, psicología, red social, comunidad científica, profesionales, estudiantes"
+    />
+    <meta
+      name="description"
+      content="Inicia sesión en PsychoShare, la red social de psicología colaborativa. Accede a publicaciones, contactos y más información relevante."
+    />
+    <title>Iniciar sesión | PsychoShare - Psicología colaborativa</title>
 
-        <link rel="stylesheet" href="css/base/global.css">
-        <link rel="stylesheet" href="css/layout/footer.css">
-        <link rel="stylesheet" href="css/layout/layout-split-page.css"> 
-        <link rel="stylesheet" href="css/components/button.css">
-        <link rel="stylesheet" href="css/components/form.css">
-        <link rel="stylesheet" href="css/components/logo-section.css">
-        <link rel="stylesheet" href="css/pages/terms-adn-conditions.css">
-    </head>
-<body>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="icon" href="favicon/favicon.ico" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="96x96"
+      href="favicon/favicon-96x96.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="favicon/apple-touch-icon.png"
+    />
+    <link rel="icon" type="image/svg+xml" href="favicon/favicon.svg" />
+    <link rel="manifest" href="favicon/site.webmanifest" />
+
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  </head>
+  <body>
     <main class="split-page-layout">
-      <h1 class="mb-4">PsychoShare</h1>
+      <h1 class="mb-4 title">PsychoShare</h1>
 
-        <section class="logo-section">
-           <img src="assets/logo/logo-black_300x300.webp" alt="Logo de PsycoShare" class="logo-avatar">
-           <h2 class="logo-subtitle">Psicología abierta; Explora, comparte, impulsa y transforma.</h2>
-        </section>
+      <section class="logo-section">
+        <img
+          src="assets/logo/logo-black_300x300.webp"
+          alt="Logo de PsycoShare"
+          class="logo-avatar"
+        />
+        <h2 class="logo-subtitle">
+          Psicología abierta; Explora, comparte, impulsa y transforma.
+        </h2>
+      </section>
 
-        <section class="content-section">
-            <h2>Iniciar sesión en PsychoShare</h2>
-            <form id="login-form" class="card-form" novalidate>
-                <input type="email" class="form-control mb-3" id="mail" name="mail" placeholder="Correo electrónico" required>
-                <input type="password" class="form-control mb-3" id="password" name="contraseña" placeholder="Contraseña" required>
-                <a href="wall.html" class="btn btn-primary w-100">Iniciar sesión</a>
-            </form>
-            <p>¿No tienes cuenta? <a href="sign-up.html">Regístrate</a></p>
-            <p>
-                Al registrarte, aceptás nuestros
-                <a href="#" data-bs-toggle="modal" data-bs-target="#modalTerms">Términos y Condiciones y la Política de Privacidad</a>.
-            </p>
-        </section>
+      <section class="content-section">
+        <h2>Iniciar sesión en PsychoShare</h2>
+        <form id="login-form" class="card-form" novalidate>
+          <input
+            type="email"
+            class="form-control mb-3"
+            id="mail"
+            name="mail"
+            placeholder="Correo electrónico"
+            required
+          />
+          <input
+            type="password"
+            class="form-control mb-3"
+            id="password"
+            name="contraseña"
+            placeholder="Contraseña"
+            required
+          />
+          <button type="submit" class="btn btn-primary w-100">
+            Iniciar sesión
+          </button>
+        </form>
+        <p class="login-text">
+          ¿No tienes cuenta? <a href="sign-up.html">Regístrate</a>
+        </p>
+        <p class="login-text">
+          Al registrarte, aceptás nuestros
+          <a href="#" data-bs-toggle="modal" data-bs-target="#modalTerms"
+            >Términos y Condiciones y la Política de Privacidad</a
+          >.
+        </p>
+      </section>
     </main>
 
-   <footer class="footer-general" aria-label="Pie de página del sitio">
-            <p>2025 PsychoShare - Hecho por PsyNet - Licencia MIT</p>
-   </footer>
-   
+    <footer class="footer" aria-label="Pie de página del sitio">
+      <p>2025 PsychoShare - Hecho por PsyNet - Licencia MIT</p>
+    </footer>
 
-<div class="modal fade" id="modalTerms" tabindex="-1" aria-labelledby="modalTermsLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-scrollable modal-lg">
-      <div class="modal-content modal-terms">
-        <div class="modal-header">
-          <h1 class="modal-title" id="modalTerminosLabel">Términos y Condiciones de uso de PsychoShare</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar modal"></button>
-        </div>
-        <div class="modal-body">
-          <p class="text-muted"><strong>Última actualización:</strong> 25/06/2025</p>
-          <p>Bienvenido/a a <strong>PsychoShare</strong>, una plataforma para compartir bibliografía de psicología de forma abierta y colaborativa.</p>
-  
-          <hr>
-          <h2 class="terms-title">1. Aceptación de los términos</h2>
-          <p>Al registrarte o utilizar nuestro servicio, aceptás cumplir con estos Términos y Condiciones y nuestra Política de Privacidad.</p>
-  
-          <h2 class="terms-title">2. Uso del servicio</h2>
-          <ul>
-            <li>El contenido debe estar bajo licencias <strong>Creative Commons</strong>, dominio público u otras licencias abiertas.</li>
-            <li>Está prohibido compartir materiales con derechos de autor sin la debida autorización.</li>
-            <li>Todo el contenido compartido debe ser relevante, veraz y respetuoso.</li>
-          </ul>
-  
-          <h2 class="terms-title">3. Responsabilidad del contenido</h2>
-          <p>Sos responsable del contenido que subís. Al compartir material, declarás que:</p>
-          <ul>
-            <li>Tenés el derecho de hacerlo bajo una licencia válida (ej. CC-BY, CC0, etc.).</li>
-            <li>No infringís derechos de autor, privacidad o marcas registradas.</li>
-            <li>Aceptás que tu contenido podrá ser visualizado, descargado y reutilizado según los términos de la licencia elegida.</li>
-          </ul>
-  
-          <h2 class="terms-title">4. Propiedad intelectual</h2>
-          <p>Todo el contenido compartido conservará los créditos de sus autores originales. Se recomienda atribución según las licencias Creative Commons correspondientes.</p>
-  
-          <h2 class="terms-title">5. Conducta del usuario</h2>
-          <p>Los usuarios deben actuar con respeto. No se permite:</p>
-          <ul>
-            <li>Publicar contenido ofensivo, discriminatorio o ilegal.</li>
-            <li>Suplantar la identidad de otras personas.</li>
-            <li>Usar la plataforma para fines comerciales no autorizados.</li>
-          </ul>
-  
-          <h2 class="terms-title">6. Modificaciones del servicio</h2>
-          <p>PsychoShare puede modificar o suspender partes del servicio en cualquier momento. Notificaremos cambios importantes a través de la plataforma.</p>
-  
-          <h2 class="terms-title">7. Contacto</h2>
-          <p>Si tenés dudas o denuncias sobre contenido, escribinos a: <a href="mailto:dsoftware2023@gmail.com">dsoftware2023@gmail.com</a></p>
-  
-          <hr>
-          <h2 class="terms-title"> Política de Privacidad</h2>
-          <p><strong>Última actualización:</strong> 25/6/2025</p>
-          <p>En PsychoShare, tu privacidad es importante. Recopilamos únicamente la información necesaria para brindarte el servicio, como tu nombre, correo electrónico y contenido compartido. Esta información:</p>
-          <ul>
-            <li>No será vendida ni compartida con terceros sin tu consentimiento.</li>
-            <li>Se usará solo para mejorar la experiencia dentro de la plataforma.</li>
-            <li>Puede ser eliminada a pedido del usuario.</li>
-          </ul>
-          <p>Utilizamos cookies para funciones básicas del sitio y estadísticas anónimas. Al usar PsychoShare, aceptás esta política.</p>
-          <p>Para dudas o solicitudes relacionadas con tu información, escribinos a: <a href="mailto:dsoftware2023@gmail.com">dsoftware2023@gmail.com</a></p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Aceptar términos</button>
+    <div
+      class="modal fade"
+      id="modalTerms"
+      tabindex="-1"
+      aria-labelledby="modalTermsLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-scrollable modal-lg">
+        <div class="modal-content modal-terms">
+          <div class="modal-header">
+            <h1 class="modal-title" id="modalTerminosLabel">
+              Términos y Condiciones de uso de PsychoShare
+            </h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Cerrar modal"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <p class="text-muted">
+              <strong>Última actualización:</strong> 25/06/2025
+            </p>
+            <p>
+              Bienvenido/a a <strong>PsychoShare</strong>, una plataforma para
+              compartir bibliografía de psicología de forma abierta y
+              colaborativa.
+            </p>
+
+            <hr />
+            <h2 class="terms-title">1. Aceptación de los términos</h2>
+            <p>
+              Al registrarte o utilizar nuestro servicio, aceptás cumplir con
+              estos Términos y Condiciones y nuestra Política de Privacidad.
+            </p>
+
+            <h2 class="terms-title">2. Uso del servicio</h2>
+            <ul>
+              <li>
+                El contenido debe estar bajo licencias
+                <strong>Creative Commons</strong>, dominio público u otras
+                licencias abiertas.
+              </li>
+              <li>
+                Está prohibido compartir materiales con derechos de autor sin la
+                debida autorización.
+              </li>
+              <li>
+                Todo el contenido compartido debe ser relevante, veraz y
+                respetuoso.
+              </li>
+            </ul>
+
+            <h2 class="terms-title">3. Responsabilidad del contenido</h2>
+            <p>
+              Sos responsable del contenido que subís. Al compartir material,
+              declarás que:
+            </p>
+            <ul>
+              <li>
+                Tenés el derecho de hacerlo bajo una licencia válida (ej. CC-BY,
+                CC0, etc.).
+              </li>
+              <li>
+                No infringís derechos de autor, privacidad o marcas registradas.
+              </li>
+              <li>
+                Aceptás que tu contenido podrá ser visualizado, descargado y
+                reutilizado según los términos de la licencia elegida.
+              </li>
+            </ul>
+
+            <h2 class="terms-title">4. Propiedad intelectual</h2>
+            <p>
+              Todo el contenido compartido conservará los créditos de sus
+              autores originales. Se recomienda atribución según las licencias
+              Creative Commons correspondientes.
+            </p>
+
+            <h2 class="terms-title">5. Conducta del usuario</h2>
+            <p>Los usuarios deben actuar con respeto. No se permite:</p>
+            <ul>
+              <li>Publicar contenido ofensivo, discriminatorio o ilegal.</li>
+              <li>Suplantar la identidad de otras personas.</li>
+              <li>Usar la plataforma para fines comerciales no autorizados.</li>
+            </ul>
+
+            <h2 class="terms-title">6. Modificaciones del servicio</h2>
+            <p>
+              PsychoShare puede modificar o suspender partes del servicio en
+              cualquier momento. Notificaremos cambios importantes a través de
+              la plataforma.
+            </p>
+
+            <h2 class="terms-title">7. Contacto</h2>
+            <p>
+              Si tenés dudas o denuncias sobre contenido, escribinos a:
+              <a href="mailto:dsoftware2023@gmail.com"
+                >dsoftware2023@gmail.com</a
+              >
+            </p>
+
+            <hr />
+            <h2 class="terms-title">Política de Privacidad</h2>
+            <p><strong>Última actualización:</strong> 25/6/2025</p>
+            <p>
+              En PsychoShare, tu privacidad es importante. Recopilamos
+              únicamente la información necesaria para brindarte el servicio,
+              como tu nombre, correo electrónico y contenido compartido. Esta
+              información:
+            </p>
+            <ul>
+              <li>
+                No será vendida ni compartida con terceros sin tu
+                consentimiento.
+              </li>
+              <li>
+                Se usará solo para mejorar la experiencia dentro de la
+                plataforma.
+              </li>
+              <li>Puede ser eliminada a pedido del usuario.</li>
+            </ul>
+            <p>
+              Utilizamos cookies para funciones básicas del sitio y estadísticas
+              anónimas. Al usar PsychoShare, aceptás esta política.
+            </p>
+            <p>
+              Para dudas o solicitudes relacionadas con tu información,
+              escribinos a:
+              <a href="mailto:dsoftware2023@gmail.com"
+                >dsoftware2023@gmail.com</a
+              >
+            </p>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Cerrar
+            </button>
+            <button
+              type="button"
+              class="btn btn-primary"
+              data-bs-dismiss="modal"
+            >
+              Aceptar términos
+            </button>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="scripts/components/hamburgerMenu.js"></script>
-</body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="scripts/config.js"></script>
+    <script src="scripts/fetch.js"></script>
+    <script src="scripts/helpers.js"></script>
+    <script src="scripts/User/userRepository.js"></script>
+    <script src="scripts/User/loginPresentation.js"></script>
+    <script src="scripts/components/hamburgerMenu.js"></script>
+  </body>
 </html>
