@@ -30,10 +30,11 @@ function openPostCreationModal() {
     document.body.appendChild(newModalPost);
     toggleBlur(true);
 
-    // Load user avatar in modal
+    // Load user avatar and name in modal
     const userId = localStorage.getItem("userId");
     const token = localStorage.getItem("token");
     if (userId && token) {
+        // Load avatar
         fetch(`${API_BASE_URL}/api/Avatar/${userId}`, {
             headers: { 'Authorization': `Bearer ${token}` }
         })
@@ -42,6 +43,19 @@ function openPostCreationModal() {
             const avatar = newModalPost.querySelector('#modal-user-avatar');
             if (data && data.url && avatar) {
                 avatar.src = data.url;
+            }
+        })
+        .catch(() => {});
+
+        // Load user name
+        fetch(`${API_BASE_URL}/api/User/${userId}`, {
+            headers: { 'Authorization': `Bearer ${token}` }
+        })
+        .then(r => r.ok ? r.json() : null)
+        .then(data => {
+            const nameElement = newModalPost.querySelector('.user-info h3');
+            if (data && data.name && data.lastName && nameElement) {
+                nameElement.textContent = `${data.name} ${data.lastName}`;
             }
         })
         .catch(() => {});
