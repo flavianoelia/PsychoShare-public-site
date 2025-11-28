@@ -9,6 +9,7 @@ class Post {
     this.authorship = post.authorship;
     this.abstract = post.abstract;
     this.image = post.image;
+    this.pdf = post.pdf; // PDF object with url property
     this.coutLike = post.countLike || 0;
     this.comments = post.comments || [];
     this.createdAt = post.createdAt; // Fecha ISO del backend
@@ -108,7 +109,13 @@ class Post {
                                 <button class="btn comment-button"><i class="fas fa-comment"></i>${
                                   this.comments.length
                                 } Comentarios</button>
-                                <button class="btn pdf-button"><i class="fas fa-file-pdf"></i>Ver PDF</button>
+                                ${
+                                  this.pdf && this.pdf.url
+                                    ? `<button class="btn pdf-button pdf-view-button" data-pdf-url="${this.pdf.url}" data-post-title="${this.title}">
+                                    <i class="fas fa-file-pdf"></i>Ver PDF
+                                </button>`
+                                    : ""
+                                }
                                 <button class="btn btn-report" data-report-type="post" data-report-id="${
                                   this.title
                                 }" type="button"><i class="fas fa-flag"></i> Reportar</button>
