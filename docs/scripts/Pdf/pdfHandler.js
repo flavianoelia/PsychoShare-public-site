@@ -6,6 +6,7 @@
 let currentPdfUrl = null;
 let currentPdfTitle = null;
 let pdfModalInstance = null;
+let isModalOpening = false;
 
 /**
  * Initialize all PDF buttons in posts
@@ -37,6 +38,14 @@ function initializePdfButtons() {
  * @param {string} postTitle - Title of the post for modal title
  */
 function openPdfViewerModal(pdfUrl, postTitle) {
+  // Prevent double-click issues
+  if (isModalOpening) {
+    console.log('Modal already opening, ignoring duplicate request');
+    return;
+  }
+  
+  isModalOpening = true;
+  
   // Store for download button
   currentPdfUrl = pdfUrl;
   currentPdfTitle = postTitle;
@@ -48,6 +57,7 @@ function openPdfViewerModal(pdfUrl, postTitle) {
 
   if (!modal || !pdfEmbed) {
     console.error('PDF modal elements not found');
+    isModalOpening = false;
     Swal.fire({
       icon: "error",
       title: "Error",
@@ -67,21 +77,48 @@ function openPdfViewerModal(pdfUrl, postTitle) {
   pdfEmbed.setAttribute('width', '100%');
   pdfEmbed.setAttribute('height', '100%');
 
-  // Create or reuse Bootstrap modal instance
-  if (!pdfModalInstance) {
-    pdfModalInstance = new bootstrap.Modal(modal, {
-      backdrop: true,
-      keyboard: true,
-      focus: true
-    });
-    
-    // Set up cleanup event listener only once
-    modal.addEventListener('hidden.bs.modal', function () {
-      pdfEmbed.src = '';
-      currentPdfUrl = null;
-      currentPdfTitle = null;
-    });
+  // Destroy previous instance if exists
+  if (pdfModalInstance) {
+    try {
+      pdfModalInstance.dispose();
+    } catch (e) {
+      console.log('No previous modal instance to dispose');
+    }
+    pdfModalInstance = null;
   }
+
+  // Create fresh Bootstrap modal instance
+  pdfModalInstance = new bootstrap.Modal(modal, {
+    backdrop: true,
+    keyboard: true,
+    focus: true
+  });
+  
+  // Set up cleanup event listener
+  modal.addEventListener('hidden.bs.modal', function cleanupModal() {
+    pdfEmbed.src = '';
+    currentPdfUrl = null;
+    currentPdfTitle = null;
+    
+    // Dispose modal instance
+    if (pdfModalInstance) {
+      try {
+        pdfModalInstance.dispose();
+      } catch (e) {
+        console.log('Error disposing modal:', e);
+      }
+      pdfModalInstance = null;
+    }
+    
+    // Remove this event listener
+    modal.removeEventListener('hidden.bs.modal', cleanupModal);
+  });
+  
+  // Reset flag after modal is shown
+  modal.addEventListener('shown.bs.modal', function resetFlag() {
+    isModalOpening = false;
+    modal.removeEventListener('shown.bs.modal', resetFlag);
+  });
   
   // Show modal
   pdfModalInstance.show();
