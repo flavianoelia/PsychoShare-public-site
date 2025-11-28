@@ -5,6 +5,7 @@
 // Store current PDF info for modal
 let currentPdfUrl = null;
 let currentPdfTitle = null;
+let pdfModalInstance = null;
 
 /**
  * Initialize all PDF buttons in posts
@@ -66,16 +67,24 @@ function openPdfViewerModal(pdfUrl, postTitle) {
   pdfEmbed.setAttribute('width', '100%');
   pdfEmbed.setAttribute('height', '100%');
 
-  // Show modal using Bootstrap
-  const bsModal = new bootstrap.Modal(modal);
-  bsModal.show();
-
-  // Clear embed when modal closes
-  modal.addEventListener('hidden.bs.modal', function () {
-    pdfEmbed.src = '';
-    currentPdfUrl = null;
-    currentPdfTitle = null;
-  }, { once: true });
+  // Create or reuse Bootstrap modal instance
+  if (!pdfModalInstance) {
+    pdfModalInstance = new bootstrap.Modal(modal, {
+      backdrop: true,
+      keyboard: true,
+      focus: true
+    });
+    
+    // Set up cleanup event listener only once
+    modal.addEventListener('hidden.bs.modal', function () {
+      pdfEmbed.src = '';
+      currentPdfUrl = null;
+      currentPdfTitle = null;
+    });
+  }
+  
+  // Show modal
+  pdfModalInstance.show();
 }
 
 /**
