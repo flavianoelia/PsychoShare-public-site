@@ -169,6 +169,11 @@ class Post {
         post.appendChild(commentSection);
         */
 
+    // Inicializar funcionalidad de comentarios dinámicos
+    if (typeof initializeComments === 'function') {
+      initializeComments(post, this.postId);
+    }
+
     return post;
   }
 }
