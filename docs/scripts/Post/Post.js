@@ -170,8 +170,8 @@ class Post {
         */
 
     // Inicializar funcionalidad de comentarios dinámicos
-    if (typeof initializeComments === 'function') {
-      initializeComments(post, this.postId);
+    if (typeof initializeCommentsForPost === 'function') {
+      initializeCommentsForPost(post, this.postId);
     }
 
     return post;
