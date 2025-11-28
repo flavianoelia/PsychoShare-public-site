@@ -896,6 +896,26 @@ figure {
   background-color: var(--color-secondary);
 }
 
+/*--- Delete account button (destructive action) ---*/
+.btn-delete-account {
+  font-family: inherit;
+  font-size: 14px;
+  padding: 8px 16px;
+  background-color: var(--color-danger);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+.btn-delete-account:hover {
+  background-color: #c74d3d;
+  transform: scale(1.02);
+}
+.btn-delete-account:active {
+  transform: scale(0.98);
+}
+
 /*--- Hidden buttons on desktop---*/
 .modal-overlay{
   position: fixed;
