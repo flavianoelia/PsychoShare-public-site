@@ -86,6 +86,20 @@ function openPdfViewerModal(pdfUrl, postTitle) {
     }
     pdfModalInstance = null;
   }
+  
+  // Force cleanup of Bootstrap backdrop and any lingering modal classes
+  document.body.classList.remove('modal-open');
+  const backdrops = document.querySelectorAll('.modal-backdrop');
+  backdrops.forEach(backdrop => backdrop.remove());
+  document.body.style.overflow = '';
+  document.body.style.paddingRight = '';
+  
+  // Reset modal attributes
+  modal.classList.remove('show');
+  modal.style.display = '';
+  modal.setAttribute('aria-hidden', 'true');
+  modal.removeAttribute('aria-modal');
+  modal.removeAttribute('role');
 
   // Create fresh Bootstrap modal instance
   pdfModalInstance = new bootstrap.Modal(modal, {
