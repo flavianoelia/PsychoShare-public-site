@@ -45,6 +45,7 @@ function getPost(options, callback) {
       authorship: post.authorship,
       abstract: post.resume,
       image: post.imageUrl || null,
+      pdf: post.pdfUrl ? { url: post.pdfUrl } : null, // PDF object with url
       countLike: 0, // Se cargará dinámicamente con getLikeStats
       comments: [],
       createdAt: post.createdAt,

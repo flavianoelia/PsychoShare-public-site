@@ -518,6 +518,39 @@ figure {
 .btn.submit-comment:hover {
   background-color: var(--color-secondary);
 }
+
+/* ====================================================================
+   PDF Viewer Modal Styles
+   ==================================================================== */
+
+/* PDF viewer modal */
+#pdfViewerModal .modal-dialog {
+  max-width: 800px;
+  width: 60%;
+  margin: 1rem auto;
+}
+
+#pdfViewerModal .modal-content {
+  height: 88vh;
+  display: flex;
+  flex-direction: column;
+}
+
+#pdfViewerModal .modal-body {
+  padding: 0;
+  overflow: hidden;
+  background-color: #525659;
+  flex: 1;
+}
+
+#pdfEmbed {
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+  margin: 0;
+}
+
 .post-buttons{
   display: flex;
   justify-content: space-around;
