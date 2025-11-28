@@ -128,6 +128,16 @@ function openPdfViewerModal(pdfUrl, postTitle) {
     modal.removeEventListener('hidden.bs.modal', cleanupModal);
   });
   
+  // Remove focus from buttons before modal hides (prevents aria-hidden warning)
+  modal.addEventListener('hide.bs.modal', function removeFocus() {
+    // Blur any focused element inside the modal
+    const activeElement = document.activeElement;
+    if (activeElement && modal.contains(activeElement)) {
+      activeElement.blur();
+    }
+    modal.removeEventListener('hide.bs.modal', removeFocus);
+  });
+  
   // Reset flag after modal is shown
   modal.addEventListener('shown.bs.modal', function resetFlag() {
     isModalOpening = false;
