@@ -399,8 +399,7 @@ function handleUnfollow(userId, button) {
 function updateContactsCount(totalCount, followingCount) {
   const countElem = document.querySelector(".contacts-count");
   if (countElem) {
-    const totalText = totalCount === 1 ? "Usuario" : "Usuarios";
-    countElem.textContent = `${totalCount} ${totalText} | Siguiendo: ${followingCount}`;
+    countElem.textContent = `Siguiendo: ${followingCount}`;
   }
 }
 
