@@ -38,6 +38,10 @@ function initializePdfButtons() {
  * @param {string} postTitle - Title of the post for modal title
  */
 function openPdfViewerModal(pdfUrl, postTitle) {
+  console.log('=== openPdfViewerModal called ===');
+  console.log('isModalOpening:', isModalOpening);
+  console.log('pdfModalInstance exists:', !!pdfModalInstance);
+  
   // Prevent double-click issues
   if (isModalOpening) {
     console.log('Modal already opening, ignoring duplicate request');
@@ -45,6 +49,7 @@ function openPdfViewerModal(pdfUrl, postTitle) {
   }
   
   isModalOpening = true;
+  console.log('Set isModalOpening to true');
   
   // Store for download button
   currentPdfUrl = pdfUrl;
@@ -54,6 +59,10 @@ function openPdfViewerModal(pdfUrl, postTitle) {
   const modal = document.getElementById('pdfViewerModal');
   const pdfEmbed = document.getElementById('pdfEmbed');
   const modalTitle = document.getElementById('pdfViewerModalLabel');
+  
+  console.log('Modal element found:', !!modal);
+  console.log('Modal display style:', modal?.style.display);
+  console.log('Modal classes:', modal?.className);
 
   if (!modal || !pdfEmbed) {
     console.error('PDF modal elements not found');
@@ -108,8 +117,11 @@ function openPdfViewerModal(pdfUrl, postTitle) {
     focus: true
   });
   
+  console.log('New modal instance created');
+  
   // Set up cleanup event listener
   modal.addEventListener('hidden.bs.modal', function cleanupModal() {
+    console.log('=== Modal hidden event ===');
     pdfEmbed.src = '';
     currentPdfUrl = null;
     currentPdfTitle = null;
@@ -118,6 +130,7 @@ function openPdfViewerModal(pdfUrl, postTitle) {
     if (pdfModalInstance) {
       try {
         pdfModalInstance.dispose();
+        console.log('Modal instance disposed');
       } catch (e) {
         console.log('Error disposing modal:', e);
       }
@@ -130,21 +143,26 @@ function openPdfViewerModal(pdfUrl, postTitle) {
   
   // Remove focus from buttons before modal hides (prevents aria-hidden warning)
   modal.addEventListener('hide.bs.modal', function removeFocus() {
+    console.log('=== Modal hiding event ===');
     // Blur any focused element inside the modal
     const activeElement = document.activeElement;
     if (activeElement && modal.contains(activeElement)) {
       activeElement.blur();
+      console.log('Blurred active element:', activeElement.tagName);
     }
     modal.removeEventListener('hide.bs.modal', removeFocus);
   });
   
   // Reset flag after modal is shown
   modal.addEventListener('shown.bs.modal', function resetFlag() {
+    console.log('=== Modal shown event ===');
+    console.log('Setting isModalOpening to false');
     isModalOpening = false;
     modal.removeEventListener('shown.bs.modal', resetFlag);
   });
   
   // Show modal
+  console.log('Calling modal.show()');
   pdfModalInstance.show();
 }
 
@@ -228,12 +246,11 @@ function sanitizeFilename(title) {
 document.addEventListener("click", function (e) {
   const viewButton = e.target.closest(".pdf-view-button");
   
-  if (viewButton && !viewButton.hasAttribute("data-initialized")) {
+  if (viewButton) {
     const pdfUrl = viewButton.getAttribute("data-pdf-url");
     const postTitle = viewButton.getAttribute("data-post-title") || "Documento";
     
     if (pdfUrl) {
-      viewButton.setAttribute("data-initialized", "true");
       openPdfViewerModal(pdfUrl, postTitle);
     }
   }
