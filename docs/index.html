@@ -32,6 +32,7 @@
     />
     <link rel="icon" type="image/svg+xml" href="favicon/favicon.svg" />
     <link rel="manifest" href="favicon/site.webmanifest" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 
     <link rel="stylesheet" href="css/style.css" />
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -53,6 +54,9 @@
 
       <section class="content-section">
         <h2>Iniciar sesión en PsychoShare</h2>
+        <button class="theme-toggle action-button" onclick="toggleTheme()" aria-label="Cambiar tema">
+          <i id="theme-icon" class="fas fa-moon"></i>
+        </button>
         <form id="login-form" class="card-form" novalidate>
           <input
             type="email"
@@ -245,6 +249,7 @@
       </div>
     </div>
 
+    <script src="./scripts/theme.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="scripts/config.js"></script>
     <script src="scripts/fetch.js"></script>
