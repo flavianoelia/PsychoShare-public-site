@@ -9,14 +9,22 @@
  */
 function initializeCommentsForPost(postNode, postId) {
     const commentSection = postNode.querySelector(".comment-section");
-    if (!commentSection) return;
+    if (!commentSection) {
+        return;
+    }
+
+    // Guardar el postId en el dataset para usarlo después
+    commentSection.dataset.postId = postId;
 
     const viewMoreBtn = commentSection.querySelector(".view-more");
     const commentInput = commentSection.querySelector(".comment-input");
     const sendBtn = commentSection.querySelector(".submit-comment");
 
-    if (!viewMoreBtn || !commentInput || !sendBtn) return;
-
+    // viewMoreBtn es OPCIONAL (solo existe si hay >2 comentarios)
+    if (!commentInput || !sendBtn) {
+        return;
+    }
+    
     // 1) Cargar 2 comentarios iniciales
     getInitialComments(postId, (data) => {
         if (!data || data.error) return;
@@ -25,21 +33,24 @@ function initializeCommentsForPost(postNode, postId) {
         renderComments(commentSection, data.comments, true);
 
         // Mostrar u ocultar "Ver más"
-        // Regla: si hay 0 o 1 comentario total → no se ve.
-        // Si hay 2 o más → se ve.
-        const total = data.totalCount ?? data.comments.length;
-        if (total < 2) {
-        viewMoreBtn.classList.add("hidden");
-        } else {
-        viewMoreBtn.classList.remove("hidden");
+        // Regla: si total > 2, mostrar botón para cargar más
+        if (viewMoreBtn) {
+            const total = data.totalCount ?? data.comments.length;
+            if (total > 2) {
+                viewMoreBtn.classList.remove("hidden");
+            } else {
+                viewMoreBtn.classList.add("hidden");
+            }
         }
     });
 
-    // 2) Configurar paginación "Ver más"
-    setupCommentViewMore(commentSection, postId, {
-        initialSkip: 2,
-        pageSize: 5,
-    });
+    // 2) Configurar paginación "Ver más" (solo si existe el botón)
+    if (viewMoreBtn) {
+        setupCommentViewMore(commentSection, postId, {
+            initialSkip: 2,
+            pageSize: 5,
+        });
+    }
 
     // 3) Enviar nuevo comentario
     sendBtn.addEventListener("click", () => {
@@ -92,3 +103,46 @@ function renderComments(commentSection, comments, clean) {
         });
     });
 }
+
+/**
+ * Colapsa los comentarios de vuelta al estado inicial (solo 2)
+ */
+function collapseComments(commentSection, postId) {
+    // Verificar si hay más de 2 comentarios actualmente
+    const currentComments = commentSection.querySelectorAll(".comment");
+    if (currentComments.length <= 2) return; // Ya está colapsado
+
+    getInitialComments(postId, (data) => {
+        if (!data || data.error) return;
+
+        // Renderizar solo los primeros 2 comentarios
+        renderComments(commentSection, data.comments, true);
+
+        // Mostrar el botón "Ver más" si hay más de 2 comentarios totales
+        const viewMoreBtn = commentSection.querySelector(".view-more");
+        if (viewMoreBtn) {
+            const total = data.totalCount ?? data.comments.length;
+            if (total > 2) {
+                viewMoreBtn.classList.remove("hidden");
+            } else {
+                viewMoreBtn.classList.add("hidden");
+            }
+        }
+    });
+}
+
+// Listener global para colapsar comentarios al hacer click afuera
+document.addEventListener("click", (e) => {
+    const allSections = document.querySelectorAll(".comment-section");
+
+    allSections.forEach(section => {
+        // Si el click fue DENTRO de esta sección, no hacer nada
+        if (section.contains(e.target)) return;
+
+        // Si el click fue afuera, colapsar si tiene postId
+        const postId = section.dataset.postId;
+        if (postId) {
+            collapseComments(section, postId);
+        }
+    });
+});

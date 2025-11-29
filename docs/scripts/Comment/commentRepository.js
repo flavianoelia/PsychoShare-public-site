@@ -4,7 +4,7 @@
 
 function getInitialComments(postId, callback) {
     const token = localStorage.getItem("token");
-    const url = `/api/Comment/post/${postId}`;
+    const url = `/api/Comment/post/${postId}/more?skip=0&take=2`;
 
     const config = {
         method: "GET",
