@@ -26,10 +26,22 @@
 
 
       <div class="delete-buttons">
-        <a href="sign-up.html"class="btn delete-btn" id="eliminar" aria-label="Confirmar eliminación">Eliminar</a>
-        <a href="profile.html" class="btn cancel-btn" role="button" aria-label="Cancelar y volver">Cancelar</a>
+        <button class="btn delete-btn" id="eliminar" aria-label="Confirmar eliminación">Eliminar</button>
+        <a href="edit-profile.html" class="btn cancel-btn" role="button" aria-label="Cancelar y volver">Cancelar</a>
       </div>
     </section>
   </main>
+
+  <!-- SweetAlert2 -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  
+  <!-- Scripts del proyecto -->
+  <script src="scripts/config.js"></script>
+  <script src="scripts/fetch.js"></script>
+  <script src="scripts/helpers.js"></script>
+  <script src="scripts/User/userRepository.js"></script>
+  
+  <!-- Script de eliminación de cuenta -->
+  <script src="scripts/User/deleteAccount.js"></script>
 </body>
 </html>
