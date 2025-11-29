@@ -184,6 +184,27 @@
       <p>2025 PsychoShare - Hecho por PsyNet - Licencia MIT</p>
     </footer>
 
+    <!-- Modal para visualizar PDF -->
+    <div class="modal fade" id="pdfViewerModal" tabindex="-1" aria-labelledby="pdfViewerModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-xl modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="pdfViewerModalLabel">Visualizar PDF</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+          </div>
+          <div class="modal-body p-0">
+            <embed id="pdfEmbed" type="application/pdf">
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            <button type="button" class="btn btn-primary" id="downloadPdfFromModal">
+              <i class="fas fa-download"></i> Descargar PDF
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- Modal de reporte (Bootstrap) -->
     <div
       class="modal fade"
@@ -260,11 +281,13 @@
     <script src="./scripts/helpers/loadUserAvatar.js"></script>
     <script src="./scripts/Following/followingRepository.js"></script>
     <script src="./scripts/Like/likeRepository.js"></script>
+    <script src="./scripts/Pdf/pdfRepository.js"></script>
     <script src="./scripts/Post/Post.js"></script>
     <script src="./scripts/Post/postRepository.js"></script>
     <script src="./scripts/Post/postFollowHandler.js"></script>
     <script src="./scripts/Post/PostCrudHandler.js"></script>
     <script src="./scripts/Like/likeHandler.js"></script>
+    <script src="./scripts/Pdf/pdfHandler.js"></script>
     <script src="./scripts/Post/postPresentation.js"></script>
     <script src="./scripts/components/hamburgerMenu.js"></script>
     <script src="./scripts/helpers.js"></script>
