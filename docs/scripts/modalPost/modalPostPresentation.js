@@ -38,14 +38,32 @@ function openPostCreationModal() {
         fetch(`${API_BASE_URL}/api/Avatar/${userId}`, {
             headers: { 'Authorization': `Bearer ${token}` }
         })
-        .then(r => r.ok ? r.json() : null)
+        .then(r => {
+            if (r.ok) return r.json();
+            if (r.status === 404) return { noAvatar: true };
+            return null;
+        })
         .then(data => {
-            const avatar = newModalPost.querySelector('#modal-user-avatar');
-            if (data && data.url && avatar) {
-                avatar.src = data.url;
+            const avatarElement = newModalPost.querySelector('#modal-user-avatar');
+            if (avatarElement) {
+                if (data && data.url) {
+                    // Replace icon with image if user has avatar
+                    const img = document.createElement('img');
+                    img.id = 'modal-user-avatar';
+                    img.className = 'contact-avatar';
+                    img.src = data.url;
+                    img.alt = 'Foto de contacto';
+                    img.onerror = function() {
+                        this.outerHTML = '<i class="fa-solid fa-circle-user contact-avatar-icon" id="modal-user-avatar"></i>';
+                    };
+                    avatarElement.replaceWith(img);
+                }
+                // else: keep the icon (noAvatar or null)
             }
         })
-        .catch(() => {});
+        .catch(() => {
+            // Keep the default icon on error
+        });
 
         // Load user name
         fetch(`${API_BASE_URL}/api/User/${userId}`, {

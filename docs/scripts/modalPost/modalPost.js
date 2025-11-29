@@ -14,8 +14,8 @@ class ModalPost {
                 </div>
 
                 <div class="user-info">
-                    <img id="modal-user-avatar" src="assets/imgwebp/flavia.webp" alt="Foto de contacto" class="contact-avatar" aria-label="Foto de perfil del usuario">
-                    <h3 aria-label="Nombre de usuario">Usuario</h3>
+                    <i id="modal-user-avatar" class="fa-solid fa-circle-user contact-avatar-icon" aria-label="Foto de perfil del usuario"></i>
+                    <h3 aria-label="Nombre de usuario">Cargando...</h3>
                 </div>
 
                 <div class="form-container">
