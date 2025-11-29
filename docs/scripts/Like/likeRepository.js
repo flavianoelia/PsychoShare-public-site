@@ -46,6 +46,7 @@ function toggleLike(postId, callback) {
   };
 
   let callbackCalled = false;
+  
   // Timeout fallback: call callback with error if not called in 10s
   const timeoutId = setTimeout(function () {
     if (!callbackCalled) {
@@ -61,9 +62,18 @@ function toggleLike(postId, callback) {
     if (!callbackCalled) {
       callbackCalled = true;
       clearTimeout(timeoutId);
-      // Backend returns true (now liked) or false (like removed)
+      
+      // Backend can return either:
+      // 1. boolean (old format): true (now liked) or false (like removed)
+      // 2. object (new format): { isLikedByCurrentUser, likeCount, recentLikerNames }
       if (typeof response === "boolean") {
         callback({ success: true, data: response });
+      } else if (response && typeof response === "object" && "isLikedByCurrentUser" in response) {
+        // New format - backend returns full stats after toggle
+        callback({ success: true, data: response.isLikedByCurrentUser, stats: response });
+      } else if (response && response.error) {
+        // Handle error from fetch.js
+        callback({ success: false, message: response.message || "Error del servidor" });
       } else {
         callback({ success: false, message: "Error al procesar like" });
       }

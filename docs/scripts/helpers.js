@@ -94,3 +94,10 @@ function formatDateTime(isoDateString) {
     return { date: "Fecha inválida", time: "" };
   }
 }
+
+function getCurrentAuthContext() {
+  return {
+    userId: localStorage.getItem("userId"),
+    token: localStorage.getItem("token"),
+  };
+}

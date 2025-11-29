@@ -181,7 +181,7 @@ function loadUserProfile() {
             profileAvatar.src = data.url;
             profileAvatar.onerror = function() {
               // If image fails to load, show icon
-              this.outerHTML = '<i class="fas fa-user contact-avatar"></i>';
+              this.outerHTML = '<i class="fa-solid fa-circle-user contact-avatar-icon"></i>';
             };
           }
           
@@ -189,16 +189,16 @@ function loadUserProfile() {
             newPostAvatar.src = data.url;
             newPostAvatar.onerror = function() {
               // If image fails to load, show icon
-              this.outerHTML = '<i class="fas fa-user contact-avatar"></i>';
+              this.outerHTML = '<i class="fa-solid fa-circle-user contact-avatar-icon"></i>';
             };
           }
         } else if (data && data.noAvatar) {
           // No avatar in database - replace img with icon
           if (profileAvatar) {
-            profileAvatar.outerHTML = '<i class="fas fa-user contact-avatar" id="profile-avatar"></i>';
+            profileAvatar.outerHTML = '<i class="fa-solid fa-circle-user contact-avatar-icon" id="profile-avatar"></i>';
           }
           if (newPostAvatar) {
-            newPostAvatar.outerHTML = '<i class="fas fa-user contact-avatar" id="new-post-avatar-profile"></i>';
+            newPostAvatar.outerHTML = '<i class="fa-solid fa-circle-user contact-avatar-icon" id="new-post-avatar-profile"></i>';
           }
         }
       })

@@ -35,10 +35,14 @@ function loadUserAvatar() {
   })
     .then((response) => {
       if (!response.ok) {
-        // If no avatar found (404), use default
+        // If no avatar found (404), replace with icon
         if (response.status === 404) {
-          if (headerProfileImg) headerProfileImg.src = "assets/imgwebp/flavia.webp";
-          if (newPostAvatar) newPostAvatar.src = "assets/imgwebp/flavia.webp";
+          if (headerProfileImg) {
+            headerProfileImg.outerHTML = '<i class="fa-solid fa-circle-user contact-photo"></i>';
+          }
+          if (newPostAvatar) {
+            newPostAvatar.outerHTML = '<i class="fa-solid fa-circle-user contact-avatar-icon" id="new-post-avatar"></i>';
+          }
           return null;
         }
         throw new Error(`HTTP error! status: ${response.status}`);
@@ -51,22 +55,28 @@ function loadUserAvatar() {
         if (headerProfileImg) {
           headerProfileImg.src = data.url;
           headerProfileImg.onerror = function() {
-            this.src = "assets/imgwebp/flavia.webp";
+            // If image fails to load, replace with icon
+            this.outerHTML = '<i class="fa-solid fa-circle-user contact-photo"></i>';
           };
         }
         if (newPostAvatar) {
           newPostAvatar.src = data.url;
           newPostAvatar.onerror = function() {
-            this.src = "assets/imgwebp/flavia.webp";
+            // If image fails to load, replace with icon
+            this.outerHTML = '<i class="fa-solid fa-circle-user contact-avatar-icon" id="new-post-avatar"></i>';
           };
         }
       }
     })
     .catch((error) => {
       console.error("Error loading user avatar:", error);
-      // Use default image on error
-      if (headerProfileImg) headerProfileImg.src = "assets/imgwebp/flavia.webp";
-      if (newPostAvatar) newPostAvatar.src = "assets/imgwebp/flavia.webp";
+      // Replace with icon on error
+      if (headerProfileImg) {
+        headerProfileImg.outerHTML = '<i class="fa-solid fa-circle-user contact-photo"></i>';
+      }
+      if (newPostAvatar) {
+        newPostAvatar.outerHTML = '<i class="fa-solid fa-circle-user contact-avatar-icon" id="new-post-avatar"></i>';
+      }
     });
 }
 

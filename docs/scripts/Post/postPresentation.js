@@ -1,11 +1,16 @@
-const sectionPost = document.getElementById("post_collection");
-
 // State management for infinite scroll
 let currentPage = 1;
 let isLoading = false;
 let hasMorePosts = true;
 const pageSize = 10;
 let currentSearchTerm = "";
+
+/**
+ * Get sectionPost element (avoid capturing null at load time)
+ */
+function getSectionPost() {
+  return document.getElementById("post_collection");
+}
 
 /**
  * Initialize wall with first page of posts
@@ -32,6 +37,7 @@ function loadPosts(page, searchTerm, append) {
 
   getPost({ page, size: pageSize, searchTerm }, function (result) {
     const { posts, hasMore } = result;
+    const sectionPost = getSectionPost();
 
     if (!append && sectionPost) {
       sectionPost.innerHTML = "";
@@ -43,6 +49,11 @@ function loadPosts(page, searchTerm, append) {
       const nodo = post.getNode();
       if (sectionPost) {
         sectionPost.append(nodo);
+        
+        // Initialize comments AFTER adding to DOM
+        if (typeof initializeCommentsForPost === 'function') {
+          initializeCommentsForPost(nodo, jsonPost.postId);
+        }
       }
     }
 
@@ -156,25 +167,11 @@ function initializeSearch() {
     }, 500);
   });
 }
-document.addEventListener("click", function(e) {
-    const isBtn = e.target.classList.contains("menu-btn");
 
-    // Cerrar todos los menús
-    document.querySelectorAll(".dropdown-menu").forEach(menu => {
-        menu.style.display = "none";
-    });
-
-    // Si clickeaste el botón...
-    if (isBtn) {
-        const container = e.target.closest(".post-menu-container");
-        const menu = container.querySelector(".dropdown-menu");
-        menu.style.display = "flex";
-        e.stopPropagation();
-    }
+// Initialize wall when DOM is ready
+document.addEventListener('DOMContentLoaded', function() {
+  const sectionPost = getSectionPost();
+  if (sectionPost) {
+    initializeWall();
+  }
 });
-
-
-// Initialize wall when DOM is ready (only if post_collection exists)
-if (sectionPost) {
-  initializeWall();
-}
