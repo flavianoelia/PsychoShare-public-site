@@ -165,26 +165,40 @@ function loadUserProfile() {
         if (response.ok) {
           return response.json();
         }
+        // 404 means no avatar - use default icon
+        if (response.status === 404) {
+          return { noAvatar: true };
+        }
         return null;
       })
       .then((data) => {
+        const profileAvatar = document.getElementById('profile-avatar');
+        const newPostAvatar = document.getElementById('new-post-avatar-profile');
+        
         if (data && data.url) {
-          // Update profile avatar
-          const profileAvatar = document.getElementById('profile-avatar');
+          // User has avatar - update images
           if (profileAvatar) {
             profileAvatar.src = data.url;
             profileAvatar.onerror = function() {
-              this.src = "assets/imgwebp/flavia.webp";
+              // If image fails to load, show icon
+              this.outerHTML = '<i class="fas fa-user contact-avatar"></i>';
             };
           }
           
-          // Update new post form avatar
-          const newPostAvatar = document.getElementById('new-post-avatar-profile');
           if (newPostAvatar) {
             newPostAvatar.src = data.url;
             newPostAvatar.onerror = function() {
-              this.src = "assets/imgwebp/flavia.webp";
+              // If image fails to load, show icon
+              this.outerHTML = '<i class="fas fa-user contact-avatar"></i>';
             };
+          }
+        } else if (data && data.noAvatar) {
+          // No avatar in database - replace img with icon
+          if (profileAvatar) {
+            profileAvatar.outerHTML = '<i class="fas fa-user contact-avatar" id="profile-avatar"></i>';
+          }
+          if (newPostAvatar) {
+            newPostAvatar.outerHTML = '<i class="fas fa-user contact-avatar" id="new-post-avatar-profile"></i>';
           }
         }
       })
