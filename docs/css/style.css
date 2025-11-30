@@ -1534,7 +1534,6 @@ section.save-changes-section {
   font-size: 0.9rem;
 }
 
-<<<<<<< HEAD
 /* ============================================
    REPORT BUTTONS AND ALERTS
    ============================================ */
@@ -1599,7 +1598,8 @@ section.save-changes-section {
     font-size: 0.8rem;
     padding: 0.3rem 0.4rem;
   }
-=======
+}
+
 /* SweetAlert2 dark mode styles */
 [data-theme="dark"] .swal2-popup {
   background-color: var(--color-background-card);
@@ -1631,5 +1631,4 @@ section.save-changes-section {
 [data-theme="dark"] .swal2-textarea::placeholder {
   color: var(--color-text-main);
   opacity: 0.5;
->>>>>>> development
 }
