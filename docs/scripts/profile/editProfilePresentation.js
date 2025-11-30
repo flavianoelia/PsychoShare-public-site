@@ -11,6 +11,11 @@ const photoProfileIcon = document.querySelector(".update-photo-profile i");
 const saveButton = document.querySelector(".save-button");
 const deleteAccountButton = document.querySelector(".delete-button");
 
+// Password change elements
+const oldPasswordInput = document.getElementById("old-password");
+const newPasswordInput = document.getElementById("new-password");
+const repeatPasswordInput = document.getElementById("repeat-password");
+
 // Loading state
 let isLoading = false;
 
@@ -205,9 +210,77 @@ saveButton.addEventListener("click", function (e) {
     return;
   }
 
+  // Check if password change is requested
+  const oldPassword = oldPasswordInput.value.trim();
+  const newPassword = newPasswordInput.value.trim();
+  const repeatPassword = repeatPasswordInput.value.trim();
+
+  // Validate password change if any field is filled
+  if (oldPassword || newPassword || repeatPassword) {
+    if (!oldPassword) {
+      Swal.fire({
+        icon: "warning",
+        title: "Campo vacío",
+        text: "Debes ingresar tu contraseña actual",
+      });
+      oldPasswordInput.focus();
+      return;
+    }
+
+    if (!newPassword) {
+      Swal.fire({
+        icon: "warning",
+        title: "Campo vacío",
+        text: "Debes ingresar la nueva contraseña",
+      });
+      newPasswordInput.focus();
+      return;
+    }
+
+    if (!validatePassword(newPassword)) {
+      Swal.fire({
+        icon: "warning",
+        title: "Contraseña inválida",
+        text: "La contraseña debe tener al menos 8 caracteres, incluir mayúsculas, minúsculas, números y caracteres especiales",
+      });
+      newPasswordInput.focus();
+      return;
+    }
+
+    if (!repeatPassword) {
+      Swal.fire({
+        icon: "warning",
+        title: "Campo vacío",
+        text: "Debes repetir la nueva contraseña",
+      });
+      repeatPasswordInput.focus();
+      return;
+    }
+
+    if (!validateConfirmPassword(newPassword, repeatPassword)) {
+      Swal.fire({
+        icon: "warning",
+        title: "Las contraseñas no coinciden",
+        text: "La nueva contraseña y su confirmación deben ser iguales",
+      });
+      repeatPasswordInput.focus();
+      return;
+    }
+
+    if (oldPassword === newPassword) {
+      Swal.fire({
+        icon: "warning",
+        title: "Contraseña igual",
+        text: "La nueva contraseña debe ser diferente a la actual",
+      });
+      newPasswordInput.focus();
+      return;
+    }
+  }
+
   showSpinner();
 
-  // Update profile
+  // Update profile first
   updateUserProfile(
     userId,
     { name, lastName, email },
@@ -219,40 +292,48 @@ saveButton.addEventListener("click", function (e) {
         if (avatarFile) {
           // Upload avatar
           uploadUserAvatar(userId, avatarFile, function (avatarResult) {
-            hideSpinner();
-
-            if (avatarResult.success) {
-              Swal.fire({
-                icon: "success",
-                title: "¡Perfil actualizado!",
-                text: "Tus cambios fueron guardados exitosamente",
-                timer: 2000,
-                showConfirmButton: false,
-              }).then(() => {
-                window.location.href = "profile.html";
-              });
+            // Continue with password change if requested
+            if (oldPassword && newPassword) {
+              handlePasswordChange(userId, oldPassword, newPassword);
             } else {
-              Swal.fire({
-                icon: "warning",
-                title: "Perfil actualizado",
-                text: `Perfil actualizado, pero hubo un error al subir el avatar: ${avatarResult.message}`,
-              }).then(() => {
-                window.location.href = "profile.html";
-              });
+              hideSpinner();
+              if (avatarResult.success) {
+                Swal.fire({
+                  icon: "success",
+                  title: "¡Perfil actualizado!",
+                  text: "Tus cambios fueron guardados exitosamente",
+                  timer: 2000,
+                  showConfirmButton: false,
+                }).then(() => {
+                  window.location.href = "profile.html";
+                });
+              } else {
+                Swal.fire({
+                  icon: "warning",
+                  title: "Perfil actualizado",
+                  text: `Perfil actualizado, pero hubo un error al subir el avatar: ${avatarResult.message}`,
+                }).then(() => {
+                  window.location.href = "profile.html";
+                });
+              }
             }
           });
         } else {
-          // No avatar to upload
-          hideSpinner();
-          Swal.fire({
-            icon: "success",
-            title: "¡Perfil actualizado!",
-            text: "Tus cambios fueron guardados exitosamente",
-            timer: 2000,
-            showConfirmButton: false,
-          }).then(() => {
-            window.location.href = "profile.html";
-          });
+          // No avatar to upload, check password change
+          if (oldPassword && newPassword) {
+            handlePasswordChange(userId, oldPassword, newPassword);
+          } else {
+            hideSpinner();
+            Swal.fire({
+              icon: "success",
+              title: "¡Perfil actualizado!",
+              text: "Tus cambios fueron guardados exitosamente",
+              timer: 2000,
+              showConfirmButton: false,
+            }).then(() => {
+              window.location.href = "profile.html";
+            });
+          }
         }
       } else {
         hideSpinner();
@@ -265,6 +346,33 @@ saveButton.addEventListener("click", function (e) {
     }
   );
 });
+
+/**
+ * Handle password change
+ */
+function handlePasswordChange(userId, oldPassword, newPassword) {
+  changePassword(userId, oldPassword, newPassword, function (result) {
+    hideSpinner();
+    
+    if (result.success) {
+      Swal.fire({
+        icon: "success",
+        title: "¡Contraseña actualizada!",
+        text: "Tu contraseña ha sido cambiada exitosamente",
+        timer: 2000,
+        showConfirmButton: false,
+      }).then(() => {
+        window.location.href = "profile.html";
+      });
+    } else {
+      Swal.fire({
+        icon: "error",
+        title: "Error al cambiar contraseña",
+        text: result.message || "No se pudo cambiar la contraseña. Verifica que la contraseña actual sea correcta",
+      });
+    }
+  });
+}
 
 /**
  * Handle delete avatar

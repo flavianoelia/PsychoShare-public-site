@@ -146,7 +146,7 @@ function getUserPosts(userId, page = 1, size = 10, callback) {
         createdAt: post.createdAt || post.createAt,
         imgOwner: post.avatarUrl || null,
         image: post.imageUrl || null,
-        nameOwner: `${post.nameOwner} ${post.lastnameOwner}`,
+        nameOwner: post.nameOwner && post.lastnameOwner ? `${post.nameOwner} ${post.lastnameOwner}`.trim() : "Usuario",
         countLike: 0,
         comments: post.comments || []
       }));
@@ -163,7 +163,7 @@ function getUserPosts(userId, page = 1, size = 10, callback) {
         createdAt: post.createdAt || post.createAt,
         imgOwner: post.avatarUrl || null,
         image: post.imageUrl || null,
-        nameOwner: `${post.nameOwner} ${post.lastnameOwner}`,
+        nameOwner: post.nameOwner && post.lastnameOwner ? `${post.nameOwner} ${post.lastnameOwner}`.trim() : "Usuario",
         countLike: 0,
         comments: post.comments || []
       }));
