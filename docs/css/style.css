@@ -270,12 +270,17 @@ body.about-us-layout{
 
 /* Icon variant of contact-photo (for users without avatar) */
 i.contact-photo {
-    font-size: 32px;
+    font-size: 24px;
     color: #b48d92;
-    border: none;
+    background-color: white;
+    border-radius: 50%;
+    border: 2px solid #ddd;
+    width: 32px;
+    height: 32px;
     display: flex;
     align-items: center;
     justify-content: center;
+    box-sizing: border-box;
 }
 
 /*--- FOOTER COMPONENT ---*/
@@ -417,6 +422,17 @@ i.contact-photo {
     width: 42px;
     height: 42px;
     border-radius: 50%;
+}
+
+/* Icon variant of user-avatar (for users without avatar in posts) */
+i.user-avatar {
+    width: 42px;
+    height: 42px;
+    font-size: 42px;
+    color: #b48d92;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .user-info {
@@ -920,6 +936,13 @@ figure {
   padding: 1rem 0;
   border-bottom: 1px solid var(--color-border);
   background: var(--color-background-card);
+}
+
+/* Avatar images in following cards */
+.following-card .contact-avatar,
+.following-card .contact-avatar-icon {
+  margin-right: 1rem;
+  margin-left: 0;
 }
 
 .suggestions-divider {
