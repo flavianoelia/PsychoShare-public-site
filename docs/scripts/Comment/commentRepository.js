@@ -2,86 +2,63 @@
 // comment/commentRepository.js
 // =======================================
 
+/**
+ * Get first 2 comments of a post
+ */
 function getInitialComments(postId, callback) {
-    const token = localStorage.getItem("token");
-    const url = `/api/Comment/post/${postId}/more?skip=0&take=2`;
-
-    const config = {
-        method: "GET",
-        headers: {
-        Authorization: `Bearer ${token}`,
-        },
-    };
-
-    server(url, config, callback);
+  const url = `/api/Comment/post/${postId}/more?skip=0&take=2`;
+  server(url, { method: "GET" }, callback);
 }
 
+/**
+ * Get more comments with pagination
+ */
 function getMoreComments(postId, skip, take, callback) {
-    const token = localStorage.getItem("token");
-    const url = `/api/Comment/post/${postId}/more?skip=${skip}&take=${take}`;
-
-    const config = {
-        method: "GET",
-        headers: {
-        Authorization: `Bearer ${token}`,
-        },
-    };
-
-    server(url, config, callback);
+  const url = `/api/Comment/post/${postId}/more?skip=${skip}&take=${take}`;
+  server(url, { method: "GET" }, callback);
 }
 
+/**
+ * Create a comment
+ */
 function createComment(postId, text, callback) {
-    const token = localStorage.getItem("token");
-    const auth = getCurrentAuthContext();
+  const auth = getCurrentAuthContext();
 
-    const url = `/api/Comment`;
+  const url = `/api/Comment`;
 
-    const body = {
-        userId: auth.userId,
-        postId: postId,
-        text: text,
-    };
+  const body = {
+    userId: auth.userId,
+    postId,
+    text,
+  };
 
-    const config = {
-        method: "POST",
-        headers: {
-        Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify(body),
-    };
-
-    server(url, config, callback);
+  server(url, {
+    method: "POST",
+    body: JSON.stringify(body),
+  }, callback);
 }
 
+/**
+ * Edit a comment
+ */
 function editComment(commentId, text, callback) {
-    const token = localStorage.getItem("token");
-    const url = `/api/Comment/${commentId}`;
+  const url = `/api/Comment/${commentId}`;
 
-    const body = { text };
+  const body = { text };
 
-    const config = {
-        method: "PUT",
-        headers: {
-        Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify(body),
-    };
-
-    server(url, config, callback);
+  server(url, {
+    method: "PUT",
+    body: JSON.stringify(body),
+  }, callback);
 }
 
+/**
+ * Delete a comment
+ */
 function deleteCommentApi(commentId, callback) {
-    const token = localStorage.getItem("token");
-    const url = `/api/Comment/${commentId}`;
+  const url = `/api/Comment/${commentId}`;
 
-    const config = {
-        method: "DELETE",
-        headers: {
-        Authorization: `Bearer ${token}`,
-        },
-    };
-
-    server(url, config, callback);
+  server(url, { method: "DELETE" }, callback);
 }
 
 /**
