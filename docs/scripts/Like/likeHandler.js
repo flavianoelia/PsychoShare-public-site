@@ -98,18 +98,29 @@ function handleLikeClick(button, postId) {
   toggleLike(postId, function (result) {
     if (result.success) {
       // Backend confirms the new state (result.data is true if now liked, false if unliked)
-      // Refresh stats to get accurate count
-      getLikeStats(postId, function (statsResult) {
-        if (statsResult.success) {
-          updateLikeButton(
-            button,
-            statsResult.data.likeCount,
-            statsResult.data.isLikedByCurrentUser
-          );
-        }
-        // Re-enable button after getting fresh stats
+      
+      // If backend returned stats directly, use them (more efficient)
+      if (result.stats) {
+        updateLikeButton(
+          button,
+          result.stats.likeCount,
+          result.stats.isLikedByCurrentUser
+        );
         button.disabled = false;
-      });
+      } else {
+        // Old format: Refresh stats to get accurate count
+        getLikeStats(postId, function (statsResult) {
+          if (statsResult.success) {
+            updateLikeButton(
+              button,
+              statsResult.data.likeCount,
+              statsResult.data.isLikedByCurrentUser
+            );
+          }
+          // Re-enable button after getting fresh stats
+          button.disabled = false;
+        });
+      }
     } else {
       // Rollback on error silently (don't show error to avoid interrupting UX)
       updateLikeButton(button, currentCount, isCurrentlyLiked);

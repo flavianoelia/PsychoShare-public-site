@@ -16,6 +16,7 @@ function server(url, config, success) {
           });
           // Call callback with error info so buttons don't get stuck
           success({ error: true, status: response.status, message: errorData?.message });
+          return null; // Important: return null to stop promise chain
         }).catch(() => {
           // If can't parse JSON, just show status code
           Swal.fire({
@@ -24,13 +25,14 @@ function server(url, config, success) {
             text: `Código de error: ${response.status}`,
           });
           success({ error: true, status: response.status });
+          return null; // Important: return null to stop promise chain
         });
       } else {
         return response.json();
       }
     })
     .then((data) => {
-      if (data && !data.error) {
+      if (data !== null && data !== undefined && !data.error) {
         success(data);
       }
     })
@@ -40,7 +42,6 @@ function server(url, config, success) {
         title: "Error de conexión",
         text: "No se pudo conectar con el servidor",
       });
-      console.log(JSON.stringify(error));
       // Call callback so buttons don't get stuck
       success({ error: true, message: "Network error" });
     });

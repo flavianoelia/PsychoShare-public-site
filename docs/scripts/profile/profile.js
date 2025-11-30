@@ -51,11 +51,11 @@ function loadUserProfile() {
           if (profileAvatarContainer) {
             const existingImg = profileAvatarContainer.querySelector("img");
             if (existingImg) {
-              existingImg.outerHTML = '<i class="fa-solid fa-circle-user contact-avatar-icon"></i>';
+              existingImg.outerHTML = '<i class="fa-solid fa-circle-user contact-avatar-icon" id="profile-avatar"></i>';
             }
           }
           if (headerAvatar) {
-            headerAvatar.outerHTML = '<i class="fa-solid fa-circle-user contact-photo"></i>';
+            headerAvatar.outerHTML = '<i class="fa-solid fa-circle-user contact-photo" id="header-profile-img"></i>';
           }
         }
       });
