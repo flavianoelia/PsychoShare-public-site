@@ -1600,6 +1600,31 @@ section.save-changes-section {
   }
 }
 
+/* Modal de login específico en sign-up.html */
+[data-theme="dark"] #modalLogin {
+  --bs-modal-bg: var(--color-background-card);
+  --bs-modal-color: var(--color-text-main);
+  --bs-border-color: var(--color-border);
+  --bs-body-bg: var(--color-background-card);
+  --bs-body-color: var(--color-text-main);
+}
+
+[data-theme="dark"] #modalLogin .modal-content {
+  background-color: var(--color-background-card);
+  color: var(--color-text-main);
+  border-color: var(--color-border);
+}
+
+[data-theme="dark"] #modalLogin .form-control {
+  background-color: var(--color-background-main);
+  color: var(--color-text-main);
+  border-color: var(--color-border);
+}
+
+[data-theme="dark"] #modalLogin .btn-close {
+  filter: invert(1) grayscale(100%) brightness(200%);
+}
+
 /* SweetAlert2 dark mode styles */
 [data-theme="dark"] .swal2-popup {
   background-color: var(--color-background-card);
