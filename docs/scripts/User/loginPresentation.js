@@ -22,6 +22,9 @@ loginForm.addEventListener("submit", (event) => {
     // Call login function
     login(email, password, function(response) {
         if (response.success) {
+            // Clear any previous session data before saving new one
+            localStorage.clear();
+            
             // Save to localStorage
             localStorage.setItem('token', response.token);
             localStorage.setItem('userId', response.userId);
@@ -30,6 +33,12 @@ loginForm.addEventListener("submit", (event) => {
             // Redirect to wall
             window.location.href = 'wall.html';
         } else {
+            // CRITICAL FIX: Clear localStorage on failed login to prevent security issue
+            // where old tokens could persist after failed login attempts
+            localStorage.removeItem('token');
+            localStorage.removeItem('userId');
+            localStorage.removeItem('email');
+            
             // Handle login error
             alert(response.message || "Error al iniciar sesión. Verificá tus credenciales.");
         }
