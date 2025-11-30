@@ -53,18 +53,28 @@ function loadUserAvatar() {
       if (data && data.url) {
         // Set the avatar URL for all elements
         if (headerProfileImg) {
-          headerProfileImg.src = data.url;
-          headerProfileImg.onerror = function() {
-            // If image fails to load, replace with icon
-            this.outerHTML = '<i class="fa-solid fa-circle-user contact-photo"></i>';
-          };
+          // If it's an icon, replace with img tag
+          if (headerProfileImg.tagName === 'I') {
+            headerProfileImg.outerHTML = `<img src="${data.url}" alt="Foto de perfil" class="contact-photo" onerror="this.outerHTML='<i class=\\"fa-solid fa-circle-user contact-photo\\"></i>'">`;
+          } else {
+            headerProfileImg.src = data.url;
+            headerProfileImg.onerror = function() {
+              // If image fails to load, replace with icon
+              this.outerHTML = '<i class="fa-solid fa-circle-user contact-photo"></i>';
+            };
+          }
         }
         if (newPostAvatar) {
-          newPostAvatar.src = data.url;
-          newPostAvatar.onerror = function() {
-            // If image fails to load, replace with icon
-            this.outerHTML = '<i class="fa-solid fa-circle-user contact-avatar-icon" id="new-post-avatar"></i>';
-          };
+          // If it's an icon, replace with img tag
+          if (newPostAvatar.tagName === 'I') {
+            newPostAvatar.outerHTML = `<img src="${data.url}" alt="Foto de perfil" id="new-post-avatar" class="contact-avatar" onerror="this.outerHTML='<i class=\\"fa-solid fa-circle-user contact-avatar-icon\\" id=\\"new-post-avatar\\"></i>'">`;
+          } else {
+            newPostAvatar.src = data.url;
+            newPostAvatar.onerror = function() {
+              // If image fails to load, replace with icon
+              this.outerHTML = '<i class="fa-solid fa-circle-user contact-avatar-icon" id="new-post-avatar"></i>';
+            };
+          }
         }
       }
     })
