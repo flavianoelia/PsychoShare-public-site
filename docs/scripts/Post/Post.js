@@ -59,14 +59,16 @@ class Post {
       })
       .join("\n");
 
-    post.innerHTML = `
-            <section class="post-header" data-user-id="${this.userId}">
-                ${ownerAvatarHTML}
-                <div class="user-info">
-                    <p class="username">${this.nameOwner}</p>
-                    <p class="post-date">${date} ${time}</p>
-                </div>
-                <div class="dropdown-container">
+  post.innerHTML = `
+      <section class="post-header" data-user-id="${this.userId}">
+                <a href="profile.html?userId=${this.userId}" class="profile-link" aria-label="Ver perfil de ${this.nameOwner}" style="text-decoration:none;color:inherit;display:inline-flex;align-items:center;gap:.5rem">
+          ${ownerAvatarHTML}
+          <div class="user-info">
+            <p class="username">${this.nameOwner}</p>
+            <p class="post-date">${date} ${time}</p>
+          </div>
+        </a>
+        <div class="dropdown-container">
                     <button class="dropdown-trigger"><i class="fas fa-ellipsis-v"></i></button>
                     <div class="dropdown-menu">
                         ${isOwnPost
