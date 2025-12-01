@@ -1,173 +1,109 @@
-// ====================================================================
-// LIKE REPOSITORY - Manage likes from backend API
-// ====================================================================
+// =====================================================================
+// LIKE REPOSITORY 
+// =====================================================================
+
+/**
+ * Validate that userId and postId exist and are valid.
+ */
+function validateIds(postId, callback) {
+  const userId = parseInt(localStorage.getItem("userId"));
+
+  if (!userId || userId <= 0 || !postId || postId <= 0) {
+    callback({
+      success: false,
+      message: "Invalid userId or postId",
+    });
+    return null;
+  }
+
+  return userId;
+}
 
 /**
  * Toggle like/unlike on a post
- * @param {number} postId - The ID of the post to like/unlike
- * @param {Function} callback - Callback with format {success: boolean, data: boolean, message: string}
+ * @param {number} postId
+ * @param {Function} callback
  */
 function toggleLike(postId, callback) {
-  const currentUserId = localStorage.getItem("userId");
-  const token = localStorage.getItem("token");
-
-  if (!currentUserId) {
-    console.error("No userId found in localStorage");
-    callback({ success: false, message: "User not logged in" });
-    return;
-  }
-
-  // Validate currentUserId is a valid positive integer
-  const parsedUserId = parseInt(currentUserId);
-  if (!Number.isInteger(parsedUserId) || parsedUserId <= 0) {
-    console.error("Invalid userId in localStorage:", currentUserId);
-    callback({ success: false, message: "Invalid user ID" });
-    return;
-  }
-
-  // Validate postId is a valid positive integer
-  if (!postId || !Number.isInteger(postId) || postId <= 0) {
-    console.error("Invalid postId:", postId);
-    callback({ success: false, message: "Invalid post ID" });
-    return;
-  }
+  const userId = validateIds(postId, callback);
+  if (!userId) return;
 
   const url = `/api/Like/toggle`;
 
   const config = {
     method: "POST",
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-    body: JSON.stringify({
-      userId: parsedUserId,
-      postId: postId,
-    }),
+    body: JSON.stringify({ userId, postId }),
   };
 
-  let callbackCalled = false;
-  
-  // Timeout fallback: call callback with error if not called in 10s
-  const timeoutId = setTimeout(function () {
-    if (!callbackCalled) {
-      callbackCalled = true;
-      callback({
+  server(url, config, function (response) {
+    if (response?.error) {
+      return callback({
         success: false,
-        message: "Error de red o sin respuesta del servidor",
+        message: response.message || "Server error",
       });
     }
-  }, 10000);
 
-  server(url, config, function (response) {
-    if (!callbackCalled) {
-      callbackCalled = true;
-      clearTimeout(timeoutId);
-      
-      // Backend can return either:
-      // 1. boolean (old format): true (now liked) or false (like removed)
-      // 2. object (new format): { isLikedByCurrentUser, likeCount, recentLikerNames }
-      if (typeof response === "boolean") {
-        callback({ success: true, data: response });
-      } else if (response && typeof response === "object" && "isLikedByCurrentUser" in response) {
-        // New format - backend returns full stats after toggle
-        callback({ success: true, data: response.isLikedByCurrentUser, stats: response });
-      } else if (response && response.error) {
-        // Handle error from fetch.js
-        callback({ success: false, message: response.message || "Error del servidor" });
-      } else {
-        callback({ success: false, message: "Error al procesar like" });
-      }
+    // Old backend format → boolean
+    if (typeof response === "boolean") {
+      return callback({ success: true, data: response });
     }
+
+    // New backend format → {isLikedByCurrentUser, likeCount, ...}
+    if (typeof response === "object" && "isLikedByCurrentUser" in response) {
+      return callback({
+        success: true,
+        data: response.isLikedByCurrentUser,
+        stats: response,
+      });
+    }
+
+    callback({
+      success: false,
+      message: "Invalid like response",
+    });
   });
 }
 
+
+
 /**
  * Get like statistics for a post
- * @param {number} postId - The ID of the post
- * @param {Function} callback - Callback with format {success: boolean, data: {likeCount, isLikedByCurrentUser, recentLikerNames}}
+ * @param {number} postId
+ * @param {Function} callback
  */
 function getLikeStats(postId, callback) {
-  const currentUserId = localStorage.getItem("userId");
-  const token = localStorage.getItem("token");
+  const userId = validateIds(postId, callback);
+  if (!userId) return;
 
-  if (!currentUserId) {
-    console.error("No userId found in localStorage");
-    callback({
-      success: false,
-      data: { likeCount: 0, isLikedByCurrentUser: false, recentLikerNames: [] },
-    });
-    return;
-  }
+  const url = `/api/Like/stats/${postId}?currentUserId=${encodeURIComponent(userId)}`;
 
-  // Validate currentUserId is a valid positive integer
-  const parsedUserId = parseInt(currentUserId);
-  if (!Number.isInteger(parsedUserId) || parsedUserId <= 0) {
-    console.error("Invalid userId in localStorage:", currentUserId);
-    callback({
-      success: false,
-      data: { likeCount: 0, isLikedByCurrentUser: false, recentLikerNames: [] },
-    });
-    return;
-  }
+  const config = { method: "GET" };
 
-  // Validate postId is a valid positive integer
-  if (!postId || !Number.isInteger(postId) || postId <= 0) {
-    console.error("Invalid postId:", postId);
-    callback({
-      success: false,
-      data: { likeCount: 0, isLikedByCurrentUser: false, recentLikerNames: [] },
-    });
-    return;
-  }
-
-  const url = `/api/Like/stats/${postId}?currentUserId=${encodeURIComponent(
-    currentUserId
-  )}`;
-
-  const config = {
-    method: "GET",
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  };
-
-  let callbackCalled = false;
-  // Timeout fallback: call callback with error if not called in 10s
-  const timeoutId = setTimeout(function () {
-    if (!callbackCalled) {
-      callbackCalled = true;
-      callback({
+  server(url, config, function (response) {
+    if (response?.error) {
+      return callback({
         success: false,
         data: {
           likeCount: 0,
           isLikedByCurrentUser: false,
           recentLikerNames: [],
         },
-        message: "Error de red o sin respuesta del servidor",
+        message: response.message || "Server error",
       });
     }
-  }, 10000);
 
-  server(url, config, function (response) {
-    if (!callbackCalled) {
-      callbackCalled = true;
-      clearTimeout(timeoutId);
-      if (response && typeof response.likeCount === "number") {
-        callback({ success: true, data: response });
-      } else {
-        callback({
-          success: false,
-          data: {
-            likeCount: 0,
-            isLikedByCurrentUser: false,
-            recentLikerNames: [],
-          },
-          message:
-            response && response.message
-              ? response.message
-              : "Respuesta inválida del servidor",
-        });
-      }
+    if (response && typeof response.likeCount === "number") {
+      return callback({ success: true, data: response });
     }
+
+    callback({
+      success: false,
+      message: "Invalid like stats response",
+      data: {
+        likeCount: 0,
+        isLikedByCurrentUser: false,
+        recentLikerNames: [],
+      },
+    });
   });
 }

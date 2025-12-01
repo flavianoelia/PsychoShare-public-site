@@ -1,7 +1,11 @@
 function server(url, config, success) {
+  const token = localStorage.getItem("token");
+
+  config.method = config.method || "GET";
   config.headers = {
     "Content-type": "application/json; charset=UTF-8",
     ...config.headers,
+    "Authorization": `Bearer ${token}`
   };
 
   fetch(`${API_BASE_URL}${url}`, config)
@@ -58,6 +62,7 @@ function server(url, config, success) {
       }
     })
     .catch((error) => {
+      console.error("[SERVER ERROR]", error);
       Swal.fire({
         icon: "error",
         title: "Error de conexión",

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Perfil público - PsychoShare</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="icon" href="favicon/favicon.ico" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  </head>
+  <body class="my-profile-layout">
+    <header class="logo-header" aria-label="Encabezado">
+      <!-- logo y navegación simplificada -->
+      <a href="index.html" class="logo">PsychoShare</a>
+    </header>
+
+    <nav class="menu-nav" aria-label="Menú principal de navegación">
+      <ul>
+        <li><a href="wall.html">Muro</a></li>
+        <li><a href="profile.html">Mi perfil</a></li>
+      </ul>
+    </nav>
+
+    <main class="main-content">
+      <section class="profile-front-page">
+        <img
+          src="assets/imgwebp/portadaprofile.webp"
+          class="cover-photo"
+          alt="Foto de portada del usuario"
+        />
+
+        <div
+          class="profile-info-bar"
+          role="region"
+          aria-label="Información del usuario"
+        >
+          <div class="left-info">
+            <img
+              id="profile-avatar"
+              src="assets/imgwebp/default-avatar.webp"
+              alt="Foto de contacto"
+              class="contact-avatar"
+            />
+            <div class="user-info-text">
+              <h1 class="user-name">Cargando...</h1>
+            </div>
+          </div>
+          <!-- En perfil público no se muestra botón editar -->
+          <button
+            class="btn btn-report-profile"
+            data-report-type="profile"
+            data-report-id="public-profile"
+            type="button"
+            title="Reportar usuario"
+          >
+            <i class="fas fa-flag"></i> Reportar usuario
+          </button>
+        </div>
+      </section>
+
+      <section class="profile-stats">
+        <span><span id="posts-count">0</span> Publicaciones</span>
+        <span><span id="contacts-count">0</span> Contactos</span>
+      </section>
+
+      <!-- Aquí se renderizarán las publicaciones del usuario público -->
+    </main>
+
+    <footer aria-label="Pie de página del sitio" class="footer">
+      <p>&copy; PsychoShare</p>
+    </footer>
+
+    <script src="scripts/components/hamburgerMenu.js"></script>
+    <script src="scripts/helpers/loadUserAvatar.js"></script>
+
+    <!-- Helpers / config -->
+    <script src="scripts/theme.js"></script>
+    <script src="scripts/config.js"></script>
+    <script src="scripts/fetch.js"></script>
+    <script src="scripts/helpers.js"></script>
+
+    <!-- Following repository to get contacts of a user -->
+    <script src="scripts/Following/followingRepository.js"></script>
+
+    <!-- Post system (class + repository) -->
+    <script src="scripts/Post/Post.js"></script>
+    <script src="scripts/Post/postRepository.js"></script>
+
+    <!-- Presentation for public profile -->
+    <script src="scripts/profile/publicProfilePresentation.js"></script>
+  </body>
+</html>
