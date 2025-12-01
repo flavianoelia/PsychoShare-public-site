@@ -118,9 +118,11 @@ function collapseComments(commentSection, postId) {
         // Renderizar solo los primeros 2 comentarios
         renderComments(commentSection, data.comments, true);
 
-        // Mostrar el botón "Ver más" si hay más de 2 comentarios totales
+        // Resetear el skip del botón "Ver más"
         const viewMoreBtn = commentSection.querySelector(".view-more");
         if (viewMoreBtn) {
+            viewMoreBtn.dataset.skip = "2"; // Resetear a 2
+            
             const total = data.totalCount ?? data.comments.length;
             if (total > 2) {
                 viewMoreBtn.classList.remove("hidden");

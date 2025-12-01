@@ -89,13 +89,13 @@ photoProfileInput.addEventListener("change", function (event) {
 
   if (!file) return;
 
-  // Validate size (2MB max)
-  const maxSize = 2 * 1024 * 1024;
+  // Validate size (20MB max)
+  const maxSize = 20 * 1024 * 1024;
   if (file.size > maxSize) {
     Swal.fire({
       icon: "error",
       title: "Archivo muy grande",
-      text: "El tamaño máximo permitido es 2MB",
+      text: "El tamaño máximo permitido es 20MB",
     });
     photoProfileInput.value = ""; // Clear input
     return;
