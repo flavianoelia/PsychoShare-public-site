@@ -454,6 +454,7 @@ i.user-avatar {
 
 .dropdown-container {
     position: relative;
+    margin-left: auto;
 }
 
 .dropdown-trigger {
@@ -811,9 +812,59 @@ figure {
   align-items: center;
   gap: 8px;
   margin-left: 40px;
+  position: relative;
 }
 .comment-content {
   margin-left: 40px;
+}
+
+/* Comment menu styles */
+.comment-menu-btn {
+  margin-left: auto;
+  background: none;
+  border: none;
+  color: var(--color-text-main);
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 50%;
+  transition: background-color 0.2s;
+}
+.comment-menu-btn:hover {
+  background-color: var(--color-border);
+}
+.comment-menu {
+  position: absolute;
+  right: 0;
+  top: 100%;
+  background-color: var(--color-background-card);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  z-index: 10;
+  min-width: 150px;
+  padding: 8px 0;
+}
+.comment-menu.hidden {
+  display: none;
+}
+.comment-menu button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 10px 16px;
+  border: none;
+  background: none;
+  color: var(--color-text-main);
+  cursor: pointer;
+  text-align: left;
+  transition: background-color 0.2s;
+}
+.comment-menu button:hover {
+  background-color: var(--color-background-main);
+}
+.comment-menu button i {
+  width: 16px;
 }
 .view-more {
   background-color: var(--color-primary);
