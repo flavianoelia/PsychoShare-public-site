@@ -2,8 +2,10 @@ class Comment {
     constructor(comment) {
         this.id = comment.id;
         this.userId = comment.userId;
-        this.imgOwner = comment.imgOwner;       
-        this.nameOwner = comment.nameOwner;     
+        // Backend sends: UserName and AvatarUrl
+        // Maintain compatibility with old data
+        this.imgOwner = comment.avatarUrl || comment.AvatarUrl || comment.imgOwner;       
+        this.nameOwner = comment.userName || comment.UserName || comment.nameOwner;     
         this.content = comment.text || comment.content || "";         
     } 
 
@@ -42,10 +44,11 @@ class Comment {
                         <button class="delete-comment">
                             <i class="fas fa-trash"></i> Eliminar
                         </button>
-                    ` : ''}
-                    <button class="report-comment">
-                        <i class="fas fa-flag"></i> Reportar
-                    </button>
+                    ` : `
+                        <button class="report-comment">
+                            <i class="fas fa-flag"></i> Reportar
+                        </button>
+                    `}
                 </div>
             </div>
 
