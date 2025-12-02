@@ -548,6 +548,7 @@
                   class="form-select"
                   required
                 >
+                  <option value="">Selecciona un motivo</option>
                   <option value="acoso">Acoso</option>
                   <option value="spam">Spam</option>
                   <option value="contenido_inapropiado">
@@ -566,7 +567,16 @@
                   <option value="other">Otro</option>
                 </select>
               </div>
-              <!-- Detalles eliminado: ahora solo se requiere el motivo -->
+              <div class="mb-3">
+                <label for="report_details" class="form-label">Detalles adicionales (opcional)</label>
+                <textarea
+                  id="report_details"
+                  name="details"
+                  class="form-control"
+                  rows="3"
+                  placeholder="Proporciona más información sobre el reporte..."
+                ></textarea>
+              </div>
             </div>
             <div class="modal-footer">
               <button
@@ -610,6 +620,13 @@
     <!-- PDF system -->
     <script src="./scripts/Pdf/pdfRepository.js"></script>
     <script src="./scripts/Pdf/pdfHandler.js"></script>
+    
+    <!-- Comment system -->
+    <script src="./scripts/Comment/commet.js"></script>
+    <script src="./scripts/Comment/commentRepository.js"></script>
+    <script src="./scripts/Comment/commentModal.js"></script>
+    <script src="./scripts/Comment/commentPagination.js"></script>
+    <script src="./scripts/Comment/commentPresentation.js"></script>
     
     <!-- Post system -->
     <script src="./scripts/Post/Post.js"></script>

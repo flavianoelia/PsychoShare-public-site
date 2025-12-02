@@ -52,7 +52,8 @@ function loadPosts(page, searchTerm, append) {
         
         // Initialize comments AFTER adding to DOM
         if (typeof initializeCommentsForPost === 'function') {
-          initializeCommentsForPost(nodo, jsonPost.postId);
+          const totalComments = jsonPost.commentCount || (jsonPost.comments && jsonPost.comments.length) || 0;
+          initializeCommentsForPost(nodo, jsonPost.postId, totalComments);
         }
       }
     }
