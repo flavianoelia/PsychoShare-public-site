@@ -76,7 +76,17 @@ function attachCommentMenuEvents(commentNode, commentDto) {
                             });
                             return;
                         }
+                        
+                        // Get comment section before removing
+                        const commentSection = commentNode.closest('.comment-section');
+                        
                         commentNode.remove();
+                        
+                        // Update comment count (-1 for deleted comment)
+                        if (commentSection && typeof updateCommentCount === 'function') {
+                            updateCommentCount(commentSection, -1);
+                        }
+                        
                         Swal.fire({
                             icon: 'success',
                             title: 'Eliminado',

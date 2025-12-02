@@ -72,11 +72,22 @@ function loadPublicPosts(page = 1, append = false) {
       } else {
         container.appendChild(postElement);
       }
+
+      // Initialize comments AFTER adding to DOM
+      if (typeof initializeCommentsForPost === 'function') {
+        const totalComments = postData.commentCount || (postData.comments && postData.comments.length) || 0;
+        initializeCommentsForPost(postElement, postData.postId, totalComments);
+      }
     });
 
     // Initialize like buttons if handler exists
     if (typeof initializeLikeButtons === 'function') {
       initializeLikeButtons();
+    }
+
+    // Initialize PDF buttons if handler exists
+    if (typeof initializePdfButtons === 'function') {
+      initializePdfButtons();
     }
   });
 }

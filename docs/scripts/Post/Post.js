@@ -103,9 +103,6 @@ class Post {
                                       this.coutLike
                                     } Me gusta</span>
                                 </button>
-                                <button class="btn comment-button"><i class="fas fa-comment"></i>${
-                                  this.comments.length
-                                } Comentarios</button>
                                 ${
                                   this.pdf && this.pdf.url
                                     ? `<button class="btn pdf-button pdf-view-button" data-pdf-url="${this.pdf.url}" data-post-title="${this.title}">
@@ -120,6 +117,9 @@ class Post {
             </section>
 
             <section class="comment-section">
+                <div class="comment-count-header">
+                    <i class="fas fa-comment"></i> ${this.comments.length} Comentarios
+                </div>
                 ${commentsHtml}
                 <button class="btn view-more hidden">Ver más</button>
                 <div class="add-comment">

@@ -6,8 +6,9 @@
  * Inicializa la sección de comentarios de un post específico.
  * postNode: nodo <article> del post
  * postId: id del post en backend
+ * totalComments: total inicial de comentarios del post
  */
-function initializeCommentsForPost(postNode, postId) {
+function initializeCommentsForPost(postNode, postId, totalComments = 0) {
     const commentSection = postNode.querySelector(".comment-section");
     if (!commentSection) {
         return;
@@ -15,6 +16,12 @@ function initializeCommentsForPost(postNode, postId) {
 
     // Guardar el postId en el dataset para usarlo después
     commentSection.dataset.postId = postId;
+    
+    // Initialize total comment count
+    commentSection.dataset.totalComments = totalComments.toString();
+    
+    // Update the display immediately
+    updateCommentCount(commentSection, 0);
 
     const viewMoreBtn = commentSection.querySelector(".view-more");
     const commentInput = commentSection.querySelector(".comment-input");
@@ -28,6 +35,18 @@ function initializeCommentsForPost(postNode, postId) {
     // 1) Cargar 2 comentarios iniciales
     getInitialComments(postId, (data) => {
         if (!data || data.error) return;
+
+        // If backend provides total count, use it
+        if (data.totalCount !== undefined) {
+            commentSection.dataset.totalComments = data.totalCount.toString();
+        } else if (data.comments && data.comments.length > 0) {
+            // Fallback: if we got exactly 2, there might be more
+            // This is not perfect but better than nothing
+            commentSection.dataset.totalComments = data.comments.length.toString();
+        }
+        
+        // Update display with correct count
+        updateCommentCount(commentSection, 0);
 
         // data.comments = lista de CommentResponseDto
         renderComments(commentSection, data.comments, true);
@@ -73,6 +92,9 @@ function initializeCommentsForPost(postNode, postId) {
             userId: newComment.userId,
         });
 
+        // Update comment count (+1 for new comment)
+        updateCommentCount(commentSection, 1);
+
         // Limpiar input
         commentInput.value = "";
         });
@@ -102,6 +124,32 @@ function renderComments(commentSection, comments, clean) {
         userId: comment.userId,
         });
     });
+    
+    // Update comment count
+    updateCommentCount(commentSection);
+}
+
+/**
+ * Update the comment counter display
+ */
+function updateCommentCount(commentSection, delta = 0) {
+    // Get or initialize total count
+    if (!commentSection.dataset.totalComments) {
+        commentSection.dataset.totalComments = '0';
+    }
+    
+    let total = parseInt(commentSection.dataset.totalComments) || 0;
+    
+    // Apply delta (for create/delete operations)
+    if (delta !== 0) {
+        total += delta;
+        commentSection.dataset.totalComments = total.toString();
+    }
+    
+    const commentCountHeader = commentSection.querySelector('.comment-count-header');
+    if (commentCountHeader) {
+        commentCountHeader.innerHTML = `<i class="fas fa-comment"></i> ${total} Comentarios`;
+    }
 }
 
 /**
