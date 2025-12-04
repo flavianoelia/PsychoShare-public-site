@@ -5,8 +5,16 @@ function server(url, config, success) {
   config.headers = {
     "Content-type": "application/json; charset=UTF-8",
     ...config.headers,
-    "Authorization": `Bearer ${token}`
   };
+
+  // Only add Authorization header if:
+  // 1. Token exists
+  // 2. It's not the login or register endpoint
+  const isLoginOrRegister = url.includes('/login') || (url.includes('/User') && config.method === 'POST' && !url.includes('/change-password'));
+  
+  if (token && !isLoginOrRegister) {
+    config.headers["Authorization"] = `Bearer ${token}`;
+  }
 
   fetch(`${API_BASE_URL}${url}`, config)
     .then((response) => {
