@@ -29,7 +29,7 @@ function initializeWall() {
  */
 function loadPosts(page, searchTerm, append) {
   if (isLoading) return;
-  
+
   isLoading = true;
   if (append) {
     showSpinner();
@@ -49,10 +49,13 @@ function loadPosts(page, searchTerm, append) {
       const nodo = post.getNode();
       if (sectionPost) {
         sectionPost.append(nodo);
-        
+
         // Initialize comments AFTER adding to DOM
-        if (typeof initializeCommentsForPost === 'function') {
-          const totalComments = jsonPost.commentCount || (jsonPost.comments && jsonPost.comments.length) || 0;
+        if (typeof initializeCommentsForPost === "function") {
+          const totalComments =
+            jsonPost.commentCount ||
+            (jsonPost.comments && jsonPost.comments.length) ||
+            0;
           initializeCommentsForPost(nodo, jsonPost.postId, totalComments);
         }
       }
@@ -124,7 +127,13 @@ function setupInfiniteScroll() {
 function observeLastElement() {
   if (!scrollObserver) return;
 
-  const allPosts = document.querySelectorAll(".post");
+  // Disconnect previous observations
+  scrollObserver.disconnect();
+
+  const sectionPost = getSectionPost();
+  if (!sectionPost) return;
+
+  const allPosts = sectionPost.querySelectorAll(".article");
   if (allPosts.length > 0) {
     const lastPost = allPosts[allPosts.length - 1];
     scrollObserver.observe(lastPost);
@@ -170,7 +179,7 @@ function initializeSearch() {
 }
 
 // Initialize wall when DOM is ready
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener("DOMContentLoaded", function () {
   const sectionPost = getSectionPost();
   if (sectionPost) {
     initializeWall();
