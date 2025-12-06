@@ -28,6 +28,10 @@ function getContacts(userId, callback) {
 
   // Use server() function for consistency with the rest of the project
   server(url, config, (users) => {
+    if (!users || users.error) {
+      callback([]);
+      return;
+    }
     // Map backend response to frontend format
     const contacts = users.map((user) => ({
       id: user.id,
@@ -104,20 +108,14 @@ function unfollowUser(followedUserId, callback) {
     // Check if there was an error from server()
     if (response && response.error) {
       callback({ success: false, message: response.message || "Error al dejar de seguir" });
-    } else if (response !== undefined && response !== null) {
+    } else {
       // DELETE typically returns 204 No Content or empty response on success
+      // If no error, it's a success.
       callback({
-        success: false,
-        message: response.message || "Error al dejar de seguir",
+        success: true,
+        message: "Usuario dejado de seguir exitosamente",
       });
-      return;
     }
-
-    // DELETE puede devolver null/empty -> igual es OK
-    callback({
-      success: true,
-      message: "Usuario dejado de seguir exitosamente",
-    });
   });
 }
 
@@ -130,17 +128,22 @@ function checkIsFollowing(targetUserId, callback) {
     return;
   }
 
-  server(`/api/Following/check/${targetUserId}`, { method: "GET" }, (response) => {
+  // Validate targetUserId is a valid positive integer
+  if (!targetUserId || !Number.isInteger(targetUserId) || targetUserId <= 0) {
+    console.error("Invalid targetUserId:", targetUserId);
+    callback({ success: false, data: false });
+    return;
+  }
+
+  const url = `/api/Following/check/${targetUserId}`;
+  const config = { method: "GET" };
+
+  server(url, config, function (response) {
     if (response?.error) {
       callback({ success: false, data: false });
       return;
     }
 
-  const url = `/api/Following/check/${targetUserId}`;
-  const config = { method: "GET" };
-
-
-  server(url, config, function (response) {
     // Backend returns boolean or object with isFollowing property
     const isFollowing =
       typeof response === "boolean" ? response : response.isFollowing;
