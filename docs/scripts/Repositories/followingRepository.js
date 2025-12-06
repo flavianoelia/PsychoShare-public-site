@@ -107,12 +107,17 @@ function unfollowUser(followedUserId, callback) {
     } else if (response !== undefined && response !== null) {
       // DELETE typically returns 204 No Content or empty response on success
       callback({
-        success: true,
-        message: "Usuario dejado de seguir exitosamente",
+        success: false,
+        message: response.message || "Error al dejar de seguir",
       });
-    } else {
-      callback({ success: false, message: "Error al dejar de seguir" });
+      return;
     }
+
+    // DELETE puede devolver null/empty -> igual es OK
+    callback({
+      success: true,
+      message: "Usuario dejado de seguir exitosamente",
+    });
   });
 }
 
@@ -125,12 +130,11 @@ function checkIsFollowing(targetUserId, callback) {
     return;
   }
 
-  // Validate targetUserId is a valid positive integer
-  if (!targetUserId || !Number.isInteger(targetUserId) || targetUserId <= 0) {
-    console.error("Invalid targetUserId:", targetUserId);
-    callback({ success: false, data: false });
-    return;
-  }
+  server(`/api/Following/check/${targetUserId}`, { method: "GET" }, (response) => {
+    if (response?.error) {
+      callback({ success: false, data: false });
+      return;
+    }
 
   const url = `/api/Following/check/${targetUserId}`;
   const config = { method: "GET" };
@@ -140,6 +144,7 @@ function checkIsFollowing(targetUserId, callback) {
     // Backend returns boolean or object with isFollowing property
     const isFollowing =
       typeof response === "boolean" ? response : response.isFollowing;
+
     callback({ success: true, data: isFollowing });
   });
 }
@@ -177,13 +182,12 @@ function getMyFollowingIds(callback) {
 
 
 function getAllUsers(options, callback) {
-  // Support old signature: getAllUsers(searchQuery, callback) or getAllUsers(callback)
   if (typeof options === "function") {
     callback = options;
     options = { page: 1, size: 10, searchQuery: "" };
   } else if (typeof options === "string") {
     const searchQuery = options;
-    callback = callback || function() {};
+    callback = callback || function () {};
     options = { page: 1, size: 10, searchQuery };
   }
 
@@ -191,7 +195,7 @@ function getAllUsers(options, callback) {
 
   // Build URL with pagination and search
   let url = `/api/User/all?page=${page}&size=${size}`;
-  if (searchQuery && searchQuery.trim()) {
+  if (searchQuery.trim()) {
     url += `&search=${encodeURIComponent(searchQuery.trim())}`;
   }
   const config = { method: "GET" };
@@ -202,12 +206,11 @@ function getAllUsers(options, callback) {
     const hasMore = response.hasMore || false;
     const totalCount = response.totalCount || users.length;
 
-    // Map backend response to frontend format
     const allUsers = users.map((user) => ({
       id: user.id,
-      imgUser: user.avatarUrl || null, // null if no avatar (will show icon)
-      nameUser: `${user.name} ${user.lastName || user.lastname || ""}`.trim(),
-      isFollowing: false, // Will be updated with cache
+      imgUser: user.avatarUrl || null,
+      nameUser: `${user.name} ${user.lastName || ""}`.trim(),
+      isFollowing: false,
     }));
 
     callback({ users: allUsers, hasMore, totalCount });

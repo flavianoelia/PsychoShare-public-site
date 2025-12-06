@@ -49,20 +49,25 @@ function validateRequiredField(
 }
 
 /**
- * @param {string} isoDateString
+ * @param {string} dateString - Backend format: "yyyy-MM-dd HH:mm:ss" (Argentina local time)
  * @returns {Object}
  */
-function formatDateTime(isoDateString) {
-  if (!isoDateString) {
+function formatDateTime(dateString) {
+  if (!dateString) {
     return { date: "Fecha desconocida", time: "" };
   }
 
   try {
-    const date = new Date(isoDateString);
-
-    if (isNaN(date.getTime())) {
+    // Backend sends: "2025-12-02 00:50:51" already in Argentina time
+    // Parse directly without timezone conversion
+    const parts = dateString.split(' ');
+    if (parts.length !== 2) {
       return { date: "Fecha inválida", time: "" };
     }
+
+    const [datePart, timePart] = parts;
+    const [year, month, day] = datePart.split('-');
+    const [hours, minutes] = timePart.split(':');
 
     const monthNames = [
       "enero",
@@ -79,18 +84,22 @@ function formatDateTime(isoDateString) {
       "diciembre",
     ];
 
-    const day = date.getDate();
-    const month = monthNames[date.getMonth()];
-    const year = date.getFullYear();
-    const hours = String(date.getHours()).padStart(2, "0");
-    const minutes = String(date.getMinutes()).padStart(2, "0");
+    const monthIndex = parseInt(month, 10) - 1;
+    const monthName = monthNames[monthIndex] || "mes inválido";
 
     return {
-      date: `${day} ${month} ${year}`,
+      date: `${parseInt(day, 10)} ${monthName} ${year}`,
       time: `${hours}:${minutes}`,
     };
   } catch (error) {
     console.error("Error al formatear fecha:", error);
     return { date: "Fecha inválida", time: "" };
   }
+}
+
+function getCurrentAuthContext() {
+  return {
+    userId: localStorage.getItem("userId"),
+    token: localStorage.getItem("token"),
+  };
 }

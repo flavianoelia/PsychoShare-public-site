@@ -32,6 +32,7 @@
     />
     <link rel="icon" type="image/svg+xml" href="favicon/favicon.svg" />
     <link rel="manifest" href="favicon/site.webmanifest" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 
     <link rel="stylesheet" href="css/style.css" />
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -50,6 +51,9 @@
       </section>
       <section class="content-section">
         <h1 class="mb-4 title">PsychoShare</h1>
+        <button class="theme-toggle action-button" onclick="toggleTheme()" aria-label="Cambiar tema">
+          <i id="theme-icon" class="fas fa-moon"></i>
+        </button>
         <h2>Crear una nueva cuenta</h2>
         <form id="register-form" class="card-form" novalidate>
           <small id="nameError" class="error-message">Nombre inválido</small>
@@ -182,6 +186,8 @@
     <footer class="footer" aria-label="Pie de página del sitio">
       <p>2025 PsychoShare - Hecho por PsyNet - Licencia MIT</p>
     </footer>
+
+    <script src="./scripts/theme.js"></script>
     <script src="scripts/config.js"></script>
     <script src="scripts/fetch.js"></script>
     <script src="scripts/helpers.js"></script>

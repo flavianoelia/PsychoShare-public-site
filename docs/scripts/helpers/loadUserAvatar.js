@@ -35,10 +35,14 @@ function loadUserAvatar() {
   })
     .then((response) => {
       if (!response.ok) {
-        // If no avatar found (404), use default
+        // If no avatar found (404), replace with icon
         if (response.status === 404) {
-          if (headerProfileImg) headerProfileImg.src = "assets/imgwebp/flavia.webp";
-          if (newPostAvatar) newPostAvatar.src = "assets/imgwebp/flavia.webp";
+          if (headerProfileImg) {
+            headerProfileImg.outerHTML = '<i class="fa-solid fa-circle-user contact-photo"></i>';
+          }
+          if (newPostAvatar) {
+            newPostAvatar.outerHTML = '<i class="fa-solid fa-circle-user contact-avatar-icon" id="new-post-avatar"></i>';
+          }
           return null;
         }
         throw new Error(`HTTP error! status: ${response.status}`);
@@ -49,24 +53,40 @@ function loadUserAvatar() {
       if (data && data.url) {
         // Set the avatar URL for all elements
         if (headerProfileImg) {
-          headerProfileImg.src = data.url;
-          headerProfileImg.onerror = function() {
-            this.src = "assets/imgwebp/flavia.webp";
-          };
+          // If it's an icon, replace with img tag
+          if (headerProfileImg.tagName === 'I') {
+            headerProfileImg.outerHTML = `<img src="${data.url}" alt="Foto de perfil" class="contact-photo" onerror="this.outerHTML='<i class=\\"fa-solid fa-circle-user contact-photo\\"></i>'">`;
+          } else {
+            headerProfileImg.src = data.url;
+            headerProfileImg.onerror = function() {
+              // If image fails to load, replace with icon
+              this.outerHTML = '<i class="fa-solid fa-circle-user contact-photo"></i>';
+            };
+          }
         }
         if (newPostAvatar) {
-          newPostAvatar.src = data.url;
-          newPostAvatar.onerror = function() {
-            this.src = "assets/imgwebp/flavia.webp";
-          };
+          // If it's an icon, replace with img tag
+          if (newPostAvatar.tagName === 'I') {
+            newPostAvatar.outerHTML = `<img src="${data.url}" alt="Foto de perfil" id="new-post-avatar" class="contact-avatar" onerror="this.outerHTML='<i class=\\"fa-solid fa-circle-user contact-avatar-icon\\" id=\\"new-post-avatar\\"></i>'">`;
+          } else {
+            newPostAvatar.src = data.url;
+            newPostAvatar.onerror = function() {
+              // If image fails to load, replace with icon
+              this.outerHTML = '<i class="fa-solid fa-circle-user contact-avatar-icon" id="new-post-avatar"></i>';
+            };
+          }
         }
       }
     })
     .catch((error) => {
       console.error("Error loading user avatar:", error);
-      // Use default image on error
-      if (headerProfileImg) headerProfileImg.src = "assets/imgwebp/flavia.webp";
-      if (newPostAvatar) newPostAvatar.src = "assets/imgwebp/flavia.webp";
+      // Replace with icon on error
+      if (headerProfileImg) {
+        headerProfileImg.outerHTML = '<i class="fa-solid fa-circle-user contact-photo"></i>';
+      }
+      if (newPostAvatar) {
+        newPostAvatar.outerHTML = '<i class="fa-solid fa-circle-user contact-avatar-icon" id="new-post-avatar"></i>';
+      }
     });
 }
 

@@ -101,6 +101,12 @@ function loadUserPosts(page = 1, append = false) {
       } else {
         container.appendChild(postElement);
       }
+
+      // Initialize comments AFTER adding to DOM
+      if (typeof initializeCommentsForPost === 'function') {
+        const totalComments = postData.commentCount || (postData.comments && postData.comments.length) || 0;
+        initializeCommentsForPost(postElement, postData.postId, totalComments);
+      }
     });
 
     // Initialize like buttons for new posts
@@ -108,11 +114,38 @@ function loadUserPosts(page = 1, append = false) {
       initializeLikeButtons();
     }
 
+    // Initialize PDF buttons for new posts
+    if (typeof initializePdfButtons === "function") {
+      initializePdfButtons();
+    }
+
     // Initialize follow handlers
     if (typeof initializeFollowButtons === "function") {
       initializeFollowButtons();
     }
   });
+}
+
+/**
+ * Control visibility of Edit/Report buttons based on profile ownership
+ */
+function updateProfileButtons(profileUserId) {
+  const loggedUserId = localStorage.getItem('userId');
+  const isOwnProfile = !profileUserId || profileUserId === loggedUserId;
+
+  // Edit profile button (only show on own profile)
+  const editButton = document.querySelector('.btn-edit');
+  const editLink = document.querySelector('a[href="edit-profile.html"]');
+  if (editButton) editButton.style.display = isOwnProfile ? 'inline-block' : 'none';
+  if (editLink) editLink.style.display = isOwnProfile ? 'inline-block' : 'none';
+
+  // Report user button (only show on other users' profiles)
+  const reportButton = document.querySelector('.btn-report-profile');
+  if (reportButton) {
+    reportButton.style.display = isOwnProfile ? 'none' : 'inline-block';
+    // Update data-report-id with the actual userId
+    reportButton.setAttribute('data-report-id', profileUserId);
+  }
 }
 
 /**
@@ -126,6 +159,9 @@ function loadUserProfile() {
     console.error("No user ID found");
     return;
   }
+
+  // Update button visibility based on profile ownership
+  updateProfileButtons(profileUserId);
 
   getUserProfile(profileUserId, function(result) {
     if (!result.success) {
@@ -165,26 +201,40 @@ function loadUserProfile() {
         if (response.ok) {
           return response.json();
         }
+        // 404 means no avatar - use default icon
+        if (response.status === 404) {
+          return { noAvatar: true };
+        }
         return null;
       })
       .then((data) => {
+        const profileAvatar = document.getElementById('profile-avatar');
+        const newPostAvatar = document.getElementById('new-post-avatar-profile');
+        
         if (data && data.url) {
-          // Update profile avatar
-          const profileAvatar = document.getElementById('profile-avatar');
+          // User has avatar - update images
           if (profileAvatar) {
             profileAvatar.src = data.url;
             profileAvatar.onerror = function() {
-              this.src = "assets/imgwebp/flavia.webp";
+              // If image fails to load, show icon
+              this.outerHTML = '<i class="fa-solid fa-circle-user contact-avatar-icon"></i>';
             };
           }
           
-          // Update new post form avatar
-          const newPostAvatar = document.getElementById('new-post-avatar-profile');
           if (newPostAvatar) {
             newPostAvatar.src = data.url;
             newPostAvatar.onerror = function() {
-              this.src = "assets/imgwebp/flavia.webp";
+              // If image fails to load, show icon
+              this.outerHTML = '<i class="fa-solid fa-circle-user contact-avatar-icon"></i>';
             };
+          }
+        } else if (data && data.noAvatar) {
+          // No avatar in database - replace img with icon
+          if (profileAvatar) {
+            profileAvatar.outerHTML = '<i class="fa-solid fa-circle-user contact-avatar-icon" id="profile-avatar"></i>';
+          }
+          if (newPostAvatar) {
+            newPostAvatar.outerHTML = '<i class="fa-solid fa-circle-user contact-avatar-icon" id="new-post-avatar-profile"></i>';
           }
         }
       })
