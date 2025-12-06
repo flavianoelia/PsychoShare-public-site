@@ -2,14 +2,24 @@
 // CONTACTS REPOSITORY
 // ====================================================================
 
-function getContacts(userId, callback) {
-  config = { method: "GET" };
-  // Get userId from localStorage if not provided
-  const currentUserId = userId || localStorage.getItem("userId");
+/*helper para extraer el id del usuario del local storage*/
+function getCurrentUserId() {
+  const userId = localStorage.getItem("userId");
+  if (!userId || userId.trim() === "") {
+    console.error("User ID not found or is empty in localStorage. User might be logged out.");
+    return null;
+  }
+  return userId;
+}
 
+function getContacts(userId, callback) {
+  const config = { method: "GET" };
+
+  // Get userId from parameter or fallback to the logged-in user
+  const currentUserId = userId || getCurrentUserId();
 
   if (!currentUserId) {
-    console.error("No userId found in localStorage");
+    // Error is logged by getCurrentUserId()
     callback([]);
     return;
   }
@@ -32,10 +42,9 @@ function getContacts(userId, callback) {
 
 
 function followUser(followedUserId, callback) {
-  const currentUserId = localStorage.getItem("userId");
+  const currentUserId = getCurrentUserId();
 
   if (!currentUserId) {
-    console.error("No userId found in localStorage");
     callback({ success: false, message: "User not logged in" });
     return;
   }
@@ -69,10 +78,9 @@ function followUser(followedUserId, callback) {
 
 
 function unfollowUser(followedUserId, callback) {
-  const currentUserId = localStorage.getItem("userId");
+  const currentUserId = getCurrentUserId();
 
   if (!currentUserId) {
-    console.error("No userId found in localStorage");
     callback({ success: false, message: "User not logged in" });
     return;
   }
@@ -110,10 +118,9 @@ function unfollowUser(followedUserId, callback) {
 
 
 function checkIsFollowing(targetUserId, callback) {
-  const currentUserId = localStorage.getItem("userId");
+  const currentUserId = getCurrentUserId();
 
   if (!currentUserId) {
-    console.error("No userId found in localStorage");
     callback({ success: false, data: false });
     return;
   }
@@ -126,6 +133,7 @@ function checkIsFollowing(targetUserId, callback) {
   }
 
   const url = `/api/Following/check/${targetUserId}`;
+  const config = { method: "GET" };
 
 
   server(url, config, function (response) {
@@ -139,7 +147,7 @@ function checkIsFollowing(targetUserId, callback) {
 
 function getMyFollowingIds(callback) {
   const url = `/api/Following/my-following-ids`;
-  config = { method: "GET" };
+  const config = { method: "GET" };
 
   // Use server() which now injects the token; handle 204 (server returns null)
   server(url, config, (response) => {
@@ -186,6 +194,7 @@ function getAllUsers(options, callback) {
   if (searchQuery && searchQuery.trim()) {
     url += `&search=${encodeURIComponent(searchQuery.trim())}`;
   }
+  const config = { method: "GET" };
 
   server(url, config, (response) => {
     // Backend returns paginated response: {users: [], totalCount, page, size, hasMore}
