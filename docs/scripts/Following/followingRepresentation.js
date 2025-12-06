@@ -2,31 +2,23 @@
 // CONTACTS PRESENTATION - Render contacts to DOM with Infinite Scroll
 // ====================================================================
 
-/**
- * Cache for following IDs (Set for O(1) lookup)
- * null = not loaded yet
- */
+// Cache for following IDs (Set for O(1) lookup)
+// null = not loaded yet
 let followingCache = null;
 
-/**
- * Pagination state
- */
+//Pagination state
 let currentPage = 1;
 let isLoading = false;
 let hasMoreUsers = true;
 const pageSize = 10;
 let currentSearchQuery = "";
 
-/**
- * DOM element cache.
- * Initialized after being dynamically created in createSections().
- */
+
+//DOM element cache.
+//Initialized after being dynamically created in createSections().
 let followingSection, suggestionsSection, suggestionsDivider;
 
-/**
- * Creates the following and suggestions sections and caches the elements
- * @param {HTMLElement} container - The main container element
- */
+//Creates the following and suggestions sections and caches the elements
 function createSections(container) {
   container.innerHTML = `
     <div id="following-section" class="contacts-section"></div>
@@ -83,19 +75,16 @@ function moveToFollowing(userId) {
   }
 }
 
-/**
- * Initializes the contacts page
- */
+//Initializes the contacts page
 function initializeContacts() {
   // First, load the following IDs cache
-  getMyFollowingIds(function (result) {
+  getMyFollowingIds( (result) => {
     if (result.success) {
       followingCache = new Set(result.data);
     } else {
       console.error("Failed to load following IDs, using empty cache");
       followingCache = new Set();
     }
-
     // Load first page of users
     loadUsers(1, "");
   });
@@ -120,12 +109,12 @@ function loadUsers(page, searchQuery, append = false) {
     showSpinner();
   }
 
-  getAllUsers({ page, size: pageSize, searchQuery }, function (result) {
+  getAllUsers({ page, size: pageSize, searchQuery }, (result) => {
     const { users, hasMore, totalCount } = result;
-      const currentUserId = parseInt(localStorage.getItem("userId"));
+    const currentUserId = parseInt(localStorage.getItem("userId"));
 
-      // Filter out current user
-      const filteredUsers = users.filter((user) => user.id !== currentUserId);
+    // Filter out current user
+    const filteredUsers = users.filter((user) => user.id !== currentUserId);
 
     // Clear or append
     const sectionFollowingContainer = document.getElementById("following_collection");
