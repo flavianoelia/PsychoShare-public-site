@@ -18,7 +18,13 @@ const pageSize = 10;
 let currentSearchQuery = "";
 
 /**
- * Creates the following and suggestions sections
+ * DOM element cache.
+ * Initialized after being dynamically created in createSections().
+ */
+let followingSection, suggestionsSection, suggestionsDivider;
+
+/**
+ * Creates the following and suggestions sections and caches the elements
  * @param {HTMLElement} container - The main container element
  */
 function createSections(container) {
@@ -29,15 +35,16 @@ function createSections(container) {
     </div>
     <div id="suggestions-section" class="contacts-section"></div>
   `;
+  // Cache the newly created elements
+  followingSection = document.getElementById("following-section");
+  suggestionsSection = document.getElementById("suggestions-section");
+  suggestionsDivider = document.getElementById("suggestions-divider");
 }
 
 /**
  * Toggles the visibility of the suggestions divider
  */
 function toggleSuggestionsDivider() {
-  const suggestionsSection = document.getElementById("suggestions-section");
-  const suggestionsDivider = document.getElementById("suggestions-divider");
-  
   if (suggestionsSection && suggestionsDivider) {
     const hasSuggestions = suggestionsSection.children.length > 0;
     if (hasSuggestions) {
@@ -53,9 +60,6 @@ function toggleSuggestionsDivider() {
  * @param {number} userId - The ID of the user to move
  */
 function moveToSuggestions(userId) {
-  const followingSection = document.getElementById("following-section");
-  const suggestionsSection = document.getElementById("suggestions-section");
-  
   if (!followingSection || !suggestionsSection) return;
   
   const userCard = followingSection.querySelector(`[data-user-id="${userId}"]`);
@@ -70,9 +74,6 @@ function moveToSuggestions(userId) {
  * @param {number} userId - The ID of the user to move
  */
 function moveToFollowing(userId) {
-  const followingSection = document.getElementById("following-section");
-  const suggestionsSection = document.getElementById("suggestions-section");
-  
   if (!followingSection || !suggestionsSection) return;
   
   const userCard = suggestionsSection.querySelector(`[data-user-id="${userId}"]`);
@@ -127,8 +128,8 @@ function loadUsers(page, searchQuery, append = false) {
       const filteredUsers = users.filter((user) => user.id !== currentUserId);
 
     // Clear or append
-    const sectionFollowing = document.getElementById("following_collection");
-    if (!sectionFollowing) {
+    const sectionFollowingContainer = document.getElementById("following_collection");
+    if (!sectionFollowingContainer) {
       console.error("Element #following_collection not found");
       hideSpinner();
       isLoading = false;
@@ -136,9 +137,8 @@ function loadUsers(page, searchQuery, append = false) {
     }
 
     if (!append) {
-      sectionFollowing.innerHTML = "";
-      // Create sections for following and suggestions
-      createSections(sectionFollowing);
+      // Create sections for following and suggestions, which also caches the elements
+      createSections(sectionFollowingContainer);
     }
 
     // Separate users into following and not following
@@ -156,8 +156,6 @@ function loadUsers(page, searchQuery, append = false) {
 
     // Render following users first
     let followingCount = 0;
-    const followingSection = document.getElementById("following-section");
-    const suggestionsSection = document.getElementById("suggestions-section");
 
     if (!followingSection || !suggestionsSection) {
       console.error("Sections not found, falling back to default render");
