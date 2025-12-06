@@ -1,16 +1,12 @@
 // ====================================================================
-// CONTACTS REPOSITORY - Fetch contacts from backend API
+// CONTACTS REPOSITORY
 // ====================================================================
 
-/**
- * Fetches all contacts (followed users) for a given user
- * @param {number} userId - Optional. If not provided, gets from localStorage
- * @param {Function} callback - Callback function to handle the response
- */
 function getContacts(userId, callback) {
-  // Get userId and token from localStorage
+  config = { method: "GET" };
+  // Get userId from localStorage if not provided
   const currentUserId = userId || localStorage.getItem("userId");
-  const token = localStorage.getItem("token");
+
 
   if (!currentUserId) {
     console.error("No userId found in localStorage");
@@ -19,13 +15,6 @@ function getContacts(userId, callback) {
   }
 
   const url = `/api/Following/following/${currentUserId}`;
-
-  const config = {
-    method: "GET",
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  };
 
   // Use server() function for consistency with the rest of the project
   server(url, config, (users) => {
@@ -41,14 +30,9 @@ function getContacts(userId, callback) {
   });
 }
 
-/**
- * Follow a user
- * @param {number} followedUserId - The ID of the user to follow
- * @param {Function} callback - Callback function to handle the response with format {success: boolean, data: object, message: string}
- */
+
 function followUser(followedUserId, callback) {
   const currentUserId = localStorage.getItem("userId");
-  const token = localStorage.getItem("token");
 
   if (!currentUserId) {
     console.error("No userId found in localStorage");
@@ -69,12 +53,7 @@ function followUser(followedUserId, callback) {
 
   const url = `/api/Following/${followedUserId}`;
 
-  const config = {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  };
+  const config = { method: "POST"};
 
   server(url, config, function (response) {
     // Check if there was an error from server()
@@ -88,14 +67,9 @@ function followUser(followedUserId, callback) {
   });
 }
 
-/**
- * Unfollow a user
- * @param {number} followedUserId - The ID of the user to unfollow
- * @param {Function} callback - Callback function to handle the response with format {success: boolean, message: string}
- */
+
 function unfollowUser(followedUserId, callback) {
   const currentUserId = localStorage.getItem("userId");
-  const token = localStorage.getItem("token");
 
   if (!currentUserId) {
     console.error("No userId found in localStorage");
@@ -116,12 +90,7 @@ function unfollowUser(followedUserId, callback) {
 
   const url = `/api/Following/${followedUserId}`;
 
-  const config = {
-    method: "DELETE",
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  };
+  const config = { method: "DELETE"};
 
   server(url, config, function (response) {
     // Check if there was an error from server()
@@ -139,14 +108,9 @@ function unfollowUser(followedUserId, callback) {
   });
 }
 
-/**
- * Check if current user is following another user
- * @param {number} targetUserId - The ID of the user to check
- * @param {Function} callback - Callback function to handle the response with format {success: boolean, data: boolean}
- */
+
 function checkIsFollowing(targetUserId, callback) {
   const currentUserId = localStorage.getItem("userId");
-  const token = localStorage.getItem("token");
 
   if (!currentUserId) {
     console.error("No userId found in localStorage");
@@ -163,12 +127,6 @@ function checkIsFollowing(targetUserId, callback) {
 
   const url = `/api/Following/check/${targetUserId}`;
 
-  const config = {
-    method: "GET",
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  };
 
   server(url, config, function (response) {
     // Backend returns boolean or object with isFollowing property
@@ -178,70 +136,38 @@ function checkIsFollowing(targetUserId, callback) {
   });
 }
 
-/**
- * Fetches the list of user IDs that the current user is following (optimized)
- * @param {Function} callback - Callback function to handle the response with format {success: boolean, data: number[]}
- */
+
 function getMyFollowingIds(callback) {
-  const token = localStorage.getItem("token");
-
-  if (!token) {
-    console.error("No token found in localStorage");
-    callback({ success: false, data: [] });
-    return;
-  }
-
   const url = `/api/Following/my-following-ids`;
+  config = { method: "GET" };
 
-  const config = {
-    method: "GET",
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  };
+  // Use server() which now injects the token; handle 204 (server returns null)
+  server(url, config, (response) => {
+    if (response === null) {
+      // 204 No Content -> empty array
+      callback({ success: true, data: [] });
+      return;
+    }
 
-  // Use fetch directly to handle errors properly
-  fetch(`${API_BASE_URL}${url}`, config)
-    .then((response) => {
-      // 204 No Content means empty array
-      if (response.status === 204) {
-        console.log('[DEBUG] Backend returned 204, using empty cache');
-        callback({ success: true, data: [] });
-        return null;
-      }
-      if (!response.ok) {
-        console.error(`Error fetching following IDs: ${response.status}`);
-        callback({ success: true, data: [] }); // Continue with empty cache
-        return null;
-      }
-      return response.json();
-    })
-    .then((data) => {
-      if (data !== null) {
-        // Backend returns {followedUserIds: [2, 5, 8, 12, ...]} or just array
-        let ids = [];
-        if (Array.isArray(data)) {
-          ids = data;
-        } else if (data.followedUserIds && Array.isArray(data.followedUserIds)) {
-          ids = data.followedUserIds;
-        }
-        callback({ success: true, data: ids });
-      }
-    })
-    .catch((error) => {
-      console.error("Network error fetching following IDs:", error);
-      callback({ success: true, data: [] }); // Continue with empty cache
-    });
+    if (response && response.error) {
+      console.error("Error fetching following IDs from server", response);
+      callback({ success: true, data: [] });
+      return;
+    }
+
+    // Backend returns {followedUserIds: [...] } or an array
+    let ids = [];
+    if (Array.isArray(response)) {
+      ids = response;
+    } else if (response && Array.isArray(response.followedUserIds)) {
+      ids = response.followedUserIds;
+    }
+
+    callback({ success: true, data: ids });
+  });
 }
 
-/**
- * Fetches users from the system with pagination support
- * @param {Object} options - Options object
- * @param {number} options.page - Page number (starts at 1)
- * @param {number} options.size - Number of users per page (default 10)
- * @param {string} options.searchQuery - Optional search term
- * @param {Function} callback - Callback with format {users: [], hasMore: boolean, totalCount: number}
- */
+
 function getAllUsers(options, callback) {
   // Support old signature: getAllUsers(searchQuery, callback) or getAllUsers(callback)
   if (typeof options === "function") {
@@ -254,26 +180,12 @@ function getAllUsers(options, callback) {
   }
 
   const { page = 1, size = 10, searchQuery = "" } = options;
-  const token = localStorage.getItem("token");
-
-  if (!token) {
-    console.error("No token found in localStorage");
-    callback({ users: [], hasMore: false, totalCount: 0 });
-    return;
-  }
 
   // Build URL with pagination and search
   let url = `/api/User/all?page=${page}&size=${size}`;
   if (searchQuery && searchQuery.trim()) {
     url += `&search=${encodeURIComponent(searchQuery.trim())}`;
   }
-
-  const config = {
-    method: "GET",
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  };
 
   server(url, config, (response) => {
     // Backend returns paginated response: {users: [], totalCount, page, size, hasMore}
