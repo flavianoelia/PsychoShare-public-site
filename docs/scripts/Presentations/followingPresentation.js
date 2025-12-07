@@ -143,7 +143,7 @@ function loadUsers(page, searchQuery, append = false) {
       }
     }
 
-    // Render following users first
+    // Render following users
     let followingCount = 0;
 
     if (!followingSection || !suggestionsSection) {
