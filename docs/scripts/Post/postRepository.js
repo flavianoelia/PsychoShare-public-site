@@ -54,3 +54,39 @@ function getPost(options, callback) {
     callback({ posts: transformedPosts, hasMore, totalCount });
   });
 }
+
+/**
+ * Crear un nuevo post usando FormData (imagen/pdf opcionales).
+ * @param {FormData} formData
+ * @param {Function} callback - callback({ success: boolean, data?, message? })
+ */
+function createPost(formData, callback) {
+  if (!(formData instanceof FormData)) {
+    callback({ success: false, message: 'Invalid form data' });
+    return;
+  }
+
+  const url = `/api/Post`;
+
+  // server() will detect FormData and not force JSON Content-Type
+  const config = {
+    method: 'POST',
+    body: formData,
+  };
+
+  server(url, config, (response) => {
+    if (!response) {
+      // 204 No Content or empty response -> treat as success
+      callback({ success: true });
+      return;
+    }
+
+    if (response.error) {
+      callback({ success: false, message: response.message || 'Error creating post' });
+      return;
+    }
+
+    // success: server returns created post or payload
+    callback({ success: true, data: response });
+  });
+}

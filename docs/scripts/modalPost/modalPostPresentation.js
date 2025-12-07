@@ -32,51 +32,46 @@ function openPostCreationModal() {
 
     // Load user avatar and name in modal
     const userId = localStorage.getItem("userId");
-    const token = localStorage.getItem("token");
-    if (userId && token) {
-        // Load avatar
-        fetch(`${API_BASE_URL}/api/Avatar/${userId}`, {
-            headers: { 'Authorization': `Bearer ${token}` }
-        })
-        .then(r => {
-            if (r.ok) return r.json();
-            if (r.status === 404) return { noAvatar: true };
-            return null;
-        })
-        .then(data => {
-            const avatarElement = newModalPost.querySelector('#modal-user-avatar');
-            if (avatarElement) {
-                if (data && data.url) {
-                    // Replace icon with image if user has avatar
-                    const img = document.createElement('img');
-                    img.id = 'modal-user-avatar';
-                    img.className = 'contact-avatar';
-                    img.src = data.url;
-                    img.alt = 'Foto de contacto';
-                    img.onerror = function() {
-                        this.outerHTML = '<i class="fa-solid fa-circle-user contact-avatar-icon" id="modal-user-avatar"></i>';
-                    };
-                    avatarElement.replaceWith(img);
-                }
-                // else: keep the icon (noAvatar or null)
+    if (userId) {
+        // Avatar: use avatarRepository's getUserAvatar (callback style)
+        if (typeof getUserAvatar === 'function') {
+            try {
+                getUserAvatar(userId, (res) => {
+                    const avatarElement = newModalPost.querySelector('#modal-user-avatar');
+                    if (!avatarElement) return;
+                    if (res && res.success && res.data && res.data.url) {
+                        const img = document.createElement('img');
+                        img.id = 'modal-user-avatar';
+                        img.className = 'contact-avatar';
+                        img.src = res.data.url;
+                        img.alt = 'Foto de contacto';
+                        img.onerror = function() {
+                            this.outerHTML = '<i class="fa-solid fa-circle-user contact-avatar-icon" id="modal-user-avatar"></i>';
+                        };
+                        avatarElement.replaceWith(img);
+                    }
+                    // else: keep default icon
+                });
+            } catch (e) {
+                // ignore and keep default icon
             }
-        })
-        .catch(() => {
-            // Keep the default icon on error
-        });
+        }
 
-        // Load user name
-        fetch(`${API_BASE_URL}/api/User/${userId}`, {
-            headers: { 'Authorization': `Bearer ${token}` }
-        })
-        .then(r => r.ok ? r.json() : null)
-        .then(data => {
-            const nameElement = newModalPost.querySelector('.user-info h3');
-            if (data && data.name && data.lastName && nameElement) {
-                nameElement.textContent = `${data.name} ${data.lastName}`;
+        // Load user name using userRepository.getUser (callback style)
+        if (typeof getUser === 'function') {
+            try {
+                getUser(userId, (userData) => {
+                    const nameElement = newModalPost.querySelector('.user-info h3');
+                    if (userData && !userData.error && userData.name && (userData.lastName || userData.lastname)) {
+                        // Support both lastName and lastname keys if backend differs
+                        const last = userData.lastName || userData.lastname || '';
+                        if (nameElement) nameElement.textContent = `${userData.name} ${last}`.trim();
+                    }
+                });
+            } catch (e) {
+                // fallback: do nothing
             }
-        })
-        .catch(() => {});
+        }
     }
 
     // Close button
@@ -122,22 +117,14 @@ function openPostCreationModal() {
 
     // Form submission
     const form = newModalPost.querySelector('#create-post-form');
-    form.addEventListener('submit', async (e) => {
+    form.addEventListener('submit', (e) => {
         e.preventDefault();
-        
+
         const title = newModalPost.querySelector('#title').value.trim();
         const description = newModalPost.querySelector('#description').value.trim();
         const authorship = newModalPost.querySelector('#authorship').value.trim();
         const resume = newModalPost.querySelector('#abstract').value.trim();
-        
-        console.log('Valores capturados:', { title, description, authorship, resume });
-        console.log('Longitudes:', { 
-            title: title.length, 
-            description: description.length, 
-            authorship: authorship.length, 
-            resume: resume.length 
-        });
-        
+
         // Validations
         if (title.length < 2 || description.length < 2 || authorship.length < 2 || resume.length < 2) {
             Swal.fire({ 
@@ -148,66 +135,41 @@ function openPostCreationModal() {
             });
             return;
         }
-        
+
         const formData = new FormData();
         formData.append('Title', title);
         formData.append('Description', description);
         formData.append('Authorship', authorship);
         formData.append('Resume', resume);
-        
+
         if (imageInput.files[0]) {
-            console.log('Imagen adjunta:', imageInput.files[0].name, imageInput.files[0].size, 'bytes');
             formData.append('Image', imageInput.files[0]);
         }
         if (pdfInput.files[0]) {
-            console.log('PDF adjunto:', pdfInput.files[0].name, pdfInput.files[0].size, 'bytes');
             formData.append('Pdf', pdfInput.files[0]);
         }
-        
-        console.log('FormData preparado para enviar');
-        
-        try {
-            const token = localStorage.getItem('token');
-            const response = await fetch(`${API_BASE_URL}/api/post`, {
-                method: 'POST',
-                headers: { 'Authorization': `Bearer ${token}` },
-                body: formData
-            });
-            
-            if (!response.ok) {
-                let errorMessage = 'Error al crear post';
-                const contentType = response.headers.get('content-type');
-                
-                if (contentType && contentType.includes('application/json')) {
-                    try {
-                        const error = await response.json();
-                        errorMessage = Array.isArray(error) ? error.join(', ') : error.message || errorMessage;
-                    } catch (e) {
-                        console.error('Error parsing JSON:', e);
-                    }
-                } else {
-                    // Not JSON - probably HTML error page
-                    const text = await response.text();
-                    console.error('Server error (not JSON):', text.substring(0, 200));
-                    errorMessage = `Error del servidor (${response.status}). Verifica que el backend esté corriendo.`;
+
+        // Use postRepository.createPost (callback style)
+        if (typeof createPost === 'function') {
+            createPost(formData, (result) => {
+                if (!result || result.success === false) {
+                    const msg = (result && result.message) ? result.message : 'Error al crear post';
+                    Swal.fire({ icon: 'error', title: 'Error', text: msg });
+                    return;
                 }
-                
-                throw new Error(errorMessage);
-            }
-            
-            Swal.fire({ icon: 'success', title: '¡Listo!', text: 'Publicación creada', timer: 2000, showConfirmButton: false });
-            closePostCreationModal(newModalPost);
-            
-            // Reload posts - check which page we're on
-            if (typeof loadUserPosts === 'function') {
-                // We're on profile page
-                loadUserPosts(1, false);
-            } else if (typeof loadPosts === 'function') {
-                // We're on wall page
-                loadPosts(1, "", false);
-            }
-        } catch (error) {
-            Swal.fire({ icon: 'error', title: 'Error', text: error.message });
+
+                Swal.fire({ icon: 'success', title: '¡Listo!', text: 'Publicación creada', timer: 2000, showConfirmButton: false });
+                closePostCreationModal(newModalPost);
+
+                // Reload posts - check which page we're on
+                if (typeof loadUserPosts === 'function') {
+                    loadUserPosts(1, false);
+                } else if (typeof loadPosts === 'function') {
+                    loadPosts(1, "", false);
+                }
+            });
+        } else {
+            Swal.fire({ icon: 'error', title: 'Error', text: 'Operación no soportada: createPost no disponible' });
         }
     });
 

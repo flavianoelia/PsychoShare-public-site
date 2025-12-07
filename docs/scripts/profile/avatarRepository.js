@@ -8,47 +8,41 @@
  * @param {Function} callback - Callback with format {success: boolean, data: {url: string}, message: string}
  */
 function getUserAvatar(userId, callback) {
-  const token = localStorage.getItem("token");
-
   if (!userId) {
     console.error("No userId provided");
     callback({ success: false, message: "User ID is required" });
     return;
   }
 
-  const url = `${API_BASE_URL}/api/Avatar/${userId}`;
+  // Use centralized server() which injects Authorization and handles errors.
+  const url = `/api/Avatar/${userId}`;
+  const config = { method: 'GET' };
 
-  fetch(url, {
-    method: "GET",
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  })
-    .then((response) => {
-      if (!response.ok) {
-        // If no avatar found (404), that's ok - use default icon
-        if (response.status === 404) {
-          callback({ success: true, data: null });
-          return null;
-        }
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-      return response.json();
-    })
-    .then((data) => {
-      if (data && data.url) {
-        callback({ success: true, data: { url: data.url } });
-      } else if (data === null) {
-        // Already handled 404 above
-        return;
-      } else {
+  server(url, config, (response) => {
+    // server() returns null for 204, or an object, or {error:true,...}
+    if (!response) {
+      // Treat absence of content as no avatar
+      callback({ success: true, data: null });
+      return;
+    }
+
+    if (response.error) {
+      // If 404, still OK (no avatar)
+      if (response.status === 404) {
         callback({ success: true, data: null });
+        return;
       }
-    })
-    .catch((error) => {
-      console.error("Error fetching avatar:", error);
-      callback({ success: false, message: "Error al cargar avatar" });
-    });
+      callback({ success: false, message: response.message || 'Error fetching avatar' });
+      return;
+    }
+
+    // Expecting payload with { url: '...' }
+    if (response && response.url) {
+      callback({ success: true, data: { url: response.url } });
+    } else {
+      callback({ success: true, data: null });
+    }
+  });
 }
 
 /**

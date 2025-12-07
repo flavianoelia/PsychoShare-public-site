@@ -50,3 +50,33 @@ function changePassword(userId, oldPassword, newPassword, callback) {
 
   server(url, config, callback);
 }
+
+/**
+ * Obtener datos de un usuario por id usando server() (callback)
+ * @param {string|number} userId
+ * @param {Function} callback
+ */
+function getUser(userId, callback) {
+  if (!userId) {
+    callback(null);
+    return;
+  }
+
+  const url = `/api/User/${userId}`;
+  const config = { method: 'GET' };
+
+  server(url, config, (response) => {
+    // response can be null (204), an error object {error:true,...} or the user payload
+    if (!response) {
+      callback(null);
+      return;
+    }
+
+    if (response.error) {
+      callback({ error: true, message: response.message, status: response.status });
+      return;
+    }
+
+    callback(response);
+  });
+}

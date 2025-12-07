@@ -6,14 +6,21 @@ function server(url, config, success) {
   // Callers can still override or provide additional headers via config.headers.
   const token = localStorage.getItem("token");
 
-  const defaultHeaders = {
-    "Content-type": "application/json; charset=UTF-8",
-    ...(token ? { Authorization: `Bearer ${token}` } : {}),
-  };
+  // If caller sends FormData, don't force a Content-Type header (browser sets multipart boundary)
+  const isFormData = config.body instanceof FormData;
+
+  const defaultHeaders = isFormData
+    ? {
+        ...(token ? { Authorization: `Bearer ${token}` } : {}),
+      }
+    : {
+        "Content-type": "application/json; charset=UTF-8",
+        ...(token ? { Authorization: `Bearer ${token}` } : {}),
+      };
 
   config.headers = {
     ...defaultHeaders,
-    ...config.headers,
+    ...(config.headers || {}),
   };
 
   // Only add Authorization header if:
@@ -23,6 +30,14 @@ function server(url, config, success) {
   
   if (token && !isLoginOrRegister) {
     config.headers["Authorization"] = `Bearer ${token}`;
+  }
+
+  // Debug: log request info (do not log sensitive token value)
+  try {
+    const hasAuth = !!config.headers && !!config.headers.Authorization;
+    console.log(`[server] -> ${config.method || 'GET'} ${API_BASE_URL}${url} auth:${hasAuth}`);
+  } catch (e) {
+    // ignore logging errors
   }
 
   fetch(`${API_BASE_URL}${url}`, config)
@@ -77,7 +92,12 @@ function server(url, config, success) {
           return null; // Important: return null to stop promise chain
         });
       } else {
-        return response.json();
+        // If response is JSON, parse it; otherwise return raw text so callers can handle plain responses
+        const contentType = response.headers.get('content-type') || '';
+        if (contentType.includes('application/json')) {
+          return response.json();
+        }
+        return response.text();
       }
     })
     .then((data) => {
