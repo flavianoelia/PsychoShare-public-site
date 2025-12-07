@@ -55,7 +55,7 @@ function loadUserAvatar() {
         if (headerProfileImg) {
           // If it's an icon, replace with img tag
           if (headerProfileImg.tagName === 'I') {
-            headerProfileImg.outerHTML = `<img src="${data.url}" alt="Foto de perfil" class="contact-photo" onerror="this.outerHTML='<i class=\\"fa-solid fa-circle-user contact-photo\\"></i>'">`;
+            headerProfileImg.outerHTML = `<img src="${data.url}" alt="Foto de perfil" class="contact-photo" onerror="this.outerHTML='<i class=\\"fa-solid fa-circle-user contact-photo\\"></i>`;
           } else {
             headerProfileImg.src = data.url;
             headerProfileImg.onerror = function() {
