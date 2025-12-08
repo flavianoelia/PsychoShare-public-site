@@ -45,6 +45,7 @@ function getUserAvatar(userId, callback) {
   });
 }
 
+
 /**
  * Upload user avatar
  * @param {number} userId - The ID of the user
@@ -52,8 +53,6 @@ function getUserAvatar(userId, callback) {
  * @param {Function} callback - Callback with format {success: boolean, data: {url: string}, message: string}
  */
 function uploadUserAvatar(userId, file, callback) {
-  const token = localStorage.getItem("token");
-
   if (!userId) {
     console.error("No userId provided");
     callback({ success: false, message: "User ID is required" });
@@ -89,39 +88,34 @@ function uploadUserAvatar(userId, file, callback) {
   const formData = new FormData();
   formData.append("file", file);
 
-  const url = `${API_BASE_URL}/api/Avatar/${userId}`;
+  const url = `/api/Avatar/${userId}`;
 
-  fetch(url, {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${token}`,
-      // Do NOT set Content-Type header - browser will set it automatically with boundary
-    },
+  // Use centralized server() to handle Authorization and content-type
+  const config = {
+    method: 'POST',
     body: formData,
-  })
-    .then((response) => {
-      if (!response.ok) {
-        return response.json().then((err) => {
-          throw new Error(err.message || `HTTP error! status: ${response.status}`);
-        });
-      }
-      return response.json();
-    })
-    .then((data) => {
-      if (data && data.url) {
-        callback({ success: true, data: { url: data.url } });
-      } else {
-        callback({ success: false, message: "Error al subir avatar" });
-      }
-    })
-    .catch((error) => {
-      console.error("Error uploading avatar:", error);
-      callback({
-        success: false,
-        message: error.message || "Error al subir avatar",
-      });
-    });
+  };
+
+  server(url, config, (response) => {
+    if (!response) {
+      // No content - treat as failure for upload
+      callback({ success: false, message: 'Error al subir avatar' });
+      return;
+    }
+
+    if (response.error) {
+      callback({ success: false, message: response.message || 'Error al subir avatar' });
+      return;
+    }
+
+    if (response && response.url) {
+      callback({ success: true, data: { url: response.url } });
+    } else {
+      callback({ success: false, message: 'Error al subir avatar' });
+    }
+  });
 }
+
 
 /**
  * Delete user avatar
@@ -129,34 +123,22 @@ function uploadUserAvatar(userId, file, callback) {
  * @param {Function} callback - Callback with format {success: boolean, message: string}
  */
 function deleteUserAvatar(userId, callback) {
-  const token = localStorage.getItem("token");
-
   if (!userId) {
     console.error("No userId provided");
     callback({ success: false, message: "User ID is required" });
     return;
   }
 
-  const url = `${API_BASE_URL}/api/Avatar/${userId}`;
+  const url = `/api/Avatar/${userId}`;
+  const config = { method: 'DELETE' };
 
-  fetch(url, {
-    method: "DELETE",
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  })
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-      // DELETE typically returns 204 No Content
-      callback({
-        success: true,
-        message: "Avatar eliminado exitosamente",
-      });
-    })
-    .catch((error) => {
-      console.error("Error deleting avatar:", error);
-      callback({ success: false, message: "Error al eliminar avatar" });
-    });
+  server(url, config, (response) => {
+    if (response && response.error) {
+      callback({ success: false, message: response.message || 'Error al eliminar avatar' });
+      return;
+    }
+
+    // success (server may return null for 204)
+    callback({ success: true, message: 'Avatar eliminado exitosamente' });
+  });
 }

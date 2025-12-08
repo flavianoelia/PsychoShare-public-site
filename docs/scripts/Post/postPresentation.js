@@ -23,16 +23,12 @@ let hasMorePosts = true;
 const pageSize = 10;
 let currentSearchTerm = "";
 
-/**
- * Get sectionPost element (avoid capturing null at load time)
- */
+//Get sectionPost element (avoid capturing null at load time)
 function getSectionPost() {
   return document.getElementById("post_collection");
 }
 
-/**
- * Initialize wall with first page of posts
- */
+//Initialize wall with first page of posts
 function initializeWall() {
   loadPosts(1, "", false);
   setupInfiniteScroll();
@@ -52,7 +48,6 @@ function loadPosts(page, searchTerm, append) {
   if (append) {
     showSpinner();
   }
-
   getPost({ page, size: pageSize, searchTerm }, function (result) {
     const { posts, hasMore } = result;
     const sectionPost = getSectionPost();

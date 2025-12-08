@@ -51,11 +51,6 @@ function changePassword(userId, oldPassword, newPassword, callback) {
   server(url, config, callback);
 }
 
-/**
- * Obtener datos de un usuario por id usando server() (callback)
- * @param {string|number} userId
- * @param {Function} callback
- */
 function getUser(userId, callback) {
   if (!userId) {
     callback(null);

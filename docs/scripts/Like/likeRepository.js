@@ -64,8 +64,6 @@ function toggleLike(postId, callback) {
   });
 }
 
-
-
 /**
  * Get like statistics for a post
  * @param {number} postId
