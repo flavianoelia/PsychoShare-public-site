@@ -30,8 +30,38 @@ loginForm.addEventListener("submit", (event) => {
             localStorage.setItem('userId', response.userId);
             localStorage.setItem('email', response.email);
             
-            // Redirect to wall
-            window.location.href = 'wall.html';
+            // Check if user is banned before redirecting
+            checkBan(response.userId, function(banResponse) {
+                console.log("Ban check response:", banResponse);
+                
+                // Check if there was an error calling the endpoint
+                if (banResponse && banResponse.error) {
+                    console.error("Error checking ban status:", banResponse.message);
+                    // If there's an error checking ban, let them in anyway (fail open)
+                    window.location.href = 'wall.html';
+                    return;
+                }
+                
+                if (banResponse && banResponse.isBanned) {
+                    // User is banned - clear session and show message
+                    localStorage.removeItem('token');
+                    localStorage.removeItem('userId');
+                    localStorage.removeItem('email');
+
+                    Swal.fire({
+                        icon: "error",
+                        title: "Cuenta bloqueada",
+                        html: `
+                            <b>Motivo:</b> ${banResponse.banReason || 'No especificado'}<br>
+                            <b>Tipo:</b> ${banResponse.banType || 'Desconocido'}<br>
+                            ${banResponse.expiryDate ? `<b>Válido hasta:</b> ${new Date(banResponse.expiryDate).toLocaleString()}` : '<b>Ban permanente</b>'}
+                        `
+                    });
+                } else {
+                    // User is not banned - redirect to wall
+                    window.location.href = 'wall.html';
+                }
+            });
         } else {
             // CRITICAL FIX: Clear localStorage on failed login to prevent security issue
             // where old tokens could persist after failed login attempts

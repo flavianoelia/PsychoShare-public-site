@@ -50,3 +50,42 @@ function changePassword(userId, oldPassword, newPassword, callback) {
 
   server(url, config, callback);
 }
+
+/**
+ * Check if a user is banned
+ * @param {number} userId - User ID to check
+ * @param {function} callback - Callback function with ban status
+ */
+function checkBan(userId, callback) {
+  const token = localStorage.getItem("token");
+  
+  if (!token) {
+    callback({ isBanned: false });
+    return;
+  }
+
+  const url = `${API_BASE_URL}/api/Ban/check/${userId}`;
+
+  fetch(url, {
+    method: "GET",
+    headers: {
+      "Authorization": `Bearer ${token}`,
+      "Content-Type": "application/json"
+    }
+  })
+  .then(response => {
+    if (!response.ok) {
+      // If error, assume not banned to let them in
+      console.error("Error checking ban status:", response.status);
+      return { isBanned: false };
+    }
+    return response.json();
+  })
+  .then(data => {
+    callback(data);
+  })
+  .catch(error => {
+    console.error("Network error checking ban:", error);
+    callback({ isBanned: false });
+  });
+}
