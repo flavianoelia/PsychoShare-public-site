@@ -6,114 +6,128 @@
  * Atacha todos los eventos del menú hamburguesa
  * a un comentario ya renderizado.
  */
-function attachCommentMenuEvents(commentNode, commentDto) {
-    const menuBtn = commentNode.querySelector(".comment-menu-btn");
-    const menu = commentNode.querySelector(".comment-menu");
+// Delegated handlers for comment menus and actions.
+// Replaces per-comment listeners with a single delegated listener on document.
+function initializeCommentMenuDelegation() {
+    // Avoid double initialization
+    if (initializeCommentMenuDelegation._inited) return;
+    initializeCommentMenuDelegation._inited = true;
 
-    if (!menuBtn || !menu) return;
+    // Click handler for toggling menus and handling menu actions
+    document.addEventListener('click', (event) => {
+        const target = event.target;
 
-    // Abrir / cerrar menú con toggle de clase 'hidden'
-    menuBtn.addEventListener("click", (event) => {
-        event.stopPropagation();
-        
-        // Cerrar otros menús abiertos
-        document.querySelectorAll('.comment-menu').forEach(m => {
-            if (m !== menu) m.classList.add('hidden');
-        });
-        
-        menu.classList.toggle("hidden");
-    });
-
-    // Cerrar menú si clickeo fuera
-    document.addEventListener("click", (event) => {
-        if (!commentNode.contains(event.target)) {
-            menu.classList.add("hidden");
-        }
-    });
-
-    const editBtn = commentNode.querySelector(".edit-comment");
-    const deleteBtn = commentNode.querySelector(".delete-comment");
-    const reportBtn = commentNode.querySelector(".report-comment");
-
-    // EDITAR
-    if (editBtn) {
-        editBtn.addEventListener("click", (event) => {
+        // 1) Toggle menu when clicking the menu button
+        const menuBtn = target.closest('.comment-menu-btn');
+        if (menuBtn) {
             event.stopPropagation();
-            event.preventDefault();
-            
-            if (editBtn.disabled) return;
+            const commentNode = menuBtn.closest('.comment');
+            if (!commentNode) return;
+            const menu = commentNode.querySelector('.comment-menu');
+            if (!menu) return;
 
-            openEditCommentModal(commentNode, commentDto);
-            menu.classList.add("hidden");
-        });
-    }
-
-    // ELIMINAR
-    if (deleteBtn) {
-        deleteBtn.addEventListener("click", (event) => {
-            event.stopPropagation();
-            event.preventDefault();
-            
-            if (deleteBtn.disabled) return;
-
-            Swal.fire({
-                title: '¿Eliminar comentario?',
-                text: 'Esta acción no se puede deshacer',
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonText: 'Sí, eliminar',
-                cancelButtonText: 'Cancelar',
-                confirmButtonColor: '#dc3545',
-                cancelButtonColor: '#6c757d'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    deleteCommentApi(commentDto.id, (data) => {
-                        if (!data || data.error) {
-                            Swal.fire({
-                                icon: 'error',
-                                title: 'Error',
-                                text: 'No se pudo eliminar el comentario'
-                            });
-                            return;
-                        }
-                        
-                        // Get comment section before removing
-                        const commentSection = commentNode.closest('.comment-section');
-                        
-                        commentNode.remove();
-                        
-                        // Update comment count (-1 for deleted comment)
-                        if (commentSection && typeof updateCommentCount === 'function') {
-                            updateCommentCount(commentSection, -1);
-                        }
-                        
-                        Swal.fire({
-                            icon: 'success',
-                            title: 'Eliminado',
-                            text: 'El comentario fue eliminado',
-                            timer: 2000,
-                            showConfirmButton: false
-                        });
-                    });
-                }
+            // Close other menus
+            document.querySelectorAll('.comment-menu').forEach(m => {
+                if (m !== menu) m.classList.add('hidden');
             });
 
-            menu.classList.add("hidden");
-        });
-    }
+            menu.classList.toggle('hidden');
+            return;
+        }
 
-    // REPORTAR
-    if (reportBtn) {
-        reportBtn.addEventListener("click", (event) => {
-            event.stopPropagation(); // Evitar que se propague al post
+        // 2) Edit / Delete / Report buttons inside menus
+        const actionBtn = target.closest('.edit-comment, .delete-comment, .report-comment');
+        if (actionBtn) {
+            event.stopPropagation();
             event.preventDefault();
-            
-            if (reportBtn.disabled) return;
 
-            openReportCommentModal(commentNode, commentDto);
-            menu.classList.add("hidden");
-        });
-    }
+            const commentNode = actionBtn.closest('.comment');
+            if (!commentNode) return;
+
+            // Extract comment DTO info from data attributes if present
+            const commentDto = {
+                id: commentNode.dataset.commentId || commentNode.getAttribute('data-comment-id'),
+                userId: commentNode.dataset.userId || commentNode.getAttribute('data-user-id')
+            };
+
+            // EDIT
+            if (actionBtn.classList.contains('edit-comment')) {
+                if (actionBtn.disabled) return;
+                openEditCommentModal(commentNode, commentDto);
+                // hide menu
+                const menu = commentNode.querySelector('.comment-menu'); if (menu) menu.classList.add('hidden');
+                return;
+            }
+
+            // DELETE
+            if (actionBtn.classList.contains('delete-comment')) {
+                if (actionBtn.disabled) return;
+
+                Swal.fire({
+                    title: '¿Eliminar comentario?',
+                    text: 'Esta acción no se puede deshacer',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'Sí, eliminar',
+                    cancelButtonText: 'Cancelar',
+                    confirmButtonColor: '#dc3545',
+                    cancelButtonColor: '#6c757d'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        deleteCommentApi(commentDto.id, (data) => {
+                            if (!data || data.error) {
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Error',
+                                    text: 'No se pudo eliminar el comentario'
+                                });
+                                return;
+                            }
+
+                            // Update DOM and count
+                            const commentSection = commentNode.closest('.comment-section');
+                            commentNode.remove();
+                            if (commentSection && typeof updateCommentCount === 'function') {
+                                updateCommentCount(commentSection, -1);
+                            }
+
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Eliminado',
+                                text: 'El comentario fue eliminado',
+                                timer: 2000,
+                                showConfirmButton: false
+                            });
+                        });
+                    }
+                });
+
+                const menu = commentNode.querySelector('.comment-menu'); if (menu) menu.classList.add('hidden');
+                return;
+            }
+
+            // REPORT
+            if (actionBtn.classList.contains('report-comment')) {
+                if (actionBtn.disabled) return;
+                openReportCommentModal(commentNode, commentDto);
+                const menu = commentNode.querySelector('.comment-menu'); if (menu) menu.classList.add('hidden');
+                return;
+            }
+        }
+
+        // 3) Clicks outside: close any open menus
+        // If click is not inside any .comment, hide all menus
+        if (!target.closest('.comment')) {
+            document.querySelectorAll('.comment-menu').forEach(m => m.classList.add('hidden'));
+        }
+    });
+}
+
+// Backwards-compatible no-op for callers that still call attachCommentMenuEvents
+function attachCommentMenuEvents(commentNode, commentDto) {
+    // No-op: initialization should be done once via initializeCommentMenuDelegation()
+    // Provide compatibility so older code doesn't break.
+    return;
 }
 
 // Modal de edición con SweetAlert2

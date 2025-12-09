@@ -9,6 +9,7 @@
  * totalComments: total inicial de comentarios del post
  */
 function initializeCommentsForPost(postNode, postId, totalComments = 0) {
+    debugger
     const commentSection = postNode.querySelector(".comment-section");
     if (!commentSection) {
         return;
@@ -26,6 +27,11 @@ function initializeCommentsForPost(postNode, postId, totalComments = 0) {
     const viewMoreBtn = commentSection.querySelector(".view-more");
     const commentInput = commentSection.querySelector(".comment-input");
     const sendBtn = commentSection.querySelector(".submit-comment");
+
+    // Ensure delegated comment menu handlers are initialized (single listener)
+    if (typeof initializeCommentMenuDelegation === 'function') {
+        initializeCommentMenuDelegation();
+    }
 
     // viewMoreBtn es OPCIONAL (solo existe si hay >2 comentarios)
     if (!commentInput || !sendBtn) {
@@ -86,11 +92,7 @@ function initializeCommentsForPost(postNode, postId, totalComments = 0) {
         const viewMoreBtn = commentSection.querySelector(".view-more");
         commentSection.insertBefore(node, viewMoreBtn);
 
-        // Atachamos menú hamburguesa
-        attachCommentMenuEvents(node, {
-            id: newComment.id,
-            userId: newComment.userId,
-        });
+        // Delegated handlers will manage the menu; no per-node listeners needed
 
         // Update comment count (+1 for new comment)
         updateCommentCount(commentSection, 1);
@@ -119,10 +121,7 @@ function renderComments(commentSection, comments, clean) {
 
         commentSection.insertBefore(node, viewMoreBtn);
 
-        attachCommentMenuEvents(node, {
-        id: comment.id,
-        userId: comment.userId,
-        });
+        // Delegated handlers will manage menu actions for this node.
     });
     
     // Update comment count

@@ -32,13 +32,7 @@ function server(url, config, success) {
     config.headers["Authorization"] = `Bearer ${token}`;
   }
 
-  // Debug: log request info (do not log sensitive token value)
-  try {
-    const hasAuth = !!config.headers && !!config.headers.Authorization;
-    console.log(`[server] -> ${config.method || 'GET'} ${API_BASE_URL}${url} auth:${hasAuth}`);
-  } catch (e) {
-    // ignore logging errors
-  }
+  // (no debug logging here to avoid leaking tokens in console)
 
   fetch(`${API_BASE_URL}${url}`, config)
     .then((response) => {

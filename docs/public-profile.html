@@ -74,8 +74,7 @@
       <p>&copy; PsychoShare</p>
     </footer>
 
-    <script src="scripts/components/hamburgerMenu.js"></script>
-    <script src="scripts/helpers/loadUserAvatar.js"></script>
+  <script src="scripts/components/hamburgerMenu.js"></script>
 
     <!-- Helpers / config -->
     <script src="scripts/theme.js"></script>
@@ -100,6 +99,9 @@
     <script src="scripts/Comment/commentModal.js"></script>
     <script src="scripts/Comment/commentPagination.js"></script>
     <script src="scripts/Presentations/commentPresentation.js"></script>
+
+  <!-- loadUserAvatar moved after repositories so it can use repository functions if present -->
+  <script src="scripts/helpers/loadUserAvatar.js"></script>
 
     <!-- Post system (class + repository) -->
     <script src="scripts/Classes/Post.js"></script>

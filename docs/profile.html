@@ -595,8 +595,7 @@
       </div>
     </div>
 
-    <script src="scripts/components/hamburgerMenu.js"></script>
-    <script src="./scripts/helpers/loadUserAvatar.js"></script>
+  <script src="scripts/components/hamburgerMenu.js"></script>
 
     <!-- Definición de ModalPost -->
     <script src="./scripts/components/modalPost.js"></script>
@@ -639,7 +638,10 @@
     <script src="./scripts/Repositories/profileRepository.js"></script>
     <script src="./scripts/Repositories/avatarRepository.js"></script>
 
-    <!-- Lógica de la página (listeners, presentaciones) -->
+  <!-- loadUserAvatar should be after avatarRepository so it can use getUserAvatar -->
+  <script src="./scripts/helpers/loadUserAvatar.js"></script>
+
+  <!-- Lógica de la página (listeners, presentaciones) -->
     <script src="./scripts/profile/profile.js"></script>
     <script src="./scripts/Presentations/profilePresentation.js"></script>
 
