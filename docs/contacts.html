@@ -118,6 +118,7 @@
     </nav>
     <main class="main-content">
       <h2 class="contacts-count">Usuarios</h2>
+      <span id="connectedUsers" class="comment-count-header connected-users" aria-label="Usuarios conectados"> Usuarios Conectados: ...</span>
       <section
         class="contacts-list-container"
         id="following_collection"
@@ -136,12 +137,14 @@
 
     <script src="./scripts/theme.js"></script>
     <script src="./scripts/config.js"></script>
-  <script src="./scripts/fetch.js"></script>
+    <script src="./scripts/helpers/loadUserAvatar.js"></script>
+    <script src="./scripts/fetch.js"></script>
+    <script src="./scripts/connectedUsersRepository.js"></script>
+    <script src="./scripts/connectedUserPresentation.js"></script>
     <script src="./scripts/Classes/Following.js"></script>
     <script src="./scripts/Repositories/followingRepository.js"></script>
-  <script src="./scripts/Presentations/followingPresentation.js"></script>
-  <script src="./scripts/components/hamburgerMenu.js"></script>
-  <script src="./scripts/helpers/loadUserAvatar.js"></script>
+    <script src="./scripts/Presentations/followingPresentation.js"></script>
+    <script src="./scripts/components/hamburgerMenu.js"></script>
   <!-- loadUserAvatar moved after repositories where applicable -->
   </body>
 </html>
