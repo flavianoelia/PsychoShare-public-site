@@ -1,4 +1,4 @@
-import { logout} from "./logoutRepository.js";
+import { logout } from "../User/logoutRepository.js";
 
 const logoutButton = document.getElementById("logout-confirm");
 
