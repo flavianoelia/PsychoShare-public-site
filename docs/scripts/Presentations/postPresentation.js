@@ -125,6 +125,7 @@ function setupInfiniteScroll() {
   scrollObserver = new IntersectionObserver(
     (entries) => {
       if (entries[0].isIntersecting && hasMorePosts && !isLoading) {
+        console.log('🎯 INFINITE SCROLL ACTIVADO - Usuario llegó al final, cargando página', currentPage + 1);
         loadPosts(currentPage + 1, currentSearchTerm, true);
       }
     },
@@ -132,6 +133,7 @@ function setupInfiniteScroll() {
       rootMargin: "100px",
     }
   );
+  console.log('👀 IntersectionObserver configurado - Se activará 100px antes del último post');
 }
 
 /**

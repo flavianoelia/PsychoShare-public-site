@@ -18,6 +18,7 @@ function getPost(options, callback) {
 
   // Construir URL con parámetros
   let url = `/api/Post/feed?Page=${page}&Size=${size}`;
+  console.log(`🔄 PAGINADO INFINITO - Página ${page}:`, url);
   if (searchTerm && searchTerm.trim()) {
     url += `&SearchTerm=${encodeURIComponent(searchTerm.trim())}`;
   }
@@ -33,6 +34,7 @@ function getPost(options, callback) {
     const posts = response.posts || [];
     const hasMore = response.hasMore || false;
     const totalCount = response.totalCount || 0;
+    console.log(`✅ Respuesta del backend: ${posts.length} posts cargados. ¿Hay más? ${hasMore ? 'SÍ' : 'NO'}. Total: ${totalCount}`,);
 
     // Transformar los datos del backend al formato que espera el frontend
     const transformedPosts = posts.map((post) => ({

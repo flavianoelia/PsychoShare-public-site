@@ -75,3 +75,12 @@ function getUser(userId, callback) {
     callback(response);
   });
 }
+function checkBan(userId, callback) {
+  const url = `/api/Ban/check/${userId}`;
+
+  const config = {
+    method: "GET"
+  };
+
+  server(url, config, callback);
+}

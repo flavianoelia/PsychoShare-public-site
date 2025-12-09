@@ -9,7 +9,6 @@
  * totalComments: total inicial de comentarios del post
  */
 function initializeCommentsForPost(postNode, postId, totalComments = 0) {
-    debugger
     const commentSection = postNode.querySelector(".comment-section");
     if (!commentSection) {
         return;
