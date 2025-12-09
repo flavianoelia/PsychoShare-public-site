@@ -34,6 +34,7 @@ loginForm.addEventListener("submit", (event) => {
             localStorage.setItem('token', response.token);
             localStorage.setItem('userId', response.userId);
             localStorage.setItem('email', response.email);
+            localStorage.setItem('connectedUsers', response.connectedUsers);
 
             // 🔒 Chequear si está baneado
             // Nota: el backend devuelve un booleano (true/false) para /api/Ban/check/{userId}
@@ -56,6 +57,7 @@ loginForm.addEventListener("submit", (event) => {
                     localStorage.removeItem('token');
                     localStorage.removeItem('userId');
                     localStorage.removeItem('email');
+                    localStorage.removeItem('connectedUsers');
 
                     // Si el backend devolvió detalles del baneo, mostrarlos
                     if (banResponse && typeof banResponse === 'object' && banResponse.isBanned) {

@@ -947,7 +947,7 @@ figure {
 .profile-stats {
   display: flex;
   gap: 20px;
-  justify-content: center;
+  justify-content: space-around;
   background-color: var(--color-background-main);
   padding: 10px;
   border-radius: 8px;
@@ -969,7 +969,7 @@ figure {
   border-radius: 12px;
   padding: 1.5rem;
   max-width: 1000px; 
-  margin: 0 auto; 
+  margin: 5px auto; 
 }
 
 /* Sections for following and suggestions */
