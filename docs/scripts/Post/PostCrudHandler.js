@@ -252,6 +252,7 @@ async function handleEditPost(postId, triggerElement) {
 
 // ===== FUNCIÓN PARA ABRIR MODAL DE REPORTE =====
 function openReportModal(postId, postTitle, reportedUserId) {
+  debugger
   Swal.fire({
     title: 'Reportar contenido',
     html: `

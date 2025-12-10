@@ -16,7 +16,7 @@ function loadUserAvatar() {
   }
 
   // Find all elements that should display user avatar
-  const headerProfileImg = document.querySelector(".action-buttons .contact-photo");
+  const headerProfileImg = document.querySelector(".contact-photo");
   const newPostAvatar = document.getElementById("new-post-avatar");
   
   if (!headerProfileImg && !newPostAvatar) {
@@ -29,10 +29,11 @@ function loadUserAvatar() {
   if (typeof getUserAvatar === 'function') {
     try {
       getUserAvatar(userId, (res) => {
-        if (!res || !res.success) {
+        debugger
+        if (!res.data && res.success) {
           // No avatar or error - show default icons
-          if (headerProfileImg) headerProfileImg.outerHTML = '<i class="fa-solid fa-circle-user contact-photo"></i>';
-          if (newPostAvatar) newPostAvatar.outerHTML = '<i class="fa-solid fa-circle-user contact-avatar-icon" id="new-post-avatar"></i>';
+        //  if (headerProfileImg) headerProfileImg.outerHTML = '<i class="fa-solid fa-circle-user contact-photo"></i>';
+         // if (newPostAvatar) newPostAvatar.outerHTML = '<i class="fa-solid fa-circle-user contact-avatar-icon" id="new-post-avatar"></i>';
           return;
         }
 

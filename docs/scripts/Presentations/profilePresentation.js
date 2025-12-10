@@ -151,7 +151,7 @@ function updateProfileButtons(profileUserId) {
 /**
  * Load user profile information
  */
-function loadUserProfile() {
+ function loadUserProfile() {
   const urlParams = new URLSearchParams(window.location.search);
   const profileUserId = urlParams.get('userId') || localStorage.getItem('userId');
 
@@ -163,7 +163,7 @@ function loadUserProfile() {
   // Update button visibility based on profile ownership
   updateProfileButtons(profileUserId);
 
-  getUserProfile(profileUserId, function(result) {
+   getUserProfile(profileUserId, function(result) {
     if (!result.success) {
       console.error("Error loading profile:", result.message);
       return;
@@ -187,60 +187,54 @@ function loadUserProfile() {
       });
     }
 
-    // Load and update avatar
-    const token = localStorage.getItem("token");
-    const avatarUrl = `${API_BASE_URL}/api/Avatar/${profileUserId}`;
-    
-    fetch(avatarUrl, {
-      method: "GET",
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    })
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
+    // Load and update avatar using central server() helper (suppress alerts for expected 404)
+    const avatarApiUrl = `/api/Avatar/${profileUserId}`;
+    server(
+      avatarApiUrl,
+      { method: "GET", suppressAlerts: true },
+      function (resp) {
+        const profileAvatar = document.getElementById("profile-avatar");
+        const newPostAvatar = document.getElementById("new-post-avatar-profile");
+
+        if (resp?.error) {
+          // If backend returned 404, treat as no avatar (don't show an alert because we suppressed it)
+          if (resp.status === 404) {
+            if (profileAvatar) {
+              profileAvatar.outerHTML =
+                '<i class="fa-solid fa-circle-user contact-avatar-icon" id="profile-avatar"></i>';
+            }
+            if (newPostAvatar) {
+              newPostAvatar.outerHTML =
+                '<i class="fa-solid fa-circle-user contact-avatar-icon" id="new-post-avatar-profile"></i>';
+            }
+            return;
+          }
+
+          // Unexpected error - log for debugging
+          console.error("Error loading avatar:", resp.message || resp);
+          return;
         }
-        // 404 means no avatar - use default icon
-        if (response.status === 404) {
-          return { noAvatar: true };
-        }
-        return null;
-      })
-      .then((data) => {
-        const profileAvatar = document.getElementById('profile-avatar');
-        const newPostAvatar = document.getElementById('new-post-avatar-profile');
-        
-        if (data && data.url) {
-          // User has avatar - update images
+
+        // Success path: resp should be parsed JSON with { url: '...' }
+        if (resp && resp.url) {
           if (profileAvatar) {
-            profileAvatar.src = data.url;
-            profileAvatar.onerror = function() {
-              // If image fails to load, show icon
-              this.outerHTML = '<i class="fa-solid fa-circle-user contact-avatar-icon"></i>';
+            profileAvatar.src = resp.url;
+            profileAvatar.onerror = function () {
+              this.outerHTML =
+                '<i class="fa-solid fa-circle-user contact-avatar-icon"></i>';
             };
           }
-          
+
           if (newPostAvatar) {
-            newPostAvatar.src = data.url;
-            newPostAvatar.onerror = function() {
-              // If image fails to load, show icon
-              this.outerHTML = '<i class="fa-solid fa-circle-user contact-avatar-icon"></i>';
+            newPostAvatar.src = resp.url;
+            newPostAvatar.onerror = function () {
+              this.outerHTML =
+                '<i class="fa-solid fa-circle-user contact-avatar-icon"></i>';
             };
           }
-        } else if (data && data.noAvatar) {
-          // No avatar in database - replace img with icon
-          if (profileAvatar) {
-            profileAvatar.outerHTML = '<i class="fa-solid fa-circle-user contact-avatar-icon" id="profile-avatar"></i>';
-          }
-          if (newPostAvatar) {
-            newPostAvatar.outerHTML = '<i class="fa-solid fa-circle-user contact-avatar-icon" id="new-post-avatar-profile"></i>';
-          }
         }
-      })
-      .catch((error) => {
-        console.error("Error loading avatar:", error);
-      });
+      }
+    );
 
     // You can add more profile info updates here (bio, stats, etc.)
   });

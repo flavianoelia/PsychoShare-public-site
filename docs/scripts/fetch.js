@@ -23,6 +23,10 @@ function server(url, config, success) {
     ...(config.headers || {}),
   };
 
+  // Allow callers to suppress user-facing alerts for specific requests
+  // e.g., when a 404 is an expected condition (no avatar) and should not show a Swal.
+  const suppressAlerts = !!config.suppressAlerts;
+
   // Only add Authorization header if:
   // 1. Token exists
   // 2. It's not the login or register endpoint
@@ -66,25 +70,33 @@ function server(url, config, success) {
         }
         
         // Try to get error message from response body
-        return response.json().then(errorData => {
-          Swal.fire({
-            icon: "error",
-            title: "Error del servidor",
-            text: errorData?.message || `Código de error: ${response.status}`,
+        return response
+          .json()
+          .then((errorData) => {
+            // Unless the caller asked to suppress alerts, show user-facing message
+            if (!suppressAlerts) {
+              Swal.fire({
+                icon: "error",
+                title: "Error del servidor",
+                text: errorData?.message || `Código de error: ${response.status}`,
+              });
+            }
+            // Call callback with error info so callers can handle expected statuses (eg. 404 avatar)
+            success({ error: true, status: response.status, message: errorData?.message });
+            return null; // Important: return null to stop promise chain
+          })
+          .catch(() => {
+            // If can't parse JSON, optionally show status code
+            if (!suppressAlerts) {
+              Swal.fire({
+                icon: "error",
+                title: "Error del servidor",
+                text: `Código de error: ${response.status}`,
+              });
+            }
+            success({ error: true, status: response.status });
+            return null; // Important: return null to stop promise chain
           });
-          // Call callback with error info so buttons don't get stuck
-          success({ error: true, status: response.status, message: errorData?.message });
-          return null; // Important: return null to stop promise chain
-        }).catch(() => {
-          // If can't parse JSON, just show status code
-          Swal.fire({
-            icon: "error",
-            title: "Error del servidor",
-            text: `Código de error: ${response.status}`,
-          });
-          success({ error: true, status: response.status });
-          return null; // Important: return null to stop promise chain
-        });
       } else {
         // If response is JSON, parse it; otherwise return raw text so callers can handle plain responses
         const contentType = response.headers.get('content-type') || '';
