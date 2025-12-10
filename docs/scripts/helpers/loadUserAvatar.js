@@ -29,7 +29,6 @@ function loadUserAvatar() {
   if (typeof getUserAvatar === 'function') {
     try {
       getUserAvatar(userId, (res) => {
-        debugger
         if (!res.data && res.success) {
           // No avatar or error - show default icons
         //  if (headerProfileImg) headerProfileImg.outerHTML = '<i class="fa-solid fa-circle-user contact-photo"></i>';

@@ -12,7 +12,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function openReportModal(targetType, targetId) {
-    debugger
     if (!reportModalEl) return;
     inputType.value = targetType;
     inputId.value = targetId;
@@ -38,14 +37,14 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Delegación de eventos para botones de reporte en la página
-  /*
+  
   document.body.addEventListener('click', (e) => {
     const btn = e.target.closest('.btn-report, .report-comment, .btn-report-profile');
     if (!btn) return;
     const t = btn.getAttribute('data-report-type') || btn.dataset.reportType;
     const id = btn.getAttribute('data-report-id') || btn.dataset.reportId || '';
     openReportModal(t || 'unknown', id || '');
-  });*/
+  });
 
   // Envío del formulario
   if (reportForm) {

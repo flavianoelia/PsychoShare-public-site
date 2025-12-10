@@ -25,7 +25,6 @@ function getUserAvatar(userId, callback) {
       callback({ success: true, data: null });
       return;
     }
-
     if (response.error) {
       // If 404, still OK (no avatar)
       if (response.status === 404) {

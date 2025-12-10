@@ -107,12 +107,12 @@ function initializeCommentMenuDelegation() {
             }
 
             // REPORT
-            if (actionBtn.classList.contains('report-comment')) {
+            /*if (actionBtn.classList.contains('report-comment')) {
                 if (actionBtn.disabled) return;
                 openReportCommentModal(commentNode, commentDto);
                 const menu = commentNode.querySelector('.comment-menu'); if (menu) menu.classList.add('hidden');
                 return;
-            }
+            }*/
         }
 
         // 3) Clicks outside: close any open menus
@@ -183,7 +183,7 @@ function openEditCommentModal(commentNode, commentDto) {
 }
 
 // Modal de reporte con SweetAlert2
-function openReportCommentModal(commentNode, commentDto) {
+/*function openReportCommentModal(commentNode, commentDto) {
     Swal.fire({
         title: 'Reportar comentario',
         html: `
@@ -265,3 +265,4 @@ function openReportCommentModal(commentNode, commentDto) {
         }
     });
 }
+*/
