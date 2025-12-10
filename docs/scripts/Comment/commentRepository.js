@@ -65,7 +65,6 @@ function deleteCommentApi(commentId, callback) {
  * Reportar un comentario (PREPARADO para cuando el back lo soporte).
  * Por ahora el ReportController sólo deja reportar si sos admin/superadmin.
  */
-/*
 function reportCommentApi(commentId, reportedUserId, reason, details, callback) {
     const token = localStorage.getItem("token");
     const auth = getCurrentAuthContext();
@@ -91,4 +90,3 @@ function reportCommentApi(commentId, reportedUserId, reason, details, callback) 
 
     server(url, config, callback);
 }
-*/
