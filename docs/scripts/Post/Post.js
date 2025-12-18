@@ -9,6 +9,7 @@ class Post {
     this.authorship = post.authorship;
     this.abstract = post.abstract;
     this.image = post.image;
+    this.pdf = post.pdf; // PDF object with url property
     this.coutLike = post.countLike || 0;
     this.comments = post.comments || [];
     this.createdAt = post.createdAt; // Fecha ISO del backend
@@ -59,27 +60,24 @@ class Post {
       .join("\n");
 
     post.innerHTML = `
-            <section class="post">
-                ${ownerAvatarHTML}
-                <div class="post-info">
-                    <p class="name">${this.nameOwner}</p>
-                    <p class="timestamp">${date}</p>
-                    <p class="timestamp">${time}</p>
-                </div>
-            ${
-              isOwnPost
-                ? `
-                <div class="post-menu-container">
-                    <button class="menu-btn">⋮</button>
-
+            <section class="post-header" data-user-id="${this.userId}">
+                <a href="profile.html?userId=${this.userId}" class="profile-link" aria-label="Ver perfil de ${this.nameOwner}" style="text-decoration:none;color:inherit;display:inline-flex;align-items:center;gap:.5rem">
+                    ${ownerAvatarHTML}
+                    <div class="user-info">
+                        <p class="username">${this.nameOwner}</p>
+                        <p class="post-date">${date} ${time}</p>
+                    </div>
+                </a>
+                <div class="dropdown-container">
+                    <button class="dropdown-trigger"><i class="fas fa-ellipsis-v"></i></button>
                     <div class="dropdown-menu">
-                        <button class="dropdown-item edit-btn" data-id="${this.postId}"> Editar</button>
-                        <button class="dropdown-item delete-btn" data-id="${this.postId}">Eliminar</button>
+                        ${isOwnPost
+                            ? `<button class="dropdown-item edit-post" data-post-id="${this.postId}"><i class="fas fa-edit"></i> Editar</button>
+                            <button class="dropdown-item delete-post" data-post-id="${this.postId}"><i class="fas fa-trash"></i> Eliminar</button>`
+                            : `<button class="dropdown-item report-post" data-post-id="${this.postId}" data-post-title="${this.title}"><i class="fas fa-flag"></i> Reportar</button>`
+                        }
                     </div>
                 </div>
-                `
-                : ""
-            }
             </section>
             <section class="post-content">
                 <p>${this.description}</p>
@@ -105,13 +103,13 @@ class Post {
                                       this.coutLike
                                     } Me gusta</span>
                                 </button>
-                                <button class="btn comment-button"><i class="fas fa-comment"></i>${
-                                  this.comments.length
-                                } Comentarios</button>
-                                <button class="btn pdf-button"><i class="fas fa-file-pdf"></i>Ver PDF</button>
-                                <button class="btn btn-report" data-report-type="post" data-report-id="${
-                                  this.title
-                                }" type="button"><i class="fas fa-flag"></i> Reportar</button>
+                                ${
+                                  this.pdf && this.pdf.url
+                                    ? `<button class="btn pdf-button pdf-view-button" data-pdf-url="${this.pdf.url}" data-post-title="${this.title}">
+                                    <i class="fas fa-file-pdf"></i>Ver PDF
+                                </button>`
+                                    : ""
+                                }
                             </div>
                         </div>
                     </figcaption>
@@ -119,12 +117,11 @@ class Post {
             </section>
 
             <section class="comment-section">
+                <div class="comment-count-header">
+                    <i class="fas fa-comment"></i> ${this.comments.length} Comentarios
+                </div>
                 ${commentsHtml}
-                ${
-                  this.comments.length > 2
-                    ? '<button class="btn view-more">Ver más</button>'
-                    : ""
-                }
+                <button class="btn view-more hidden">Ver más</button>
                 <div class="add-comment">
                    <i class="fa-solid fa-circle-user contact-avatar-icon"></i>
                     <input type="text" class="comment-input" placeholder="Escribe un comentario">
@@ -132,35 +129,8 @@ class Post {
                 </div>
             </section>
         `;
-
-    /*
-        const commentSection = document.createElement("section");
-        commentSection.className = "comment-section";
-
-        const previewComments = this.comments.slice(0, 2);
-        previewComments.forEach(c => {
-            const commentObj = new Comment(c);
-            commentSection.appendChild(commentObj.getNode());
-        });
-
-        if(this.comments.length > 2){
-            const viewMoreBtn = document.createElement("button");
-            viewMoreBtn.className = "btn view-more";
-            viewMoreBtn.textContent = "Ver más";
-            commentSection.appendChild(viewMoreBtn);
-        }
-
-        const addComment = document.createElement("div");
-        addComment.className = "add-comment";
-        addComment.innerHTML = `
-            <i class="fa-solid fa-circle-user contact-avatar-icon"></i>
-            <input type="text" class="comment-input" placeholder="Escribe un comentario">
-            <button class="btn submit-comment"><i class="fas fa-paper-plane"></i>Enviar</button>
-        `;
-        commentSection.appendChild(addComment);
-
-        post.appendChild(commentSection);
-        */
+    // NOTE: initializeCommentsForPost is now called in postPresentation.js AFTER adding to DOM
+    // DO NOT call it here as the post is not yet in the DOM
 
     return post;
   }

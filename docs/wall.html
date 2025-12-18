@@ -90,11 +90,7 @@
           <i class="fas fa-house"></i>
         </a>
         <a href="profile.html" class="action-button" aria-label="Perfil">
-          <img
-            src="assets/imgwebp/flavia.webp"
-            alt="Foto de contacto"
-            class="contact-photo"
-          />
+          <i class="fa-solid fa-circle-user contact-photo" aria-label="Foto de perfil"></i>
         </a>
         <button class="menu-toggle action-button" aria-label="Abrir menú">
           <i class="fas fa-bars"></i>
@@ -133,6 +129,7 @@
     </nav>
 
     <main class="main-content">
+      <span id="connectedUsers" class="comment-count-header connected-users" aria-label="Usuarios conectados"> Usuarios Conectados: ...</span>
       <!-- Form new post -->
       <div class="new-post-form" aria-label="Crear nueva publicación">
         <img
@@ -183,6 +180,27 @@
     <footer class="footer" aria-label="Pie de página del sitio">
       <p>2025 PsychoShare - Hecho por PsyNet - Licencia MIT</p>
     </footer>
+
+    <!-- Modal para visualizar PDF -->
+    <div class="modal fade" id="pdfViewerModal" tabindex="-1" aria-labelledby="pdfViewerModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-xl modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="pdfViewerModalLabel">Visualizar PDF</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+          </div>
+          <div class="modal-body p-0">
+            <embed id="pdfEmbed" type="application/pdf">
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            <button type="button" class="btn btn-primary" id="downloadPdfFromModal">
+              <i class="fas fa-download"></i> Descargar PDF
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <!-- Modal de reporte (Bootstrap) -->
     <div
@@ -259,13 +277,22 @@
     <script src="./scripts/fetch.js"></script>
     <script src="./scripts/helpers/loadUserAvatar.js"></script>
     <script src="./scripts/Following/followingRepository.js"></script>
-    <script src="./scripts/Like/likeRepository.js"></script>
+    <script src="./scripts/connectedUsersRepository.js"></script>
+    <script src="./scripts/connectedUserPresentation.js"></script>
+    <script src="./scripts/Repositories/likeRepository.js"></script>
+    <script src="./scripts/Repositories/pdfRepository.js"></script>
+    <script src="./scripts/Comment/commet.js"></script>
+    <script src="./scripts/Repositories/commentRepository.js"></script>
+    <script src="./scripts/Comment/commentModal.js"></script>
+    <script src="./scripts/Comment/commentPagination.js"></script>
     <script src="./scripts/Post/Post.js"></script>
-    <script src="./scripts/Post/postRepository.js"></script>
+    <script src="./scripts/Repositories/postRepository.js"></script>
     <script src="./scripts/Post/postFollowHandler.js"></script>
     <script src="./scripts/Post/PostCrudHandler.js"></script>
     <script src="./scripts/Like/likeHandler.js"></script>
-    <script src="./scripts/Post/postPresentation.js"></script>
+    <script src="./scripts/Pdf/pdfHandler.js"></script>
+    <script src="./scripts/Presentations/commentPresentation.js"></script>
+    <script src="./scripts/Presentations/postPresentation.js"></script>
     <script src="./scripts/components/hamburgerMenu.js"></script>
     <script src="./scripts/helpers.js"></script>
     <script src="./scripts/modalPost/modalPost.js"></script>

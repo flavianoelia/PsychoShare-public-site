@@ -118,6 +118,7 @@
     </nav>
     <main class="main-content">
       <h2 class="contacts-count">Usuarios</h2>
+      <span id="connectedUsers" class="comment-count-header connected-users" aria-label="Usuarios conectados"> Usuarios Conectados: ...</span>
       <section
         class="contacts-list-container"
         id="following_collection"
@@ -136,8 +137,10 @@
 
     <script src="./scripts/theme.js"></script>
     <script src="./scripts/config.js"></script>
-    <script src="./scripts/fetch.js"></script>
     <script src="./scripts/helpers/loadUserAvatar.js"></script>
+    <script src="./scripts/fetch.js"></script>
+    <script src="./scripts/connectedUsersRepository.js"></script>
+    <script src="./scripts/connectedUserPresentation.js"></script>
     <script src="./scripts/Following/following.js"></script>
     <script src="./scripts/Following/followingRepository.js"></script>
     <script src="./scripts/Following/followingRepresentation.js"></script>

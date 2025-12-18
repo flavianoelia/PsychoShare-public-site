@@ -71,12 +71,12 @@ function uploadUserAvatar(userId, file, callback) {
     return;
   }
 
-  // Validate file size (max 2MB)
-  const maxSize = 2 * 1024 * 1024; // 2MB in bytes
+  // Validate file size (max 20MB)
+  const maxSize = 20 * 1024 * 1024; // 20MB in bytes
   if (file.size > maxSize) {
     callback({
       success: false,
-      message: "El archivo es demasiado grande. Máximo 2MB.",
+      message: "El archivo es demasiado grande. Máximo 20MB.",
     });
     return;
   }

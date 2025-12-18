@@ -1,11 +1,16 @@
-const sectionPost = document.getElementById("post_collection");
-
 // State management for infinite scroll
 let currentPage = 1;
 let isLoading = false;
 let hasMorePosts = true;
 const pageSize = 10;
 let currentSearchTerm = "";
+
+/**
+ * Get sectionPost element (avoid capturing null at load time)
+ */
+function getSectionPost() {
+  return document.getElementById("post_collection");
+}
 
 /**
  * Initialize wall with first page of posts
@@ -24,7 +29,7 @@ function initializeWall() {
  */
 function loadPosts(page, searchTerm, append) {
   if (isLoading) return;
-  
+
   isLoading = true;
   if (append) {
     showSpinner();
@@ -32,6 +37,7 @@ function loadPosts(page, searchTerm, append) {
 
   getPost({ page, size: pageSize, searchTerm }, function (result) {
     const { posts, hasMore } = result;
+    const sectionPost = getSectionPost();
 
     if (!append && sectionPost) {
       sectionPost.innerHTML = "";
@@ -43,6 +49,15 @@ function loadPosts(page, searchTerm, append) {
       const nodo = post.getNode();
       if (sectionPost) {
         sectionPost.append(nodo);
+
+        // Initialize comments AFTER adding to DOM
+        if (typeof initializeCommentsForPost === "function") {
+          const totalComments =
+            jsonPost.commentCount ||
+            (jsonPost.comments && jsonPost.comments.length) ||
+            0;
+          initializeCommentsForPost(nodo, jsonPost.postId, totalComments);
+        }
       }
     }
 
@@ -97,6 +112,7 @@ function setupInfiniteScroll() {
   scrollObserver = new IntersectionObserver(
     (entries) => {
       if (entries[0].isIntersecting && hasMorePosts && !isLoading) {
+        console.log('🎯 INFINITE SCROLL ACTIVADO - Usuario llegó al final, cargando página', currentPage + 1);
         loadPosts(currentPage + 1, currentSearchTerm, true);
       }
     },
@@ -104,6 +120,7 @@ function setupInfiniteScroll() {
       rootMargin: "100px",
     }
   );
+  console.log('👀 IntersectionObserver configurado - Se activará 100px antes del último post');
 }
 
 /**
@@ -112,7 +129,13 @@ function setupInfiniteScroll() {
 function observeLastElement() {
   if (!scrollObserver) return;
 
-  const allPosts = document.querySelectorAll(".post");
+  // Disconnect previous observations
+  scrollObserver.disconnect();
+
+  const sectionPost = getSectionPost();
+  if (!sectionPost) return;
+
+  const allPosts = sectionPost.querySelectorAll(".article");
   if (allPosts.length > 0) {
     const lastPost = allPosts[allPosts.length - 1];
     scrollObserver.observe(lastPost);
@@ -156,25 +179,11 @@ function initializeSearch() {
     }, 500);
   });
 }
-document.addEventListener("click", function(e) {
-    const isBtn = e.target.classList.contains("menu-btn");
 
-    // Cerrar todos los menús
-    document.querySelectorAll(".dropdown-menu").forEach(menu => {
-        menu.style.display = "none";
-    });
-
-    // Si clickeaste el botón...
-    if (isBtn) {
-        const container = e.target.closest(".post-menu-container");
-        const menu = container.querySelector(".dropdown-menu");
-        menu.style.display = "flex";
-        e.stopPropagation();
-    }
+// Initialize wall when DOM is ready
+document.addEventListener("DOMContentLoaded", function () {
+  const sectionPost = getSectionPost();
+  if (sectionPost) {
+    initializeWall();
+  }
 });
-
-
-// Initialize wall when DOM is ready (only if post_collection exists)
-if (sectionPost) {
-  initializeWall();
-}

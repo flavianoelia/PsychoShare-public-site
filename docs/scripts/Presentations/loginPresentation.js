@@ -1,0 +1,72 @@
+const loginForm = document.getElementById("login-form");
+const emailInput = document.getElementById("mail");
+const passwordInput = document.getElementById("password");
+
+loginForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+    
+    const email = emailInput.value.trim();
+    const password = passwordInput.value.trim();
+    
+    // Basic validation
+    if (!email || !password) {
+        alert("Por favor completá todos los campos");
+        return;
+    }
+    
+    if (!validateEmail(email)) {
+        alert("Por favor ingresá un email válido");
+        return;
+    }
+    
+    // Call login function
+    login(email, password, function(response) {
+        if (response.success) {
+            // Clear any previous session data before saving new one
+            localStorage.clear();
+            
+            // Save to localStorage
+            localStorage.setItem('token', response.token);
+            localStorage.setItem('userId', response.userId);
+            localStorage.setItem('email', response.email);
+            
+    // 🔒 Chequear si está baneado
+    checkBan(response.userId, function (banResponse) {
+        if (banResponse && banResponse.isBanned) {
+        
+            // Limpiar sesión
+            localStorage.removeItem('token');
+            localStorage.removeItem('userId');
+            localStorage.removeItem('email');
+
+            Swal.fire({
+            icon: "error",
+            title: "Cuenta bloqueada",
+            html: `
+                <b>Motivo:</b> ${banResponse.banReason}<br>
+                <b>Tipo:</b> ${banResponse.banType}<br>
+                ${
+                banResponse.expiryDate 
+                    ? `<b>Válido hasta:</b> ${new Date(banResponse.expiryDate).toLocaleString()}`
+                    : ''
+                }
+            `
+        });
+
+        return;
+    }
+        window.location.href = 'wall.html';
+    });
+
+        } else {
+            // CRITICAL FIX: Clear localStorage on failed login to prevent security issue
+            // where old tokens could persist after failed login attempts
+            localStorage.removeItem('token');
+            localStorage.removeItem('userId');
+            localStorage.removeItem('email');
+            
+            // Handle login error
+            alert(response.message || "Error al iniciar sesión. Verificá tus credenciales.");
+        }
+    });
+});

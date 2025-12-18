@@ -11,7 +11,6 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-Tf8UPt3NwntSM6AfUsF96pAy43MPHRswCy7O0KlNNX+R1F0I06+nSgxWWJZKjFuRjRuhAuH9knFVw8NsK9zQ9g==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&family=Sora:wght@100..800&display=swap" rel="stylesheet"/>
 
-
   <link rel="stylesheet" href="css/style.css" />
  
 </head>
@@ -19,17 +18,31 @@
   <main class="delete-container">
     <section class="delete-card" role="dialog" aria-labelledby="delete-title">
       <h1 id="delete-title">¿Estás seguro que deseas eliminar tu cuenta?</h1>
-      <p class="delete-text">Esta acción es irreversible. Si continúas, tu cuenta será eliminada permanentemente.</p>
-     
-      <label for="password">Introduce tu contraseña</label>
-      <input id="password" name="password" type="password" placeholder="Contraseña" aria-label="Confirmar contraseña" required />
-
+      <p class="delete-text">Esta acción es irreversible. Si continúas, tu cuenta será eliminada permanentemente junto con todos tus posts, comentarios, likes y archivos.</p>
 
       <div class="delete-buttons">
-        <a href="sign-up.html"class="btn delete-btn" id="eliminar" aria-label="Confirmar eliminación">Eliminar</a>
+        <button class="btn delete-btn" id="eliminar" aria-label="Confirmar eliminación">Eliminar mi cuenta</button>
         <a href="profile.html" class="btn cancel-btn" role="button" aria-label="Cancelar y volver">Cancelar</a>
       </div>
     </section>
   </main>
+
+  <!-- SweetAlert2 -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  
+  <!-- Config and utilities -->
+  <script src="scripts/config.js"></script>
+  <script src="scripts/fetch.js"></script>
+  
+  <!-- Delete user functionality -->
+  <script src="scripts/User/deleteUserCascade.js"></script>
+  
+  <script>
+    // Attach event listener to delete button
+    document.getElementById('eliminar').addEventListener('click', function(e) {
+      e.preventDefault();
+      deleteMyAccount();
+    });
+  </script>
 </body>
 </html>
